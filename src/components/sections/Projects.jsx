@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { FaGithub, FaExternalLinkAlt, FaFolder } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaFolder } from 'react-icons/fa';
 import { projects } from '../../data/projects';
 import './Projects.css';
 
 const Projects = () => {
-    const [filter, setFilter] = useState('All');
 
     useEffect(() => {
         AOS.init({
@@ -16,22 +15,12 @@ const Projects = () => {
         });
     }, []);
 
-    // Extract unique tags for filter properly
-    const allTags = ['All', ...new Set(projects.flatMap(project => project.tags))];
-
-    // For UI simplicity, let's just use a few main categories or stick to "All" if there are too many specific tags
-    // Or just show "All" and let users see everything for now
-
-    const filteredProjects = filter === 'All'
-        ? projects
-        : projects.filter(project => project.tags.includes(filter));
-
     return (
         <section className="projects" id="projects">
             <div className="projects-container container">
                 {/* Section Header */}
                 <div className="section-header" data-aos="fade-up">
-                    <span className="code-comment">// Selected Projects</span>
+                    <span className="code-comment">{'// Selected Projects'}</span>
                     <h2 className="section-title">
                         <span className="code-keyword">function</span>{' '}
                         <span className="code-function">viewProjects</span>
@@ -41,7 +30,7 @@ const Projects = () => {
 
                 {/* Projects Grid */}
                 <div className="projects-grid">
-                    {filteredProjects.map((project, index) => (
+                    {projects.map((project, index) => (
                         <div
                             key={project.id}
                             className="project-card"
@@ -76,9 +65,9 @@ const Projects = () => {
                                     </h3>
 
                                     <div className="project-description">
-                                        <span className="code-comment">/**</span>
+                                        <span className="code-comment">{'/**'}</span>
                                         <p className="desc-text"> * {project.description}</p>
-                                        <span className="code-comment"> */</span>
+                                        <span className="code-comment">{' */'}</span>
                                     </div>
 
                                     {/* Tech Stack */}

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaPaperPlane, FaFacebook } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaPaperPlane, FaFacebook } from 'react-icons/fa';
 import './Contact.css';
 
 const Contact = () => {
@@ -50,7 +50,7 @@ const Contact = () => {
             <div className="contact-container container">
                 {/* Section Header */}
                 <div className="section-header" data-aos="fade-up">
-                    <span className="code-comment">// Let's Connect</span>
+                    <span className="code-comment">{'// Let\'s Connect'}</span>
                     <h2 className="section-title">
                         <span className="code-keyword">async function</span>{' '}
                         <span className="code-function">sendMsg</span>
@@ -173,7 +173,7 @@ const Contact = () => {
             <footer className="footer">
                 <div className="footer-content container">
                     <p className="copyright">
-                        <span className="code-comment">// Designed & Built by Your Name</span>
+                        <span className="code-comment">{'// Designed & Built by Abdulrahman Khairy'}</span>
                     </p>
                     <p className="year">
                         <span className="code-keyword">const</span> <span className="code-variable">YEAR</span> = <span className="code-number">{new Date().getFullYear()}</span>;

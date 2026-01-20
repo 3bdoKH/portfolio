@@ -18,7 +18,7 @@ const Skills = () => {
             <div className="skills-container container">
                 {/* Section Header */}
                 <div className="section-header" data-aos="fade-up">
-                    <span className="code-comment">// Web Development Expertise</span>
+                    <span className="code-comment">{'// Web Development Expertise'}</span>
                     <h2 className="section-title">
                         <span className="code-keyword">const</span>{' '}
                         <span className="code-variable">skills</span>{' '}
@@ -49,7 +49,7 @@ const Skills = () => {
                                         <div className="skill-description">
                                             {skill.description.map((line, idx) => (
                                                 <p key={idx} className="skill-desc-line">
-                                                    <span className="code-comment">//</span> {line}
+                                                    <span className="code-comment">{'//'}</span> {line}
                                                 </p>
                                             ))}
                                         </div>
@@ -73,7 +73,7 @@ const Skills = () => {
                 {/* Technologies Section */}
                 <div className="technologies-section" data-aos="fade-up">
                     <div className="tech-header">
-                        <span className="code-comment">// Technologies & Tools</span>
+                        <span className="code-comment">{'// Technologies & Tools'}</span>
                         <h3 className="tech-title">
                             <span className="code-keyword">const</span>{' '}
                             <span className="code-variable">technologies</span>{' '}

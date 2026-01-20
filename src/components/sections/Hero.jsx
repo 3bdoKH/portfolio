@@ -11,7 +11,7 @@ const Hero = () => {
         const cursorInterval = setInterval(() => {
             setShowCursor(prev => !prev);
         }, 530);
-
+        console.log(showCursor);
         return () => clearInterval(cursorInterval);
     }, []);
 
@@ -32,7 +32,7 @@ const Hero = () => {
                     <div className="profile-section">
                         <div className="profile-frame">
                             <div className="frame-header">
-                                <span className="code-comment">// me.jpg</span>
+                                <span className="code-comment">{'// me.jpg'}</span>
                                 <div className="frame-dots">
                                     <span className="dot dot-close"></span>
                                     <span className="dot dot-minimize"></span>
@@ -69,7 +69,7 @@ const Hero = () => {
                     {/* Code Content */}
                     <div className="code-block">
                         <div className="code-line">
-                            <span className="code-comment">// Welcome to my portfolio</span>
+                            <span className="code-comment">{'// Welcome to my portfolio'}</span>
                         </div>
 
                         <div className="code-line">
@@ -159,7 +159,7 @@ const Hero = () => {
                 {/* Decorative Elements */}
                 <div className="hero-decoration">
                     <div className="code-snippet snippet-1">
-                        <span className="code-comment">// Crafting digital solutions</span>
+                        <span className="code-comment">{'// Crafting digital solutions'}</span>
                     </div>
 
                     <div className="code-snippet snippet-3">

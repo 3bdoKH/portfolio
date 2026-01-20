@@ -90,7 +90,7 @@ const Navbar = () => {
             {/* Mobile Menu */}
             <div className={`mobile-menu ${isMobileMenuOpen ? 'active' : ''}`}>
                 <div className="mobile-menu-header">
-                    <span className="code-comment">// Navigation Menu</span>
+                    <span className="code-comment">{'// Navigation Menu'}</span>
                 </div>
                 <ul className="mobile-nav-list">
                     {navItems.map((item, index) => (

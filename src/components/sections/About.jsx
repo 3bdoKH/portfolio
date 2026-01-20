@@ -57,7 +57,7 @@ const About = () => {
             <div className="about-container container">
                 {/* Section Header */}
                 <div className="section-header" data-aos="fade-up">
-                    <span className="code-comment">// About Me</span>
+                    <span className="code-comment">{'// About Me'}</span>
                     <h2 className="section-title">
                         <span className="code-keyword">const</span>{' '}
                         <span className="code-variable">developer</span>{' '}

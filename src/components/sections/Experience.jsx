@@ -18,7 +18,7 @@ const Experience = () => {
             <div className="experience-container container">
                 {/* Section Header */}
                 <div className="section-header" data-aos="fade-up">
-                    <span className="code-comment">// Work History</span>
+                    <span className="code-comment">{'// Work History'}</span>
                     <h2 className="section-title">
                         <span className="code-keyword">const</span>{' '}
                         <span className="code-variable">experience</span>{' '}
@@ -50,7 +50,7 @@ const Experience = () => {
                                             <span className="code-function">{job.company.replace(/\s/g, '')}</span>
                                             <span className="code-bracket"> = {'{'}</span>
                                         </div>
-                                        <span className="job-period code-comment">// {job.period}</span>
+                                        <span className="job-period code-comment">{'// ' + job.period}</span>
                                     </div>
 
                                     <div className="job-body">
