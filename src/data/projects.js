@@ -8,61 +8,56 @@ export const projects = [
     {
         id: 1,
         title: 'project_one',
-        displayTitle: 'E-Commerce Platform',
-        description: 'A full-stack e-commerce application with user authentication, product management, and payment gateway integration.',
+        displayTitle: "Adam's Agency",
+        description: 'Adam’s Agency is a marketing and technology company delivering innovative digital solutions for businesses worldwide.',
         image: project1,
-        tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+        tags: ['React', 'Node.js', 'MongoDB'],
         links: {
-            github: 'https://github.com',
-            live: 'https://example.com'
+            live: 'https://adams-agency.online/'
         }
     },
     {
         id: 2,
         title: 'project_two',
-        displayTitle: 'Social Media Dashboard',
-        description: 'Real-time analytics dashboard for social media management, featuring data visualization and reporting tools.',
+        displayTitle: 'Dalel Altashtebat',
+        description: 'Dalil Al-Tashtebat is a leading platform that connects homeowners and office owners with top finishing and renovation companies in Egypt.',
         image: project2,
-        tags: ['Vue.js', 'Firebase', 'D3.js', 'Sass'],
+        tags: ['React', 'express', 'MySQL', 'Node.js', 'Bootstrap'],
         links: {
-            github: 'https://github.com',
-            live: 'https://example.com'
+            live: 'https://dalel-eltashtebat.online/'
         }
     },
     {
         id: 3,
         title: 'project_three',
-        displayTitle: 'Task Management App',
-        description: 'Collaborative task management tool with drag-and-drop interface, team features, and progress tracking.',
+        displayTitle: 'Kayan',
+        description: 'I developed this website to showcase a leading finishing services company with over 15 years of experience and 500+ completed projects across Egypt.',
         image: project3,
-        tags: ['React', 'Redux', 'Express', 'PostgreSQL'],
+        tags: ['React', 'Node.js', 'MongoDB', 'Bootstrap'],
         links: {
-            github: 'https://github.com',
-            live: 'https://example.com'
+            live: 'https://www.kayan-tashteebbeltaqseet.online/'
         }
     },
     {
         id: 4,
         title: 'project_four',
-        displayTitle: 'Weather Forecast App',
-        description: 'Mobile-responsive weather application providing real-time forecasts, location tracking, and severe weather alerts.',
+        displayTitle: 'Tashteeb Beltaqseet',
+        description: 'This website was developed for a finishing and construction company with over 15 years of experience, offering high-quality services at competitive prices.',
         image: project4,
-        tags: ['React Native', 'OpenWeatherMap API', 'Expo'],
+        tags: ['React', 'Node.js', 'MongoDB', 'Bootstrap'],
         links: {
-            github: 'https://github.com',
-            live: 'https://example.com'
+            live: 'https://www.tashteeb-beltaqseet.com/'
         }
     },
     {
         id: 5,
         title: 'project_five',
-        displayTitle: 'Portfolio Website',
-        description: 'Modern, responsive portfolio website showcasing skills and projects with a unique code-themed design.',
+        displayTitle: 'Portfolio V1',
+        description: 'Modern, responsive portfolio website showcasing skills and projects with a unique  design.',
         image: project5,
-        tags: ['React', 'CSS3', 'Framer Motion'],
+        tags: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'TypeScript'],
         links: {
-            github: 'https://github.com',
-            live: 'https://example.com'
+            live: 'https://my-portfolio-deploy-nine.vercel.app/'
         }
     }
 ];
