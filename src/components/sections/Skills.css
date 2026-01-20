@@ -30,18 +30,17 @@
     margin: 0;
 }
 
-/* Skills Grid */
+/* Skills Grid (Services) */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-2xl);
+    margin-bottom: var(--spacing-3xl);
 }
 
-/* Skill Card */
 .skill-card {
     position: relative;
-    height: 320px;
+    height: 300px;
     perspective: 1000px;
 }
 
@@ -60,7 +59,6 @@
     justify-content: center;
     text-align: center;
     overflow: hidden;
-    cursor: pointer;
 }
 
 .skill-card-inner::before {
@@ -189,7 +187,10 @@
     margin-bottom: var(--spacing-3xl);
 }
 
-/* Technologies Section */
+/* =========================================
+   NEW TECH DASHBOARD STYLES
+   ========================================= */
+
 .technologies-section {
     margin-top: var(--spacing-3xl);
     padding-top: var(--spacing-3xl);
@@ -207,142 +208,127 @@
     margin: 0;
 }
 
-.tech-sliders {
+/* Dashboard Layout */
+.tech-dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tech-module {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    flex: 1 1 300px;
+    /* Responsive flex */
+    max-width: 500px;
+    min-width: 280px;
+    transition: all var(--transition-base);
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-xl);
 }
 
-.tech-slider-wrapper {
-    overflow: hidden;
+.tech-module:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
 }
 
-.tech-category {
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--spacing-md);
-    text-align: center;
+/* Module Header */
+.module-header {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px dashed var(--border-color);
 }
 
-.tech-category .code-variable {
+.module-header .code-variable {
     color: var(--syntax-variable);
-    font-weight: 600;
+    font-weight: 700;
+    text-transform: capitalize;
 }
 
-/* Technology Slider */
-.tech-slider {
-    position: relative;
-    overflow: hidden;
-    padding: var(--spacing-md) 0;
-    mask-image: linear-gradient(to right,
-            transparent,
-            black 10%,
-            black 90%,
-            transparent);
-    -webkit-mask-image: linear-gradient(to right,
-            transparent,
-            black 10%,
-            black 90%,
-            transparent);
-}
-
-.tech-track {
+/* Module Icon Grid */
+.module-grid {
     display: flex;
-    gap: var(--spacing-xl);
-    animation: scroll-left 30s linear infinite;
-    width: fit-content;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    justify-content: center;
+    /* Center items inside the card */
+    flex-grow: 1;
+    /* Push footer down */
 }
 
-.tech-slider:hover .tech-track {
-    animation-play-state: paused;
-}
-
-@keyframes scroll-left {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-/* Alternate direction for different rows */
-.tech-slider-wrapper:nth-child(even) .tech-track {
-    animation: scroll-right 30s linear infinite;
-}
-
-@keyframes scroll-right {
-    0% {
-        transform: translateX(-50%);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
-}
-
-.tech-item {
+/* Individual Module Item */
+.module-item {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-sm);
-    min-width: 120px;
-    padding: var(--spacing-md);
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    transition: all var(--transition-base);
+    gap: 8px;
+    width: 80px;
     cursor: pointer;
 }
 
-.tech-item:hover {
-    border-color: var(--accent-primary);
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px var(--accent-glow);
-    background: rgba(0, 0, 0, 0.5);
-}
-
-.tech-icon-wrapper {
-    width: 60px;
-    height: 60px;
+.module-icon-wrapper {
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     border-radius: var(--radius-md);
-    transition: all var(--transition-base);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid transparent;
 }
 
-.tech-item:hover .tech-icon-wrapper {
+.module-icon {
+    font-size: 1.75rem;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+/* Hover Effects using CSS Variables passed from JS */
+.module-item:hover .module-icon-wrapper {
+    transform: translateY(-5px) scale(1.1);
     background: rgba(255, 255, 255, 0.1);
-    transform: scale(1.1);
+    border-color: var(--item-color);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.tech-icon {
-    font-size: 2.5rem;
-    transition: all var(--transition-base);
+.module-item:hover .module-icon {
+    color: var(--item-color);
+    filter: drop-shadow(0 0 8px var(--item-color));
 }
 
-.tech-item:hover .tech-icon {
-    filter: drop-shadow(0 0 10px currentColor);
-}
-
-.tech-name {
-    font-size: var(--font-size-sm);
+.module-name {
+    font-size: var(--font-size-xs);
     color: var(--text-secondary);
     font-weight: 500;
-    transition: color var(--transition-base);
-}
-
-.tech-item:hover .tech-name {
-    color: var(--text-primary);
-}
-
-.tech-footer {
+    opacity: 0.7;
+    transition: all var(--transition-base);
     text-align: center;
-    font-size: var(--font-size-2xl);
+    white-space: nowrap;
+}
+
+.module-item:hover .module-name {
+    opacity: 1;
+    color: var(--text-primary);
+    transform: translateY(2px);
+}
+
+/* Module Footer */
+.module-footer {
+    margin-top: var(--spacing-lg);
+    font-family: var(--font-mono);
     color: var(--syntax-bracket);
-    margin-top: var(--spacing-xl);
+    text-align: right;
+    font-size: var(--font-size-base);
 }
 
 /* Background Decoration */
@@ -393,106 +379,15 @@
     }
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .skills-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: var(--spacing-md);
-    }
-
-    .skill-card {
-        height: 260px;
-    }
-
-    .tech-item {
-        min-width: 100px;
-    }
-
-    .tech-icon {
-        font-size: 2rem;
-    }
-}
-
+/* Responsive */
 @media (max-width: 768px) {
-    .skills {
-        padding: var(--spacing-2xl) 0;
+    .tech-dashboard {
+        flex-direction: column;
+        align-items: center;
     }
 
-    .section-title {
-        font-size: var(--font-size-2xl);
-    }
-
-    .skills-grid {
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: var(--spacing-sm);
-    }
-
-    .skill-card {
-        height: 240px;
-    }
-
-    .skill-icon {
-        font-size: 4rem;
-    }
-
-    .skill-title {
-        font-size: var(--font-size-lg);
-    }
-
-    .skill-desc-line {
-        font-size: var(--font-size-xs);
-    }
-
-    .tech-title {
-        font-size: var(--font-size-xl);
-    }
-
-    .tech-item {
-        min-width: 90px;
-        padding: var(--spacing-sm);
-    }
-
-    .tech-icon-wrapper {
-        width: 50px;
-        height: 50px;
-    }
-
-    .tech-icon {
-        font-size: 1.75rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .skills-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .skill-card {
-        height: 220px;
-    }
-
-    .section-title {
-        font-size: var(--font-size-xl);
-    }
-
-    .overlay-text {
-        font-size: var(--font-size-xl);
-    }
-
-    .tech-item {
-        min-width: 80px;
-    }
-
-    .tech-icon-wrapper {
-        width: 45px;
-        height: 45px;
-    }
-
-    .tech-icon {
-        font-size: 1.5rem;
-    }
-
-    .tech-name {
-        font-size: var(--font-size-xs);
+    .tech-module {
+        width: 100%;
+        max-width: 400px;
     }
 }

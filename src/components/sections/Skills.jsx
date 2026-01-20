@@ -81,29 +81,42 @@ const Skills = () => {
                         </h3>
                     </div>
 
-                    {/* Technology Sliders */}
-                    <div className="tech-sliders">
+                    {/* Technology Dashboard */}
+                    <div className="tech-dashboard">
                         {Object.entries(technologies).map(([category, techs], index) => (
-                            <div key={category} className="tech-slider-wrapper" data-aos="fade-up" data-aos-delay={index * 100}>
-                                <div className="tech-category">
-                                    <span className="code-variable">{category}</span>
-                                    <span className="code-bracket">: [</span>
+                            <div
+                                key={category}
+                                className="tech-module"
+                                data-aos="fade-up"
+                                data-aos-delay={index * 100}
+                            >
+                                <div className="module-header">
+                                    <span className="code-keyword">const</span>{' '}
+                                    <span className="code-variable">{category}</span>{' '}
+                                    <span className="code-operator">=</span>{' '}
+                                    <span className="code-bracket">{'{'}</span>
                                 </div>
-                                <div className="tech-slider">
-                                    <div className="tech-track">
-                                        {/* Duplicate items for infinite scroll effect */}
-                                        {[...techs, ...techs].map((tech, idx) => {
-                                            const TechIcon = tech.icon;
-                                            return (
-                                                <div key={idx} className="tech-item">
-                                                    <div className="tech-icon-wrapper">
-                                                        <TechIcon className="tech-icon" style={{ color: tech.color }} />
-                                                    </div>
-                                                    <span className="tech-name">{tech.name}</span>
+
+                                <div className="module-grid">
+                                    {techs.map((tech, idx) => {
+                                        const TechIcon = tech.icon;
+                                        return (
+                                            <div
+                                                key={idx}
+                                                className="module-item"
+                                                style={{ '--item-color': tech.color }}
+                                            >
+                                                <div className="module-icon-wrapper">
+                                                    <TechIcon className="module-icon" />
                                                 </div>
-                                            );
-                                        })}
-                                    </div>
+                                                <span className="module-name">{tech.name}</span>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+
+                                <div className="module-footer">
+                                    <span className="code-bracket">{'}'}</span>
                                 </div>
                             </div>
                         ))}

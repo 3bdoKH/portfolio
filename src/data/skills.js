@@ -6,9 +6,8 @@ import {
     FaJs,
     FaPython,
     FaGitAlt,
-    FaDocker,
     FaDatabase,
-    FaServer
+    FaServer,
 } from 'react-icons/fa';
 import {
     SiNextdotjs,
@@ -16,11 +15,14 @@ import {
     SiTailwindcss,
     SiMongodb,
     SiPostgresql,
-    SiRedis,
-    SiGraphql,
     SiExpress,
     SiVite,
-    SiWebpack
+    SiWebpack,
+    SiCss3,
+    SiBootstrap,
+    SiFastapi,
+    SiMysql,
+    SiVercel
 } from 'react-icons/si';
 
 // Web Development Skills
@@ -84,21 +86,23 @@ export const technologies = {
         { name: 'React', icon: FaReact, color: '#61DAFB' },
         { name: 'Next.js', icon: SiNextdotjs, color: '#000000' },
         { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#06B6D4' },
-        { name: 'Vite', icon: SiVite, color: '#646CFF' }
+        { name: 'Vite', icon: SiVite, color: '#646CFF' },
+        { name: 'Bootstrap', icon: SiBootstrap, color: '#7952B3' },
+        { name: 'CSS', icon: SiCss3, color: '#CC6699' }
     ],
     backend: [
         { name: 'Node.js', icon: FaNodeJs, color: '#339933' },
         { name: 'Express', icon: SiExpress, color: '#000000' },
-        { name: 'GraphQL', icon: SiGraphql, color: '#E10098' }
+        { name: 'FastAPI', icon: SiFastapi, color: '#E10098' }
     ],
     databases: [
         { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
         { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
-        { name: 'Redis', icon: SiRedis, color: '#DC382D' }
+        { name: 'MySQL', icon: SiMysql, color: '#DC382D' }
     ],
     tools: [
         { name: 'Git', icon: FaGitAlt, color: '#F05032' },
-        { name: 'Docker', icon: FaDocker, color: '#2496ED' },
-        { name: 'Webpack', icon: SiWebpack, color: '#8DD6F9' }
+        { name: 'Vercel', icon: SiVercel, color: '#2496ED' },
+        { name: 'Webpack', icon: SiWebpack, color: '#8DD6F9' },
     ]
 };
