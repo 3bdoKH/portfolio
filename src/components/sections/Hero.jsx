@@ -161,15 +161,7 @@ const Hero = () => {
                     <div className="code-snippet snippet-1">
                         <span className="code-comment">// Crafting digital solutions</span>
                     </div>
-                    <div className="code-snippet snippet-2">
-                        <span className="code-keyword">const</span>{' '}
-                        <span className="code-variable">skills</span>
-                        <span className="code-bracket"> = [</span>
-                        <span className="code-string">'React'</span>
-                        <span className="code-bracket">, </span>
-                        <span className="code-string">'Node.js'</span>
-                        <span className="code-bracket">];</span>
-                    </div>
+
                     <div className="code-snippet snippet-3">
                         <span className="code-function">console</span>
                         <span className="code-bracket">.</span>

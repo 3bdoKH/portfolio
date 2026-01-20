@@ -77,7 +77,7 @@ const Skills = () => {
                         <h3 className="tech-title">
                             <span className="code-keyword">const</span>{' '}
                             <span className="code-variable">technologies</span>{' '}
-                            <span className="code-bracket">= {'{'}</span>
+                            <span className="code-bracket">= {'['}</span>
                         </h3>
                     </div>
 
@@ -123,7 +123,7 @@ const Skills = () => {
                     </div>
 
                     <div className="tech-footer">
-                        <span className="code-bracket">{'}'}</span>
+                        <span className="code-bracket">{']'}</span>
                     </div>
                 </div>
             </div>
