@@ -1,38 +1,38 @@
 export const experience = [
     {
         id: 1,
-        company: 'Tech Solutions Inc.',
-        role: 'Senior Full Stack Developer',
-        period: '2023 - Present',
+        company: "Adam's Agency",
+        role: 'Full Stack Developer',
+        period: '2025 - Present',
         description: [
             'Led development of scalable cloud-native web applications using React and Node.js.',
-            'Architected microservices solutions reducing system latency by 40%.',
-            'Mentored junior developers and established code quality standards.'
+            'Developed responsive and functional web applications for branch initiatives',
+            'Collaborated with designers to implement pixel-perfect UI components.'
         ],
-        tech: ['React', 'Node.js', 'AWS', 'Docker']
+        tech: ['React', 'Node.js', 'AWS', 'express.js', 'MongoDB', 'Tailwind CSS', 'Git']
     },
     {
         id: 2,
-        company: 'Digital Creative Agency',
-        role: 'Frontend Developer',
-        period: '2021 - 2023',
+        company: 'IEEE_KSB_branch',
+        role: 'Head of Frontend Committee',
+        period: '2025 - 2026',
         description: [
-            'Developed responsive and interactive user interfaces for high-profile clients.',
-            'Optimized frontend performance achieving 98+ Lighthouse scores.',
-            'Collaborated with designers to implement pixel-perfect UI components.'
+            'Led and coordinated frontend development projects within the team.',
+            'Mentored team members on React and best practices for web development.',
+            'Developed responsive and functional web applications for branch initiatives'
         ],
-        tech: ['Vue.js', 'Sass', 'GSAP', 'Firebase']
+        tech: ['HTML', 'CSS', 'JS', 'React']
     },
     {
         id: 3,
-        company: 'StartUp Hub',
-        role: 'Junior Web Developer',
-        period: '2019 - 2021',
+        company: 'IEEE_KSB_branch',
+        role: 'Vice Head of Frontend Committee',
+        period: '2024 - 2025',
         description: [
-            'Built and maintained features for the core product using MERN stack.',
-            'Participated in agile development cycles and daily stand-ups.',
-            'Integrated third-party APIs for payment processing and analytics.'
+            'Led and coordinated frontend development projects within the team.',
+            'Mentored team members on React and best practices for web development.',
+            'Organized and facilitated regular code reviews and knowledge sharing sessions.'
         ],
-        tech: ['React', 'Express', 'MongoDB', 'Redux']
+        tech: ['HTML', 'CSS', 'JS', 'React']
     }
 ];
