@@ -32,7 +32,7 @@ export const skills = [
         displayTitle: 'Frontend Development',
         description: [
             'Building responsive UIs',
-            'Modern React applications',
+            'Modern applications',
             'Component-based architecture'
         ]
     },

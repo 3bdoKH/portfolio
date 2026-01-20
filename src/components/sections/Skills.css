@@ -33,7 +33,7 @@
 /* Skills Grid */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-2xl);
 }
@@ -41,7 +41,7 @@
 /* Skill Card */
 .skill-card {
     position: relative;
-    height: 280px;
+    height: 320px;
     perspective: 1000px;
 }
 
@@ -94,7 +94,7 @@
 }
 
 .skill-icon {
-    font-size: 5rem;
+    font-size: 4rem;
     color: var(--accent-primary);
     display: block;
     transition: all var(--transition-base);
