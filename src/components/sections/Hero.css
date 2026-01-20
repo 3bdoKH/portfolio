@@ -20,7 +20,7 @@
     margin: 0 auto;
     animation: fadeIn 1s ease-out;
     display: flex;
-    gap: var(--spacing-xl);
+    gap: var(--spacing-md);
     align-items: center;
     flex-wrap: wrap;
 }
@@ -127,7 +127,7 @@
 .line-numbers {
     position: absolute;
     left: 0;
-    top: 0;
+    top: 50px;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -158,36 +158,7 @@
     flex: 1 1 500px;
 }
 
-.code-block::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 40px;
-    background: linear-gradient(90deg,
-            transparent 0%,
-            var(--accent-primary) 50%,
-            transparent 100%);
-    opacity: 0;
-    animation: scanline 3s linear infinite;
-}
 
-@keyframes scanline {
-    0% {
-        top: -40px;
-        opacity: 0;
-    }
-
-    50% {
-        opacity: 0.1;
-    }
-
-    100% {
-        top: 100%;
-        opacity: 0;
-    }
-}
 
 .code-line {
     font-size: var(--font-size-lg);
@@ -230,10 +201,12 @@
 
 .indent-1 {
     padding-left: 2em;
+    margin-left: 2em;
 }
 
 .indent-2 {
     padding-left: 4em;
+    margin-left: 4em;
 }
 
 /* Typing Animation */
