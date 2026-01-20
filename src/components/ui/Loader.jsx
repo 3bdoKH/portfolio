@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import './Loader.css';
 
 const Loader = ({ onFinish }) => {
     const [progress, setProgress] = useState(0);
-    const [showButton, setShowButton] = useState(false);
 
     useEffect(() => {
         // Simulate loading progress
