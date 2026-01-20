@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import ParticlesBg from 'particles-bg';
 import profile from '../../images/profile.jpg';
@@ -13,6 +13,7 @@ const Hero = () => {
         }, 530);
         console.log(showCursor);
         return () => clearInterval(cursorInterval);
+        // eslint-disable-next-line
     }, []);
 
     const scrollToSection = (sectionId) => {
