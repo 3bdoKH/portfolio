@@ -55,7 +55,7 @@ const Navbar = () => {
                 {/* Logo */}
                 <div className="navbar-logo" onClick={() => scrollToSection('home')}>
                     <span className="code-bracket">{'<'}</span>
-                    <span className="logo-text">Portfolio</span>
+                    <span className="logo-text">Abdo</span>
                     <span className="code-bracket">{' />'}</span>
                     <span className="cursor-blink">_</span>
                 </div>
