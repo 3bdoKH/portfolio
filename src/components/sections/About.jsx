@@ -21,9 +21,9 @@ const About = () => {
 
         // Animate counters
         const targetStats = {
-            experience: 5,
-            projects: 50,
-            clients: 30,
+            experience: 2,
+            projects: 10,
+            clients: 10,
             coffee: 1000
         };
 
@@ -73,7 +73,7 @@ const About = () => {
                             <div className="code-line">
                                 <span className="code-property">name</span>
                                 <span className="code-bracket">: </span>
-                                <span className="code-string">"Your Name"</span>
+                                <span className="code-string">"Abdulrahman Khairy"</span>
                                 <span className="code-bracket">,</span>
                             </div>
 
@@ -87,14 +87,14 @@ const About = () => {
                             <div className="code-line">
                                 <span className="code-property">location</span>
                                 <span className="code-bracket">: </span>
-                                <span className="code-string">"Your Location"</span>
+                                <span className="code-string">"Egypt"</span>
                                 <span className="code-bracket">,</span>
                             </div>
 
                             <div className="code-line">
                                 <span className="code-property">email</span>
                                 <span className="code-bracket">: </span>
-                                <span className="code-string">"your.email@example.com"</span>
+                                <span className="code-string">"the.abdo.kh@gmail.com"</span>
                                 <span className="code-bracket">,</span>
                             </div>
 
