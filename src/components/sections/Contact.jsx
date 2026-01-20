@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaPaperPlane } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaPaperPlane, FaFacebook } from 'react-icons/fa';
 import './Contact.css';
 
 const Contact = () => {
@@ -70,21 +70,21 @@ const Contact = () => {
                         </h3>
 
                         <div className="social-links">
-                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-link">
+                            <a href="https://github.com/3bdoKH" target="_blank" rel="noopener noreferrer" className="social-link">
                                 <FaGithub className="social-icon" />
-                                <span className="social-text">github.com/username</span>
+                                <span className="social-text">github.com/3bdoKH</span>
                             </a>
-                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link">
+                            <a href="https://www.linkedin.com/in/abdo-khairy-391801305/" target="_blank" rel="noopener noreferrer" className="social-link">
                                 <FaLinkedin className="social-icon" />
-                                <span className="social-text">linkedin.com/in/username</span>
+                                <span className="social-text">linkedin.com/abdo-khairy</span>
                             </a>
-                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="social-link">
-                                <FaTwitter className="social-icon" />
-                                <span className="social-text">twitter.com/username</span>
+                            <a href="https://www.facebook.com/profile.php?id=100022343641360" target="_blank" rel="noopener noreferrer" className="social-link">
+                                <FaFacebook className="social-icon" />
+                                <span className="social-text">facebook.com/abdo-khairy</span>
                             </a>
-                            <a href="mailto:hello@example.com" className="social-link">
+                            <a href="mailto:the.abdo.kh@gmail.com" className="social-link">
                                 <FaEnvelope className="social-icon" />
-                                <span className="social-text">hello@example.com</span>
+                                <span className="social-text">the.abdo.kh@gmail.com</span>
                             </a>
                         </div>
 
