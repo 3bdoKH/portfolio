@@ -58,9 +58,7 @@ const Projects = () => {
                                     <img src={project.image} alt={project.displayTitle} className="project-image" />
                                     <div className="project-overlay">
                                         <div className="project-links">
-                                            <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="project-link">
-                                                <FaGithub /> <span className="link-text">Code</span>
-                                            </a>
+
                                             <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="project-link">
                                                 <FaExternalLinkAlt /> <span className="link-text">Demo</span>
                                             </a>
