@@ -1,0 +1,106 @@
+.custom-cursor-dot,
+.custom-cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    border-radius: 50%;
+    transform: translate3d(-100px, -100px, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-primary);
+    margin-left: -4px;
+    margin-top: -4px;
+    transition: width 0.2s, height 0.2s, background-color 0.2s, opacity 0.2s;
+}
+
+.custom-cursor-follower {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--accent-primary);
+    background-color: rgba(0, 255, 136, 0.05);
+    margin-left: -20px;
+    margin-top: -20px;
+    transition: transform 0.1s ease-out, width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s, opacity 0.3s;
+}
+
+/* 
+   HOVER STATE: CURLY BRACES 
+   We will use the follower element to display the braces
+*/
+
+.custom-cursor-dot.hovered {
+    opacity: 0;
+    /* Hide the dot */
+}
+
+.custom-cursor-follower.hovered {
+    width: 80px;
+    /* Wider to fit braces */
+    height: 40px;
+    background-color: transparent;
+    /* No background */
+    border-color: transparent;
+    /* No border */
+    margin-left: -40px;
+    margin-top: -20px;
+    mix-blend-mode: normal;
+}
+
+/* Use pseudo-elements for the braces content */
+.custom-cursor-follower::before,
+.custom-cursor-follower::after {
+    content: '';
+    position: absolute;
+    font-family: var(--font-mono);
+    /* Use our code font */
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--accent-primary);
+    opacity: 0;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.custom-cursor-follower::before {
+    content: '{';
+    left: 10px;
+    transform: translateX(10px);
+}
+
+.custom-cursor-follower::after {
+    content: '}';
+    right: 10px;
+    transform: translateX(-10px);
+}
+
+/* On hover, show braces and animate them outward */
+.custom-cursor-follower.hovered::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.custom-cursor-follower.hovered::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Hide cursor on mobile/touch devices */
+@media (hover: none) and (pointer: coarse) {
+
+    .custom-cursor-dot,
+    .custom-cursor-follower {
+        display: none;
+    }
+
+    body {
+        cursor: auto !important;
+    }
+}

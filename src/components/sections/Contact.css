@@ -1,0 +1,214 @@
+.contact {
+    position: relative;
+    min-height: 100vh;
+    padding-top: var(--spacing-3xl);
+    background: var(--bg-primary);
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-container {
+    flex-grow: 1;
+    position: relative;
+    z-index: var(--z-base);
+    margin-bottom: var(--spacing-3xl);
+}
+
+/* Section Header */
+.section-header {
+    margin-bottom: var(--spacing-2xl);
+    text-align: center;
+}
+
+/* Contact Content Layout */
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-3xl);
+    align-items: start;
+}
+
+/* Social Info (Left) */
+.contact-info {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    position: relative;
+}
+
+.info-title {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding-left: var(--spacing-lg);
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-base);
+    transition: all var(--transition-base);
+    padding: 8px 0;
+}
+
+.social-link:hover {
+    color: var(--accent-primary);
+    transform: translateX(10px);
+}
+
+.social-icon {
+    font-size: 1.25rem;
+}
+
+.info-footer {
+    margin-top: var(--spacing-lg);
+    font-size: var(--font-size-lg);
+}
+
+
+/* Form (Right) */
+.contact-form-wrapper {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    position: relative;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-base);
+}
+
+.form-label {
+    white-space: nowrap;
+    color: var(--text-primary);
+}
+
+.form-input,
+.form-textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--syntax-string);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-base);
+    padding: 4px 8px;
+    flex-grow: 1;
+    transition: all var(--transition-base);
+}
+
+.form-textarea {
+    min-height: 40px;
+    resize: vertical;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-bottom-color: var(--accent-primary);
+    background: rgba(0, 255, 136, 0.05);
+}
+
+/* Submit Button */
+.submit-btn {
+    margin-top: var(--spacing-lg);
+    align-self: flex-start;
+    background: transparent;
+    border: 1px solid var(--accent-primary);
+    color: var(--accent-primary);
+    padding: 10px 24px;
+    border-radius: var(--radius-md);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all var(--transition-base);
+}
+
+.submit-btn:hover {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.submit-btn.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.submit-btn.success {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    border-color: var(--accent-primary);
+}
+
+
+/* Section Footer */
+.section-footer {
+    text-align: center;
+    font-size: var(--font-size-3xl);
+    color: var(--syntax-bracket);
+    margin-top: var(--spacing-xl);
+}
+
+/* Footer (Bottom of page) */
+.footer {
+    border-top: 1px solid var(--border-color);
+    padding: var(--spacing-lg) 0;
+    background: var(--bg-secondary);
+    margin-top: auto;
+}
+
+.footer-content {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    color: var(--text-tertiary);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.code-number {
+    color: var(--syntax-number);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+
+    .form-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-input,
+    .form-textarea {
+        width: 100%;
+    }
+}

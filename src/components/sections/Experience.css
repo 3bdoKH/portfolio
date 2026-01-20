@@ -1,0 +1,168 @@
+.experience {
+    position: relative;
+    min-height: 100vh;
+    padding: var(--spacing-3xl) 0;
+    background: var(--bg-secondary);
+    /* Alternating background */
+    overflow: hidden;
+}
+
+.experience-container {
+    position: relative;
+    z-index: var(--z-base);
+}
+
+/* Section Header */
+.section-header {
+    margin-bottom: var(--spacing-2xl);
+    text-align: center;
+}
+
+/* Timeline */
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+    max-width: 900px;
+    margin: 0 auto;
+    padding-left: 20px;
+    /* Space for the connector */
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 40px;
+}
+
+/* Connector Styles */
+.timeline-connector {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timeline-line {
+    flex-grow: 1;
+    width: 2px;
+    background: var(--border-color);
+    position: relative;
+}
+
+/* Connect lines between items */
+.timeline-item:last-child .timeline-line {
+    display: none;
+}
+
+.timeline-dot {
+    width: 16px;
+    height: 16px;
+    background: var(--bg-primary);
+    border: 2px solid var(--accent-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-glow);
+    z-index: 1;
+    margin-top: 24px;
+    /* Align with card header */
+}
+
+/* Content Card */
+.job-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    transition: all var(--transition-base);
+    position: relative;
+}
+
+.job-card:hover {
+    border-color: var(--accent-primary);
+    transform: translateX(10px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.job-period {
+    font-size: var(--font-size-sm);
+    white-space: nowrap;
+}
+
+.job-body {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+}
+
+.code-line {
+    padding: 2px 0;
+}
+
+.indent {
+    padding-left: var(--spacing-lg);
+    display: flex;
+}
+
+.indent:before {
+    content: "•";
+    color: var(--syntax-comment);
+    margin-right: 8px;
+}
+
+.job-footer {
+    margin-top: var(--spacing-sm);
+}
+
+/* Section Footer */
+.section-footer {
+    text-align: center;
+    font-size: var(--font-size-3xl);
+    color: var(--syntax-bracket);
+    margin-top: var(--spacing-xl);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .timeline {
+        padding-left: 0;
+    }
+
+    .timeline-item {
+        padding-left: 30px;
+    }
+
+    .timeline-dot {
+        width: 12px;
+        height: 12px;
+        margin-top: 20px;
+    }
+
+    .job-header {
+        flex-direction: column;
+    }
+
+    .job-card {
+        padding: var(--spacing-md);
+    }
+
+    .indent {
+        padding-left: var(--spacing-md);
+    }
+
+    .job-card:hover {
+        transform: none;
+        /* Disable shift on mobile */
+    }
+}

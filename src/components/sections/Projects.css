@@ -1,0 +1,218 @@
+.projects {
+    position: relative;
+    min-height: 100vh;
+    padding: var(--spacing-3xl) 0;
+    background: var(--bg-primary);
+    overflow: hidden;
+}
+
+.projects-container {
+    position: relative;
+    z-index: var(--z-base);
+}
+
+/* Section Header */
+.section-header {
+    margin-bottom: var(--spacing-2xl);
+    text-align: center;
+}
+
+/* Projects Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+/* Project Card */
+.project-card {
+    perspective: 1000px;
+}
+
+.project-card-inner {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--transition-base);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover .project-card-inner {
+    border-color: var(--accent-primary);
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Image Wrapper with Folder Tab */
+.project-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+}
+
+.project-folder-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: var(--bg-card);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    width: fit-content;
+    border-bottom-right-radius: 8px;
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+}
+
+.folder-icon {
+    color: #ffca28;
+    /* Default folder color */
+}
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.05);
+}
+
+/* Overlay & Links */
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 14, 39, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    backdrop-filter: blur(2px);
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-links {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.project-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: var(--bg-primary);
+    border: 1px solid var(--accent-primary);
+    border-radius: var(--radius-md);
+    color: var(--accent-primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all var(--transition-base);
+    transform: translateY(20px);
+}
+
+.project-card:hover .project-link {
+    transform: translateY(0);
+}
+
+.project-link:hover {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* Content */
+.project-content {
+    padding: var(--spacing-lg);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-title {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.4;
+}
+
+.project-description {
+    margin-bottom: var(--spacing-lg);
+    flex-grow: 1;
+}
+
+.desc-text {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    margin: 4px 0 4px 16px;
+    /* Indent for JSDoc style */
+    line-height: 1.6;
+}
+
+/* Tech Stack */
+.project-tech {
+    font-size: var(--font-size-xs);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+    margin-top: auto;
+}
+
+.tech-tag {
+    display: inline-flex;
+}
+
+/* Section Footer */
+.section-footer {
+    text-align: center;
+    font-size: var(--font-size-3xl);
+    color: var(--syntax-bracket);
+    margin-top: var(--spacing-xl);
+}
+
+/* Decoration */
+.projects-decoration {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.code-bg-text {
+    font-size: 8rem;
+    font-weight: 700;
+    background: linear-gradient(to right, var(--text-primary), transparent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+
+    .code-bg-text {
+        font-size: 4rem;
+    }
+}
