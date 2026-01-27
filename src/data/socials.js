@@ -27,7 +27,7 @@ export const socials = [
     },
     {
         id: 5,
-        name: "Mail",
+        name: "the.abdo.kh@gmail.com",
         url: "mailto:the.abdo.kh@gmail.com",
         icon: <FaEnvelope />,
     }
