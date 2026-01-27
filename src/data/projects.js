@@ -3,6 +3,7 @@ import project2 from '../images/project-2.png';
 import project3 from '../images/project-3.png';
 import project4 from '../images/project-4.png';
 import project5 from '../images/project-5.png';
+import project6 from '../images/project-6.png';
 
 export const projects = [
     {
@@ -58,6 +59,17 @@ export const projects = [
         tags: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'TypeScript'],
         links: {
             live: 'https://my-portfolio-deploy-nine.vercel.app/'
+        }
+    },
+    {
+        id: 6,
+        title: 'project_six',
+        displayTitle: 'Winch Enqaz Cars',
+        description: 'A leading 24/7 vehicle rescue and towing service in Egypt, providing fast, professional solutions across all governorates. Equipped with modern tow trucks and expert technicians, we ensure safety, reliability, and customer satisfaction.',
+        image: project6,
+        tags: ['React', 'Node.js', 'MySQL', 'Express'],
+        links: {
+            live: 'https://winchenqaz.com/'
         }
     }
 ];
