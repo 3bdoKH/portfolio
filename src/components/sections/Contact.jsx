@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { FaGithub, FaLinkedin, FaEnvelope, FaPaperPlane, FaFacebook } from 'react-icons/fa';
+import { FaPaperPlane } from 'react-icons/fa';
 import './Contact.css';
+import { socials } from '../../data/socials';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -70,22 +71,12 @@ const Contact = () => {
                         </h3>
 
                         <div className="social-links">
-                            <a href="https://github.com/3bdoKH" target="_blank" rel="noopener noreferrer" className="social-link">
-                                <FaGithub className="social-icon" />
-                                <span className="social-text">github.com/3bdoKH</span>
-                            </a>
-                            <a href="https://www.linkedin.com/in/abdo-khairy-391801305/" target="_blank" rel="noopener noreferrer" className="social-link">
-                                <FaLinkedin className="social-icon" />
-                                <span className="social-text">linkedin.com/abdo-khairy</span>
-                            </a>
-                            <a href="https://www.facebook.com/profile.php?id=100022343641360" target="_blank" rel="noopener noreferrer" className="social-link">
-                                <FaFacebook className="social-icon" />
-                                <span className="social-text">facebook.com/abdo-khairy</span>
-                            </a>
-                            <a href="mailto:the.abdo.kh@gmail.com" className="social-link">
-                                <FaEnvelope className="social-icon" />
-                                <span className="social-text">the.abdo.kh@gmail.com</span>
-                            </a>
+                            {socials.map((social) => (
+                                <a key={social.id} href={social.url} target="_blank" rel="noopener noreferrer" className="social-link">
+                                    {social.icon}
+                                    <span className="social-text">{social.name}</span>
+                                </a>
+                            ))}
                         </div>
 
                         <div className="info-footer">
