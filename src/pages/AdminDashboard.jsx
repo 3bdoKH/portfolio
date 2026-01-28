@@ -25,6 +25,7 @@ const AdminDashboard = () => {
 
         setUser(JSON.parse(userData));
         loadData();
+        // eslint-disable-next-line
     }, [navigate]);
 
     const loadData = async () => {

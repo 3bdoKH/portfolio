@@ -257,7 +257,7 @@ export const deleteProject = async (token, id) => {
     }
 };
 
-export default {
+export const apiServices = {
     submitContactForm,
     trackEvent,
     adminLogin,
