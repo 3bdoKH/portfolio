@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
+    const navigate = useNavigate();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
+    const [logoClickCount, setLogoClickCount] = useState(0);
+    const clickTimeoutRef = useRef(null);
 
     // Handle scroll effect
     useEffect(() => {
@@ -40,6 +44,26 @@ const Navbar = () => {
         }
     };
 
+    const handleLogoClick = () => {
+        const newCount = logoClickCount + 1;
+        setLogoClickCount(newCount);
+
+        if (clickTimeoutRef.current) {
+            clearTimeout(clickTimeoutRef.current);
+        }
+
+        clickTimeoutRef.current = setTimeout(() => {
+            setLogoClickCount(0);
+        }, 1000);
+
+        if (newCount >= 5) {
+            setLogoClickCount(0);
+            navigate('/admin/dashboard');
+        } else {
+            scrollToSection('home');
+        }
+    };
+
     const navItems = [
         { id: 'home', label: 'Home', tag: 'home' },
         { id: 'about', label: 'About', tag: 'about' },
@@ -53,7 +77,7 @@ const Navbar = () => {
         <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
             <div className="navbar-container container">
                 {/* Logo */}
-                <div className="navbar-logo" onClick={() => scrollToSection('home')}>
+                <div className="navbar-logo" onClick={handleLogoClick}>
                     <span className="code-bracket">{'<'}</span>
                     <span className="logo-text">Abdo</span>
                     <span className="code-bracket">{' />'}</span>
