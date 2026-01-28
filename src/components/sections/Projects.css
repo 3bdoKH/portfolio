@@ -177,6 +177,50 @@
     display: inline-flex;
 }
 
+/* Loading, Error, and Empty States */
+.projects-loading,
+.projects-error,
+.projects-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.projects-loading .spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top: 4px solid var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.projects-loading p,
+.projects-error p,
+.projects-empty p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-md);
+}
+
+.projects-error p {
+    color: #ff6b6b;
+}
+
 /* Section Footer */
 .section-footer {
     text-align: center;

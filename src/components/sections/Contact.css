@@ -108,8 +108,8 @@
     color: var(--text-primary);
 }
 
-.form-input,
-.form-textarea {
+.form-input-contact,
+.form-textarea-contact {
     background: transparent;
     border: none;
     border-bottom: 2px solid var(--border-color);
@@ -126,8 +126,8 @@
     resize: vertical;
 }
 
-.form-input:focus,
-.form-textarea:focus {
+.form-input-contact:focus,
+.form-textarea-contact:focus {
     outline: none;
     border-bottom-color: var(--accent-primary);
     background: rgba(0, 255, 136, 0.05);
@@ -166,6 +166,35 @@
     background: var(--accent-primary);
     color: var(--bg-primary);
     border-color: var(--accent-primary);
+}
+
+.submit-btn.error {
+    background: transparent;
+    border-color: #ff4444;
+    color: #ff4444;
+    animation: shake 0.5s;
+}
+
+.submit-btn.error:hover {
+    background: #ff4444;
+    color: var(--bg-primary);
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
 }
 
 
@@ -236,8 +265,8 @@
         font-size: var(--font-size-sm);
     }
 
-    .form-input,
-    .form-textarea {
+    .form-input-contact,
+    .form-textarea-contact {
         width: 100%;
         font-size: var(--font-size-sm);
         padding: 8px 0;

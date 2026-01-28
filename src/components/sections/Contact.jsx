@@ -31,19 +31,48 @@ const Contact = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setSubmitStatus(null);
 
-        // Simulate API call
-        setTimeout(() => {
-            setIsSubmitting(false);
+        try {
+            // Import API service and analytics
+            const { submitContactForm, trackEvent } = await import('../../services/api');
+
+            // Submit to backend
+            await submitContactForm(formData);
+
+            // Track successful submission
+            trackEvent('contact_submit', {
+                success: true,
+                timestamp: new Date().toISOString()
+            });
+
+            // Success
             setSubmitStatus('success');
             setFormData({ name: '', email: '', message: '' });
 
-            // Reset status after 3 seconds
-            setTimeout(() => setSubmitStatus(null), 3000);
-        }, 1500);
+            // Reset status after 5 seconds
+            setTimeout(() => setSubmitStatus(null), 5000);
+        } catch (error) {
+            console.error('Contact form error:', error);
+
+            // Track failed submission
+            const { trackEvent } = await import('../../services/api');
+            trackEvent('contact_submit', {
+                success: false,
+                error: error.message,
+                timestamp: new Date().toISOString()
+            });
+
+            setSubmitStatus('error');
+
+            // Reset error status after 5 seconds
+            setTimeout(() => setSubmitStatus(null), 5000);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -94,7 +123,7 @@ const Contact = () => {
                                 <input
                                     type="text"
                                     name="name"
-                                    className="form-input"
+                                    className="form-input-contact"
                                     placeholder="Your Name"
                                     value={formData.name}
                                     onChange={handleChange}
@@ -110,7 +139,7 @@ const Contact = () => {
                                 <input
                                     type="email"
                                     name="email"
-                                    className="form-input"
+                                    className="form-input-contact"
                                     placeholder="your@email.com"
                                     value={formData.email}
                                     onChange={handleChange}
@@ -121,11 +150,11 @@ const Contact = () => {
 
                             <div className="form-group">
                                 <label className="form-label">
-                                    <span className="code-variable">message</span>: <span className="code-string">"</span>
+                                    <span className="code-variable">msg</span> : <span className="code-string">"</span>
                                 </label>
                                 <textarea
                                     name="message"
-                                    className="form-textarea"
+                                    className="form-textarea-contact"
                                     placeholder="Hello, I'd like to work with you..."
                                     value={formData.message}
                                     onChange={handleChange}
@@ -136,13 +165,15 @@ const Contact = () => {
 
                             <button
                                 type="submit"
-                                className={`submit-btn ${isSubmitting ? 'loading' : ''} ${submitStatus === 'success' ? 'success' : ''}`}
+                                className={`submit-btn ${isSubmitting ? 'loading' : ''} ${submitStatus === 'success' ? 'success' : ''} ${submitStatus === 'error' ? 'error' : ''}`}
                                 disabled={isSubmitting}
                             >
                                 {isSubmitting ? (
                                     <span className="btn-text">await sending...</span>
                                 ) : submitStatus === 'success' ? (
-                                    <span className="btn-text">msg.sent()</span>
+                                    <span className="btn-text">✓ msg.sent()</span>
+                                ) : submitStatus === 'error' ? (
+                                    <span className="btn-text">✗ Error! Try again</span>
                                 ) : (
                                     <>
                                         <span className="btn-text">await response</span>

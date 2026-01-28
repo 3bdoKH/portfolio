@@ -1,17 +1,21 @@
 import { useState, useEffect } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import ParticlesBg from 'particles-bg';
+import { useAnalytics } from '../../context/AnalyticsContext';
 import profile from '../../images/profile.jpg';
 import './Hero.css';
 
 const Hero = () => {
     const [showCursor, setShowCursor] = useState(true);
+    const { trackPageView } = useAnalytics();
 
     useEffect(() => {
+        // Track page view when component mounts
+        trackPageView('/');
+
         const cursorInterval = setInterval(() => {
             setShowCursor(prev => !prev);
         }, 530);
-        console.log(showCursor);
         return () => clearInterval(cursorInterval);
         // eslint-disable-next-line
     }, []);
