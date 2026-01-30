@@ -4,7 +4,7 @@ import 'aos/dist/aos.css';
 import { FaExternalLinkAlt, FaFolder } from 'react-icons/fa';
 import { useAnalytics } from '../../context/AnalyticsContext';
 import { getProjects } from '../../services/api';
-import dummyProjects from '../../data/projects.js'
+import {dummyProjects} from '../../data/projects.js'
 import './Projects.css';
 
 const Projects = () => {
