@@ -4,6 +4,7 @@ import 'aos/dist/aos.css';
 import { FaExternalLinkAlt, FaFolder } from 'react-icons/fa';
 import { useAnalytics } from '../../context/AnalyticsContext';
 import { getProjects } from '../../services/api';
+import projects from '../../data/projects.js'
 import './Projects.css';
 
 const Projects = () => {
@@ -62,8 +63,67 @@ const Projects = () => {
 
                 {/* Error State */}
                 {error && (
-                    <div className="projects-error">
-                        <p>{error}</p>
+                     <div className="projects-grid">
+                        {projects.map((project, index) => (
+                            <div
+                                key={project._id || project.id}
+                                className="project-card"
+                                data-aos="fade-up"
+                                data-aos-delay={index * 100}
+                            >
+                                <div className="project-card-inner">
+                                    {/* Visual Header / Image */}
+                                    <div className="project-image-wrapper">
+                                        <div className="project-folder-tab">
+                                            <FaFolder className="folder-icon" />
+                                            <span className="folder-name">{project.title}.js</span>
+                                        </div>
+                                        <img src={project.image} alt={project.displayTitle} className="project-image" />
+                                        <div className="project-overlay">
+                                            <div className="project-links">
+                                                <a
+                                                    href={project.links.live}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="project-link"
+                                                    onClick={() => handleProjectClick(project)}
+                                                >
+                                                    <FaExternalLinkAlt /> <span className="link-text">Demo</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="project-content">
+                                        <h3 className="project-title">
+                                            <span className="code-keyword">const</span>{' '}
+                                            <span className="code-variable">project</span>{' '}
+                                            <span className="code-bracket">=</span>{' '}
+                                            <span className="code-string">"{project.displayTitle}"</span>
+                                        </h3>
+
+                                        <div className="project-description">
+                                            <span className="code-comment">{'/**'}</span>
+                                            <p className="desc-text"> * {project.description}</p>
+                                            <span className="code-comment">{' */'}</span>
+                                        </div>
+
+                                        {/* Tech Stack */}
+                                        <div className="project-tech">
+                                            <span className="code-bracket">[</span>
+                                            {project.tags.map((tag, i) => (
+                                                <span key={i} className="tech-tag">
+                                                    <span className="code-string">'{tag}'</span>
+                                                    {i < project.tags.length - 1 && <span className="code-bracket">, </span>}
+                                                </span>
+                                            ))}
+                                            <span className="code-bracket">]</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 )}
 
