@@ -5,7 +5,7 @@ import project4 from '../images/project-4.png';
 import project5 from '../images/project-5.png';
 import project6 from '../images/project-6.png';
 
-export const projects = [
+export const dummyProjects = [
     {
         id: 1,
         title: 'project_one',
