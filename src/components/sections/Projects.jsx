@@ -4,7 +4,7 @@ import 'aos/dist/aos.css';
 import { FaExternalLinkAlt, FaFolder } from 'react-icons/fa';
 import { useAnalytics } from '../../context/AnalyticsContext';
 import { getProjects } from '../../services/api';
-import projects from '../../data/projects.js'
+import dummyProjects from '../../data/projects.js'
 import './Projects.css';
 
 const Projects = () => {
@@ -64,9 +64,9 @@ const Projects = () => {
                 {/* Error State */}
                 {error && (
                      <div className="projects-grid">
-                        {projects.map((project, index) => (
+                        {dummyProjects.map((project, index) => (
                             <div
-                                key={project._id || project.id}
+                                key={project.id}
                                 className="project-card"
                                 data-aos="fade-up"
                                 data-aos-delay={index * 100}
