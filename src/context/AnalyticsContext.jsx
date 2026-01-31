@@ -18,7 +18,13 @@ export const useAnalytics = () => {
 
 export const AnalyticsProvider = ({ children }) => {
     const trackPageView = (page) => {
-        trackEventAPI('page_view', { page });
+        const sessionKey = `pageview_${page}`;
+        const hasTracked = sessionStorage.getItem(sessionKey);
+
+        if (!hasTracked) {
+            trackEventAPI('page_view', { page });
+            sessionStorage.setItem(sessionKey, 'true');
+        }
     };
 
     const trackProjectClick = (projectId, projectName) => {
