@@ -4,7 +4,7 @@ import 'aos/dist/aos.css';
 import { FaExternalLinkAlt, FaFolder } from 'react-icons/fa';
 import { useAnalytics } from '../../context/AnalyticsContext';
 import { getProjects } from '../../services/api';
-import {dummyProjects} from '../../data/projects.js'
+import { dummyProjects } from '../../data/projects.js'
 import './Projects.css';
 
 const Projects = () => {
@@ -63,7 +63,7 @@ const Projects = () => {
 
                 {/* Error State */}
                 {error && (
-                     <div className="projects-grid">
+                    <div className="projects-grid">
                         {dummyProjects.map((project, index) => (
                             <div
                                 key={project.id}
@@ -161,7 +161,7 @@ const Projects = () => {
                                                     className="project-link"
                                                     onClick={() => handleProjectClick(project)}
                                                 >
-                                                    <FaExternalLinkAlt /> <span className="link-text">Demo</span>
+                                                    <FaExternalLinkAlt /> <span className="link-text">Live</span>
                                                 </a>
                                             </div>
                                         </div>

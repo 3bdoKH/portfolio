@@ -60,16 +60,5 @@ export const dummyProjects = [
         links: {
             live: 'https://my-portfolio-deploy-nine.vercel.app/'
         }
-    },
-    {
-        id: 6,
-        title: 'project_six',
-        displayTitle: 'Winch Enqaz Cars',
-        description: 'A leading 24/7 vehicle rescue and towing service in Egypt, providing fast, professional solutions across all governorates. Equipped with modern tow trucks and expert technicians, we ensure safety, reliability, and customer satisfaction.',
-        image: project6,
-        tags: ['React', 'Node.js', 'MySQL', 'Express'],
-        links: {
-            live: 'https://winchenqaz.com/'
-        }
     }
 ];
