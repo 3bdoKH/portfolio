@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getMessages, getAnalyticsStats, getProjects } from '../services/api';
+import { getMessages, getAnalyticsStats, getProjects, updateMessageStatus, deleteMessage } from '../services/api';
 import ProjectsManager from '../components/admin/ProjectsManager';
 import './AdminDashboard.css';
 
@@ -67,6 +67,38 @@ const AdminDashboard = () => {
             hour: '2-digit',
             minute: '2-digit',
         }).format(date);
+    };
+
+    const handleToggleRead = async (messageId, currentStatus) => {
+        try {
+            const token = localStorage.getItem('adminToken');
+            await updateMessageStatus(token, messageId, !currentStatus);
+
+            // Update local state
+            setMessages(messages.map(msg =>
+                msg._id === messageId ? { ...msg, isRead: !currentStatus } : msg
+            ));
+        } catch (error) {
+            console.error('Error updating message status:', error);
+            alert('Failed to update message status');
+        }
+    };
+
+    const handleDeleteMessage = async (messageId) => {
+        if (!window.confirm('Are you sure you want to delete this message?')) {
+            return;
+        }
+
+        try {
+            const token = localStorage.getItem('adminToken');
+            await deleteMessage(token, messageId);
+
+            // Remove from local state
+            setMessages(messages.filter(msg => msg._id !== messageId));
+        } catch (error) {
+            console.error('Error deleting message:', error);
+            alert('Failed to delete message');
+        }
     };
 
     if (loading) {
@@ -181,6 +213,18 @@ const AdminDashboard = () => {
                                             <a href={`mailto:${message.email}`} className="action-link">
                                                 Reply
                                             </a>
+                                            <button
+                                                onClick={() => handleToggleRead(message._id, message.isRead)}
+                                                className="action-link action-button"
+                                            >
+                                                {message.isRead ? 'Mark Unread' : 'Mark Read'}
+                                            </button>
+                                            <button
+                                                onClick={() => handleDeleteMessage(message._id)}
+                                                className="action-link action-button delete-button"
+                                            >
+                                                Delete
+                                            </button>
                                         </div>
                                     </div>
                                 ))}

@@ -286,6 +286,22 @@
     color: #0051cc;
 }
 
+.action-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+}
+
+.action-button.delete-button {
+    color: #dc3545;
+}
+
+.action-button.delete-button:hover {
+    color: #c82333;
+}
+
 /* Analytics Section */
 .analytics-section {
     display: flex;
