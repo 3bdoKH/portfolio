@@ -218,6 +218,24 @@ const AdminDashboard = () => {
                                     ))}
                                 </div>
                             </div>
+
+                            <div className="analytics-card">
+                                <h3>Project Clicks</h3>
+                                <div className="event-list">
+                                    {analytics.projectClicksByProject && analytics.projectClicksByProject.length > 0 ? (
+                                        analytics.projectClicksByProject.map((project, index) => (
+                                            <div key={index} className="event-item">
+                                                <span className="event-type">{project.projectName || 'Unknown Project'}</span>
+                                                <span className="event-count">{project.clicks}</span>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <div className="empty-state-small">
+                                            <p>No project clicks yet</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 )}

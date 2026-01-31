@@ -178,6 +178,17 @@
     margin: 0;
 }
 
+.empty-state-small {
+    padding: 20px;
+    text-align: center;
+    color: #999;
+}
+
+.empty-state-small p {
+    font-size: 13px;
+    margin: 0;
+}
+
 .messages-list {
     display: flex;
     flex-direction: column;
