@@ -19,11 +19,11 @@ export const useAnalytics = () => {
 export const AnalyticsProvider = ({ children }) => {
     const trackPageView = (page) => {
         const sessionKey = `pageview_${page}`;
-        const hasTracked = sessionStorage.getItem(sessionKey);
+        const hasTracked = localStorage.getItem(sessionKey);
 
         if (!hasTracked) {
             trackEventAPI('page_view', { page });
-            sessionStorage.setItem(sessionKey, 'true');
+            localStorage.setItem(sessionKey, 'true');
         }
     };
 
