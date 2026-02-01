@@ -124,10 +124,12 @@ const Navbar = () => {
                                 className={`mobile-nav-link ${activeSection === item.id ? 'active' : ''}`}
                             >
                                 <span className="line-number">{String(index + 1).padStart(2, '0')}</span>
-                                <span className="code-keyword">const</span>
+                                <span className="code-keyword">var</span>
                                 <span className="code-variable"> {item.tag}</span>
                                 <span className="code-bracket"> = </span>
-                                <span className="code-string">"{item.label}"</span>
+                                <span className="code-string">()</span>
+                                <span className="code-bracket">{'=>'}</span>
+                                <span className="code-string">{`{}`}</span>
                                 <span className="code-bracket">;</span>
                             </button>
                         </li>
