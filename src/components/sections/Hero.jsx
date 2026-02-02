@@ -197,7 +197,9 @@ const Hero = () => {
             <CVViewer isOpen={isCVViewerOpen} onClose={() => setIsCVViewerOpen(false)} />
 
             {/* Scroll Indicator - Circular Progress */}
-            <div className="scroll-indicator">
+            <div className="scroll-indicator"
+                onClick={() => scrollToSection('home')}
+            >
                 <svg className="scroll-progress-ring" width="80" height="80">
                     <circle
                         className="scroll-progress-ring-circle-bg"
