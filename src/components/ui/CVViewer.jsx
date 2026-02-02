@@ -1,18 +1,32 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getCVFile } from '../../services/api';
 import { useAnalytics } from '../../context/AnalyticsContext';
+import './CVViewer.css';
 
 const CVViewer = ({ isOpen, onClose }) => {
-    const { trackCVView } = useAnalytics();
+    const [pdfUrl, setPdfUrl] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [filename, setFilename] = useState('CV.pdf');
+    const { trackCVView, trackCVDownload } = useAnalytics();
 
     useEffect(() => {
         if (isOpen) {
-            openCVInNewTab();
+            loadCV();
+        } else {
+            // Clean up URL when modal closes
+            if (pdfUrl) {
+                URL.revokeObjectURL(pdfUrl);
+                setPdfUrl(null);
+            }
         }
         // eslint-disable-next-line
     }, [isOpen]);
 
-    const openCVInNewTab = async () => {
+    const loadCV = async () => {
+        setLoading(true);
+        setError(null);
+
         try {
             // Track the view
             trackCVView();
@@ -20,6 +34,7 @@ const CVViewer = ({ isOpen, onClose }) => {
             // Fetch CV data
             const response = await getCVFile();
             const cvData = response.data;
+            setFilename(cvData.filename || 'CV.pdf');
 
             // Convert base64 to blob
             const base64Data = cvData.fileData.includes('base64,')
@@ -34,31 +49,84 @@ const CVViewer = ({ isOpen, onClose }) => {
             const byteArray = new Uint8Array(byteNumbers);
             const blob = new Blob([byteArray], { type: 'application/pdf' });
 
-            // Create URL and open in new tab
+            // Create object URL for iframe
             const url = URL.createObjectURL(blob);
-            const newWindow = window.open(url, '_blank');
+            setPdfUrl(url);
 
-            if (!newWindow) {
-                alert('Please allow popups to view your CV');
-            }
-
-            // Clean up after a delay
-            setTimeout(() => {
-                URL.revokeObjectURL(url);
-            }, 1000);
-
-        } catch (error) {
-            console.error('Error opening CV:', error);
-            alert('Failed to open CV: ' + (error.message || 'Unknown error'));
+        } catch (err) {
+            console.error('Error loading CV:', err);
+            setError(err.message || 'Failed to load CV');
         } finally {
-            // Close the "modal" state
-            onClose();
+            setLoading(false);
         }
     };
 
-    // This component doesn't render anything
-    return null;
+    const handleDownload = () => {
+        if (!pdfUrl) return;
+
+        // Track download in analytics
+        trackCVDownload();
+
+        const link = document.createElement('a');
+        link.href = pdfUrl;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+    if (!isOpen) return null;
+
+    return (
+        <div className="cv-viewer-overlay" onClick={onClose}>
+            <div className="cv-viewer-modal" onClick={(e) => e.stopPropagation()}>
+                {/* Header */}
+                <div className="cv-viewer-header">
+                    <div className="cv-header-left">
+                        <span className="code-comment">{`// ${filename}`}</span>
+                    </div>
+                    <div className="cv-header-right">
+                        <button
+                            className="cv-header-btn"
+                            onClick={handleDownload}
+                            disabled={!pdfUrl}
+                        >
+                            <span className="code-function">download</span>
+                            <span className="code-bracket">()</span>
+                        </button>
+                        <button className="cv-close-btn" onClick={onClose}>
+                            <span className="code-bracket">×</span>
+                        </button>
+                    </div>
+                </div>
+
+                {/* Content */}
+                <div className="cv-viewer-content">
+                    {loading && (
+                        <div className="cv-loading">
+                            <div className="spinner"></div>
+                            <p className="code-comment">{'// Loading CV...'}</p>
+                        </div>
+                    )}
+
+                    {error && (
+                        <div className="cv-error">
+                            <span className="code-keyword">Error:</span>
+                            <span className="code-string"> "{error}"</span>
+                        </div>
+                    )}
+
+                    {!loading && !error && pdfUrl && (
+                        <iframe
+                            src={pdfUrl}
+                            className="cv-iframe"
+                            title="CV Preview"
+                        />
+                    )}
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default CVViewer;
-

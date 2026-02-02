@@ -13,6 +13,7 @@
     z-index: 10000;
     padding: 20px;
     animation: fadeIn 0.3s ease;
+    cursor: pointer;
 }
 
 @keyframes fadeIn {
@@ -132,16 +133,13 @@
     width: 100%;
 }
 
-/* PDF Viewer Container */
-.cv-pdf-viewer-container {
+/* Iframe for PDF */
+.cv-iframe {
     width: 100%;
     height: 70vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #1a1a1a;
+    border: none;
     border-radius: 8px;
-    overflow: hidden;
+    background: #fff;
 }
 
 /* Loading State */
@@ -223,43 +221,6 @@
     font-size: 14px;
 }
 
-/* Code Styling */
-.code-comment {
-    color: #6a9955;
-    font-family: 'Fira Code', 'Courier New', monospace;
-    font-size: 14px;
-}
-
-.code-keyword {
-    color: #ff6b6b;
-    font-family: 'Fira Code', 'Courier New', monospace;
-}
-
-.code-string {
-    color: #ffd93d;
-    font-family: 'Fira Code', 'Courier New', monospace;
-}
-
-.code-function {
-    color: #00d4ff;
-    font-family: 'Fira Code', 'Courier New', monospace;
-}
-
-.code-bracket {
-    color: #00ff88;
-    font-family: 'Fira Code', 'Courier New', monospace;
-}
-
-.code-variable {
-    color: #bb86fc;
-    font-family: 'Fira Code', 'Courier New', monospace;
-}
-
-.code-number {
-    color: #ffd93d;
-    font-family: 'Fira Code', 'Courier New', monospace;
-}
-
 /* Scrollbar Styling */
 .cv-viewer-content::-webkit-scrollbar {
     width: 8px;
@@ -321,10 +282,6 @@
     }
 
     .cv-page-info {
-        font-size: 12px;
-    }
-
-    .code-comment {
         font-size: 12px;
     }
 }
