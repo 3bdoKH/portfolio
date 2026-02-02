@@ -1,0 +1,322 @@
+/* Terminal Overlay */
+.terminal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+    cursor: text;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Terminal Container */
+.terminal-container {
+    width: 100%;
+    height: 100%;
+    background: #0a0e27;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 255, 136, 0.3);
+    border: 2px solid #00ff88;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Terminal Header */
+.terminal-header-cli {
+    background: linear-gradient(135deg, #1a1f3a 0%, #0f1729 100%);
+    padding: 12px 16px;
+    border-bottom: 1px solid #00ff88;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.terminal-title-cli {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #00ff88;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.terminal-icon {
+    color: #00d4ff;
+    font-size: 16px;
+}
+
+.terminal-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.terminal-btn {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    font-family: monospace;
+}
+
+.terminal-btn.close {
+    background: #ff6b6b;
+    color: #0a0e27;
+}
+
+.terminal-btn.minimize {
+    background: #ffd93d;
+    color: #0a0e27;
+}
+
+.terminal-btn.maximize {
+    background: #00ff88;
+    color: #0a0e27;
+}
+
+.terminal-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px currentColor;
+}
+
+/* Terminal Body */
+.terminal-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #e0e0e0;
+}
+
+/* Scrollbar */
+.terminal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: #0a0e27;
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background: #00ff88;
+    border-radius: 4px;
+}
+
+.terminal-body::-webkit-scrollbar-thumb:hover {
+    background: #00d4ff;
+}
+
+/* Terminal Prompt */
+.terminal-prompt {
+    color: #00ff88;
+    margin-right: 8px;
+    user-select: none;
+}
+
+/* Input Line */
+.terminal-input-line {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.terminal-command {
+    color: #fff;
+}
+
+/* Input Form */
+.terminal-input-form {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.terminal-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 14px;
+    caret-color: #00ff88;
+}
+
+.terminal-input::selection {
+    background: #00ff88;
+    color: #0a0e27;
+}
+
+/* Output Styles */
+.terminal-output {
+    margin-bottom: 16px;
+}
+
+.terminal-output pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 14px;
+}
+
+/* Output Types */
+.terminal-output-text {
+    color: #e0e0e0;
+}
+
+.terminal-output-info {
+    color: #00d4ff;
+}
+
+.terminal-output-success {
+    color: #00ff88;
+}
+
+.terminal-output-error {
+    color: #ff6b6b;
+}
+
+.terminal-output-ascii {
+    color: #00ff88;
+    font-size: 12px;
+}
+
+/* Cursor Animation */
+.terminal-input::after {
+    content: '▊';
+    color: #00ff88;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    49% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .terminal-container {
+        height: 500px;
+        max-width: 100%;
+    }
+
+    .terminal-body {
+        padding: 15px;
+        font-size: 12px;
+    }
+
+    .terminal-prompt {
+        font-size: 12px;
+    }
+
+    .terminal-input {
+        font-size: 12px;
+    }
+
+    .terminal-output pre {
+        font-size: 12px;
+    }
+
+    .terminal-output-ascii {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .terminal-overlay {
+        padding: 10px;
+    }
+
+    .terminal-container {
+        height: 450px;
+        border-radius: 8px;
+    }
+
+    .terminal-header-cli {
+        padding: 10px 12px;
+    }
+
+    .terminal-title-cli {
+        font-size: 12px;
+    }
+
+    .terminal-body {
+        padding: 12px;
+        font-size: 11px;
+    }
+
+    .terminal-btn {
+        width: 14px;
+        height: 14px;
+        font-size: 10px;
+    }
+}
+
+/* Animations for typing effect (future enhancement) */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+/* Selection */
+::selection {
+    background: #00ff88;
+    color: #0a0e27;
+}
+
+::-moz-selection {
+    background: #00ff88;
+    color: #0a0e27;
+}

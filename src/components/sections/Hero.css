@@ -372,58 +372,6 @@
     animation-delay: 4s;
 }
 
-/* Scroll Indicator - Circular Progress */
-.scroll-indicator {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    z-index: var(--z-modal);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    animation: fadeIn 1s ease-out 2s forwards;
-    cursor: pointer;
-    transition: transform var(--transition-base);
-}
-
-.scroll-indicator:hover {
-    transform: scale(1.1);
-}
-
-.scroll-progress-ring {
-    position: relative;
-    transform: rotate(-90deg);
-}
-
-.scroll-progress-ring-circle-bg {
-    transition: stroke var(--transition-base);
-}
-
-.scroll-progress-ring-circle {
-    transition: stroke-dashoffset 0.3s ease-out;
-    filter: drop-shadow(0 0 8px var(--accent-glow));
-}
-
-.scroll-indicator:hover .scroll-progress-ring-circle {
-    filter: drop-shadow(0 0 12px var(--accent-glow));
-}
-
-.scroll-percentage {
-    position: absolute;
-    font-family: var(--font-mono);
-    font-size: var(--font-size-xs);
-    color: var(--accent-primary);
-    font-weight: 600;
-    transition: all var(--transition-base);
-    pointer-events: none;
-}
-
-.scroll-indicator:hover .scroll-percentage {
-    color: var(--accent-secondary);
-    transform: scale(1.1);
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -487,26 +435,6 @@
     .code-snippet {
         display: none;
     }
-
-    .scroll-indicator {
-        right: var(--spacing-sm);
-        bottom: var(--spacing-xl);
-    }
-
-    .scroll-progress-ring {
-        width: 60px;
-        height: 60px;
-    }
-
-    .scroll-progress-ring circle {
-        r: 26;
-        cx: 30;
-        cy: 30;
-    }
-
-    .scroll-percentage {
-        font-size: var(--font-size-xs);
-    }
 }
 
 @media (max-width: 480px) {
@@ -535,5 +463,68 @@
     .btn {
         padding: var(--spacing-sm);
         font-size: var(--font-size-sm);
+    }
+}
+
+/* Terminal Toggle Button */
+.terminal-toggle-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: var(--z-modal);
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background: rgba(10, 14, 39, 0.9);
+    border: 2px solid var(--accent-primary);
+    /* box-shadow: 0 4px 20px var(--accent-glow); */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-base);
+    animation: fadeIn 1s ease-out 2.5s forwards;
+    opacity: 0;
+    backdrop-filter: blur(10px);
+}
+
+.terminal-toggle-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px var(--accent-glow);
+    background: rgba(10, 14, 39, 1);
+    border-color: var(--accent-secondary);
+}
+
+.terminal-toggle-btn:active {
+    transform: translateY(-1px);
+}
+
+.terminal-toggle-icon {
+    color: var(--accent-primary);
+    font-family: var(--font-mono);
+    font-size: 24px;
+    font-weight: bold;
+    transition: all var(--transition-base);
+}
+
+.terminal-toggle-btn:hover .terminal-toggle-icon {
+    color: var(--accent-secondary);
+    transform: scale(1.1);
+}
+
+
+
+
+/* Mobile adjustments for terminal button */
+@media (max-width: 768px) {
+    .terminal-toggle-btn {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .terminal-toggle-icon {
+        font-size: 20px;
     }
 }

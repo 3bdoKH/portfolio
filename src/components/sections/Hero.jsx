@@ -3,13 +3,14 @@ import { TypeAnimation } from 'react-type-animation';
 import ParticlesBg from 'particles-bg';
 import { useAnalytics } from '../../context/AnalyticsContext';
 import CVViewer from '../ui/CVViewer';
+import Terminal from '../cli/Terminal';
 import profile from '../../images/profile.jpg';
 import './Hero.css';
 
 const Hero = () => {
     const [showCursor, setShowCursor] = useState(true);
     const [isCVViewerOpen, setIsCVViewerOpen] = useState(false);
-    const [scrollProgress, setScrollProgress] = useState(0);
+    const [isTerminalOpen, setIsTerminalOpen] = useState(false);
     const { trackPageView } = useAnalytics();
 
     useEffect(() => {
@@ -24,15 +25,16 @@ const Hero = () => {
         // eslint-disable-next-line
     }, []);
 
+    // Keyboard shortcut to toggle terminal (~  key)
     useEffect(() => {
-        const handleScroll = () => {
-            const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = (window.scrollY / totalHeight) * 100;
-            setScrollProgress(Math.min(progress, 100));
+        const handleKeyPress = (e) => {
+            if (e.key === '~' || e.key === '`') {
+                setIsTerminalOpen(prev => !prev);
+            }
         };
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        window.addEventListener('keydown', handleKeyPress);
+        return () => window.removeEventListener('keydown', handleKeyPress);
     }, []);
 
     const scrollToSection = (sectionId) => {
@@ -196,42 +198,23 @@ const Hero = () => {
             {/* CV Viewer Modal */}
             <CVViewer isOpen={isCVViewerOpen} onClose={() => setIsCVViewerOpen(false)} />
 
-            {/* Scroll Indicator - Circular Progress */}
-            <div className="scroll-indicator"
-                onClick={() => scrollToSection('home')}
+            {/* Terminal */}
+            <Terminal
+                isOpen={isTerminalOpen}
+                onClose={() => setIsTerminalOpen(false)}
+                openCVViewer={() => setIsCVViewerOpen(true)}
+                scrollToSection={scrollToSection}
+            />
+
+
+            {/* Terminal Toggle Button */}
+            <button
+                className="terminal-toggle-btn"
+                onClick={() => setIsTerminalOpen(true)}
+                title="Open Terminal (Press ~ key)"
             >
-                <svg className="scroll-progress-ring" width="80" height="80">
-                    <circle
-                        className="scroll-progress-ring-circle-bg"
-                        stroke="rgba(255, 255, 255, 0.1)"
-                        strokeWidth="4"
-                        fill="transparent"
-                        r="36"
-                        cx="40"
-                        cy="40"
-                    />
-                    <circle
-                        className="scroll-progress-ring-circle"
-                        stroke="url(#gradient)"
-                        strokeWidth="4"
-                        fill="transparent"
-                        r="36"
-                        cx="40"
-                        cy="40"
-                        style={{
-                            strokeDasharray: `${2 * Math.PI * 36}`,
-                            strokeDashoffset: `${2 * Math.PI * 36 * (1 - scrollProgress / 100)}`
-                        }}
-                    />
-                    <defs>
-                        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stopColor="var(--accent-secondary)" />
-                            <stop offset="100%" stopColor="var(--accent-primary)" />
-                        </linearGradient>
-                    </defs>
-                </svg>
-                <div className="scroll-percentage">top({`${Math.round(scrollProgress)}%`})</div>
-            </div>
+                <span className="terminal-toggle-icon">&gt;_</span>
+            </button>
         </section>
     );
 };
