@@ -10,6 +10,11 @@ const CVViewer = ({ isOpen, onClose }) => {
     const [filename, setFilename] = useState('CV.pdf');
     const { trackCVView, trackCVDownload } = useAnalytics();
 
+    // Detect if user is on mobile
+    const isMobile = () => {
+        return /Android|webOS|iPhone/i.test(navigator.userAgent);
+    };
+
     useEffect(() => {
         if (isOpen) {
             loadCV();
@@ -49,9 +54,21 @@ const CVViewer = ({ isOpen, onClose }) => {
             const byteArray = new Uint8Array(byteNumbers);
             const blob = new Blob([byteArray], { type: 'application/pdf' });
 
-            // Create object URL for iframe
+            // Create object URL
             const url = URL.createObjectURL(blob);
-            setPdfUrl(url);
+
+            // On mobile, open in new tab directly instead of iframe
+            if (isMobile()) {
+                window.open(url, '_blank');
+                // Clean up and close modal
+                setTimeout(() => {
+                    URL.revokeObjectURL(url);
+                    onClose();
+                }, 1000);
+            } else {
+                // On desktop, use iframe
+                setPdfUrl(url);
+            }
 
         } catch (err) {
             console.error('Error loading CV:', err);
