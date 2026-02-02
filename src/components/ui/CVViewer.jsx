@@ -12,7 +12,7 @@ const CVViewer = ({ isOpen, onClose }) => {
 
     // Detect if user is on mobile
     const isMobile = () => {
-        return /Android|webOS|iPhone/i.test(navigator.userAgent);
+        return /Android/i.test(navigator.userAgent);
     };
 
     useEffect(() => {
