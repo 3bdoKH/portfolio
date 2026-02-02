@@ -6,12 +6,6 @@ export const projectsCommand = {
     aliases: ['ls', 'work', 'portfolio'],
     execute: async (args, context) => {
         try {
-            // Show loading message
-            const loadingResponse = {
-                type: 'info',
-                content: 'Loading projects...'
-            };
-
             // Fetch projects from API
             const response = await getProjects();
             const projects = response.data || [];
@@ -112,4 +106,6 @@ export const projectCommand = {
     }
 };
 
-export default { projectsCommand, projectCommand };
+const projectCommands = { projectsCommand, projectCommand };
+
+export default projectCommands;

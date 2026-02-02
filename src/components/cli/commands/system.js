@@ -26,4 +26,6 @@ export const exitCommand = {
     }
 };
 
-export default { clearCommand, exitCommand };
+const systemCommands = { clearCommand, exitCommand };
+
+export default systemCommands;

@@ -67,4 +67,6 @@ export const QUOTES = [
     "\"Clean code always looks like it was written by someone who cares.\" - Robert C. Martin"
 ];
 
-export default { ASCII_ART, JOKES, QUOTES };
+const asciiArtExports = { ASCII_ART, JOKES, QUOTES };
+
+export default asciiArtExports;

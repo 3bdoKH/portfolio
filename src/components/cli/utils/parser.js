@@ -40,9 +40,11 @@ export const formatCommandList = (commands) => {
     }).join('\n');
 };
 
-export default {
+const parserUtils = {
     parseCommand,
     formatOutput,
     getSuggestions,
     formatCommandList
 };
+
+export default parserUtils;

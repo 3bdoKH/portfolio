@@ -78,7 +78,7 @@ export const quoteCommand = {
     }
 };
 
-export default {
+const easterEggCommands = {
     sudoCommand,
     hackCommand,
     matrixCommand,
@@ -86,3 +86,5 @@ export default {
     jokeCommand,
     quoteCommand
 };
+
+export default easterEggCommands;
