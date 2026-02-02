@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getMessages, getAnalyticsStats, getProjects, updateMessageStatus, deleteMessage } from '../services/api';
 import ProjectsManager from '../components/admin/ProjectsManager';
+import CVManager from '../components/admin/CVManager';
 import './AdminDashboard.css';
 
 const AdminDashboard = () => {
@@ -155,6 +156,14 @@ const AdminDashboard = () => {
                         <div className="stat-label">Total Projects</div>
                         <div className="stat-value">{projects.length}</div>
                     </div>
+                    <div className="stat-card-admin">
+                        <div className="stat-label">CV Views</div>
+                        <div className="stat-value">{analytics.overview.cvViews || 0}</div>
+                    </div>
+                    <div className="stat-card-admin">
+                        <div className="stat-label">CV Downloads</div>
+                        <div className="stat-value">{analytics.overview.cvDownloads || 0}</div>
+                    </div>
                 </div>
             )}
 
@@ -177,6 +186,12 @@ const AdminDashboard = () => {
                     onClick={() => setActiveTab('projects')}
                 >
                     Projects ({projects.length})
+                </button>
+                <button
+                    className={`tab ${activeTab === 'cv' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('cv')}
+                >
+                    CV
                 </button>
             </div>
 
@@ -286,6 +301,10 @@ const AdminDashboard = () => {
 
                 {activeTab === 'projects' && (
                     <ProjectsManager />
+                )}
+
+                {activeTab === 'cv' && (
+                    <CVManager />
                 )}
             </div>
         </div>

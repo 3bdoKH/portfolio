@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import ParticlesBg from 'particles-bg';
 import { useAnalytics } from '../../context/AnalyticsContext';
+import CVViewer from '../ui/CVViewer';
 import profile from '../../images/profile.jpg';
 import './Hero.css';
 
 const Hero = () => {
     const [showCursor, setShowCursor] = useState(true);
+    const [isCVViewerOpen, setIsCVViewerOpen] = useState(false);
     const { trackPageView } = useAnalytics();
 
     useEffect(() => {
@@ -144,9 +146,9 @@ const Hero = () => {
                     <div className="hero-cta">
                         <button
                             className="btn btn-primary"
-                            onClick={() => scrollToSection('projects')}
+                            onClick={() => setIsCVViewerOpen(true)}
                         >
-                            <span className="code-function">viewProjects</span>
+                            <span className="code-function">viewCV</span>
                             <span className="code-bracket">()</span>
                         </button>
 
@@ -178,6 +180,9 @@ const Hero = () => {
                     </div>
                 </div>
             </div>
+
+            {/* CV Viewer Modal */}
+            <CVViewer isOpen={isCVViewerOpen} onClose={() => setIsCVViewerOpen(false)} />
         </section>
     );
 };

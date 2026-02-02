@@ -10,6 +10,8 @@ export const useAnalytics = () => {
         return {
             trackPageView: () => { },
             trackProjectClick: () => { },
+            trackCVView: () => { },
+            trackCVDownload: () => { },
             trackEvent: () => { },
         };
     }
@@ -28,11 +30,41 @@ export const AnalyticsProvider = ({ children }) => {
     };
 
     const trackProjectClick = (projectId, projectName) => {
-        trackEventAPI('project_click', {
-            projectId,
-            projectName,
-            timestamp: new Date().toISOString()
-        });
+        const sessionKey = `projectclick_${projectId}`;
+        const hasTracked = localStorage.getItem(sessionKey);
+
+        if (!hasTracked) {
+            trackEventAPI('project_click', {
+                projectId,
+                projectName,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem(sessionKey, 'true');
+        }
+    };
+
+    const trackCVView = () => {
+        const sessionKey = `cvview`;
+        const hasTracked = localStorage.getItem(sessionKey);
+
+        if (!hasTracked) {
+            trackEventAPI('cv_view', {
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem(sessionKey, 'true');
+        }
+    };
+
+    const trackCVDownload = () => {
+        const sessionKey = `cvdownload`;
+        const hasTracked = localStorage.getItem(sessionKey);
+
+        if (!hasTracked) {
+            trackEventAPI('cv_download', {
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem(sessionKey, 'true');
+        }
     };
 
     const trackEvent = (eventType, eventData = {}) => {
@@ -42,6 +74,8 @@ export const AnalyticsProvider = ({ children }) => {
     const value = {
         trackPageView,
         trackProjectClick,
+        trackCVView,
+        trackCVDownload,
         trackEvent,
     };
 

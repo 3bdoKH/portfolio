@@ -1,0 +1,293 @@
+/* CV Manager Styles */
+.cv-manager {
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.cv-manager-header {
+    margin-bottom: 30px;
+}
+
+.cv-manager-header h2 {
+    color: #e0e0e0;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.cv-manager-subtitle {
+    color: #999;
+    font-size: 14px;
+}
+
+/* Loading State */
+.cv-manager-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    color: #999;
+}
+
+.spinner-large {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(0, 255, 136, 0.1);
+    border-top-color: #00ff88;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Message Display */
+.cv-message {
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cv-message-success {
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    color: #00ff88;
+}
+
+.cv-message-error {
+    background: rgba(255, 68, 68, 0.1);
+    border: 1px solid rgba(255, 68, 68, 0.3);
+    color: #ff4444;
+}
+
+/* Current CV Info */
+.cv-current-info {
+    background: rgba(0, 255, 136, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.cv-current-info h3 {
+    color: #00ff88;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.cv-info-grid {
+    display: grid;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.cv-info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+}
+
+.cv-info-label {
+    color: #999;
+    font-size: 14px;
+}
+
+.cv-info-value {
+    color: #e0e0e0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.cv-delete-btn {
+    background: transparent;
+    border: 1px solid #ff4444;
+    color: #ff4444;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.cv-delete-btn:hover {
+    background: rgba(255, 68, 68, 0.1);
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
+}
+
+/* Upload Section */
+.cv-upload-section {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.cv-upload-section h3 {
+    color: #e0e0e0;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.cv-upload-area {
+    margin-bottom: 20px;
+}
+
+.cv-file-input {
+    display: none;
+}
+
+.cv-file-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    border: 2px dashed rgba(0, 255, 136, 0.3);
+    border-radius: 8px;
+    background: rgba(0, 255, 136, 0.02);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cv-file-label:hover {
+    border-color: rgba(0, 255, 136, 0.5);
+    background: rgba(0, 255, 136, 0.05);
+}
+
+.cv-file-label svg {
+    color: #00ff88;
+    margin-bottom: 15px;
+}
+
+.cv-file-label-text {
+    color: #e0e0e0;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.cv-file-label-hint {
+    color: #999;
+    font-size: 12px;
+}
+
+/* Selected File */
+.cv-selected-file {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: rgba(0, 255, 136, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 8px;
+    gap: 15px;
+}
+
+.cv-selected-file-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.cv-selected-file-name {
+    color: #e0e0e0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.cv-selected-file-size {
+    color: #999;
+    font-size: 12px;
+}
+
+.cv-upload-btn {
+    background: #00ff88;
+    border: none;
+    color: #0a0e27;
+    padding: 10px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.cv-upload-btn:hover:not(:disabled) {
+    background: #00cc6f;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+}
+
+.cv-upload-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .cv-manager {
+        padding: 15px;
+    }
+
+    .cv-manager-header h2 {
+        font-size: 24px;
+    }
+
+    .cv-current-info,
+    .cv-upload-section {
+        padding: 20px;
+    }
+
+    .cv-selected-file {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cv-upload-btn {
+        width: 100%;
+    }
+
+    .cv-file-label {
+        padding: 30px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cv-manager {
+        padding: 10px;
+    }
+
+    .cv-current-info,
+    .cv-upload-section {
+        padding: 15px;
+    }
+
+    .cv-info-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}
