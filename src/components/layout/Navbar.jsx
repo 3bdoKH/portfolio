@@ -125,11 +125,11 @@ const Navbar = () => {
                             >
                                 <span className="line-number">{String(index + 1).padStart(2, '0')}</span>
                                 <span className="code-keyword">var</span>
-                                <span className="code-variable"> {item.tag}</span>
+                                <span className="code-variable">{item.tag}</span>
                                 <span className="code-bracket"> = </span>
-                                <span className="code-string">()</span>
-                                <span className="code-bracket">{'=>'}</span>
-                                <span className="code-string">{`{}`}</span>
+                                <span className="code-string">"</span>
+                                <span className="code-bracket">{item.label}</span>
+                                <span className="code-string">"</span>
                                 <span className="code-bracket">;</span>
                             </button>
                         </li>
