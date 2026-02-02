@@ -9,6 +9,7 @@ import './Hero.css';
 const Hero = () => {
     const [showCursor, setShowCursor] = useState(true);
     const [isCVViewerOpen, setIsCVViewerOpen] = useState(false);
+    const [scrollProgress, setScrollProgress] = useState(0);
     const { trackPageView } = useAnalytics();
 
     useEffect(() => {
@@ -21,6 +22,17 @@ const Hero = () => {
         console.log(showCursor)
         return () => clearInterval(cursorInterval);
         // eslint-disable-next-line
+    }, []);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (window.scrollY / totalHeight) * 100;
+            setScrollProgress(Math.min(progress, 100));
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const scrollToSection = (sectionId) => {
@@ -148,15 +160,15 @@ const Hero = () => {
                             className="btn btn-primary"
                             onClick={() => setIsCVViewerOpen(true)}
                         >
-                            <span className="code-function">viewCV</span>
+                            <span className="">viewCV</span>
                             <span className="code-bracket">()</span>
                         </button>
 
                         <button
                             className="btn btn-secondary"
-                            onClick={() => scrollToSection('contact')}
+                            onClick={() => scrollToSection('projects')}
                         >
-                            <span className="code-function">contactMe</span>
+                            <span className="code-function">viewProjects</span>
                             <span className="code-bracket">()</span>
                         </button>
                     </div>
@@ -183,6 +195,41 @@ const Hero = () => {
 
             {/* CV Viewer Modal */}
             <CVViewer isOpen={isCVViewerOpen} onClose={() => setIsCVViewerOpen(false)} />
+
+            {/* Scroll Indicator - Circular Progress */}
+            <div className="scroll-indicator">
+                <svg className="scroll-progress-ring" width="80" height="80">
+                    <circle
+                        className="scroll-progress-ring-circle-bg"
+                        stroke="rgba(255, 255, 255, 0.1)"
+                        strokeWidth="4"
+                        fill="transparent"
+                        r="36"
+                        cx="40"
+                        cy="40"
+                    />
+                    <circle
+                        className="scroll-progress-ring-circle"
+                        stroke="url(#gradient)"
+                        strokeWidth="4"
+                        fill="transparent"
+                        r="36"
+                        cx="40"
+                        cy="40"
+                        style={{
+                            strokeDasharray: `${2 * Math.PI * 36}`,
+                            strokeDashoffset: `${2 * Math.PI * 36 * (1 - scrollProgress / 100)}`
+                        }}
+                    />
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="var(--accent-secondary)" />
+                            <stop offset="100%" stopColor="var(--accent-primary)" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <div className="scroll-percentage">top({`${Math.round(scrollProgress)}%`})</div>
+            </div>
         </section>
     );
 };

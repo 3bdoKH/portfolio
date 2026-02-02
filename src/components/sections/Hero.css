@@ -291,52 +291,6 @@
     transform: translateY(0);
 }
 
-/* Scroll Indicator */
-.scroll-indicator {
-    position: absolute;
-    bottom: var(--spacing-xl);
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-sm);
-    animation: fadeIn 1s ease-out 1.2s backwards;
-}
-
-.mouse {
-    width: 26px;
-    height: 40px;
-    border: 2px solid var(--accent-primary);
-    border-radius: 15px;
-    position: relative;
-    opacity: 0.7;
-}
-
-.wheel {
-    width: 4px;
-    height: 8px;
-    background: var(--accent-primary);
-    border-radius: 2px;
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: scroll 1.5s infinite;
-}
-
-@keyframes scroll {
-    0% {
-        top: 8px;
-        opacity: 1;
-    }
-
-    100% {
-        top: 24px;
-        opacity: 0;
-    }
-}
-
 .arrow-down {
     display: flex;
     flex-direction: column;
@@ -418,6 +372,59 @@
     animation-delay: 4s;
 }
 
+/* Scroll Indicator - Circular Progress */
+.scroll-indicator {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: var(--z-modal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 2s forwards;
+    cursor: pointer;
+    transition: transform var(--transition-base);
+}
+
+.scroll-indicator:hover {
+    transform: scale(1.1);
+}
+
+.scroll-progress-ring {
+    position: relative;
+    transform: rotate(-90deg);
+}
+
+.scroll-progress-ring-circle-bg {
+    transition: stroke var(--transition-base);
+}
+
+.scroll-progress-ring-circle {
+    transition: stroke-dashoffset 0.3s ease-out;
+    filter: drop-shadow(0 0 8px var(--accent-glow));
+}
+
+.scroll-indicator:hover .scroll-progress-ring-circle {
+    filter: drop-shadow(0 0 12px var(--accent-glow));
+}
+
+.scroll-percentage {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    color: var(--accent-primary);
+    font-weight: 600;
+    transition: all var(--transition-base);
+    pointer-events: none;
+}
+
+.scroll-indicator:hover .scroll-percentage {
+    color: var(--accent-secondary);
+    transform: scale(1.1);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .hero-container {
@@ -479,6 +486,26 @@
 
     .code-snippet {
         display: none;
+    }
+
+    .scroll-indicator {
+        right: var(--spacing-sm);
+        bottom: var(--spacing-xl);
+    }
+
+    .scroll-progress-ring {
+        width: 60px;
+        height: 60px;
+    }
+
+    .scroll-progress-ring circle {
+        r: 26;
+        cx: 30;
+        cy: 30;
+    }
+
+    .scroll-percentage {
+        font-size: var(--font-size-xs);
     }
 }
 
