@@ -517,7 +517,7 @@
 
     .code-block {
         padding: var(--spacing-sm);
-        padding-left: 40px;
+        flex: 0;
     }
 
     .line-numbers {
