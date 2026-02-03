@@ -44,7 +44,6 @@
 .profile-frame:hover {
     border-color: var(--accent-primary);
     box-shadow: 0 8px 32px var(--accent-glow), var(--shadow-lg);
-    transform: translateY(-5px);
 }
 
 .frame-header {
@@ -80,15 +79,15 @@
     background: #27c93f;
 }
 
-.profile-frame:hover .dot {
-    box-shadow: 0 0 10px currentColor;
-}
-
 .profile-image-wrapper {
     position: relative;
     width: 280px;
     height: 280px;
     overflow: hidden;
+}
+
+.profile-wrapper {
+    margin-top: -30px;
 }
 
 .profile-image {
@@ -113,7 +112,7 @@
     opacity: 0;
     transition: opacity var(--transition-base);
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     gap: 4px;
     font-size: var(--font-size-lg);
@@ -126,7 +125,7 @@
 /* Line Numbers */
 .line-numbers {
     position: absolute;
-    left: 0;
+    left: -20px;
     top: 50px;
     display: flex;
     flex-direction: column;
@@ -146,7 +145,7 @@
 
 /* Code Block */
 .code-block {
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--bg-primary);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     padding: var(--spacing-xl);
@@ -360,7 +359,7 @@
 .status-dot {
     width: 8px;
     height: 8px;
-    background: #00ff88;
+    background: var(--syntax-keyword);
     border-radius: 50%;
     animation: pulse 2s ease-in-out infinite;
 }
@@ -388,7 +387,7 @@
     display: flex;
     gap: 16px;
     margin-top: 24px;
-    justify-content: center;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 
@@ -435,8 +434,6 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .status-indicator {
-        top: 8px;
-        left: 8px;
         padding: 4px 10px;
     }
 
@@ -472,7 +469,7 @@
     }
 
     .profile-section {
-        width: 100%;
+        width: 80%;
         display: flex;
         justify-content: center;
     }
@@ -528,6 +525,12 @@
     .profile-image-wrapper {
         width: 200px;
         height: 200px;
+    }
+
+    .profile-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 
     .code-block {

@@ -36,60 +36,13 @@
    We will use the follower element to display the braces
 */
 
-.custom-cursor-dot.hovered {
+/* .custom-cursor-dot.hovered {
     opacity: 0;
-    /* Hide the dot */
-}
+} */
 
 .custom-cursor-follower.hovered {
-    width: 80px;
-    /* Wider to fit braces */
-    height: 40px;
-    background-color: transparent;
-    /* No background */
-    border-color: transparent;
-    /* No border */
-    margin-left: -40px;
-    margin-top: -20px;
-    mix-blend-mode: normal;
-}
-
-/* Use pseudo-elements for the braces content */
-.custom-cursor-follower::before,
-.custom-cursor-follower::after {
-    content: '';
-    position: absolute;
-    font-family: var(--font-mono);
-    /* Use our code font */
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--accent-primary);
-    opacity: 0;
-    transition: all 0.3s ease;
-    text-shadow: 0 0 10px var(--accent-glow);
-}
-
-.custom-cursor-follower::before {
-    content: '{';
-    left: 10px;
-    transform: translateX(10px);
-}
-
-.custom-cursor-follower::after {
-    content: '}';
-    right: 10px;
-    transform: translateX(-10px);
-}
-
-/* On hover, show braces and animate them outward */
-.custom-cursor-follower.hovered::before {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.custom-cursor-follower.hovered::after {
-    opacity: 1;
-    transform: translateX(0);
+    width: 50px;
+    height: 50px;
 }
 
 /* Hide cursor on mobile/touch devices */

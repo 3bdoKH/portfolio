@@ -130,45 +130,90 @@ const About = () => {
                         </div>
                     </div>
 
-                    {/* Right Side - Stats */}
-                    <div className="about-stats" data-aos="fade-left">
-                        <div className="stat-card">
-                            <div className="stat-icon">
-                                <FaCode />
+                    {/* Right Side - Stats & Timeline */}
+                    <div className="about-right" data-aos="fade-left">
+                        {/* Stats Grid */}
+                        <div className="about-stats">
+                            <div className="stat-card">
+                                <div className="stat-icon">
+                                    <FaCode />
+                                </div>
+                                <div className="stat-content">
+                                    <h3 className="stat-number">{stats.experience}+</h3>
+                                    <p className="stat-label">Years Experience</p>
+                                </div>
                             </div>
-                            <div className="stat-content">
-                                <h3 className="stat-number">{stats.experience}+</h3>
-                                <p className="stat-label">Years Experience</p>
+
+                            <div className="stat-card">
+                                <div className="stat-icon">
+                                    <FaProjectDiagram />
+                                </div>
+                                <div className="stat-content">
+                                    <h3 className="stat-number">{stats.projects}+</h3>
+                                    <p className="stat-label">Projects Completed</p>
+                                </div>
+                            </div>
+
+                            <div className="stat-card">
+                                <div className="stat-icon">
+                                    <FaLaptopCode />
+                                </div>
+                                <div className="stat-content">
+                                    <h3 className="stat-number">{stats.clients}+</h3>
+                                    <p className="stat-label">Happy Clients</p>
+                                </div>
+                            </div>
+
+                            <div className="stat-card">
+                                <div className="stat-icon">
+                                    <FaCoffee />
+                                </div>
+                                <div className="stat-content">
+                                    <h3 className="stat-number">{stats.coffee}+</h3>
+                                    <p className="stat-label">Cups of Coffee</p>
+                                </div>
                             </div>
                         </div>
 
-                        <div className="stat-card">
-                            <div className="stat-icon">
-                                <FaProjectDiagram />
-                            </div>
-                            <div className="stat-content">
-                                <h3 className="stat-number">{stats.projects}+</h3>
-                                <p className="stat-label">Projects Completed</p>
-                            </div>
-                        </div>
+                        {/* Timeline Section */}
+                        <div className="timeline-section-about">
 
-                        <div className="stat-card">
-                            <div className="stat-icon">
-                                <FaLaptopCode />
+                            <div className="timeline-header-about">
+                                <span className="code-comment">{"// Journey Highlights"}</span>
                             </div>
-                            <div className="stat-content">
-                                <h3 className="stat-number">{stats.clients}+</h3>
-                                <p className="stat-label">Happy Clients</p>
-                            </div>
-                        </div>
+                            <div className="timeline-about">
+                                <div className="timeline-item-about">
+                                    <div className="timeline-dot-about"></div>
+                                    <div className="timeline-content-about">
+                                        <div className="timeline-year-about">2025</div>
+                                        <div className="timeline-title-about">Full-Stack Mastery</div>
+                                        <div className="timeline-desc-about">
+                                            Specialized in MERN stack development, building scalable web applications
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <div className="stat-card">
-                            <div className="stat-icon">
-                                <FaCoffee />
-                            </div>
-                            <div className="stat-content">
-                                <h3 className="stat-number">{stats.coffee}+</h3>
-                                <p className="stat-label">Cups of Coffee</p>
+                                <div className="timeline-item-about">
+                                    <div className="timeline-dot-about"></div>
+                                    <div className="timeline-content-about">
+                                        <div className="timeline-year-about">2024</div>
+                                        <div className="timeline-title-about">Professional Developer</div>
+                                        <div className="timeline-desc-about">
+                                            Started working on real-world projects and client solutions
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="timeline-item-about">
+                                    <div className="timeline-dot-about"></div>
+                                    <div className="timeline-content-about">
+                                        <div className="timeline-year-about">2023</div>
+                                        <div className="timeline-title-about">Coding Journey Begins</div>
+                                        <div className="timeline-desc-about">
+                                            Discovered passion for web development and started learning
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

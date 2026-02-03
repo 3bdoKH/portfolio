@@ -12,6 +12,14 @@ html {
   scroll-behavior: smooth;
 }
 
+a:hover {
+  cursor: none;
+}
+
+button:hover {
+  cursor: none;
+}
+
 body {
   font-family: var(--font-mono);
   background-color: var(--bg-primary);

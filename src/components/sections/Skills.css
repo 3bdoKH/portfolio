@@ -76,8 +76,6 @@
 
 .skill-card:hover .skill-card-inner {
     border-color: var(--accent-primary);
-    transform: translateY(-8px);
-    box-shadow: 0 12px 40px var(--accent-glow);
 }
 
 .skill-card:hover .skill-card-inner::before {
@@ -93,15 +91,14 @@
 
 .skill-icon {
     font-size: 4rem;
-    color: var(--accent-primary);
+    color: var(--accent-glow);
     display: block;
     transition: all var(--transition-base);
     filter: drop-shadow(0 0 10px var(--accent-glow));
 }
 
 .skill-card:hover .skill-icon {
-    transform: scale(1.1) translateY(-5px);
-    filter: drop-shadow(0 0 20px var(--accent-glow));
+    color: var(--accent-primary);
 }
 
 /* Skill Content */
@@ -111,7 +108,7 @@
 }
 
 .skill-title {
-    color: var(--accent-primary);
+    color: var(--accent-glow);
     font-size: var(--font-size-xl);
     font-weight: 600;
     margin: 0 0 var(--spacing-md) 0;
@@ -119,7 +116,7 @@
 }
 
 .skill-card:hover .skill-title {
-    text-shadow: 0 0 20px var(--accent-glow);
+    color: var(--accent-primary);
 }
 
 .skill-description {
@@ -146,38 +143,6 @@
     color: var(--text-primary);
 }
 
-/* Hover Overlay */
-.skill-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity var(--transition-base);
-    z-index: 2;
-}
-
-.overlay-text {
-    color: var(--bg-primary);
-    font-size: var(--font-size-2xl);
-    font-weight: 700;
-    transform: translateY(20px);
-    transition: transform var(--transition-base);
-}
-
-.skill-card:hover .skill-overlay {
-    opacity: 0.95;
-}
-
-.skill-card:hover .overlay-text {
-    transform: translateY(0);
-}
-
 /* Section Footer */
 .section-footer {
     text-align: center;
@@ -187,9 +152,7 @@
     margin-bottom: var(--spacing-3xl);
 }
 
-/* =========================================
-   NEW TECH DASHBOARD STYLES
-   ========================================= */
+/* Technologies section */
 
 .technologies-section {
     margin-top: var(--spacing-3xl);
@@ -224,7 +187,6 @@
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
     flex: 1 1 300px;
-    /* Responsive flex */
     max-width: 500px;
     min-width: 280px;
     transition: all var(--transition-base);
@@ -259,9 +221,7 @@
     flex-wrap: wrap;
     gap: var(--spacing-md);
     justify-content: center;
-    /* Center items inside the card */
     flex-grow: 1;
-    /* Push footer down */
 }
 
 /* Individual Module Item */
@@ -272,7 +232,6 @@
     align-items: center;
     gap: 8px;
     width: 80px;
-    cursor: pointer;
 }
 
 .module-icon-wrapper {
@@ -295,10 +254,8 @@
 
 /* Hover Effects using CSS Variables passed from JS */
 .module-item:hover .module-icon-wrapper {
-    transform: translateY(-5px) scale(1.1);
     background: rgba(255, 255, 255, 0.1);
     border-color: var(--item-color);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .module-item:hover .module-icon {

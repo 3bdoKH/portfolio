@@ -55,10 +55,7 @@ const Skills = () => {
                                         </div>
                                     </div>
 
-                                    {/* Hover Effect Overlay */}
-                                    <div className="skill-overlay">
-                                        <span className="overlay-text">{skill.displayTitle}</span>
-                                    </div>
+
                                 </div>
                             </div>
                         );
