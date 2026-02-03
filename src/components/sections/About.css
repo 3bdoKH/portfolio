@@ -48,10 +48,10 @@
     transition: all var(--transition-base);
 }
 
-.code-line:hover {
+/* .code-line:hover {
     padding-left: var(--spacing-lg);
     background: rgba(0, 255, 136, 0.05);
-}
+} */
 
 .code-property {
     color: var(--syntax-variable);
