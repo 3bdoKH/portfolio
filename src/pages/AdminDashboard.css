@@ -419,6 +419,14 @@
     color: #666;
 }
 
+.admin-dashboard button {
+    cursor: pointer;
+}
+
+.admin-dashboard a {
+    cursor: pointer;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .header-content {
