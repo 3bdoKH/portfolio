@@ -178,9 +178,15 @@ const Terminal = ({ isOpen, onClose, openCVViewer, scrollToSection }) => {
                         <span>portfolio-terminal</span>
                     </div>
                     <div className="terminal-controls">
-                        <button className="terminal-btn minimize"></button>
-                        <button className="terminal-btn maximize"></button>
-                        <button className="terminal-btn close" onClick={onClose}>X</button>
+                        <button className="terminal-btn minimize"
+                            style={{ cursor: "pointer" }}
+                        ></button>
+                        <button className="terminal-btn maximize"
+                            style={{ cursor: "pointer" }}
+                        ></button>
+                        <button className="terminal-btn close" onClick={onClose}
+                            style={{ cursor: "pointer" }}
+                        >X</button>
                     </div>
                 </div>
 
