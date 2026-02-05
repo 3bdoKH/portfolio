@@ -461,6 +461,7 @@
 @media (max-width: 768px) {
     .hero-container {
         padding: var(--spacing-2xl) var(--container-padding);
+        padding-top: 100px;
     }
 
     .hero-content {
