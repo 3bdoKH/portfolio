@@ -427,6 +427,102 @@
     cursor: pointer;
 }
 
+/* Terminal Analytics Styles */
+.terminal-analytics-card {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: #00ff88;
+    border-color: #333;
+}
+
+.terminal-analytics-card h3 {
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 20px;
+}
+
+.terminal-analytics-card h4 {
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    margin: 16px 0 12px 0;
+    opacity: 0.9;
+}
+
+.terminal-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.terminal-stat-item {
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 6px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.terminal-stat-label {
+    font-size: 12px;
+    color: #00ff88;
+    opacity: 0.7;
+    font-family: 'Courier New', monospace;
+}
+
+.terminal-stat-value {
+    font-size: 28px;
+    font-weight: 600;
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
+}
+
+.terminal-commands-section,
+.terminal-activity-section {
+    margin-top: 20px;
+}
+
+.terminal-command-item {
+    background: rgba(0, 255, 136, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+.terminal-command-item:hover {
+    background: rgba(0, 255, 136, 0.1);
+}
+
+.terminal-command-name {
+    color: #00ff88;
+    font-weight: 500;
+}
+
+.terminal-activity-item .activity-type {
+    color: #00ff88;
+}
+
+.terminal-activity-item .activity-time {
+    color: rgba(0, 255, 136, 0.6);
+}
+
+.terminal-open-dot {
+    background: #00ff88;
+}
+
+.terminal-command-dot {
+    background: #00ccff;
+}
+
+.terminal-analytics-card .event-count {
+    color: #00ff88;
+}
+
+.terminal-analytics-card .empty-state-small {
+    color: rgba(0, 255, 136, 0.5);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .header-content {
@@ -449,6 +545,10 @@
     }
 
     .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .terminal-stats {
         grid-template-columns: 1fr;
     }
 }

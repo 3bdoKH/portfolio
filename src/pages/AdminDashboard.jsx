@@ -266,15 +266,18 @@ const AdminDashboard = () => {
                             <div className="analytics-card">
                                 <h3>Recent Activity</h3>
                                 <div className="activity-list">
-                                    {analytics.recentEvents.slice(0, 10).map((event, index) => (
-                                        <div key={index} className="activity-item">
-                                            <div className="activity-dot"></div>
-                                            <div className="activity-content">
-                                                <span className="activity-type">{event.eventType}</span>
-                                                <span className="activity-time">{formatDate(event.timestamp)}</span>
+                                    {analytics.recentEvents
+                                        .filter(event => event.eventType !== 'terminal_command' && event.eventType !== 'terminal_open')
+                                        .slice(0, 10)
+                                        .map((event, index) => (
+                                            <div key={index} className="activity-item">
+                                                <div className="activity-dot"></div>
+                                                <div className="activity-content">
+                                                    <span className="activity-type">{event.eventType}</span>
+                                                    <span className="activity-time">{formatDate(event.timestamp)}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
+                                        ))}
                                 </div>
                             </div>
 
@@ -293,6 +296,91 @@ const AdminDashboard = () => {
                                             <p>No project clicks yet</p>
                                         </div>
                                     )}
+                                </div>
+                            </div>
+
+                            {/* Terminal Analytics Card */}
+                            <div className="analytics-card terminal-analytics-card">
+                                <h3>Terminal Analytics</h3>
+
+                                {/* Terminal Stats */}
+                                <div className="terminal-stats">
+                                    <div className="terminal-stat-item">
+                                        <span className="terminal-stat-label">Terminal Opens</span>
+                                        <span className="terminal-stat-value">
+                                            {analytics.eventsByType.find(e => e.type === 'terminal_open')?.count || 0}
+                                        </span>
+                                    </div>
+                                    <div className="terminal-stat-item">
+                                        <span className="terminal-stat-label">Commands Executed</span>
+                                        <span className="terminal-stat-value">
+                                            {analytics.eventsByType.find(e => e.type === 'terminal_command')?.count || 0}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {/* Top Commands */}
+                                <div className="terminal-commands-section">
+                                    <h4>Most Used Commands</h4>
+                                    <div className="event-list">
+                                        {(() => {
+                                            // Extract and count terminal commands
+                                            const commandCounts = analytics.recentEvents
+                                                .filter(e => e.eventType === 'terminal_command')
+                                                .reduce((acc, event) => {
+                                                    const cmd = event.eventData?.command || 'unknown';
+                                                    acc[cmd] = (acc[cmd] || 0) + 1;
+                                                    return acc;
+                                                }, {});
+
+                                            // Convert to array and sort
+                                            const sortedCommands = Object.entries(commandCounts)
+                                                .sort((a, b) => b[1] - a[1])
+                                                .slice(0, 5);
+
+                                            return sortedCommands.length > 0 ? (
+                                                sortedCommands.map(([cmd, count], index) => (
+                                                    <div key={index} className="event-item terminal-command-item">
+                                                        <span className="event-type terminal-command-name">$ {cmd}</span>
+                                                        <span className="event-count">{count}</span>
+                                                    </div>
+                                                ))
+                                            ) : (
+                                                <div className="empty-state-small">
+                                                    <p>No commands executed yet</p>
+                                                </div>
+                                            );
+                                        })()}
+                                    </div>
+                                </div>
+
+                                {/* Recent Terminal Activity */}
+                                <div className="terminal-activity-section">
+                                    <h4>Recent Terminal Activity</h4>
+                                    <div className="activity-list">
+                                        {analytics.recentEvents
+                                            .filter(e => e.eventType === 'terminal_command' || e.eventType === 'terminal_open')
+                                            .slice(0, 5)
+                                            .map((event, index) => (
+                                                <div key={index} className="activity-item terminal-activity-item">
+                                                    <div className={`activity-dot ${event.eventType === 'terminal_open' ? 'terminal-open-dot' : 'terminal-command-dot'}`}></div>
+                                                    <div className="activity-content">
+                                                        <span className="activity-type">
+                                                            {event.eventType === 'terminal_open'
+                                                                ? 'Terminal Opened'
+                                                                : `$ ${event.eventData?.command || 'unknown'}`}
+                                                            {event.eventData?.success === false && ' X '}
+                                                        </span>
+                                                        <span className="activity-time">{formatDate(event.timestamp)}</span>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        {analytics.recentEvents.filter(e => e.eventType === 'terminal_command' || e.eventType === 'terminal_open').length === 0 && (
+                                            <div className="empty-state-small">
+                                                <p>No terminal activity yet</p>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </div>
