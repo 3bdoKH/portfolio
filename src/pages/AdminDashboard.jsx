@@ -6,7 +6,7 @@ import CVManager from '../components/admin/CVManager';
 import './AdminDashboard.css';
 
 const AdminDashboard = () => {
-    const [activeTab, setActiveTab] = useState('messages');
+    const [activeTab, setActiveTab] = useState('analytics');
     const [messages, setMessages] = useState([]);
     const [analytics, setAnalytics] = useState(null);
     const [projects, setProjects] = useState([]);
@@ -119,15 +119,29 @@ const AdminDashboard = () => {
             <header className="dashboard-header">
                 <div className="header-content">
                     <div className="header-left">
-                        <h1>Dashboard</h1>
-                        <span className="user-badge">{user?.username}</span>
+                        <h1>
+                            <span className="syntax-comment">{'// '}</span>
+                            <span className="syntax-keyword">Dashboard</span>
+                        </h1>
+                        {user && (
+                            <span className="user-badge">
+                                <span className="syntax-bracket">{'{ '}</span>
+                                <span className="syntax-variable">user</span>
+                                <span className="syntax-bracket">: </span>
+                                <span className="syntax-string">"{user.username}"</span>
+                                <span className="syntax-bracket">{' }'}</span>
+                            </span>
+                        )}
                     </div>
                     <div className="header-right">
-                        <a href="/" className="home-link" target="_blank" rel="noopener noreferrer">
-                            View Portfolio →
+                        <a href="/" target="_blank" rel="noopener noreferrer" className="home-link">
+                            <span className="syntax-function stat-variable">viewPortfolio</span>
+                            <span className="syntax-bracket">()</span>
+                            <span className="syntax-keyword"> →</span>
                         </a>
                         <button onClick={handleLogout} className="logout-button">
-                            Sign Out
+                            <span className="syntax-function stat-variable">logout</span>
+                            <span className="syntax-bracket">()</span>
                         </button>
                     </div>
                 </div>
@@ -137,61 +151,115 @@ const AdminDashboard = () => {
             {analytics && (
                 <div className="stats-grid">
                     <div className="stat-card-admin">
-                        <div className="stat-label">Total Messages</div>
-                        <div className="stat-value">{analytics.overview.totalMessages}</div>
+                        <div className="stat-label">
+                            <span className="syntax-keyword stat-variable">const</span>{' '}
+                            <span className="syntax-variable stat-variable">totalMessages</span>{' '}
+                            <span className="syntax-bracket">=</span>
+                        </div>
+                        <div className="stat-value">
+                            <span className="syntax-number">{analytics.overview.totalMessages}</span>
+                            <span className="syntax-bracket">;</span>
+                        </div>
                     </div>
                     <div className="stat-card-admin">
-                        <div className="stat-label">Unread</div>
-                        <div className="stat-value highlight">{analytics.overview.unreadMessages}</div>
+                        <div className="stat-label">
+                            <span className="syntax-keyword stat-variable">const</span>{' '}
+                            <span className="syntax-variable stat-variable">unread</span>{' '}
+                            <span className="syntax-bracket">=</span>
+                        </div>
+                        <div className="stat-value highlight">
+                            <span className="syntax-number">{analytics.overview.unreadMessages}</span>
+                            <span className="syntax-bracket">;</span>
+                        </div>
                     </div>
                     <div className="stat-card-admin">
-                        <div className="stat-label">Page Views</div>
-                        <div className="stat-value">{analytics.overview.pageViews}</div>
+                        <div className="stat-label">
+                            <span className="syntax-keyword stat-variable">const</span>{' '}
+                            <span className="syntax-variable stat-variable">pageViews</span>{' '}
+                            <span className="syntax-bracket">=</span>
+                        </div>
+                        <div className="stat-value">
+                            <span className="syntax-number">{analytics.overview.pageViews}</span>
+                            <span className="syntax-bracket">;</span>
+                        </div>
                     </div>
                     <div className="stat-card-admin">
-                        <div className="stat-label">Project Clicks</div>
-                        <div className="stat-value">{analytics.overview.projectClicks}</div>
+                        <div className="stat-label">
+                            <span className="syntax-keyword stat-variable">const</span>{' '}
+                            <span className="syntax-variable stat-variable">projectClicks</span>{' '}
+                            <span className="syntax-bracket">=</span>
+                        </div>
+                        <div className="stat-value">
+                            <span className="syntax-number">{analytics.overview.projectClicks}</span>
+                            <span className="syntax-bracket">;</span>
+                        </div>
                     </div>
                     <div className="stat-card-admin">
-                        <div className="stat-label">Total Projects</div>
-                        <div className="stat-value">{projects.length}</div>
+                        <div className="stat-label">
+                            <span className="syntax-keyword stat-variable">const</span>{' '}
+                            <span className="syntax-variable stat-variable">totalProjects</span>{' '}
+                            <span className="syntax-bracket">=</span>
+                        </div>
+                        <div className="stat-value">
+                            <span className="syntax-number">{projects.length}</span>
+                            <span className="syntax-bracket">;</span>
+                        </div>
                     </div>
                     <div className="stat-card-admin">
-                        <div className="stat-label">CV Views</div>
-                        <div className="stat-value">{analytics.overview.cvViews || 0}</div>
+                        <div className="stat-label">
+                            <span className="syntax-keyword stat-variable">const</span>{' '}
+                            <span className="syntax-variable stat-variable">cvViews</span>{' '}
+                            <span className="syntax-bracket">=</span>
+                        </div>
+                        <div className="stat-value">
+                            <span className="syntax-number">{analytics.overview.cvViews || 0}</span>
+                            <span className="syntax-bracket">;</span>
+                        </div>
                     </div>
                     <div className="stat-card-admin">
-                        <div className="stat-label">CV Downloads</div>
-                        <div className="stat-value">{analytics.overview.cvDownloads || 0}</div>
+                        <div className="stat-label">
+                            <span className="syntax-keyword stat-variable">const</span>{' '}
+                            <span className="syntax-variable stat-variable">cvDownloads</span>{' '}
+                            <span className="syntax-bracket">=</span>
+                        </div>
+                        <div className="stat-value">
+                            <span className="syntax-number">{analytics.overview.cvDownloads || 0}</span>
+                            <span className="syntax-bracket">;</span>
+                        </div>
                     </div>
                 </div>
             )}
 
             {/* Tabs */}
             <div className="tabs">
-                <button
-                    className={`tab ${activeTab === 'messages' ? 'active' : ''}`}
-                    onClick={() => setActiveTab('messages')}
-                >
-                    Messages ({messages.length})
-                </button>
+
                 <button
                     className={`tab ${activeTab === 'analytics' ? 'active' : ''}`}
                     onClick={() => setActiveTab('analytics')}
                 >
-                    Analytics
+                    <span className="syntax-function">analytics</span>
+                    <span className="syntax-bracket">()</span>
+                </button>
+                <button
+                    className={`tab ${activeTab === 'messages' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('messages')}
+                >
+                    <span className="syntax-function">messages</span>
+                    <span className="syntax-bracket">()</span>
                 </button>
                 <button
                     className={`tab ${activeTab === 'projects' ? 'active' : ''}`}
                     onClick={() => setActiveTab('projects')}
                 >
-                    Projects ({projects.length})
+                    <span className="syntax-function">projects</span>
+                    <span className="syntax-bracket">()</span>
                 </button>
                 <button
                     className={`tab ${activeTab === 'cv' ? 'active' : ''}`}
                     onClick={() => setActiveTab('cv')}
                 >
-                    CV
+                    <span className="syntax-function">cv</span>
+                    <span className="syntax-bracket">()</span>
                 </button>
             </div>
 
@@ -252,7 +320,10 @@ const AdminDashboard = () => {
                     <div className="analytics-section">
                         <div className="analytics-grid">
                             <div className="analytics-card">
-                                <h3>Event Types</h3>
+                                <h3>
+                                    <span className="syntax-comment">// </span>
+                                    <span className="syntax-keyword">Event Types</span>
+                                </h3>
                                 <div className="event-list">
                                     {analytics.eventsByType.map((event) => (
                                         <div key={event.type} className="event-item">
@@ -264,7 +335,10 @@ const AdminDashboard = () => {
                             </div>
 
                             <div className="analytics-card">
-                                <h3>Recent Activity</h3>
+                                <h3>
+                                    <span className="syntax-comment">// </span>
+                                    <span className="syntax-keyword">Recent Activity</span>
+                                </h3>
                                 <div className="activity-list">
                                     {analytics.recentEvents
                                         .filter(event => event.eventType !== 'terminal_command' && event.eventType !== 'terminal_open')
@@ -282,7 +356,10 @@ const AdminDashboard = () => {
                             </div>
 
                             <div className="analytics-card">
-                                <h3>Project Clicks</h3>
+                                <h3>
+                                    <span className="syntax-comment">// </span>
+                                    <span className="syntax-keyword">Project Clicks</span>
+                                </h3>
                                 <div className="event-list">
                                     {analytics.projectClicksByProject && analytics.projectClicksByProject.length > 0 ? (
                                         analytics.projectClicksByProject.map((project, index) => (
@@ -301,7 +378,10 @@ const AdminDashboard = () => {
 
                             {/* Terminal Analytics Card */}
                             <div className="analytics-card terminal-analytics-card">
-                                <h3>Terminal Analytics</h3>
+                                <h3>
+                                    <span className="syntax-comment">// </span>
+                                    <span className="syntax-keyword">Terminal Analytics</span>
+                                </h3>
 
                                 {/* Terminal Stats */}
                                 <div className="terminal-stats">
@@ -321,7 +401,10 @@ const AdminDashboard = () => {
 
                                 {/* Top Commands */}
                                 <div className="terminal-commands-section">
-                                    <h4>Most Used Commands</h4>
+                                    <h4>
+                                        <span className="syntax-comment">// </span>
+                                        <span className="syntax-keyword">Most Used Commands</span>
+                                    </h4>
                                     <div className="event-list">
                                         {(() => {
                                             // Extract and count terminal commands
@@ -356,7 +439,10 @@ const AdminDashboard = () => {
 
                                 {/* Recent Terminal Activity */}
                                 <div className="terminal-activity-section">
-                                    <h4>Recent Terminal Activity</h4>
+                                    <h4>
+                                        <span className="syntax-comment">// </span>
+                                        <span className="syntax-keyword">Recent Terminal Activity</span>
+                                    </h4>
                                     <div className="activity-list">
                                         {analytics.recentEvents
                                             .filter(e => e.eventType === 'terminal_command' || e.eventType === 'terminal_open')
