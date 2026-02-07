@@ -12,6 +12,8 @@ export const useAnalytics = () => {
             trackProjectClick: () => { },
             trackCVView: () => { },
             trackCVDownload: () => { },
+            trackTerminalOpen: () => { },
+            trackTerminalCommand: () => { },
             trackEvent: () => { },
         };
     }
@@ -67,6 +69,27 @@ export const AnalyticsProvider = ({ children }) => {
         }
     };
 
+    const trackTerminalOpen = () => {
+        const sessionKey = `terminalopen`;
+        const hasTracked = localStorage.getItem(sessionKey);
+
+        if (!hasTracked) {
+            trackEventAPI('terminal_open', {
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem(sessionKey, 'true');
+        }
+    };
+
+    const trackTerminalCommand = (command, args = [], success = true) => {
+        trackEventAPI('terminal_command', {
+            command,
+            args,
+            success,
+            timestamp: new Date().toISOString()
+        });
+    };
+
     const trackEvent = (eventType, eventData = {}) => {
         trackEventAPI(eventType, eventData);
     };
@@ -76,6 +99,8 @@ export const AnalyticsProvider = ({ children }) => {
         trackProjectClick,
         trackCVView,
         trackCVDownload,
+        trackTerminalOpen,
+        trackTerminalCommand,
         trackEvent,
     };
 
