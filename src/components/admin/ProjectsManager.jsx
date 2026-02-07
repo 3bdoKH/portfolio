@@ -198,7 +198,7 @@ const ProjectsManager = () => {
             {/* Header */}
             <div className="manager-header">
                 <h2>
-                    <span className="syntax-comment">// </span>
+                    <span className="syntax-comment">{'// '}</span>
                     <span className="syntax-keyword">Manage Projects</span>
                 </h2>
                 <button onClick={() => handleOpenModal()} className="btn-primary-projects">
@@ -270,7 +270,7 @@ const ProjectsManager = () => {
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <div className="modal-header">
                             <h2>
-                                <span className="syntax-comment">// </span>
+                                <span className="syntax-comment">{'// '}</span>
                                 <span className="syntax-keyword">{editingProject ? 'Edit Project' : 'Add New Project'}</span>
                             </h2>
                             <button onClick={handleCloseModal} className="modal-close">&times;</button>

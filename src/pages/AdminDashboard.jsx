@@ -321,7 +321,7 @@ const AdminDashboard = () => {
                         <div className="analytics-grid">
                             <div className="analytics-card">
                                 <h3>
-                                    <span className="syntax-comment">// </span>
+                                    <span className="syntax-comment">{'// '}</span>
                                     <span className="syntax-keyword">Event Types</span>
                                 </h3>
                                 <div className="event-list">
@@ -336,7 +336,7 @@ const AdminDashboard = () => {
 
                             <div className="analytics-card">
                                 <h3>
-                                    <span className="syntax-comment">// </span>
+                                    <span className="syntax-comment">{'// '}</span>
                                     <span className="syntax-keyword">Recent Activity</span>
                                 </h3>
                                 <div className="activity-list">
@@ -357,7 +357,7 @@ const AdminDashboard = () => {
 
                             <div className="analytics-card">
                                 <h3>
-                                    <span className="syntax-comment">// </span>
+                                    <span className="syntax-comment">{'// '}</span>
                                     <span className="syntax-keyword">Project Clicks</span>
                                 </h3>
                                 <div className="event-list">
@@ -379,7 +379,7 @@ const AdminDashboard = () => {
                             {/* Terminal Analytics Card */}
                             <div className="analytics-card terminal-analytics-card">
                                 <h3>
-                                    <span className="syntax-comment">// </span>
+                                    <span className="syntax-comment">{'// '}</span>
                                     <span className="syntax-keyword">Terminal Analytics</span>
                                 </h3>
 
@@ -402,7 +402,7 @@ const AdminDashboard = () => {
                                 {/* Top Commands */}
                                 <div className="terminal-commands-section">
                                     <h4>
-                                        <span className="syntax-comment">// </span>
+                                        <span className="syntax-comment">{'// '}</span>
                                         <span className="syntax-keyword">Most Used Commands</span>
                                     </h4>
                                     <div className="event-list">
@@ -440,7 +440,7 @@ const AdminDashboard = () => {
                                 {/* Recent Terminal Activity */}
                                 <div className="terminal-activity-section">
                                     <h4>
-                                        <span className="syntax-comment">// </span>
+                                        <span className="syntax-comment">{'// '}</span>
                                         <span className="syntax-keyword">Recent Terminal Activity</span>
                                     </h4>
                                     <div className="activity-list">
