@@ -1,16 +1,54 @@
 .admin-dashboard {
     min-height: 100vh;
-    background: #fafafa;
+    background: #0a0a0a;
+}
+
+/* Syntax Highlighting - Code Style */
+.syntax-comment {
+    color: #4a9eff;
+    opacity: 0.8;
+}
+
+.syntax-keyword {
+    color: #00ff88;
+    font-weight: 600;
+}
+
+.syntax-string {
+    color: #ffffff;
+}
+
+.syntax-variable {
+    color: #ffd700;
+}
+
+.stat-variable {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.syntax-bracket {
+    color: #888888;
+}
+
+.syntax-function {
+    color: #ff6b9d;
+    font-weight: 500;
+}
+
+.syntax-number {
+    color: #bd93f9;
 }
 
 /* Header */
 .dashboard-header {
-    background: white;
-    border-bottom: 1px solid #eaeaea;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border-bottom: 2px solid rgba(0, 255, 136, 0.3);
     padding: 16px 24px;
     position: sticky;
     top: 0;
     z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 255, 136, 0.1);
 }
 
 .header-content {
@@ -31,15 +69,19 @@
     font-size: 18px;
     font-weight: 600;
     margin: 0;
-    color: #000;
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
 }
 
 .user-badge {
     padding: 4px 10px;
-    background: #f5f5f5;
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.3);
     border-radius: 4px;
     font-size: 13px;
-    color: #666;
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
 }
 
 .header-right {
@@ -50,29 +92,33 @@
 
 .home-link {
     font-size: 14px;
-    color: #666;
+    color: rgba(0, 255, 136, 0.7);
     text-decoration: none;
-    transition: color 0.2s;
+    transition: all 0.2s;
+    font-family: 'Courier New', monospace;
 }
 
 .home-link:hover {
-    color: #000;
+    color: #00ff88;
+    text-shadow: 0 0 8px rgba(0, 255, 136, 0.6);
 }
 
 .logout-button {
     padding: 6px 14px;
     background: transparent;
-    border: 1px solid #eaeaea;
+    border: 1px solid rgba(0, 255, 136, 0.3);
     border-radius: 6px;
     font-size: 14px;
-    color: #666;
+    color: #00ff88;
     cursor: pointer;
     transition: all 0.2s;
+    font-family: 'Courier New', monospace;
 }
 
 .logout-button:hover {
-    border-color: #000;
-    color: #000;
+    border-color: #00ff88;
+    background: rgba(0, 255, 136, 0.1);
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
 }
 
 /* Stats Grid */
@@ -86,26 +132,37 @@
 }
 
 .stat-card-admin {
-    background: white;
-    border: 1px solid #eaeaea;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border: 1px solid rgba(0, 255, 136, 0.3);
     border-radius: 8px;
     padding: 20px;
+    transition: all 0.3s;
+}
+
+.stat-card-admin:hover {
+    border-color: #00ff88;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+    transform: translateY(-2px);
 }
 
 .stat-label {
     font-size: 13px;
-    color: #666;
+    color: rgba(0, 255, 136, 0.7);
     margin-bottom: 8px;
+    font-family: 'Courier New', monospace;
 }
 
 .stat-value {
     font-size: 32px;
     font-weight: 600;
-    color: #000;
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
 }
 
 .stat-value.highlight {
-    color: #0070f3;
+    color: #00ccff;
+    text-shadow: 0 0 10px rgba(0, 204, 255, 0.4);
 }
 
 /* Tabs */
@@ -115,7 +172,8 @@
     padding: 0 24px;
     display: flex;
     gap: 8px;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+    background: #0a0a0a;
 }
 
 .tab {
@@ -124,20 +182,23 @@
     border: none;
     border-bottom: 2px solid transparent;
     font-size: 14px;
-    color: #666;
+    color: rgba(0, 255, 136, 0.6);
     cursor: pointer;
     transition: all 0.2s;
     position: relative;
     bottom: -1px;
+    font-family: 'Courier New', monospace;
 }
 
 .tab:hover {
-    color: #000;
+    color: #00ff88;
+    text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
 }
 
 .tab.active {
-    color: #000;
-    border-bottom-color: #000;
+    color: #00ff88;
+    border-bottom-color: #00ff88;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
 }
 
 /* Content */
@@ -149,8 +210,8 @@
 
 /* Messages Section */
 .messages-section {
-    background: white;
-    border: 1px solid #eaeaea;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border: 1px solid rgba(0, 255, 136, 0.3);
     border-radius: 8px;
     overflow: hidden;
 }
@@ -158,30 +219,34 @@
 .empty-state {
     padding: 60px 20px;
     text-align: center;
-    color: #666;
+    color: rgba(0, 255, 136, 0.6);
 }
 
 .empty-state svg {
     margin-bottom: 16px;
     opacity: 0.3;
+    stroke: #00ff88;
 }
 
 .empty-state h3 {
     font-size: 16px;
     font-weight: 600;
     margin: 0 0 8px 0;
-    color: #000;
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
 }
 
 .empty-state p {
     font-size: 14px;
     margin: 0;
+    font-family: 'Courier New', monospace;
 }
 
 .empty-state-small {
     padding: 20px;
     text-align: center;
-    color: #999;
+    color: rgba(0, 255, 136, 0.5);
+    font-family: 'Courier New', monospace;
 }
 
 .empty-state-small p {
@@ -196,7 +261,7 @@
 
 .message-card {
     padding: 20px;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid rgba(0, 255, 136, 0.2);
     transition: background 0.2s;
 }
 
@@ -205,15 +270,16 @@
 }
 
 .message-card:hover {
-    background: #fafafa;
+    background: rgba(0, 255, 136, 0.05);
 }
 
 .message-card.unread {
-    background: #f0f9ff;
+    background: rgba(0, 255, 136, 0.1);
+    border-left: 3px solid #00ff88;
 }
 
 .message-card.unread:hover {
-    background: #e6f4ff;
+    background: rgba(0, 255, 136, 0.15);
 }
 
 .message-header {
@@ -232,12 +298,14 @@
 
 .message-from strong {
     font-size: 15px;
-    color: #000;
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
 }
 
 .message-email {
     font-size: 13px;
-    color: #666;
+    color: rgba(0, 255, 136, 0.7);
+    font-family: 'Courier New', monospace;
 }
 
 .message-meta {
@@ -248,26 +316,29 @@
 
 .unread-badge {
     padding: 2px 8px;
-    background: #0070f3;
-    color: white;
+    background: #00ff88;
+    color: #000;
     border-radius: 4px;
     font-size: 11px;
     font-weight: 500;
+    font-family: 'Courier New', monospace;
 }
 
 .message-date {
     font-size: 13px;
-    color: #999;
+    color: rgba(0, 255, 136, 0.5);
     white-space: nowrap;
+    font-family: 'Courier New', monospace;
 }
 
 .message-body {
     font-size: 14px;
     line-height: 1.6;
-    color: #333;
+    color: rgba(0, 255, 136, 0.8);
     margin-bottom: 12px;
     white-space: pre-wrap;
     word-wrap: break-word;
+    font-family: 'Courier New', monospace;
 }
 
 .message-actions {
@@ -277,13 +348,15 @@
 
 .action-link {
     font-size: 13px;
-    color: #0070f3;
+    color: #00ccff;
     text-decoration: none;
-    transition: color 0.2s;
+    transition: all 0.2s;
+    font-family: 'Courier New', monospace;
 }
 
 .action-link:hover {
-    color: #0051cc;
+    color: #00ff88;
+    text-shadow: 0 0 8px rgba(0, 255, 136, 0.6);
 }
 
 .action-button {
@@ -295,11 +368,12 @@
 }
 
 .action-button.delete-button {
-    color: #dc3545;
+    color: #ff4444;
 }
 
 .action-button.delete-button:hover {
-    color: #c82333;
+    color: #ff6666;
+    text-shadow: 0 0 8px rgba(255, 68, 68, 0.6);
 }
 
 /* Analytics Section */
@@ -316,8 +390,8 @@
 }
 
 .analytics-card {
-    background: white;
-    border: 1px solid #eaeaea;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border: 1px solid rgba(0, 255, 136, 0.3);
     border-radius: 8px;
     padding: 20px;
 }
@@ -326,7 +400,8 @@
     font-size: 16px;
     font-weight: 600;
     margin: 0 0 16px 0;
-    color: #000;
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
 }
 
 .event-list {
@@ -340,20 +415,28 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 12px;
-    background: #fafafa;
+    background: rgba(0, 255, 136, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.2);
     border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.event-item:hover {
+    background: rgba(0, 255, 136, 0.1);
+    border-color: rgba(0, 255, 136, 0.4);
 }
 
 .event-type {
     font-size: 14px;
-    color: #333;
-    font-family: monospace;
+    color: rgba(0, 255, 136, 0.9);
+    font-family: 'Courier New', monospace;
 }
 
 .event-count {
     font-size: 14px;
     font-weight: 600;
-    color: #000;
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
 }
 
 .activity-list {
@@ -371,10 +454,11 @@
 .activity-dot {
     width: 8px;
     height: 8px;
-    background: #0070f3;
+    background: #00ccff;
     border-radius: 50%;
     margin-top: 6px;
     flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(0, 204, 255, 0.6);
 }
 
 .activity-content {
@@ -386,13 +470,14 @@
 
 .activity-type {
     font-size: 14px;
-    color: #333;
-    font-family: monospace;
+    color: rgba(0, 255, 136, 0.9);
+    font-family: 'Courier New', monospace;
 }
 
 .activity-time {
     font-size: 12px;
-    color: #999;
+    color: rgba(0, 255, 136, 0.5);
+    font-family: 'Courier New', monospace;
 }
 
 /* Loading */
@@ -403,20 +488,22 @@
     align-items: center;
     justify-content: center;
     gap: 16px;
+    background: #0a0a0a;
 }
 
 .spinner-large {
     width: 32px;
     height: 32px;
-    border: 3px solid #eaeaea;
-    border-top-color: #000;
+    border: 3px solid rgba(0, 255, 136, 0.2);
+    border-top-color: #00ff88;
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
 }
 
 .loading-container p {
     font-size: 14px;
-    color: #666;
+    color: rgba(0, 255, 136, 0.7);
+    font-family: 'Courier New', monospace;
 }
 
 .admin-dashboard button {
