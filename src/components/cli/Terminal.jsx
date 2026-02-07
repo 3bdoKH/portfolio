@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
+import { useAnalytics } from '../../context/AnalyticsContext';
 import CommandProcessor from './CommandProcessor';
+import { parseCommand } from './utils/parser';
 import './Terminal.css';
 
 const Terminal = ({ isOpen, onClose, openCVViewer, scrollToSection }) => {
@@ -8,6 +10,7 @@ const Terminal = ({ isOpen, onClose, openCVViewer, scrollToSection }) => {
     const [commandHistory, setCommandHistory] = useState([]);
     const [historyIndex, setHistoryIndex] = useState(-1);
     const [processor] = useState(() => new CommandProcessor());
+    const { trackTerminalOpen, trackTerminalCommand } = useAnalytics();
 
     const inputRef = useRef(null);
     const terminalRef = useRef(null);
@@ -18,8 +21,11 @@ const Terminal = ({ isOpen, onClose, openCVViewer, scrollToSection }) => {
         if (isOpen && history.length === 0) {
             const welcome = processor.getWelcomeMessage();
             setHistory([welcome]);
+
+            // Track terminal open
+            trackTerminalOpen();
         }
-    }, [isOpen, history.length, processor]);
+    }, [isOpen, history.length, processor, trackTerminalOpen]);
 
     // Update processor context
     useEffect(() => {
@@ -69,10 +75,18 @@ const Terminal = ({ isOpen, onClose, openCVViewer, scrollToSection }) => {
         try {
             const result = await processor.processCommand(command);
 
+            // Track command execution
+            const { command: cmdName, args } = parseCommand(command);
+            trackTerminalCommand(cmdName, args, result?.type !== 'error');
+
             if (result) {
                 setHistory(prev => [...prev, result]);
             }
         } catch (error) {
+            // Track failed command
+            const { command: cmdName, args } = parseCommand(command);
+            trackTerminalCommand(cmdName, args, false);
+
             setHistory(prev => [...prev, {
                 type: 'error',
                 content: `Error: ${error.message} `
