@@ -1,25 +1,24 @@
 .admin-dashboard {
     min-height: 100vh;
-    background: #0a0a0a;
+    background: var(--bg-gray);
 }
 
-/* Syntax Highlighting - Code Style */
 .syntax-comment {
-    color: #4a9eff;
+    color: var(--syntax-comment);
     opacity: 0.8;
 }
 
 .syntax-keyword {
-    color: #00ff88;
+    color: var(--syntax-keyword);
     font-weight: 600;
 }
 
 .syntax-string {
-    color: #ffffff;
+    color: var(--syntax-string);
 }
 
 .syntax-variable {
-    color: #ffd700;
+    color: var(--syntax-variable);
 }
 
 .stat-variable {
@@ -28,27 +27,26 @@
 }
 
 .syntax-bracket {
-    color: #888888;
+    color: var(--syntax-bracket);
 }
 
 .syntax-function {
-    color: #ff6b9d;
+    color: var(--syntax-function);
     font-weight: 500;
 }
 
 .syntax-number {
-    color: #bd93f9;
+    color: var(--syntax-number);
 }
 
 /* Header */
 .dashboard-header {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-    border-bottom: 2px solid rgba(0, 255, 136, 0.3);
+    background: var(--bg-gray);
+    border-bottom: 2px solid var(--border-color);
     padding: 16px 24px;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 4px 12px rgba(0, 255, 136, 0.1);
 }
 
 .header-content {
@@ -69,9 +67,8 @@
     font-size: 18px;
     font-weight: 600;
     margin: 0;
-    color: #00ff88;
+    color: var(--accent-primary);
     font-family: 'Courier New', monospace;
-    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
 }
 
 .user-badge {
@@ -79,8 +76,6 @@
     background: rgba(0, 255, 136, 0.1);
     border: 1px solid rgba(0, 255, 136, 0.3);
     border-radius: 4px;
-    font-size: 13px;
-    color: #00ff88;
     font-family: 'Courier New', monospace;
 }
 
@@ -91,34 +86,23 @@
 }
 
 .home-link {
-    font-size: 14px;
-    color: rgba(0, 255, 136, 0.7);
     text-decoration: none;
     transition: all 0.2s;
     font-family: 'Courier New', monospace;
 }
 
 .home-link:hover {
-    color: #00ff88;
-    text-shadow: 0 0 8px rgba(0, 255, 136, 0.6);
+    text-shadow: 0 0 8px var(--accent-glow);
 }
 
 .logout-button {
     padding: 6px 14px;
     background: transparent;
-    border: 1px solid rgba(0, 255, 136, 0.3);
+    border: 2px solid var(--border-color);
     border-radius: 6px;
-    font-size: 14px;
-    color: #00ff88;
     cursor: pointer;
     transition: all 0.2s;
     font-family: 'Courier New', monospace;
-}
-
-.logout-button:hover {
-    border-color: #00ff88;
-    background: rgba(0, 255, 136, 0.1);
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
 }
 
 /* Stats Grid */
@@ -133,21 +117,13 @@
 
 .stat-card-admin {
     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-    border: 1px solid rgba(0, 255, 136, 0.3);
+    border: 2px solid var(--border-color);
     border-radius: 8px;
     padding: 20px;
     transition: all 0.3s;
 }
 
-.stat-card-admin:hover {
-    border-color: #00ff88;
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
-    transform: translateY(-2px);
-}
-
 .stat-label {
-    font-size: 13px;
-    color: rgba(0, 255, 136, 0.7);
     margin-bottom: 8px;
     font-family: 'Courier New', monospace;
 }
@@ -157,23 +133,17 @@
     font-weight: 600;
     color: #00ff88;
     font-family: 'Courier New', monospace;
-    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
-}
-
-.stat-value.highlight {
-    color: #00ccff;
-    text-shadow: 0 0 10px rgba(0, 204, 255, 0.4);
 }
 
 /* Tabs */
 .tabs {
-    max-width: 1200px;
+    max-width: 1150px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0;
     display: flex;
     gap: 8px;
     border-bottom: 1px solid rgba(0, 255, 136, 0.2);
-    background: #0a0a0a;
+    background: transparent;
 }
 
 .tab {
@@ -181,8 +151,6 @@
     background: transparent;
     border: none;
     border-bottom: 2px solid transparent;
-    font-size: 14px;
-    color: rgba(0, 255, 136, 0.6);
     cursor: pointer;
     transition: all 0.2s;
     position: relative;
@@ -190,15 +158,9 @@
     font-family: 'Courier New', monospace;
 }
 
-.tab:hover {
-    color: #00ff88;
-    text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
-}
 
 .tab.active {
-    color: #00ff88;
     border-bottom-color: #00ff88;
-    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
 }
 
 /* Content */

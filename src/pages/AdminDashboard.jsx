@@ -120,8 +120,7 @@ const AdminDashboard = () => {
                 <div className="header-content">
                     <div className="header-left">
                         <h1>
-                            <span className="syntax-comment">{'// '}</span>
-                            <span className="syntax-keyword">Dashboard</span>
+                            {'// '}Dashboard
                         </h1>
                         {user && (
                             <span className="user-badge">
@@ -167,7 +166,7 @@ const AdminDashboard = () => {
                             <span className="syntax-variable stat-variable">unread</span>{' '}
                             <span className="syntax-bracket">=</span>
                         </div>
-                        <div className="stat-value highlight">
+                        <div className="stat-value">
                             <span className="syntax-number">{analytics.overview.unreadMessages}</span>
                             <span className="syntax-bracket">;</span>
                         </div>
