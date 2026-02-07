@@ -1,8 +1,8 @@
 /* CV Manager Styles */
 .cv-manager {
     padding: 20px;
-    max-width: 900px;
     margin: 0 auto;
+    min-height: 100vh;
 }
 
 .cv-manager-header {
@@ -10,14 +10,16 @@
 }
 
 .cv-manager-header h2 {
-    color: #e0e0e0;
+    color: #00ff88;
     font-size: 28px;
     margin-bottom: 8px;
+    font-family: 'Courier New', monospace;
 }
 
 .cv-manager-subtitle {
-    color: #999;
+    color: rgba(0, 255, 136, 0.6);
     font-size: 14px;
+    font-family: 'Courier New', monospace;
 }
 
 /* Loading State */
@@ -27,7 +29,12 @@
     align-items: center;
     justify-content: center;
     padding: 60px 20px;
-    color: #999;
+    color: rgba(0, 255, 136, 0.7);
+    min-height: 100vh;
+}
+
+.cv-manager-loading p {
+    font-family: 'Courier New', monospace;
 }
 
 .spinner-large {
@@ -53,6 +60,7 @@
     margin-bottom: 20px;
     font-size: 14px;
     animation: slideDown 0.3s ease;
+    font-family: 'Courier New', monospace;
 }
 
 @keyframes slideDown {
@@ -81,8 +89,8 @@
 
 /* Current CV Info */
 .cv-current-info {
-    background: rgba(0, 255, 136, 0.05);
-    border: 1px solid rgba(0, 255, 136, 0.2);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border: 1px solid rgba(0, 255, 136, 0.3);
     border-radius: 12px;
     padding: 25px;
     margin-bottom: 30px;
@@ -92,6 +100,7 @@
     color: #00ff88;
     font-size: 18px;
     margin-bottom: 20px;
+    font-family: 'Courier New', monospace;
 }
 
 .cv-info-grid {
@@ -110,45 +119,50 @@
 }
 
 .cv-info-label {
-    color: #999;
+    color: rgba(0, 255, 136, 0.7);
     font-size: 14px;
+    font-family: 'Courier New', monospace;
 }
 
 .cv-info-value {
-    color: #e0e0e0;
+    color: #00ff88;
     font-size: 14px;
     font-weight: 500;
+    font-family: 'Courier New', monospace;
 }
 
 .cv-delete-btn {
     background: transparent;
-    border: 1px solid #ff4444;
+    border: 1px solid rgba(255, 68, 68, 0.3);
     color: #ff4444;
     padding: 10px 20px;
     border-radius: 6px;
     cursor: pointer;
     font-size: 14px;
     transition: all 0.3s ease;
+    font-family: 'Courier New', monospace;
 }
 
 .cv-delete-btn:hover {
     background: rgba(255, 68, 68, 0.1);
+    border-color: #ff4444;
     box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
 }
 
 /* Upload Section */
 .cv-upload-section {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    border: 1px solid rgba(0, 255, 136, 0.3);
     border-radius: 12px;
     padding: 25px;
     margin-bottom: 30px;
 }
 
 .cv-upload-section h3 {
-    color: #e0e0e0;
+    color: #00ff88;
     font-size: 18px;
     margin-bottom: 20px;
+    font-family: 'Courier New', monospace;
 }
 
 .cv-upload-area {
@@ -183,14 +197,16 @@
 }
 
 .cv-file-label-text {
-    color: #e0e0e0;
+    color: #00ff88;
     font-size: 16px;
     margin-bottom: 8px;
+    font-family: 'Courier New', monospace;
 }
 
 .cv-file-label-hint {
-    color: #999;
+    color: rgba(0, 255, 136, 0.6);
     font-size: 12px;
+    font-family: 'Courier New', monospace;
 }
 
 /* Selected File */
@@ -213,20 +229,22 @@
 }
 
 .cv-selected-file-name {
-    color: #e0e0e0;
+    color: #00ff88;
     font-size: 14px;
     font-weight: 500;
+    font-family: 'Courier New', monospace;
 }
 
 .cv-selected-file-size {
-    color: #999;
+    color: rgba(0, 255, 136, 0.6);
     font-size: 12px;
+    font-family: 'Courier New', monospace;
 }
 
 .cv-upload-btn {
-    background: #00ff88;
-    border: none;
-    color: #0a0e27;
+    background: transparent;
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    color: #00ff88;
     padding: 10px 24px;
     border-radius: 6px;
     cursor: pointer;
@@ -234,10 +252,12 @@
     font-weight: 600;
     transition: all 0.3s ease;
     white-space: nowrap;
+    font-family: 'Courier New', monospace;
 }
 
 .cv-upload-btn:hover:not(:disabled) {
-    background: #00cc6f;
+    border-color: #00ff88;
+    background: rgba(0, 255, 136, 0.1);
     box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
 }
 

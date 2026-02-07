@@ -135,8 +135,14 @@ const CVManager = () => {
     return (
         <div className="cv-manager">
             <div className="cv-manager-header">
-                <h2>CV Management</h2>
-                <p className="cv-manager-subtitle">Upload and manage your CV/Resume</p>
+                <h2>
+                    <span className="syntax-comment">{'// '}</span>
+                    <span className="syntax-keyword">CV Management</span>
+                </h2>
+                <p className="cv-manager-subtitle">
+                    <span className="syntax-comment">// </span>
+                    Upload and manage your CV/Resume
+                </p>
             </div>
 
             {/* Message Display */}
@@ -149,7 +155,10 @@ const CVManager = () => {
             {/* Current CV Info */}
             {cvMetadata && (
                 <div className="cv-current-info">
-                    <h3>Current CV</h3>
+                    <h3>
+                        <span className="syntax-comment">{'// '}</span>
+                        <span className="syntax-keyword">Current CV</span>
+                    </h3>
                     <div className="cv-info-grid">
                         <div className="cv-info-item">
                             <span className="cv-info-label">Filename:</span>
@@ -165,14 +174,18 @@ const CVManager = () => {
                         </div>
                     </div>
                     <button onClick={handleDelete} className="cv-delete-btn">
-                        Delete CV
+                        <span className="syntax-function">deleteCV</span>
+                        <span className="syntax-bracket">()</span>
                     </button>
                 </div>
             )}
 
             {/* Upload Section */}
             <div className="cv-upload-section">
-                <h3>{cvMetadata ? 'Replace CV' : 'Upload CV'}</h3>
+                <h3>
+                    <span className="syntax-comment">{'// '}</span>
+                    <span className="syntax-keyword">{cvMetadata ? 'Replace CV' : 'Upload CV'}</span>
+                </h3>
                 <div className="cv-upload-area">
                     <input
                         type="file"
@@ -205,7 +218,8 @@ const CVManager = () => {
                             disabled={uploading}
                             className="cv-upload-btn"
                         >
-                            {uploading ? 'Uploading...' : cvMetadata ? 'Replace CV' : 'Upload CV'}
+                            <span className="syntax-function">{uploading ? 'uploading' : cvMetadata ? 'replace' : 'upload'}</span>
+                            <span className="syntax-bracket">()</span>
                         </button>
                     </div>
                 )}

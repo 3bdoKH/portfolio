@@ -236,28 +236,28 @@ const AdminDashboard = () => {
                     className={`tab ${activeTab === 'analytics' ? 'active' : ''}`}
                     onClick={() => setActiveTab('analytics')}
                 >
-                    <span className="syntax-function">analytics</span>
+                    <span className="syntax-function stat-variable">analytics</span>
                     <span className="syntax-bracket">()</span>
                 </button>
                 <button
                     className={`tab ${activeTab === 'messages' ? 'active' : ''}`}
                     onClick={() => setActiveTab('messages')}
                 >
-                    <span className="syntax-function">messages</span>
+                    <span className="syntax-function stat-variable">messages</span>
                     <span className="syntax-bracket">()</span>
                 </button>
                 <button
                     className={`tab ${activeTab === 'projects' ? 'active' : ''}`}
                     onClick={() => setActiveTab('projects')}
                 >
-                    <span className="syntax-function">projects</span>
+                    <span className="syntax-function stat-variable">projects</span>
                     <span className="syntax-bracket">()</span>
                 </button>
                 <button
                     className={`tab ${activeTab === 'cv' ? 'active' : ''}`}
                     onClick={() => setActiveTab('cv')}
                 >
-                    <span className="syntax-function">cv</span>
+                    <span className="syntax-function stat-variable">cv</span>
                     <span className="syntax-bracket">()</span>
                 </button>
             </div>
