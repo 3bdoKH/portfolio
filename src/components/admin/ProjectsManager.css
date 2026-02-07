@@ -1,5 +1,7 @@
 .projects-manager {
     padding: 2rem;
+    background: #0a0a0a;
+    min-height: 100vh;
 }
 
 .manager-header {
@@ -11,8 +13,9 @@
 
 .manager-header h2 {
     font-size: 1.8rem;
-    color: var(--text-primary, #1a1a1a);
+    color: #00ff88;
     margin: 0;
+    font-family: 'Courier New', monospace;
 }
 
 /* Alert Messages */
@@ -21,18 +24,19 @@
     border-radius: 8px;
     margin-bottom: 1rem;
     font-size: 0.95rem;
+    font-family: 'Courier New', monospace;
 }
 
 .alert-success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background-color: rgba(0, 255, 136, 0.1);
+    color: #00ff88;
+    border: 1px solid rgba(0, 255, 136, 0.3);
 }
 
 .alert-error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+    background-color: rgba(255, 68, 68, 0.1);
+    color: #ff4444;
+    border: 1px solid rgba(255, 68, 68, 0.3);
 }
 
 /* Projects Grid */
@@ -43,18 +47,20 @@
 }
 
 .project-item {
-    background: white;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    transition: all 0.3s;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .project-item:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    border-color: #00ff88;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+    transform: translateY(-2px);
 }
 
 .project-image-container {
@@ -99,12 +105,13 @@
 .project-info h3 {
     font-size: 1.25rem;
     margin: 0 0 0.5rem 0;
-    color: #1a1a1a;
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
 }
 
 .project-desc {
     font-size: 0.9rem;
-    color: #666;
+    color: rgba(0, 255, 136, 0.8);
     margin-bottom: 1rem;
     line-height: 1.5;
     display: -webkit-box;
@@ -112,6 +119,7 @@
     -webkit-box-orient: vertical;
     line-clamp: 2;
     overflow: hidden;
+    font-family: 'Courier New', monospace;
 }
 
 .project-tags {
@@ -122,20 +130,22 @@
 }
 
 .tag {
-    background: #e9ecef;
-    color: #495057;
+    background: rgba(0, 255, 136, 0.1);
+    color: #00ff88;
     padding: 4px 10px;
     border-radius: 4px;
     font-size: 0.8rem;
     display: inline-flex;
     align-items: center;
     gap: 4px;
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    font-family: 'Courier New', monospace;
 }
 
 .tag button {
     background: none;
     border: none;
-    color: #666;
+    color: rgba(0, 255, 136, 0.7);
     cursor: pointer;
     font-size: 1.2rem;
     line-height: 1;
@@ -144,7 +154,7 @@
 }
 
 .tag button:hover {
-    color: #000;
+    color: #00ff88;
 }
 
 .project-actions {
@@ -169,51 +179,69 @@
 }
 
 .btn-primary-projects {
-    background: var(--bg-card);
-    color: white;
+    background: transparent;
+    color: #ff6b9d;
+    border: 1px solid rgba(255, 107, 157, 0.3);
+    font-family: 'Courier New', monospace;
 }
 
 .btn-primary-projects:hover {
-    background: var(--bg-card-hover);
+    border-color: #ff6b9d;
+    background: rgba(255, 107, 157, 0.1);
+    box-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
 }
 
 .btn-secondary-projects {
-    background: #6c757d;
-    color: white;
+    background: transparent;
+    color: #888888;
+    border: 1px solid rgba(136, 136, 136, 0.3);
+    font-family: 'Courier New', monospace;
 }
 
 .btn-secondary-projects:hover {
-    background: #545b62;
+    border-color: #888888;
+    background: rgba(136, 136, 136, 0.1);
 }
 
 .btn-edit {
     flex: 1;
-    background: var(--bg-card);
-    color: white;
+    background: transparent;
+    color: #00ccff;
+    border: 1px solid rgba(0, 204, 255, 0.3);
+    font-family: 'Courier New', monospace;
 }
 
 .btn-edit:hover {
-    background: var(--bg-card-hover);
+    border-color: #00ccff;
+    background: rgba(0, 204, 255, 0.1);
+    box-shadow: 0 0 10px rgba(0, 204, 255, 0.3);
 }
 
 .btn-delete {
     flex: 1;
-    background: #da2f35;
-    color: white;
+    background: transparent;
+    color: #ff4444;
+    border: 1px solid rgba(255, 68, 68, 0.3);
+    font-family: 'Courier New', monospace;
 }
 
 .btn-delete:hover {
-    background: #c82333;
+    border-color: #ff4444;
+    background: rgba(255, 68, 68, 0.1);
+    box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
 }
 
 .btn-add-tag {
-    background: #007bff;
-    color: white;
+    background: transparent;
+    color: #00ff88;
     padding: 0.5rem 1rem;
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    font-family: 'Courier New', monospace;
 }
 
 .btn-add-tag:hover {
-    background: #0056b3;
+    border-color: #00ff88;
+    background: rgba(0, 255, 136, 0.1);
 }
 
 /* Modal */
@@ -232,13 +260,14 @@
 }
 
 .modal-content {
-    background: white;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     border-radius: 12px;
     width: 100%;
     max-width: 700px;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 255, 136, 0.2);
 }
 
 .modal-header {
@@ -252,14 +281,15 @@
 .modal-header h2 {
     margin: 0;
     font-size: 1.5rem;
-    color: #1a1a1a;
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
 }
 
 .modal-close {
     background: none;
     border: none;
     font-size: 2rem;
-    color: #999;
+    color: rgba(0, 255, 136, 0.5);
     cursor: pointer;
     line-height: 1;
     padding: 0;
@@ -268,7 +298,7 @@
 }
 
 .modal-close:hover {
-    color: #000;
+    color: #00ff88;
 }
 
 /* Form */
@@ -290,8 +320,9 @@
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: #333;
+    color: #00ff88;
     font-size: 0.95rem;
+    font-family: 'Courier New', monospace;
 }
 
 .form-group-projects input[type="text"],
@@ -300,17 +331,20 @@
 .form-group-projects textarea {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #ced4da;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 255, 136, 0.3);
     border-radius: 6px;
     font-size: 0.95rem;
-    font-family: inherit;
+    font-family: 'Courier New', monospace;
+    color: #00ff88;
     transition: border-color 0.2s;
 }
 
 .form-group-projects input:focus,
 .form-group-projects textarea:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: #00ff88;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
 }
 
 .form-group-projects textarea {
@@ -369,22 +403,25 @@
 .empty-state {
     text-align: center;
     padding: 4rem 2rem;
-    color: #999;
+    color: rgba(0, 255, 136, 0.6);
 }
 
 .empty-state svg {
     margin-bottom: 1rem;
-    opacity: 0.5;
+    opacity: 0.3;
+    stroke: #00ff88;
 }
 
 .empty-state h3 {
     font-size: 1.5rem;
-    color: #666;
+    color: #00ff88;
     margin-bottom: 0.5rem;
+    font-family: 'Courier New', monospace;
 }
 
 .empty-state p {
-    color: #999;
+    color: rgba(0, 255, 136, 0.6);
+    font-family: 'Courier New', monospace;
 }
 
 /* Loading */
@@ -396,11 +433,17 @@
     padding: 4rem 2rem;
 }
 
+.loading-container p {
+    color: rgba(0, 255, 136, 0.7);
+    font-family: 'Courier New', monospace;
+    margin-top: 1rem;
+}
+
 .spinner-large {
     width: 50px;
     height: 50px;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #007bff;
+    border: 4px solid rgba(0, 255, 136, 0.2);
+    border-top: 4px solid #00ff88;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
