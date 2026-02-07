@@ -39,6 +39,10 @@
     animation: slideUp 0.3s ease;
 }
 
+.cv-viewer-modal button {
+    cursor: pointer;
+}
+
 @keyframes slideUp {
     from {
         transform: translateY(50px);
