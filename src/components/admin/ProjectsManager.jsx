@@ -352,13 +352,17 @@ const ProjectsManager = () => {
                                 </div>
                             </div>
 
-                            <div className="form-group-projects">
-                                <label>Project Image</label>
+                            <div className="form-group-projects img-file-group">
+                                <label
+                                    htmlFor='img-file-input'
+                                    className="img-file-label"
+                                >Project Image</label>
                                 <input
                                     type="file"
                                     accept="image/*"
+                                    id="img-file-input"
                                     onChange={handleImageUpload}
-                                    className="file-input"
+                                    className="img-file-input"
                                 />
                                 {imagePreview && (
                                     <div className="image-preview">
@@ -400,7 +404,7 @@ const ProjectsManager = () => {
                                     <span className="syntax-function">cancel</span>
                                     <span className="syntax-bracket">()</span>
                                 </button>
-                                <button type="submit" className="btn-primary">
+                                <button type="submit" className="btn-primary-projects">
                                     <span className="syntax-function">{editingProject ? 'update' : 'create'}</span>
                                     <span className="syntax-bracket">()</span>
                                 </button>

@@ -267,6 +267,7 @@
     overflow-y: auto;
     border: 1px solid rgba(0, 255, 136, 0.3);
     box-shadow: 0 10px 40px rgba(0, 255, 136, 0.2);
+    scrollbar-width: none;
 }
 
 .modal-header {
@@ -361,7 +362,6 @@
 }
 
 .image-preview {
-    margin-top: 1rem;
     border-radius: 8px;
     overflow: hidden;
     max-width: 300px;
@@ -387,6 +387,35 @@
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-top: 0.75rem;
+}
+
+.img-file-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.img-file-input {
+    display: none;
+}
+
+.img-file-label {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    border: 2px dashed rgba(0, 255, 136, 0.3);
+    border-radius: 8px;
+    background: rgba(0, 255, 136, 0.02);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 0 !important;
+    flex: 1;
+}
+
+.img-file-label:hover {
+    border-color: rgba(0, 255, 136, 0.5);
+    background: rgba(0, 255, 136, 0.05);
 }
 
 .modal-actions {

@@ -140,7 +140,7 @@ const CVManager = () => {
                     <span className="syntax-keyword">CV Management</span>
                 </h2>
                 <p className="cv-manager-subtitle">
-                    <span className="syntax-comment">// </span>
+                    <span className="syntax-comment">{'// '}</span>
                     Upload and manage your CV/Resume
                 </p>
             </div>
