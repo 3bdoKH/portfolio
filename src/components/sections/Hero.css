@@ -24,7 +24,6 @@
     flex-wrap: wrap;
 }
 
-/* Profile Section */
 .profile-section {
     flex: 0 0 auto;
     animation: slideInLeft 1s ease-out;
@@ -121,7 +120,6 @@
     opacity: 1;
 }
 
-/* Line Numbers */
 .line-numbers {
     position: absolute;
     left: -20px;
@@ -142,7 +140,6 @@
     min-width: 30px;
 }
 
-/* Code Block */
 .code-block {
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid var(--border-color);
@@ -207,13 +204,11 @@
     margin-left: 4em;
 }
 
-/* Typing Animation */
 .typing-text {
     display: inline-block;
     position: relative;
 }
 
-/* CTA Buttons */
 .hero-cta {
     display: flex;
     gap: var(--spacing-md);
@@ -289,8 +284,6 @@
     transform: translateY(0);
 }
 
-
-/* Decorative Code Snippets */
 .hero-decoration {
     position: absolute;
     top: 0;
@@ -377,7 +370,6 @@
     font-weight: 500;
 }
 
-/* Social Links */
 .social-links-hero {
     display: flex;
     gap: 16px;
@@ -415,7 +407,6 @@
     transform: scale(1.1);
 }
 
-/* Enhanced Profile Frame */
 .profile-frame {
     position: relative;
 }
@@ -425,33 +416,49 @@
     box-shadow: 0 8px 24px var(--accent-glow);
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .status-indicator {
-        padding: 4px 10px;
-    }
-
-    .status-text {
-        font-size: 11px;
-    }
-
-    .social-links-hero {
-        margin-top: 16px;
-        gap: 12px;
-    }
-
-    .social-link-hero {
-        width: 36px;
-        height: 36px;
-    }
-
-    .social-link-hero svg {
-        width: 18px;
-        height: 18px;
-    }
+.terminal-toggle-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: var(--z-modal);
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background: var(--bg-primary);
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-base);
+    animation: fadeIn 1s ease-out 2.5s forwards;
+    opacity: 0;
+    backdrop-filter: blur(10px);
 }
 
-/* Responsive Design */
+.terminal-toggle-btn:hover {
+    box-shadow: 0 8px 30px var(--accent-glow);
+    background: var(--bg-secondary);
+    border-color: var(--accent-secondary);
+}
+
+.terminal-toggle-btn:active {
+    transform: translateY(-1px);
+}
+
+.terminal-toggle-icon {
+    color: var(--accent-secondary);
+    font-family: var(--font-mono);
+    font-size: 24px;
+    font-weight: bold;
+    transition: all var(--transition-base);
+}
+
+.terminal-toggle-btn:hover .terminal-toggle-icon {
+    color: var(--accent-secondary);
+    transform: scale(1.1);
+}
+
 @media (max-width: 768px) {
     .hero-container {
         padding: var(--spacing-2xl) var(--container-padding);
@@ -514,6 +521,40 @@
     .code-snippet {
         display: none;
     }
+
+    .status-indicator {
+        padding: 4px 10px;
+    }
+
+    .status-text {
+        font-size: 11px;
+    }
+
+    .social-links-hero {
+        margin-top: 16px;
+        gap: 12px;
+    }
+
+    .social-link-hero {
+        width: 36px;
+        height: 36px;
+    }
+
+    .social-link-hero svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .terminal-toggle-btn {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .terminal-toggle-icon {
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -548,66 +589,5 @@
     .btn {
         padding: var(--spacing-sm);
         font-size: var(--font-size-sm);
-    }
-}
-
-/* Terminal Toggle Button */
-.terminal-toggle-btn {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: var(--z-modal);
-    width: 60px;
-    height: 60px;
-    border-radius: 12px;
-    background: var(--bg-primary);
-    border: 2px solid var(--border-color);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition-base);
-    animation: fadeIn 1s ease-out 2.5s forwards;
-    opacity: 0;
-    backdrop-filter: blur(10px);
-}
-
-.terminal-toggle-btn:hover {
-    box-shadow: 0 8px 30px var(--accent-glow);
-    background: var(--bg-secondary);
-    border-color: var(--accent-secondary);
-}
-
-.terminal-toggle-btn:active {
-    transform: translateY(-1px);
-}
-
-.terminal-toggle-icon {
-    color: var(--accent-secondary);
-    font-family: var(--font-mono);
-    font-size: 24px;
-    font-weight: bold;
-    transition: all var(--transition-base);
-}
-
-.terminal-toggle-btn:hover .terminal-toggle-icon {
-    color: var(--accent-secondary);
-    transform: scale(1.1);
-}
-
-
-
-
-/* Mobile adjustments for terminal button */
-@media (max-width: 768px) {
-    .terminal-toggle-btn {
-        width: 50px;
-        height: 50px;
-        bottom: 20px;
-        right: 20px;
-    }
-
-    .terminal-toggle-icon {
-        font-size: 20px;
     }
 }
