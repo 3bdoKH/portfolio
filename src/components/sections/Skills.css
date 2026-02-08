@@ -2,7 +2,7 @@
     position: relative;
     min-height: 100vh;
     padding: var(--spacing-3xl) 0;
-    background: var(--bg-primary);
+    background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     overflow: hidden;
 }
 
@@ -11,7 +11,6 @@
     z-index: var(--z-base);
 }
 
-/* Section Header */
 .section-header {
     margin-bottom: var(--spacing-2xl);
     text-align: center;
@@ -30,7 +29,6 @@
     margin: 0;
 }
 
-/* Skills Grid (Services) */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -82,7 +80,6 @@
     opacity: 0.05;
 }
 
-/* Skill Header */
 .skill-header {
     position: relative;
     z-index: 1;
@@ -101,7 +98,6 @@
     color: var(--accent-primary);
 }
 
-/* Skill Content */
 .skill-content {
     position: relative;
     z-index: 1;
@@ -143,7 +139,6 @@
     color: var(--text-primary);
 }
 
-/* Section Footer */
 .section-footer {
     text-align: center;
     font-size: var(--font-size-3xl);
@@ -151,8 +146,6 @@
     margin-top: var(--spacing-xl);
     margin-bottom: var(--spacing-3xl);
 }
-
-/* Technologies section */
 
 .technologies-section {
     margin-top: var(--spacing-3xl);
@@ -171,7 +164,6 @@
     margin: 0;
 }
 
-/* Dashboard Layout */
 .tech-dashboard {
     display: flex;
     flex-wrap: wrap;
@@ -196,11 +188,9 @@
 
 .tech-module:hover {
     border-color: var(--accent-primary);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transform: translateY(-5px);
 }
 
-/* Module Header */
 .module-header {
     font-family: var(--font-mono);
     font-size: var(--font-size-base);
@@ -215,7 +205,6 @@
     text-transform: capitalize;
 }
 
-/* Module Icon Grid */
 .module-grid {
     display: flex;
     flex-wrap: wrap;
@@ -224,7 +213,6 @@
     flex-grow: 1;
 }
 
-/* Individual Module Item */
 .module-item {
     position: relative;
     display: flex;
@@ -252,7 +240,6 @@
     transition: all 0.3s ease;
 }
 
-/* Hover Effects using CSS Variables passed from JS */
 .module-item:hover .module-icon-wrapper {
     background: rgba(255, 255, 255, 0.1);
     border-color: var(--item-color);
@@ -279,7 +266,6 @@
     transform: translateY(2px);
 }
 
-/* Module Footer */
 .module-footer {
     margin-top: var(--spacing-lg);
     font-family: var(--font-mono);
@@ -288,7 +274,6 @@
     font-size: var(--font-size-base);
 }
 
-/* Background Decoration */
 .skills-decoration {
     position: absolute;
     top: 0;
@@ -336,7 +321,6 @@
     }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .tech-dashboard {
         flex-direction: column;
