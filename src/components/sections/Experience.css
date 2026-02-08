@@ -3,7 +3,6 @@
     min-height: 100vh;
     padding: var(--spacing-3xl) 0;
     background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-    /* Alternating background */
     overflow: hidden;
 }
 
@@ -12,13 +11,11 @@
     z-index: var(--z-base);
 }
 
-/* Section Header */
 .section-header {
     margin-bottom: var(--spacing-2xl);
     text-align: center;
 }
 
-/* Timeline */
 .timeline {
     display: flex;
     flex-direction: column;
@@ -26,7 +23,6 @@
     max-width: 900px;
     margin: 0 auto;
     padding-left: 20px;
-    /* Space for the connector */
 }
 
 .timeline-item {
@@ -34,7 +30,6 @@
     padding-left: 40px;
 }
 
-/* Connector Styles */
 .timeline-connector {
     position: absolute;
     left: 0;
@@ -53,7 +48,6 @@
     position: relative;
 }
 
-/* Connect lines between items */
 .timeline-item:last-child .timeline-line {
     display: none;
 }
@@ -67,10 +61,8 @@
     box-shadow: 0 0 10px var(--accent-glow);
     z-index: 1;
     margin-top: 24px;
-    /* Align with card header */
 }
 
-/* Content Card */
 .job-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -82,8 +74,6 @@
 
 .job-card:hover {
     border-color: var(--accent-primary);
-    transform: translateX(10px);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
 .job-header {
@@ -125,7 +115,6 @@
     margin-top: var(--spacing-sm);
 }
 
-/* Section Footer */
 .section-footer {
     text-align: center;
     font-size: var(--font-size-3xl);
@@ -133,7 +122,6 @@
     margin-top: var(--spacing-xl);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .timeline {
         padding-left: 0;
@@ -163,6 +151,5 @@
 
     .job-card:hover {
         transform: none;
-        /* Disable shift on mobile */
     }
 }
