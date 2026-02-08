@@ -149,8 +149,6 @@
     }
 
     .theme-switch-btn {
-        width: 50px;
-        height: 50px;
         padding: 10px 12px;
         font-size: var(--font-size-xs);
     }
@@ -177,8 +175,6 @@
     }
 
     .theme-switch-btn {
-        width: 45px;
-        height: 45px;
         padding: 8px 10px;
     }
 
