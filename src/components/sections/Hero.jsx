@@ -65,7 +65,7 @@ const Hero = () => {
                                 <div className="profile-image-wrapper">
                                     <div className="status-indicator">
                                         <span className="status-dot"></span>
-                                        <span className="status-text">Available</span>
+                                        <span className="hero-status-text">Available</span>
                                     </div>
                                     <img
                                         src={profile}

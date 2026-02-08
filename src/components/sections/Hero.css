@@ -5,7 +5,6 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: linear-gradient(135deg, var(--bg-primary) 0%, #0d1229 50%, var(--bg-primary) 100%);
 }
 
 .hero-container {
@@ -32,7 +31,7 @@
 }
 
 .profile-frame {
-    background: rgba(0, 0, 0, 0.5);
+    background: var(--bg-primary);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     overflow: hidden;
@@ -332,10 +331,6 @@
     animation-delay: 4s;
 }
 
-
-/* Hero Section Enhancements - Subtle, Non-Glowing Styles */
-
-/* Status Indicator */
 .status-indicator {
     position: absolute;
     bottom: 12px;
@@ -353,7 +348,7 @@
 }
 
 .status-indicator:hover {
-    border-color: rgba(0, 255, 136, 0.5);
+    border-color: var(--border-color);
 }
 
 .status-dot {
@@ -376,9 +371,9 @@
     }
 }
 
-.status-text {
+.hero-status-text {
     font-size: 12px;
-    color: #00ff88;
+    color: var(--accent-primary);
     font-weight: 500;
 }
 
@@ -397,8 +392,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 255, 136, 0.05);
-    border: 1px solid rgba(0, 255, 136, 0.2);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     color: var(--accent-primary);
     transition: all var(--transition-base);
@@ -414,7 +409,6 @@
 .social-link-hero:hover {
     background: rgba(0, 255, 136, 0.1);
     border-color: var(--accent-primary);
-    transform: translateY(-2px);
 }
 
 .social-link-hero:hover svg {
@@ -427,8 +421,8 @@
 }
 
 .profile-frame:hover {
-    border-color: rgba(0, 255, 136, 0.5);
-    box-shadow: 0 8px 24px rgba(0, 255, 136, 0.15);
+    border-color: var(--border-color);
+    box-shadow: 0 8px 24px var(--accent-glow);
 }
 
 /* Mobile Responsive */
@@ -566,9 +560,8 @@
     width: 60px;
     height: 60px;
     border-radius: 12px;
-    background: rgba(10, 14, 39, 0.9);
-    border: 2px solid var(--accent-primary);
-    /* box-shadow: 0 4px 20px var(--accent-glow); */
+    background: var(--bg-primary);
+    border: 2px solid var(--border-color);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -580,9 +573,8 @@
 }
 
 .terminal-toggle-btn:hover {
-    transform: translateY(-3px);
     box-shadow: 0 8px 30px var(--accent-glow);
-    background: rgba(10, 14, 39, 1);
+    background: var(--bg-secondary);
     border-color: var(--accent-secondary);
 }
 
@@ -591,7 +583,7 @@
 }
 
 .terminal-toggle-icon {
-    color: var(--accent-primary);
+    color: var(--accent-secondary);
     font-family: var(--font-mono);
     font-size: 24px;
     font-weight: bold;
