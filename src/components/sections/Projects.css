@@ -11,13 +11,11 @@
     z-index: var(--z-base);
 }
 
-/* Section Header */
 .section-header {
     margin-bottom: var(--spacing-2xl);
     text-align: center;
 }
 
-/* Projects Grid */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -25,7 +23,6 @@
     margin-bottom: var(--spacing-2xl);
 }
 
-/* Project Card */
 .project-card {
     perspective: 1000px;
 }
@@ -43,10 +40,8 @@
 
 .project-card:hover .project-card-inner {
     border-color: var(--accent-primary);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* Image Wrapper with Folder Tab */
 .project-image-wrapper {
     position: relative;
     overflow: hidden;
@@ -70,7 +65,6 @@
 
 .folder-icon {
     color: #ffca28;
-    /* Default folder color */
 }
 
 .project-image {
@@ -85,14 +79,13 @@
     transform: scale(1.05);
 }
 
-/* Overlay & Links */
 .project-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(10, 14, 39, 0.8);
+    background: var(--bg-overlay);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -135,7 +128,6 @@
     box-shadow: 0 0 15px var(--accent-glow);
 }
 
-/* Content */
 .project-content {
     padding: var(--spacing-lg);
     flex-grow: 1;
@@ -162,7 +154,6 @@
     line-height: 1.6;
 }
 
-/* Tech Stack */
 .project-tech {
     font-size: var(--font-size-xs);
     display: flex;
@@ -176,7 +167,6 @@
     display: inline-flex;
 }
 
-/* Loading, Error, and Empty States */
 .projects-loading,
 .projects-error,
 .projects-empty {
@@ -220,7 +210,6 @@
     color: #ff6b6b;
 }
 
-/* Section Footer */
 .section-footer {
     text-align: center;
     font-size: var(--font-size-3xl);
@@ -228,7 +217,6 @@
     margin-top: var(--spacing-xl);
 }
 
-/* Decoration */
 .projects-decoration {
     position: absolute;
     bottom: 5%;
@@ -248,7 +236,6 @@
     white-space: nowrap;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .projects-grid {
         grid-template-columns: 1fr;
