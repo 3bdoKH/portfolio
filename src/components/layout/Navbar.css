@@ -21,9 +21,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: var(--spacing-md);
 }
 
-/* Logo */
 .navbar-logo {
     font-size: var(--font-size-xl);
     font-weight: 700;
@@ -281,8 +281,11 @@
     backdrop-filter: blur(2px);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
+    .navbar-container {
+        gap: var(--spacing-sm);
+    }
+
     .nav-menu {
         display: none;
     }

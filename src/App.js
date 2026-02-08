@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AnalyticsProvider } from './context/AnalyticsContext';
+import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/layout/Navbar';
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
@@ -44,17 +45,19 @@ function PortfolioHome() {
 
 function App() {
   return (
-    <AnalyticsProvider>
-      <Router>
-        <div className="App">
-          <Routes>
-            <Route path="/" element={<PortfolioHome />} />
-            <Route path="/admin/login" element={<AdminLogin />} />
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          </Routes>
-        </div>
-      </Router>
-    </AnalyticsProvider>
+    <ThemeProvider>
+      <AnalyticsProvider>
+        <Router>
+          <div className="App">
+            <Routes>
+              <Route path="/" element={<PortfolioHome />} />
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            </Routes>
+          </div>
+        </Router>
+      </AnalyticsProvider>
+    </ThemeProvider>
   );
 }
 

@@ -4,6 +4,7 @@ import ParticlesBg from 'particles-bg';
 import { useAnalytics } from '../../context/AnalyticsContext';
 import CVViewer from '../ui/CVViewer';
 import Terminal from '../cli/Terminal';
+import ThemeSwitch from '../ui/ThemeSwitch';
 import profile from '../../images/profile.jpg';
 import './Hero.css';
 
@@ -244,6 +245,9 @@ const Hero = () => {
                 scrollToSection={scrollToSection}
             />
 
+
+            {/* Theme Switcher */}
+            <ThemeSwitch />
 
             {/* Terminal Toggle Button */}
             <button
