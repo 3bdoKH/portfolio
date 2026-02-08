@@ -5,6 +5,7 @@
   --bg-card: #000000;
   --bg-card-hover: #0d0d0d;
   --bg-gray: #2d2d2d;
+  --bg-overlay: rgba(0, 0, 0, 0.3);
 
   /* Syntax Highlighting Colors */
   --syntax-keyword: #00ff88;

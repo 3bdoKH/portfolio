@@ -49,7 +49,7 @@
     justify-content: space-between;
     align-items: center;
     padding: var(--spacing-sm) var(--spacing-md);
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--bg-overlay);
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -141,7 +141,7 @@
 }
 
 .code-block {
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--bg-overlay);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     padding: var(--spacing-xl);
