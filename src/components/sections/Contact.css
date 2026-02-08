@@ -6,7 +6,6 @@
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
-    /* Fix for AOS animations causing horizontal scroll */
 }
 
 .contact-container {
@@ -16,13 +15,11 @@
     margin-bottom: var(--spacing-3xl);
 }
 
-/* Section Header */
 .section-header {
     margin-bottom: var(--spacing-2xl);
     text-align: center;
 }
 
-/* Contact Content Layout */
 .contact-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -30,7 +27,6 @@
     align-items: start;
 }
 
-/* Social Info (Left) */
 .contact-info {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -77,8 +73,6 @@
     font-size: var(--font-size-lg);
 }
 
-
-/* Form (Right) */
 .contact-form-wrapper {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -130,10 +124,8 @@
 .form-textarea-contact:focus {
     outline: none;
     border-bottom-color: var(--accent-primary);
-    background: rgba(0, 255, 136, 0.05);
 }
 
-/* Submit Button */
 .submit-btn {
     margin-top: var(--spacing-lg);
     align-self: flex-start;
@@ -197,8 +189,6 @@
     }
 }
 
-
-/* Section Footer */
 .section-footer {
     text-align: center;
     font-size: var(--font-size-3xl);
@@ -206,11 +196,10 @@
     margin-top: var(--spacing-xl);
 }
 
-/* Footer (Bottom of page) */
 .footer {
     border-top: 1px solid var(--border-color);
     padding: var(--spacing-lg) 0;
-    background: var(--bg-secondary);
+    background: var(--bg-primary);
     margin-top: auto;
 }
 
@@ -228,7 +217,6 @@
     color: var(--syntax-number);
 }
 
-/* Responsive */
 @media (max-width: 900px) {
     .contact-content {
         gap: var(--spacing-xl);
@@ -245,7 +233,6 @@
         gap: var(--spacing-2xl);
     }
 
-    /* Reset height for stacked layout so it wraps naturally */
     .contact-form-wrapper,
     .contact-form {
         height: auto;
