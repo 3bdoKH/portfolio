@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getProjects, createProject, updateProject, deleteProject } from '../../services/api';
+import { getProjects, createProject, updateProject, deleteProject } from '../../../services/api';
 import './ProjectsManager.css';
 
 const ProjectsManager = () => {

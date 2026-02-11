@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { uploadCV, getCVMetadata, deleteCV } from '../../services/api';
+import { uploadCV, getCVMetadata, deleteCV } from '../../../services/api';
 import './CVManager.css';
 
 const CVManager = () => {

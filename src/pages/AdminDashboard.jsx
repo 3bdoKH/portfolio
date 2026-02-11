@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getMessages, getAnalyticsStats, updateMessageStatus, deleteMessage, getTerminalAnalytics } from '../services/api';
-import ProjectsManager from '../components/admin/ProjectsManager';
-import CVManager from '../components/admin/CVManager';
+import ProjectsManager from '../components/admin/ProjectsManager/ProjectsManager';
+import CVManager from '../components/admin/CVManager/CVManager';
 import './AdminDashboard.css';
 
 const AdminDashboard = () => {
