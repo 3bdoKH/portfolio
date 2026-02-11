@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getMessages, getAnalyticsStats, updateMessageStatus, deleteMessage } from '../services/api';
+import { getMessages, getAnalyticsStats, updateMessageStatus, deleteMessage, getTerminalAnalytics } from '../services/api';
 import ProjectsManager from '../components/admin/ProjectsManager';
 import CVManager from '../components/admin/CVManager';
 import './AdminDashboard.css';
@@ -9,6 +9,7 @@ const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('analytics');
     const [messages, setMessages] = useState([]);
     const [analytics, setAnalytics] = useState(null);
+    const [terminalAnalytics, setTerminalAnalytics] = useState(null);
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
@@ -33,13 +34,15 @@ const AdminDashboard = () => {
         setLoading(true);
 
         try {
-            const [messagesData, analyticsData] = await Promise.all([
+            const [messagesData, analyticsData, terminalAnalyticsData] = await Promise.all([
                 getMessages(token, 1, 50),
                 getAnalyticsStats(token),
+                getTerminalAnalytics(token),
             ]);
 
             setMessages(messagesData.data.messages);
             setAnalytics(analyticsData.data);
+            setTerminalAnalytics(terminalAnalyticsData.data);
         } catch (error) {
             console.error('Error loading data:', error);
             if (error.message.includes('401') || error.message.includes('token')) {
@@ -373,13 +376,13 @@ const AdminDashboard = () => {
                                     <div className="terminal-stat-item">
                                         <span className="terminal-stat-label">Terminal Opens</span>
                                         <span className="terminal-stat-value">
-                                            {analytics.eventsByType.find(e => e.type === 'terminal_open')?.count || 0}
+                                            {terminalAnalytics.totalOpens || 0}
                                         </span>
                                     </div>
                                     <div className="terminal-stat-item">
                                         <span className="terminal-stat-label">Commands Executed</span>
                                         <span className="terminal-stat-value">
-                                            {analytics.eventsByType.find(e => e.type === 'terminal_command')?.count || 0}
+                                            {terminalAnalytics.totalCommands || 0}
                                         </span>
                                     </div>
                                 </div>
@@ -392,25 +395,12 @@ const AdminDashboard = () => {
                                     </h4>
                                     <div className="event-list">
                                         {(() => {
-                                            // Extract and count terminal commands
-                                            const commandCounts = analytics.recentEvents
-                                                .filter(e => e.eventType === 'terminal_command')
-                                                .reduce((acc, event) => {
-                                                    const cmd = event.eventData?.command || 'unknown';
-                                                    acc[cmd] = (acc[cmd] || 0) + 1;
-                                                    return acc;
-                                                }, {});
 
-                                            // Convert to array and sort
-                                            const sortedCommands = Object.entries(commandCounts)
-                                                .sort((a, b) => b[1] - a[1])
-                                                .slice(0, 5);
-
-                                            return sortedCommands.length > 0 ? (
-                                                sortedCommands.map(([cmd, count], index) => (
+                                            return terminalAnalytics.topCommands.length > 0 ? (
+                                                terminalAnalytics.topCommands.map((cmd, index) => (
                                                     <div key={index} className="event-item terminal-command-item">
-                                                        <span className="event-type terminal-command-name">$ {cmd}</span>
-                                                        <span className="event-count">{count}</span>
+                                                        <span className="event-type terminal-command-name">$ {cmd.command}</span>
+                                                        <span className="event-count">{cmd.count}</span>
                                                     </div>
                                                 ))
                                             ) : (
@@ -429,24 +419,21 @@ const AdminDashboard = () => {
                                         <span className="syntax-keyword">Recent Terminal Activity</span>
                                     </h4>
                                     <div className="activity-list">
-                                        {analytics.recentEvents
-                                            .filter(e => e.eventType === 'terminal_command' || e.eventType === 'terminal_open')
-                                            .slice(0, 5)
-                                            .map((event, index) => (
-                                                <div key={index} className="activity-item terminal-activity-item">
-                                                    <div className={`activity-dot ${event.eventType === 'terminal_open' ? 'terminal-open-dot' : 'terminal-command-dot'}`}></div>
-                                                    <div className="activity-content">
-                                                        <span className="activity-type">
-                                                            {event.eventType === 'terminal_open'
-                                                                ? 'Terminal Opened'
-                                                                : `$ ${event.eventData?.command || 'unknown'}`}
-                                                            {event.eventData?.success === false && ' X '}
-                                                        </span>
-                                                        <span className="activity-time">{formatDate(event.timestamp)}</span>
-                                                    </div>
+                                        {terminalAnalytics.recentActivity.map((event, index) => (
+                                            <div key={index} className="activity-item terminal-activity-item">
+                                                <div className={`activity-dot ${event.eventType === 'terminal_open' ? 'terminal-open-dot' : 'terminal-command-dot'}`}></div>
+                                                <div className="activity-content">
+                                                    <span className="activity-type">
+                                                        {event.eventType === 'terminal_open'
+                                                            ? 'Terminal Opened'
+                                                            : `$ ${event.eventData?.command || 'unknown'}`}
+                                                        {event.eventData?.success === false && ' X '}
+                                                    </span>
+                                                    <span className="activity-time">{formatDate(event.timestamp)}</span>
                                                 </div>
-                                            ))}
-                                        {analytics.recentEvents.filter(e => e.eventType === 'terminal_command' || e.eventType === 'terminal_open').length === 0 && (
+                                            </div>
+                                        ))}
+                                        {terminalAnalytics.recentActivity.length === 0 && (
                                             <div className="empty-state-small">
                                                 <p>No terminal activity yet</p>
                                             </div>

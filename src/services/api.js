@@ -315,19 +315,6 @@ export const deleteProject = async (token, id) => {
     }
 };
 
-export const apiServices = {
-    submitContactForm,
-    trackEvent,
-    adminLogin,
-    getMessages,
-    getAnalyticsStats,
-    getProjects,
-    getProject,
-    createProject,
-    updateProject,
-    deleteProject,
-};
-
 /**
  * Upload CV (Admin only)
  */
@@ -420,3 +407,33 @@ export const deleteCV = async (token) => {
     }
 };
 
+export const getTerminalAnalytics = async (token, startDate = null, endDate = null) => {
+    try {
+        let url = `${API_URL}/api/analytics/terminal`;
+        const params = new URLSearchParams();
+
+        if (startDate) params.append('startDate', startDate);
+        if (endDate) params.append('endDate', endDate);
+
+        if (params.toString()) {
+            url += `?${params.toString()}`;
+        }
+
+        const response = await fetch(url, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to fetch analytics');
+        }
+
+        return data;
+    } catch (error) {
+        console.error('Get analytics error:', error);
+        throw error;
+    }
+};
