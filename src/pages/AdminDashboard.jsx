@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAnalyticsStats, getTerminalAnalytics } from '../services/api';
+import { getAnalyticsStats } from '../services/api';
 import './AdminDashboard.css';
 import ProjectsManager from '../components/admin/ProjectsManager/ProjectsManager';
 import CVManager from '../components/admin/CVManager/CVManager';
@@ -10,14 +10,13 @@ import Analytics from '../components/admin/Analytics/Analytics'
 const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('analytics');
     const [analytics, setAnalytics] = useState(null);
-    const [terminalAnalytics, setTerminalAnalytics] = useState(null);
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
+    const token = localStorage.getItem('adminToken');
 
     // Check authentication
     useEffect(() => {
-        const token = localStorage.getItem('adminToken');
         const userData = localStorage.getItem('adminUser');
 
         if (!token) {
@@ -31,17 +30,14 @@ const AdminDashboard = () => {
     }, [navigate]);
 
     const loadData = async () => {
-        const token = localStorage.getItem('adminToken');
         setLoading(true);
 
         try {
-            const [analyticsData, terminalAnalyticsData] = await Promise.all([
+            const [analyticsData] = await Promise.all([
                 getAnalyticsStats(token),
-                getTerminalAnalytics(token),
             ]);
 
             setAnalytics(analyticsData.data);
-            setTerminalAnalytics(terminalAnalyticsData.data);
         } catch (error) {
             console.error('Error loading data:', error);
             if (error.message.includes('401') || error.message.includes('token')) {
@@ -102,9 +98,7 @@ const AdminDashboard = () => {
                 </div>
             </header>
 
-            {analytics && (
-                <StatsCards analytics={analytics} />
-            )}
+            <StatsCards />
 
             <div className="tabs">
 
@@ -145,7 +139,7 @@ const AdminDashboard = () => {
                 )}
 
                 {activeTab === 'analytics' && analytics && (
-                    <Analytics />
+                    <Analytics token={token} />
                 )}
 
                 {activeTab === 'projects' && (

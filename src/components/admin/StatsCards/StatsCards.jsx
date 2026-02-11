@@ -1,4 +1,43 @@
-const StatsCards = ({ analytics }) => {
+import { getAnalyticsStats } from "../../../services/api";
+import { useEffect, useState } from "react";
+const StatsCards = () => {
+    const [analytics, setAnalytics] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    useEffect(() => {
+        loadData();
+    }, []);
+    const loadData = async () => {
+        const token = localStorage.getItem('adminToken');
+        setLoading(true);
+
+        try {
+            const [analyticsData] = await Promise.all([
+                getAnalyticsStats(token),
+            ]);
+
+            setAnalytics(analyticsData.data);
+        } catch (error) {
+            console.error('Error loading data:', error);
+            if (error.message.includes('401') || error.message.includes('token')) {
+                localStorage.removeItem('adminToken');
+                window.location.href = '/admin/login';
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+    if (loading) {
+        return (
+            <div className="admin-dashboard">
+                <div className="loading-container">
+                    <div className="spinner-large"></div>
+                    <p>Loading stats...</p>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="stats-grid">
             <div className="stat-card-admin">

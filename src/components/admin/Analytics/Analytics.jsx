@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getAnalyticsStats, getTerminalAnalytics } from '../../../services/api';
-const Analytics = () => {
+const Analytics = ({ token }) => {
     const [analytics, setAnalytics] = useState(null);
     const [terminalAnalytics, setTerminalAnalytics] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -8,7 +8,6 @@ const Analytics = () => {
         loadData();
     }, []);
     const loadData = async () => {
-        const token = localStorage.getItem('adminToken');
         setLoading(true);
 
         try {
