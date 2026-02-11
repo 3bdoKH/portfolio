@@ -43,6 +43,7 @@ const AdminDashboard = () => {
             setMessages(messagesData.data.messages);
             setAnalytics(analyticsData.data);
             setTerminalAnalytics(terminalAnalyticsData.data);
+            console.log(terminalAnalyticsData.data);
         } catch (error) {
             console.error('Error loading data:', error);
             if (error.message.includes('401') || error.message.includes('token')) {
@@ -385,6 +386,18 @@ const AdminDashboard = () => {
                                             {terminalAnalytics.totalCommands || 0}
                                         </span>
                                     </div>
+                                    <div className="terminal-stat-item">
+                                        <span className="terminal-stat-label">Successful Commands</span>
+                                        <span className="terminal-stat-value">
+                                            {terminalAnalytics.successfulCommands || 0}
+                                        </span>
+                                    </div>
+                                    <div className="terminal-stat-item">
+                                        <span className="terminal-stat-label">Failed Commands</span>
+                                        <span className="terminal-stat-value">
+                                            {terminalAnalytics.failedCommands || 0}
+                                        </span>
+                                    </div>
                                 </div>
 
                                 {/* Top Commands */}
@@ -394,21 +407,18 @@ const AdminDashboard = () => {
                                         <span className="syntax-keyword">Most Used Commands</span>
                                     </h4>
                                     <div className="event-list">
-                                        {(() => {
-
-                                            return terminalAnalytics.topCommands.length > 0 ? (
-                                                terminalAnalytics.topCommands.map((cmd, index) => (
-                                                    <div key={index} className="event-item terminal-command-item">
-                                                        <span className="event-type terminal-command-name">$ {cmd.command}</span>
-                                                        <span className="event-count">{cmd.count}</span>
-                                                    </div>
-                                                ))
-                                            ) : (
-                                                <div className="empty-state-small">
-                                                    <p>No commands executed yet</p>
+                                        {terminalAnalytics.topCommands.length > 0 ? (
+                                            terminalAnalytics.topCommands.map((cmd, index) => (
+                                                <div key={index} className="event-item terminal-command-item">
+                                                    <span className="event-type terminal-command-name">$ {cmd.command}</span>
+                                                    <span className="event-count">{cmd.count}</span>
                                                 </div>
-                                            );
-                                        })()}
+                                            ))
+                                        ) : (
+                                            <div className="empty-state-small">
+                                                <p>No commands executed yet</p>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
 
