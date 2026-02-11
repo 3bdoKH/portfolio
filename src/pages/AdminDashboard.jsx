@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getMessages, getAnalyticsStats, getProjects, updateMessageStatus, deleteMessage } from '../services/api';
+import { getMessages, getAnalyticsStats, updateMessageStatus, deleteMessage } from '../services/api';
 import ProjectsManager from '../components/admin/ProjectsManager';
 import CVManager from '../components/admin/CVManager';
 import './AdminDashboard.css';
@@ -9,13 +9,12 @@ const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('analytics');
     const [messages, setMessages] = useState([]);
     const [analytics, setAnalytics] = useState(null);
-    const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
 
+    // Check authentication
     useEffect(() => {
-        // Check authentication
         const token = localStorage.getItem('adminToken');
         const userData = localStorage.getItem('adminUser');
 
@@ -34,15 +33,13 @@ const AdminDashboard = () => {
         setLoading(true);
 
         try {
-            const [messagesData, analyticsData, projectsData] = await Promise.all([
+            const [messagesData, analyticsData] = await Promise.all([
                 getMessages(token, 1, 50),
                 getAnalyticsStats(token),
-                getProjects(),
             ]);
 
             setMessages(messagesData.data.messages);
             setAnalytics(analyticsData.data);
-            setProjects(projectsData.data.projects);
         } catch (error) {
             console.error('Error loading data:', error);
             if (error.message.includes('401') || error.message.includes('token')) {
@@ -190,17 +187,6 @@ const AdminDashboard = () => {
                         </div>
                         <div className="stat-value">
                             <span className="syntax-number">{analytics.overview.projectClicks}</span>
-                            <span className="syntax-bracket">;</span>
-                        </div>
-                    </div>
-                    <div className="stat-card-admin">
-                        <div className="stat-label">
-                            <span className="syntax-keyword stat-variable">const</span>{' '}
-                            <span className="syntax-variable stat-variable">totalProjects</span>{' '}
-                            <span className="syntax-bracket">=</span>
-                        </div>
-                        <div className="stat-value">
-                            <span className="syntax-number">{projects.length}</span>
                             <span className="syntax-bracket">;</span>
                         </div>
                     </div>
