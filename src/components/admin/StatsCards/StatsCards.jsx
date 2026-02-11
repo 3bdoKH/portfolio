@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 const StatsCards = () => {
     const [analytics, setAnalytics] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     useEffect(() => {
         loadData();
+        // eslint-disable-next-line
     }, []);
     const loadData = async () => {
         const token = localStorage.getItem('adminToken');

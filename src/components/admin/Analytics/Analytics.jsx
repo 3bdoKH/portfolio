@@ -6,6 +6,7 @@ const Analytics = ({ token }) => {
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         loadData();
+        // eslint-disable-next-line
     }, []);
     const loadData = async () => {
         setLoading(true);
@@ -21,7 +22,7 @@ const Analytics = ({ token }) => {
             console.log(analyticsData.data);
         } catch (error) {
             console.error('Error loading data:', error);
-            if (error.response && error.response.status === 401 || error.response.status === 403) {
+            if (error.response && error.response.status === 401) {
                 localStorage.removeItem('adminToken');
                 window.location.href = '/admin/login';
             }
