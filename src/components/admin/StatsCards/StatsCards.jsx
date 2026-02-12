@@ -111,6 +111,19 @@ const StatsCards = () => {
                     <span className="syntax-bracket">;</span>
                 </div>
             </div>
+            <div className="stat-card-admin">
+                <div className="stat-label">
+                    <span className="syntax-keyword stat-variable">const</span>{' '}
+                    <span className="syntax-variable stat-variable">contactSubmits</span>{' '}
+                    <span className="syntax-bracket">=</span>
+                </div>
+                <div className="stat-value">
+                    <span className="syntax-number">{
+                        loading ? <Skeleton count={1} width={100} baseColor="var(--bg-gray)" /> : analytics.overview.contactSubmissions
+                    }</span>
+                    <span className="syntax-bracket">;</span>
+                </div>
+            </div>
         </div>
     );
 };

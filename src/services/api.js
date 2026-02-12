@@ -188,7 +188,7 @@ export const getAnalyticsStats = async (token, startDate = null, endDate = null)
         if (!response.ok) {
             throw new Error(data.message || 'Failed to fetch analytics');
         }
-
+        console.log(data.data);
         return data;
     } catch (error) {
         console.error('Get analytics error:', error);
@@ -196,6 +196,27 @@ export const getAnalyticsStats = async (token, startDate = null, endDate = null)
     }
 };
 
+
+export const getRecentActivities = async (token) => {
+    try {
+        const response = await fetch(`${API_URL}/api/analytics/recent`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to fetch recent activities');
+        }
+
+        return data;
+    } catch (error) {
+        console.error('Get recent activities error:', error);
+        throw error;
+    }
+};
 /**
  * Get all projects
  */
