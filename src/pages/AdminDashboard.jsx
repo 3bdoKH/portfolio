@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAnalyticsStats } from '../services/api';
 import './AdminDashboard.css';
 import ProjectsManager from '../components/admin/ProjectsManager/ProjectsManager';
 import CVManager from '../components/admin/CVManager/CVManager';
@@ -9,44 +8,24 @@ import Messages from '../components/admin/Messages/Messages'
 import Analytics from '../components/admin/Analytics/Analytics'
 const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('analytics');
-    const [analytics, setAnalytics] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
     const token = localStorage.getItem('adminToken');
 
     // Check authentication
     useEffect(() => {
+        setLoading(true);
         const userData = localStorage.getItem('adminUser');
-
         if (!token) {
             navigate('/admin/login');
             return;
         }
 
         setUser(JSON.parse(userData));
-        loadData();
+        setLoading(false);
         // eslint-disable-next-line
     }, [navigate]);
-
-    const loadData = async () => {
-        setLoading(true);
-
-        try {
-            const [analyticsData] = await Promise.all([
-                getAnalyticsStats(token),
-            ]);
-
-            setAnalytics(analyticsData.data);
-        } catch (error) {
-            console.error('Error loading data:', error);
-            if (error.message.includes('401') || error.message.includes('token')) {
-                handleLogout();
-            }
-        } finally {
-            setLoading(false);
-        }
-    };
 
     const handleLogout = () => {
         localStorage.removeItem('adminToken');
@@ -138,7 +117,7 @@ const AdminDashboard = () => {
                     <Messages />
                 )}
 
-                {activeTab === 'analytics' && analytics && (
+                {activeTab === 'analytics' && (
                     <Analytics token={token} />
                 )}
 
