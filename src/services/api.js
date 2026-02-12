@@ -188,7 +188,6 @@ export const getAnalyticsStats = async (token, startDate = null, endDate = null)
         if (!response.ok) {
             throw new Error(data.message || 'Failed to fetch analytics');
         }
-        console.log(data.data);
         return data;
     } catch (error) {
         console.error('Get analytics error:', error);
