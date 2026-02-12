@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getProjects, createProject, updateProject, deleteProject } from '../../../services/api';
 import './ProjectsManager.css';
-
+import ProjectsSkeleton from './ProjectsSkeleton';
 const ProjectsManager = () => {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -182,16 +182,16 @@ const ProjectsManager = () => {
         }
     };
 
-    if (loading) {
-        return (
-            <div className="projects-manager">
-                <div className="loading-container">
-                    <div className="spinner-large"></div>
-                    <p>Loading projects...</p>
-                </div>
-            </div>
-        );
-    }
+    // if (loading) {
+    //     return (
+    //         <div className="projects-manager">
+    //             <div className="loading-container">
+    //                 <div className="spinner-large"></div>
+    //                 <p>Loading projects...</p>
+    //             </div>
+    //         </div>
+    //     );
+    // }
 
     return (
         <div className="projects-manager">
@@ -212,57 +212,64 @@ const ProjectsManager = () => {
             {error && <div className="alert alert-error">{error}</div>}
 
             {/* Projects Grid */}
-            {projects.length === 0 ? (
-                <div className="empty-state">
-                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                        <line x1="9" y1="9" x2="15" y2="9" />
-                        <line x1="9" y1="15" x2="15" y2="15" />
-                    </svg>
-                    <h3>No projects yet</h3>
-                    <p>Create your first project to get started</p>
-                </div>
-            ) : (
-                <div className="projects-grid">
-                    {projects.map((project) => (
-                        <div key={project._id} className="project-item">
-                            <div className="project-image-container">
-                                {project.image ? (
-                                    <img src={project.image} alt={project.displayTitle} />
-                                ) : (
-                                    <div className="no-image">No Image</div>
-                                )}
-                                {project.featured && <span className="featured-badge">Featured</span>}
-                            </div>
-                            <div className="project-info">
-                                <h3>{project.displayTitle}</h3>
-                                <p className="project-desc">{project.description}</p>
-                                <div className="project-tags">
-                                    {project.tags.map((tag, idx) => (
-                                        <span key={idx} className="tag">{tag}</span>
-                                    ))}
+            {
+                loading ? (
+                    <div className="projects-grid">
+                        <ProjectsSkeleton />
+                        <ProjectsSkeleton />
+                        <ProjectsSkeleton />
+                    </div>
+                ) : projects.length === 0 ? (
+                    <div className="empty-state">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                            <line x1="9" y1="9" x2="15" y2="9" />
+                            <line x1="9" y1="15" x2="15" y2="15" />
+                        </svg>
+                        <h3>No projects yet</h3>
+                        <p>Create your first project to get started</p>
+                    </div>
+                ) : (
+                    <div className="projects-grid">
+                        {projects.map((project) => (
+                            <div key={project._id} className="project-item">
+                                <div className="project-image-container">
+                                    {project.image ? (
+                                        <img src={project.image} alt={project.displayTitle} />
+                                    ) : (
+                                        <div className="no-image">No Image</div>
+                                    )}
+                                    {project.featured && <span className="featured-badge">Featured</span>}
+                                </div>
+                                <div className="project-info">
+                                    <h3>{project.displayTitle}</h3>
+                                    <p className="project-desc">{project.description}</p>
+                                    <div className="project-tags">
+                                        {project.tags.map((tag, idx) => (
+                                            <span key={idx} className="tag">{tag}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="project-actions">
+                                    <button
+                                        onClick={() => handleOpenModal(project)}
+                                        className="btn-edit"
+                                    >
+                                        <span className="syntax-function">edit</span>
+                                        <span className="syntax-bracket">()</span>
+                                    </button>
+                                    <button
+                                        onClick={() => handleDelete(project._id, project.displayTitle)}
+                                        className="btn-delete"
+                                    >
+                                        <span className="syntax-function">delete</span>
+                                        <span className="syntax-bracket">()</span>
+                                    </button>
                                 </div>
                             </div>
-                            <div className="project-actions">
-                                <button
-                                    onClick={() => handleOpenModal(project)}
-                                    className="btn-edit"
-                                >
-                                    <span className="syntax-function">edit</span>
-                                    <span className="syntax-bracket">()</span>
-                                </button>
-                                <button
-                                    onClick={() => handleDelete(project._id, project.displayTitle)}
-                                    className="btn-delete"
-                                >
-                                    <span className="syntax-function">delete</span>
-                                    <span className="syntax-bracket">()</span>
-                                </button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            )}
+                        ))}
+                    </div>
+                )}
 
             {/* Modal */}
             {showModal && (
