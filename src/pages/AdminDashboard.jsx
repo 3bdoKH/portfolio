@@ -12,6 +12,7 @@ const AdminDashboard = () => {
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
     const token = localStorage.getItem('adminToken');
+    const tabs = ['analytics', 'messages', 'projects', 'cv'];
 
     // Check authentication
     useEffect(() => {
@@ -80,35 +81,16 @@ const AdminDashboard = () => {
             <StatsCards />
 
             <div className="tabs">
-
-                <button
-                    className={`tab ${activeTab === 'analytics' ? 'active' : ''}`}
-                    onClick={() => setActiveTab('analytics')}
-                >
-                    <span className="syntax-function stat-variable">analytics</span>
-                    <span className="syntax-bracket">()</span>
-                </button>
-                <button
-                    className={`tab ${activeTab === 'messages' ? 'active' : ''}`}
-                    onClick={() => setActiveTab('messages')}
-                >
-                    <span className="syntax-function stat-variable">messages</span>
-                    <span className="syntax-bracket">()</span>
-                </button>
-                <button
-                    className={`tab ${activeTab === 'projects' ? 'active' : ''}`}
-                    onClick={() => setActiveTab('projects')}
-                >
-                    <span className="syntax-function stat-variable">projects</span>
-                    <span className="syntax-bracket">()</span>
-                </button>
-                <button
-                    className={`tab ${activeTab === 'cv' ? 'active' : ''}`}
-                    onClick={() => setActiveTab('cv')}
-                >
-                    <span className="syntax-function stat-variable">cv</span>
-                    <span className="syntax-bracket">()</span>
-                </button>
+                {tabs.map((tab) => (
+                    <button
+                        key={tab}
+                        className={`tab ${activeTab === tab ? 'active' : ''}`}
+                        onClick={() => setActiveTab(tab)}
+                    >
+                        <span className="syntax-function stat-variable">{tab}</span>
+                        <span className="syntax-bracket">()</span>
+                    </button>
+                ))}
             </div>
 
             {/* Content */}
