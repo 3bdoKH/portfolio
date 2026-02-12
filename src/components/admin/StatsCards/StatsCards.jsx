@@ -1,5 +1,7 @@
 import { getAnalyticsStats } from "../../../services/api";
 import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 const StatsCards = () => {
     const [analytics, setAnalytics] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -27,16 +29,6 @@ const StatsCards = () => {
             setLoading(false);
         }
     };
-    if (loading) {
-        return (
-            <div className="admin-dashboard">
-                <div className="loading-container">
-                    <div className="spinner-large"></div>
-                    <p>Loading stats...</p>
-                </div>
-            </div>
-        );
-    }
 
     return (
         <div className="stats-grid">
@@ -47,7 +39,10 @@ const StatsCards = () => {
                     <span className="syntax-bracket">=</span>
                 </div>
                 <div className="stat-value">
-                    <span className="syntax-number">{analytics.overview.totalMessages}</span>
+                    <span className="syntax-number">{
+                        loading ? <Skeleton count={1} width={100} baseColor="var(--bg-gray)" /> : analytics.overview.totalMessages
+                    }</span>
+
                     <span className="syntax-bracket">;</span>
                 </div>
             </div>
@@ -58,7 +53,9 @@ const StatsCards = () => {
                     <span className="syntax-bracket">=</span>
                 </div>
                 <div className="stat-value">
-                    <span className="syntax-number">{analytics.overview.unreadMessages}</span>
+                    <span className="syntax-number">{
+                        loading ? <Skeleton count={1} width={100} baseColor="var(--bg-gray)" /> : analytics.overview.unreadMessages
+                    }</span>
                     <span className="syntax-bracket">;</span>
                 </div>
             </div>
@@ -69,7 +66,9 @@ const StatsCards = () => {
                     <span className="syntax-bracket">=</span>
                 </div>
                 <div className="stat-value">
-                    <span className="syntax-number">{analytics.overview.pageViews}</span>
+                    <span className="syntax-number">{
+                        loading ? <Skeleton count={1} width={100} baseColor="var(--bg-gray)" /> : analytics.overview.pageViews
+                    }</span>
                     <span className="syntax-bracket">;</span>
                 </div>
             </div>
@@ -80,7 +79,9 @@ const StatsCards = () => {
                     <span className="syntax-bracket">=</span>
                 </div>
                 <div className="stat-value">
-                    <span className="syntax-number">{analytics.overview.projectClicks}</span>
+                    <span className="syntax-number">{
+                        loading ? <Skeleton count={1} width={100} baseColor="var(--bg-gray)" /> : analytics.overview.projectClicks
+                    }</span>
                     <span className="syntax-bracket">;</span>
                 </div>
             </div>
@@ -91,7 +92,9 @@ const StatsCards = () => {
                     <span className="syntax-bracket">=</span>
                 </div>
                 <div className="stat-value">
-                    <span className="syntax-number">{analytics.overview.cvViews || 0}</span>
+                    <span className="syntax-number">{
+                        loading ? <Skeleton count={1} width={100} baseColor="var(--bg-gray)" /> : analytics.overview.cvViews
+                    }</span>
                     <span className="syntax-bracket">;</span>
                 </div>
             </div>
@@ -102,7 +105,9 @@ const StatsCards = () => {
                     <span className="syntax-bracket">=</span>
                 </div>
                 <div className="stat-value">
-                    <span className="syntax-number">{analytics.overview.cvDownloads || 0}</span>
+                    <span className="syntax-number">{
+                        loading ? <Skeleton count={1} width={100} baseColor="var(--bg-gray)" /> : analytics.overview.cvDownloads
+                    }</span>
                     <span className="syntax-bracket">;</span>
                 </div>
             </div>
