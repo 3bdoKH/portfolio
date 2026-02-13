@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useAnalytics } from '../../context/AnalyticsContext';
 import CommandProcessor from './CommandProcessor';
 import { parseCommand } from './utils/parser';
+import { useTheme } from '../../context/ThemeContext';
 import './Terminal.css';
 
 const Terminal = ({ isOpen, onClose, openCVViewer, scrollToSection }) => {
@@ -15,6 +16,8 @@ const Terminal = ({ isOpen, onClose, openCVViewer, scrollToSection }) => {
     const inputRef = useRef(null);
     const terminalRef = useRef(null);
     const outputEndRef = useRef(null);
+
+    const { changeTheme } = useTheme();
 
     // Initialize terminal with welcome message
     useEffect(() => {
@@ -33,9 +36,10 @@ const Terminal = ({ isOpen, onClose, openCVViewer, scrollToSection }) => {
             openCVViewer,
             scrollToSection,
             clearTerminal: handleClear,
-            closeTerminal: onClose
+            closeTerminal: onClose,
+            changeTheme
         });
-    }, [openCVViewer, scrollToSection, onClose, processor]);
+    }, [openCVViewer, scrollToSection, onClose, processor, changeTheme]);
 
     // Auto-scroll to bottom
     useEffect(() => {

@@ -6,7 +6,7 @@ import contactCommand from './contact';
 import { projectsCommand, projectCommand } from './projects';
 import cvCommand from './cv';
 import { clearCommand, exitCommand } from './system';
-import themesCommand from './themes';
+import { themesCommand, themeCommand } from './themes';
 import {
     sudoCommand,
     hackCommand,
@@ -46,6 +46,7 @@ export const commands = {
     resume: cvCommand,
 
     themes: themesCommand,
+    theme: themeCommand,
 
     clear: clearCommand,
     cls: clearCommand,
