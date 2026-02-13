@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { getMessages, updateMessageStatus, deleteMessage } from '../../../services/api';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import MessagesSkeleton from './MessagesSkeleton';
 const Messages = () => {
     const [messages, setMessages] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -78,7 +79,7 @@ const Messages = () => {
     return (
         <div className="messages-section">
             {loading ?
-                <Skeleton count={1} width={1200} height={155} baseColor="rgba(0, 255, 136, 0.05)" />
+                <MessagesSkeleton />
                 : messages.length > 0 ? (
                     <div className="messages-list">
                         {
@@ -115,7 +116,8 @@ const Messages = () => {
                                         </button>
                                     </div>
                                 </div>
-                            ))}
+                            ))
+                        }
                     </div>
                 ) : (
                     <div className="empty-state">
