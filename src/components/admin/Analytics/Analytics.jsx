@@ -55,7 +55,7 @@ const Analytics = ({ token }) => {
                     </h3>
                     <div className="event-list">
                         {
-                            loading ? <Skeleton count={7} width={331} height={45} baseColor="rgba(0, 255, 136, 0.05)" /> :
+                            loading ? <Skeleton count={7} width={"100%"} height={45} baseColor="var(--bg-gray)" /> :
                                 analytics.eventsByType.map((event) => (
                                     <div key={event.type} className="event-item">
                                         <span className="event-type">{event.type}</span>
@@ -74,7 +74,7 @@ const Analytics = ({ token }) => {
                     </h3>
                     <div className="activity-list">
                         {
-                            loading ? <Skeleton count={10} width={331} height={45} baseColor="rgba(0, 255, 136, 0.05)" /> :
+                            loading ? <Skeleton count={10} width={"100%"} height={45} baseColor="var(--bg-gray)" /> :
                                 recentActivities
                                     .slice(0, 10)
                                     .map((event, index) => (
@@ -97,7 +97,7 @@ const Analytics = ({ token }) => {
                     </h3>
                     <div className="event-list">
                         {
-                            loading ? <Skeleton count={6} width={331} height={45} baseColor="rgba(0, 255, 136, 0.05)" /> :
+                            loading ? <Skeleton count={6} width={"100%"} height={45} baseColor="var(--bg-gray)" /> :
                                 analytics.projectClicksByProject && analytics.projectClicksByProject.length > 0 ? (
                                     analytics.projectClicksByProject.map((project, index) => (
                                         <div key={index} className="event-item">
@@ -127,7 +127,7 @@ const Analytics = ({ token }) => {
                             <span className="terminal-stat-label">Terminal Opens</span>
                             <span className="terminal-stat-value">
                                 {
-                                    loading ? <Skeleton count={1} width={100} height={40} baseColor="rgba(0, 255, 136, 0.05)" /> :
+                                    loading ? <Skeleton count={1} width={100} height={40} baseColor="var(--bg-gray)" /> :
                                         terminalAnalytics.totalOpens || 0
                                 }
                             </span>
@@ -136,7 +136,7 @@ const Analytics = ({ token }) => {
                             <span className="terminal-stat-label">Commands Executed</span>
                             <span className="terminal-stat-value">
                                 {
-                                    loading ? <Skeleton count={1} width={100} height={40} baseColor="rgba(0, 255, 136, 0.05)" /> :
+                                    loading ? <Skeleton count={1} width={100} height={40} baseColor="var(--bg-gray)" /> :
                                         terminalAnalytics.totalCommands || 0
                                 }
                             </span>
@@ -145,7 +145,7 @@ const Analytics = ({ token }) => {
                             <span className="terminal-stat-label">Successful Commands</span>
                             <span className="terminal-stat-value">
                                 {
-                                    loading ? <Skeleton count={1} width={100} height={40} baseColor="rgba(0, 255, 136, 0.05)" /> :
+                                    loading ? <Skeleton count={1} width={100} height={40} baseColor="var(--bg-gray)" /> :
                                         terminalAnalytics.successfulCommands || 0
                                 }
                             </span>
@@ -154,7 +154,7 @@ const Analytics = ({ token }) => {
                             <span className="terminal-stat-label">Failed Commands</span>
                             <span className="terminal-stat-value">
                                 {
-                                    loading ? <Skeleton count={1} width={100} height={40} baseColor="rgba(0, 255, 136, 0.05)" /> :
+                                    loading ? <Skeleton count={1} width={100} height={40} baseColor="var(--bg-gray)" /> :
                                         terminalAnalytics.failedCommands || 0
                                 }
                             </span>
@@ -169,7 +169,7 @@ const Analytics = ({ token }) => {
                         </h4>
                         <div className="event-list">
                             {
-                                loading ? <Skeleton count={3} width={600} height={45} baseColor="rgba(0, 255, 136, 0.05)" /> :
+                                loading ? <Skeleton count={3} width={600} height={45} baseColor="var(--bg-gray)" /> :
                                     terminalAnalytics.topCommands.length > 0 ? (
                                         terminalAnalytics.topCommands.map((cmd, index) => (
                                             <div key={index} className="event-item terminal-command-item">
@@ -194,7 +194,7 @@ const Analytics = ({ token }) => {
                         </h4>
                         <div className="activity-list">
                             {
-                                loading ? <Skeleton count={1} width={600} height={45} baseColor="rgba(0, 255, 136, 0.05)" /> :
+                                loading ? <Skeleton count={1} width={600} height={45} baseColor="var(--bg-gray)" /> :
                                     terminalAnalytics.recentActivity.map((event, index) => (
                                         <div key={index} className="activity-item terminal-activity-item">
                                             <div className={`activity-dot ${event.eventType === 'terminal_open' ? 'terminal-open-dot' : 'terminal-command-dot'}`}></div>
@@ -210,7 +210,7 @@ const Analytics = ({ token }) => {
                                         </div>
                                     ))}
                             {
-                                loading ? <Skeleton count={1} width={600} height={45} baseColor="rgba(0, 255, 136, 0.05)" /> :
+                                loading ? <Skeleton count={1} width={600} height={45} baseColor="var(--bg-gray)" /> :
                                     terminalAnalytics.recentActivity.length === 0 && (
                                         <div className="empty-state-small">
                                             <p>No terminal activity yet</p>
