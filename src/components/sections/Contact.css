@@ -173,6 +173,28 @@
     box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
 }
 
+.success-message-contact,
+.error-message-contact {
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-base);
+    text-align: center;
+}
+
+.success-message-contact {
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-color);
+    color: var(--accent-primary);
+}
+
+.error-message-contact {
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-color);
+    color: rgb(255, 53, 53);
+}
+
 @keyframes shake {
 
     0%,

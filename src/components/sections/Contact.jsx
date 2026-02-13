@@ -13,7 +13,8 @@ const Contact = () => {
     });
 
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
+    const [submitStatus, setSubmitStatus] = useState(null);
+    const [message, setMessage] = useState('');
 
     useEffect(() => {
         AOS.init({
@@ -39,15 +40,15 @@ const Contact = () => {
         try {
             // Import API service and analytics
             const { submitContactForm, trackEvent } = await import('../../services/api');
-
             // Submit to backend
-            await submitContactForm(formData);
+            const res = await submitContactForm(formData);
+            setMessage(res);
 
             // Track successful submission
-            trackEvent('contact_submit', {
-                success: true,
-                timestamp: new Date().toISOString()
-            });
+            // trackEvent('contact_submit', {
+            //     success: true,
+            //     timestamp: new Date().toISOString()
+            // });
 
             // Success
             setSubmitStatus('success');
@@ -163,24 +164,34 @@ const Contact = () => {
                                 <span className="code-string">"</span>
                             </div>
 
-                            <button
-                                type="submit"
-                                className={`submit-btn ${isSubmitting ? 'loading' : ''} ${submitStatus === 'success' ? 'success' : ''} ${submitStatus === 'error' ? 'error' : ''}`}
-                                disabled={isSubmitting}
-                            >
-                                {isSubmitting ? (
-                                    <span className="btn-text">await sending...</span>
-                                ) : submitStatus === 'success' ? (
-                                    <span className="btn-text">✓ msg.sent()</span>
-                                ) : submitStatus === 'error' ? (
-                                    <span className="btn-text">✗ Error! Try again</span>
-                                ) : (
-                                    <>
-                                        <span className="btn-text">await response</span>
-                                        <FaPaperPlane className="btn-icon" />
-                                    </>
-                                )}
-                            </button>
+                            {submitStatus === 'success' ? (
+                                <div className="success-message-contact">
+                                    <span>{message.message}</span>
+                                </div>
+                            ) : submitStatus === 'error' ? (
+                                <div className="error-message-contact">
+                                    <span>"Only English, sorry for that still working on it..."</span>
+                                </div>
+                            ) : (
+                                <button
+                                    type="submit"
+                                    className={`submit-btn ${isSubmitting ? 'loading' : ''} ${submitStatus === 'success' ? 'success' : ''} ${submitStatus === 'error' ? 'error' : ''}`}
+                                    disabled={isSubmitting}
+                                >
+                                    {isSubmitting ? (
+                                        <span className="btn-text">await sending...</span>
+                                    ) : submitStatus === 'success' ? (
+                                        <span className="btn-text">✓ msg.sent()</span>
+                                    ) : submitStatus === 'error' ? (
+                                        <span className="btn-text">✗ Error! Try again</span>
+                                    ) : (
+                                        <>
+                                            <span className="btn-text">await response</span>
+                                            <FaPaperPlane className="btn-icon" />
+                                        </>
+                                    )}
+                                </button>
+                            )}
                         </form>
                     </div>
                 </div>
