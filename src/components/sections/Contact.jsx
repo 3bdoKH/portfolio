@@ -45,10 +45,10 @@ const Contact = () => {
             setMessage(res);
 
             // Track successful submission
-            // trackEvent('contact_submit', {
-            //     success: true,
-            //     timestamp: new Date().toISOString()
-            // });
+            trackEvent('contact_submit', {
+                success: true,
+                timestamp: new Date().toISOString()
+            });
 
             // Success
             setSubmitStatus('success');
