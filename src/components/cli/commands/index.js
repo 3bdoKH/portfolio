@@ -6,6 +6,7 @@ import contactCommand from './contact';
 import { projectsCommand, projectCommand } from './projects';
 import cvCommand from './cv';
 import { clearCommand, exitCommand } from './system';
+import themesCommand from './themes';
 import {
     sudoCommand,
     hackCommand,
@@ -44,6 +45,8 @@ export const commands = {
     cv: cvCommand,
     resume: cvCommand,
 
+    themes: themesCommand,
+
     clear: clearCommand,
     cls: clearCommand,
 
@@ -69,7 +72,7 @@ export const getCommandNames = () => {
 export const getPrimaryCommands = () => {
     return [
         'help', 'about', 'skills', 'contact', 'projects',
-        'project', 'cv', 'clear', 'exit',
+        'project', 'cv', 'clear', 'themes', 'exit',
         'sudo', 'hack', 'matrix', 'coffee', 'joke', 'quote'
     ];
 };

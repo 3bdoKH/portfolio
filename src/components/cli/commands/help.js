@@ -14,6 +14,7 @@ export const helpCommand = {
             { name: 'contact', description: 'Show contact information' },
             { name: 'cv', description: 'View/download CV' },
             { name: 'clear', description: 'Clear terminal screen' },
+            { name: 'themes', description: 'Show available themes' },
             { name: 'exit', description: 'Close terminal' },
             { name: '', description: '' },
             { name: '--- Fun Commands ---', description: '' },

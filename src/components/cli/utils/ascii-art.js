@@ -1,14 +1,11 @@
 // ASCII Art and visual elements
 export const ASCII_ART = {
-    welcome: `
-╔═══════════════════════════════════════════════════════════╗
-║                                                           ║
-║   Welcome to Abdulrahman's Portfolio Terminal v1.0        ║
-║                                                           ║
-║   Type 'help' to see available commands                   ║
-║   Press '~' or click the terminal icon to toggle          ║
-║                                                           ║
-╚═══════════════════════════════════════════════════════════╝
+    welcome: `                                             
+    Welcome to Abdulrahman's Portfolio Terminal v1.0       
+                                                        
+    Type 'help' to see available commands                  
+    Press '~' or click the terminal icon to toggle         
+                                                        
 `,
 
     coffee: `
