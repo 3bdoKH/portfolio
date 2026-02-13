@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { uploadCV, getCVMetadata, deleteCV } from '../../../services/api';
 import './CVManager.css';
+import CVSkeleton from './CVSkeleton';
 
 const CVManager = () => {
     const [cvMetadata, setCVMetadata] = useState(null);
@@ -123,15 +124,6 @@ const CVManager = () => {
         }).format(date);
     };
 
-    if (loading) {
-        return (
-            <div className="cv-manager-loading">
-                <div className="spinner-large"></div>
-                <p>Loading CV data...</p>
-            </div>
-        );
-    }
-
     return (
         <div className="cv-manager">
             <div className="cv-manager-header">
@@ -153,32 +145,36 @@ const CVManager = () => {
             )}
 
             {/* Current CV Info */}
-            {cvMetadata && (
-                <div className="cv-current-info">
-                    <h3>
-                        <span className="syntax-comment">{'// '}</span>
-                        <span className="syntax-keyword">Current CV</span>
-                    </h3>
-                    <div className="cv-info-grid">
-                        <div className="cv-info-item">
-                            <span className="cv-info-label">Filename:</span>
-                            <span className="cv-info-value">{cvMetadata.filename}</span>
+            {
+                loading ? (
+                    <CVSkeleton />
+                ) :
+                    cvMetadata && (
+                        <div className="cv-current-info">
+                            <h3>
+                                <span className="syntax-comment">{'// '}</span>
+                                <span className="syntax-keyword">Current CV</span>
+                            </h3>
+                            <div className="cv-info-grid">
+                                <div className="cv-info-item">
+                                    <span className="cv-info-label">Filename:</span>
+                                    <span className="cv-info-value">{cvMetadata.filename}</span>
+                                </div>
+                                <div className="cv-info-item">
+                                    <span className="cv-info-label">Size:</span>
+                                    <span className="cv-info-value">{formatFileSize(cvMetadata.size)}</span>
+                                </div>
+                                <div className="cv-info-item">
+                                    <span className="cv-info-label">Uploaded:</span>
+                                    <span className="cv-info-value">{formatDate(cvMetadata.uploadedAt)}</span>
+                                </div>
+                            </div>
+                            <button onClick={handleDelete} className="cv-delete-btn">
+                                <span className="syntax-function">deleteCV</span>
+                                <span className="syntax-bracket">()</span>
+                            </button>
                         </div>
-                        <div className="cv-info-item">
-                            <span className="cv-info-label">Size:</span>
-                            <span className="cv-info-value">{formatFileSize(cvMetadata.size)}</span>
-                        </div>
-                        <div className="cv-info-item">
-                            <span className="cv-info-label">Uploaded:</span>
-                            <span className="cv-info-value">{formatDate(cvMetadata.uploadedAt)}</span>
-                        </div>
-                    </div>
-                    <button onClick={handleDelete} className="cv-delete-btn">
-                        <span className="syntax-function">deleteCV</span>
-                        <span className="syntax-bracket">()</span>
-                    </button>
-                </div>
-            )}
+                    )}
 
             {/* Upload Section */}
             <div className="cv-upload-section">

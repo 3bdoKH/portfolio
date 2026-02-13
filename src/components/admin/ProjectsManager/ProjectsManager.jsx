@@ -182,17 +182,6 @@ const ProjectsManager = () => {
         }
     };
 
-    // if (loading) {
-    //     return (
-    //         <div className="projects-manager">
-    //             <div className="loading-container">
-    //                 <div className="spinner-large"></div>
-    //                 <p>Loading projects...</p>
-    //             </div>
-    //         </div>
-    //     );
-    // }
-
     return (
         <div className="projects-manager">
             {/* Header */}
