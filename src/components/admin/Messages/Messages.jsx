@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { getMessages, updateMessageStatus, deleteMessage } from '../../../services/api';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 import MessagesSkeleton from './MessagesSkeleton';
 const Messages = () => {
     const [messages, setMessages] = useState([]);
@@ -65,17 +63,6 @@ const Messages = () => {
             minute: '2-digit',
         }).format(date);
     };
-
-    // if (loading) {
-    //     return (
-    //         <div className="admin-dashboard">
-    //             <div className="loading-container">
-    //                 <div className="spinner-large"></div>
-    //                 <p>Loading messages...</p>
-    //             </div>
-    //         </div>
-    //     );
-    // }
     return (
         <div className="messages-section">
             {loading ?
