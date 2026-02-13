@@ -1,4 +1,4 @@
-import commands, { getCommandNames } from './commands';
+import commands, { getCommandNames } from './commands/index';
 import { parseCommand } from './utils/parser';
 import { ASCII_ART } from './utils/ascii-art';
 

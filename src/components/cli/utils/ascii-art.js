@@ -31,15 +31,6 @@ export const ASCII_ART = {
     Follow the white rabbit.
     
     Knock, knock.
-`,
-
-    logo: `
-    ___    __ __
-   / _ |  / //_/
-  / __ | / ,<   
- /_/ |_|/_/|_|  
- 
- Abdulrahman Khairy
 `
 };
 

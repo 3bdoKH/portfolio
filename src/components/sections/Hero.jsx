@@ -21,7 +21,6 @@ const Hero = () => {
         const cursorInterval = setInterval(() => {
             setShowCursor(prev => !prev);
         }, 530);
-        console.log(showCursor)
         return () => clearInterval(cursorInterval);
         // eslint-disable-next-line
     }, []);
