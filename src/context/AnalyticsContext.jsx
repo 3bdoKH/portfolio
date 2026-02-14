@@ -90,6 +90,19 @@ export const AnalyticsProvider = ({ children }) => {
         });
     };
 
+    const trackSocialLinksClick = (socialLink) => {
+        const sessionKey = `social_click_${socialLink}`;
+        const hasTracked = localStorage.getItem(sessionKey);
+
+        if (!hasTracked) {
+            trackEventAPI('social_click', {
+                socialLink,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem(sessionKey, 'true');
+        }
+    };
+
     const trackEvent = (eventType, eventData = {}) => {
         trackEventAPI(eventType, eventData);
     };
@@ -101,6 +114,7 @@ export const AnalyticsProvider = ({ children }) => {
         trackCVDownload,
         trackTerminalOpen,
         trackTerminalCommand,
+        trackSocialLinksClick,
         trackEvent,
     };
 

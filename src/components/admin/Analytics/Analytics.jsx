@@ -23,6 +23,8 @@ const Analytics = ({ token }) => {
             setAnalytics(analyticsData.data);
             setTerminalAnalytics(terminalAnalyticsData.data);
             setRecentActivities(recentActivitiesData.data);
+            console.log(recentActivitiesData.data);
+            console.log(analyticsData.data);
         } catch (error) {
             console.error('Error loading data:', error);
             if (error.response && error.response.status === 401) {
@@ -79,6 +81,17 @@ const Analytics = ({ token }) => {
                                         <div className="activity-content">
                                             <span className="activity-type">{event.eventType}</span>
                                             <span className="activity-time">{formatDate(event.timestamp)}</span>
+                                        </div>
+                                        <div className="activity-details">
+                                            {event.eventData && event.eventType === 'page_view' ? (
+                                                <p>{event.eventData.page}</p>
+                                            ) : event.eventType === 'project_click' ? (
+                                                <p>{event.eventData.projectName}</p>
+                                            ) : event.eventType === 'social_click' ? (
+                                                <p>{event.eventData.socialLink}</p>
+                                            ) : (
+                                                ''
+                                            )}
                                         </div>
                                     </div>
                                 ))}
