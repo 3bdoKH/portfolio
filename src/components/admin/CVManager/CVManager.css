@@ -10,47 +10,15 @@
 }
 
 .cv-manager-header h2 {
-    color: #00ff88;
     font-size: 28px;
     margin-bottom: 8px;
     font-family: 'Courier New', monospace;
 }
 
 .cv-manager-subtitle {
-    color: rgba(0, 255, 136, 0.6);
+    color: var(--accent-secondary);
     font-size: 14px;
     font-family: 'Courier New', monospace;
-}
-
-/* Loading State */
-.cv-manager-loading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 60px 20px;
-    color: rgba(0, 255, 136, 0.7);
-    min-height: 100vh;
-}
-
-.cv-manager-loading p {
-    font-family: 'Courier New', monospace;
-}
-
-.spinner-large {
-    width: 50px;
-    height: 50px;
-    border: 3px solid rgba(0, 255, 136, 0.1);
-    border-top-color: #00ff88;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin-bottom: 20px;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
 }
 
 /* Message Display */
@@ -76,28 +44,27 @@
 }
 
 .cv-message-success {
-    background: rgba(0, 255, 136, 0.1);
-    border: 1px solid rgba(0, 255, 136, 0.3);
-    color: #00ff88;
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-accent);
+    color: var(--accent-primary);
 }
 
 .cv-message-error {
-    background: rgba(255, 68, 68, 0.1);
-    border: 1px solid rgba(255, 68, 68, 0.3);
-    color: #ff4444;
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-accent);
+    color: var(--accent-primary);
 }
 
 /* Current CV Info */
 .cv-current-info {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-    border: 1px solid rgba(0, 255, 136, 0.3);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 25px;
     margin-bottom: 30px;
 }
 
 .cv-current-info h3 {
-    color: #00ff88;
     font-size: 18px;
     margin-bottom: 20px;
     font-family: 'Courier New', monospace;
@@ -114,18 +81,18 @@
     justify-content: space-between;
     align-items: center;
     padding: 12px;
-    background: rgba(0, 0, 0, 0.2);
+    background: var(--bg-overlay);
     border-radius: 6px;
 }
 
 .cv-info-label {
-    color: rgba(0, 255, 136, 0.7);
+    color: var(--accent-primary);
     font-size: 14px;
     font-family: 'Courier New', monospace;
 }
 
 .cv-info-value {
-    color: #00ff88;
+    color: var(--accent-secondary);
     font-size: 14px;
     font-weight: 500;
     font-family: 'Courier New', monospace;
@@ -151,15 +118,14 @@
 
 /* Upload Section */
 .cv-upload-section {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-    border: 1px solid rgba(0, 255, 136, 0.3);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 25px;
     margin-bottom: 30px;
 }
 
 .cv-upload-section h3 {
-    color: #00ff88;
     font-size: 18px;
     margin-bottom: 20px;
     font-family: 'Courier New', monospace;
@@ -179,32 +145,27 @@
     align-items: center;
     justify-content: center;
     padding: 40px 20px;
-    border: 2px dashed rgba(0, 255, 136, 0.3);
+    border: 2px dashed var(--border-accent);
     border-radius: 8px;
-    background: rgba(0, 255, 136, 0.02);
+    background: var(--bg-overlay);
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.cv-file-label:hover {
-    border-color: rgba(0, 255, 136, 0.5);
-    background: rgba(0, 255, 136, 0.05);
-}
-
 .cv-file-label svg {
-    color: #00ff88;
+    color: var(--accent-primary);
     margin-bottom: 15px;
 }
 
 .cv-file-label-text {
-    color: #00ff88;
+    color: var(--accent-primary);
     font-size: 16px;
     margin-bottom: 8px;
     font-family: 'Courier New', monospace;
 }
 
 .cv-file-label-hint {
-    color: rgba(0, 255, 136, 0.6);
+    color: var(--accent-secondary);
     font-size: 12px;
     font-family: 'Courier New', monospace;
 }
@@ -215,8 +176,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    background: rgba(0, 255, 136, 0.05);
-    border: 1px solid rgba(0, 255, 136, 0.2);
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     gap: 15px;
 }
@@ -229,22 +190,22 @@
 }
 
 .cv-selected-file-name {
-    color: #00ff88;
+    color: var(--accent-primary);
     font-size: 14px;
     font-weight: 500;
     font-family: 'Courier New', monospace;
 }
 
 .cv-selected-file-size {
-    color: rgba(0, 255, 136, 0.6);
+    color: var(--accent-secondary);
     font-size: 12px;
     font-family: 'Courier New', monospace;
 }
 
 .cv-upload-btn {
     background: transparent;
-    border: 1px solid rgba(0, 255, 136, 0.3);
-    color: #00ff88;
+    border: 1px solid var(--border-color);
+    color: var(--accent-primary);
     padding: 10px 24px;
     border-radius: 6px;
     cursor: pointer;
@@ -256,9 +217,9 @@
 }
 
 .cv-upload-btn:hover:not(:disabled) {
-    border-color: #00ff88;
-    background: rgba(0, 255, 136, 0.1);
-    box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+    border-color: var(--border-accent);
+    background: var(--bg-overlay);
+    box-shadow: 0 0 20px var(--accent-glow);
 }
 
 .cv-upload-btn:disabled {
