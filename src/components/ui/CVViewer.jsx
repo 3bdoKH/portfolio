@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getCVFile } from '../../services/api';
 import { useAnalytics } from '../../context/AnalyticsContext';
+import CVSkeleton from './CVSkeleton';
 import './CVViewer.css';
 
 const CVViewer = ({ isOpen, onClose }) => {
@@ -96,55 +97,53 @@ const CVViewer = ({ isOpen, onClose }) => {
 
     return (
         <div className="cv-viewer-overlay" onClick={onClose}>
-            <div className="cv-viewer-modal" onClick={(e) => e.stopPropagation()}>
-                {/* Header */}
-                <div className="cv-viewer-header">
-                    <div className="cv-header-left">
-                        <span className="code-comment">{`// `}</span>
-                        <span className="code-string">{filename}</span>
+            {loading ? (
+                <CVSkeleton onClose={onClose} />
+            ) : (
+                <div className="cv-viewer-modal" onClick={(e) => e.stopPropagation()}>
+                    {/* Header */}
+                    <div className="cv-viewer-header">
+                        <div className="cv-header-left">
+                            <span className="code-comment">{`// `}</span>
+                            <span className="code-string">{filename}</span>
+                        </div>
+                        <div className="cv-header-right">
+                            <button
+                                className="cv-header-btn"
+                                onClick={handleDownload}
+                                disabled={!pdfUrl}
+                            >
+                                <span className="code-function">download</span>
+                                <span className="code-bracket">()</span>
+                            </button>
+                            <button className="cv-close-btn" onClick={onClose}>
+                                <span className="code-bracket">×</span>
+                            </button>
+                        </div>
                     </div>
-                    <div className="cv-header-right">
-                        <button
-                            className="cv-header-btn"
-                            onClick={handleDownload}
-                            disabled={!pdfUrl}
-                        >
-                            <span className="code-function">download</span>
-                            <span className="code-bracket">()</span>
-                        </button>
-                        <button className="cv-close-btn" onClick={onClose}>
-                            <span className="code-bracket">×</span>
-                        </button>
+
+                    {/* Content */}
+                    <div className="cv-viewer-content">
+                        {error && (
+                            <div className="cv-error">
+                                <span className="code-keyword">Error:</span>
+                                <span className="code-string"> "{error}"</span>
+                            </div>
+                        )}
+
+                        {!error && pdfUrl && (
+                            <iframe
+                                src={pdfUrl}
+                                className="cv-iframe"
+                                title="CV Preview"
+                            />
+                        )}
                     </div>
                 </div>
-
-                {/* Content */}
-                <div className="cv-viewer-content">
-                    {loading && (
-                        <div className="cv-loading">
-                            <div className="spinner"></div>
-                            <p className="code-comment">{'// Loading CV...'}</p>
-                        </div>
-                    )}
-
-                    {error && (
-                        <div className="cv-error">
-                            <span className="code-keyword">Error:</span>
-                            <span className="code-string"> "{error}"</span>
-                        </div>
-                    )}
-
-                    {!loading && !error && pdfUrl && (
-                        <iframe
-                            src={pdfUrl}
-                            className="cv-iframe"
-                            title="CV Preview"
-                        />
-                    )}
-                </div>
-            </div>
+            )}
         </div>
     );
+
 };
 
 export default CVViewer;
