@@ -65,56 +65,60 @@ const Messages = () => {
     };
     return (
         <div className="messages-section">
-            {loading ?
-                <MessagesSkeleton />
-                : messages.length > 0 ? (
-                    <div className="messages-list">
-                        {
-                            messages.map((message) => (
-                                <div key={message._id} className={`message-card ${message.isRead ? 'read' : 'unread'}`}>
-                                    <div className="message-header">
-                                        <div className="message-from">
-                                            <strong>{message.name}</strong>
-                                            <span className="message-email">{message.email}</span>
-                                        </div>
-                                        <div className="message-meta">
-                                            {!message.isRead && <span className="unread-badge">New</span>}
-                                            <span className="message-date">{formatDate(message.createdAt)}</span>
-                                        </div>
+            {loading ? (
+                <div className="messages-list">
+                    {[...Array(3)].map((_, i) => (
+                        <MessagesSkeleton key={i} />
+                    ))}
+                </div>
+            ) : messages.length > 0 ? (
+                <div className="messages-list">
+                    {
+                        messages.map((message) => (
+                            <div key={message._id} className={`message-card ${message.isRead ? 'read' : 'unread'}`}>
+                                <div className="message-header">
+                                    <div className="message-from">
+                                        <strong>{message.name}</strong>
+                                        <span className="message-email">{message.email}</span>
                                     </div>
-                                    <div className="message-body">
-                                        {message.message}
-                                    </div>
-                                    <div className="message-actions">
-                                        <a href={`mailto:${message.email}`} className="action-link">
-                                            Reply
-                                        </a>
-                                        <button
-                                            onClick={() => handleToggleRead(message._id, message.isRead)}
-                                            className="action-link action-button"
-                                        >
-                                            {message.isRead ? 'Mark Unread' : 'Mark Read'}
-                                        </button>
-                                        <button
-                                            onClick={() => handleDeleteMessage(message._id)}
-                                            className="action-link action-button delete-button"
-                                        >
-                                            Delete
-                                        </button>
+                                    <div className="message-meta">
+                                        {!message.isRead && <span className="unread-badge">New</span>}
+                                        <span className="message-date">{formatDate(message.createdAt)}</span>
                                     </div>
                                 </div>
-                            ))
-                        }
-                    </div>
-                ) : (
-                    <div className="empty-state">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                        </svg>
-                        <h3>No messages yet</h3>
-                        <p>Messages from your contact form will appear here</p>
-                    </div>
-                )}
+                                <div className="message-body">
+                                    {message.message}
+                                </div>
+                                <div className="message-actions">
+                                    <a href={`mailto:${message.email}`} className="action-link">
+                                        Reply
+                                    </a>
+                                    <button
+                                        onClick={() => handleToggleRead(message._id, message.isRead)}
+                                        className="action-link action-button"
+                                    >
+                                        {message.isRead ? 'Mark Unread' : 'Mark Read'}
+                                    </button>
+                                    <button
+                                        onClick={() => handleDeleteMessage(message._id)}
+                                        className="action-link action-button delete-button"
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            ) : (
+                <div className="empty-state">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                    <h3>No messages yet</h3>
+                    <p>Messages from your contact form will appear here</p>
+                </div>
+            )}
         </div>
     );
 };
