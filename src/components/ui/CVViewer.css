@@ -27,15 +27,14 @@
 }
 
 .cv-viewer-modal {
-    background: #0a0e27;
-    border: 2px solid #00ff88;
+    background: var(--bg-primary);
+    border: 2px solid var(--border-color);
     border-radius: 12px;
     max-width: 900px;
     width: 100%;
     max-height: 90vh;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0 40px rgba(0, 255, 136, 0.3);
     animation: slideUp 0.3s ease;
 }
 
@@ -61,8 +60,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background: rgba(0, 255, 136, 0.05);
-    border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+    background: var(--bg-overlay);
+    border-bottom: 1px solid var(--border-color);
     border-radius: 10px 10px 0 0;
 }
 
@@ -80,8 +79,8 @@
 
 .cv-header-btn {
     background: transparent;
-    border: 1px solid #00ff88;
-    color: #00ff88;
+    border: 1px solid var(--border-color);
+    color: var(--accent-primary);
     padding: 8px 16px;
     border-radius: 6px;
     cursor: pointer;
@@ -91,8 +90,7 @@
 }
 
 .cv-header-btn:hover:not(:disabled) {
-    background: rgba(0, 255, 136, 0.1);
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+    box-shadow: 0 0 15px var(--accent-glow);
 }
 
 .cv-header-btn:disabled {
@@ -143,7 +141,7 @@
     height: 70vh;
     border: none;
     border-radius: 8px;
-    background: #fff;
+    background: var(--bg-primary);
 }
 
 /* Loading State */
@@ -154,14 +152,14 @@
     justify-content: center;
     gap: 20px;
     padding: 60px 20px;
-    color: #00ff88;
+    color: var(--accent-primary);
 }
 
 .spinner {
     width: 50px;
     height: 50px;
     border: 3px solid rgba(0, 255, 136, 0.1);
-    border-top-color: #00ff88;
+    border-top-color: var(--accent-primary);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }

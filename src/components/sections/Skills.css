@@ -20,7 +20,6 @@
     color: var(--syntax-comment);
     font-size: var(--font-size-base);
     display: block;
-    margin-bottom: var(--spacing-sm);
 }
 
 .section-title {

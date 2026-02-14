@@ -100,7 +100,8 @@ const CVViewer = ({ isOpen, onClose }) => {
                 {/* Header */}
                 <div className="cv-viewer-header">
                     <div className="cv-header-left">
-                        <span className="code-comment">{`// ${filename}`}</span>
+                        <span className="code-comment">{`// `}</span>
+                        <span className="code-string">{filename}</span>
                     </div>
                     <div className="cv-header-right">
                         <button
