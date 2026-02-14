@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getAnalyticsStats, getTerminalAnalytics, getRecentActivities } from '../../../services/api';
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import AnalyticsSkeleton from './AnalyticsSkeleton';
 const Analytics = ({ token }) => {
     const [analytics, setAnalytics] = useState(null);
     const [terminalAnalytics, setTerminalAnalytics] = useState(null);
@@ -47,182 +46,157 @@ const Analytics = ({ token }) => {
     };
     return (
         <div className="analytics-section">
-            <div className="analytics-grid">
-                <div className="analytics-card">
-                    <h3>
-                        <span className="syntax-comment">{'// '}</span>
-                        <span className="syntax-keyword">Event Types</span>
-                    </h3>
-                    <div className="event-list">
-                        {
-                            loading ? <Skeleton count={7} width={"100%"} height={45} baseColor="var(--bg-gray)" /> :
-                                analytics.eventsByType.map((event) => (
-                                    <div key={event.type} className="event-item">
-                                        <span className="event-type">{event.type}</span>
-                                        <span className="event-count">{event.count}</span>
+            {loading ? (
+                <AnalyticsSkeleton />
+            ) : (
+                <div className="analytics-grid">
+                    <div className="analytics-card">
+                        <h3>
+                            <span className="syntax-comment">{'// '}</span>
+                            <span className="syntax-keyword">Event Types</span>
+                        </h3>
+                        <div className="event-list">
+                            {analytics.eventsByType.map((event) => (
+                                <div key={event.type} className="event-item">
+                                    <span className="event-type">{event.type}</span>
+                                    <span className="event-count">{event.count}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="analytics-card">
+                        <h3>
+                            <span className="syntax-comment">{'// '}</span>
+                            <span className="syntax-keyword">Recent Activity</span>
+                        </h3>
+                        <div className="activity-list">
+                            {recentActivities
+                                .slice(0, 10)
+                                .map((event, index) => (
+                                    <div key={index} className="activity-item">
+                                        <div className="activity-dot"></div>
+                                        <div className="activity-content">
+                                            <span className="activity-type">{event.eventType}</span>
+                                            <span className="activity-time">{formatDate(event.timestamp)}</span>
+                                        </div>
+                                    </div>
+                                ))}
+                        </div>
+                    </div>
+
+                    <div className="analytics-card">
+                        <h3>
+                            <span className="syntax-comment">{'// '}</span>
+                            <span className="syntax-keyword">Project Clicks</span>
+                        </h3>
+                        <div className="event-list">
+                            {analytics.projectClicksByProject && analytics.projectClicksByProject.length > 0 ? (
+                                analytics.projectClicksByProject.map((project, index) => (
+                                    <div key={index} className="event-item">
+                                        <span className="event-type">{project.projectName || 'Unknown Project'}</span>
+                                        <span className="event-count">{project.clicks}</span>
                                     </div>
                                 ))
-
-                        }
+                            ) : (
+                                <div className="empty-state-small">
+                                    <p>No project clicks yet</p>
+                                </div>
+                            )}
+                        </div>
                     </div>
-                </div>
 
-                <div className="analytics-card">
-                    <h3>
-                        <span className="syntax-comment">{'// '}</span>
-                        <span className="syntax-keyword">Recent Activity</span>
-                    </h3>
-                    <div className="activity-list">
-                        {
-                            loading ? <Skeleton count={10} width={"100%"} height={45} baseColor="var(--bg-gray)" /> :
-                                recentActivities
-                                    .slice(0, 10)
-                                    .map((event, index) => (
-                                        <div key={index} className="activity-item">
-                                            <div className="activity-dot"></div>
-                                            <div className="activity-content">
-                                                <span className="activity-type">{event.eventType}</span>
-                                                <span className="activity-time">{formatDate(event.timestamp)}</span>
-                                            </div>
-                                        </div>
-                                    ))
-                        }
-                    </div>
-                </div>
+                    {/* Terminal Analytics Card */}
+                    <div className="analytics-card terminal-analytics-card">
+                        <h3>
+                            <span className="syntax-comment">{'// '}</span>
+                            <span className="syntax-keyword">Terminal Analytics</span>
+                        </h3>
 
-                <div className="analytics-card">
-                    <h3>
-                        <span className="syntax-comment">{'// '}</span>
-                        <span className="syntax-keyword">Project Clicks</span>
-                    </h3>
-                    <div className="event-list">
-                        {
-                            loading ? <Skeleton count={6} width={"100%"} height={45} baseColor="var(--bg-gray)" /> :
-                                analytics.projectClicksByProject && analytics.projectClicksByProject.length > 0 ? (
-                                    analytics.projectClicksByProject.map((project, index) => (
-                                        <div key={index} className="event-item">
-                                            <span className="event-type">{project.projectName || 'Unknown Project'}</span>
-                                            <span className="event-count">{project.clicks}</span>
+                        {/* Terminal Stats */}
+                        <div className="terminal-stats">
+                            <div className="terminal-stat-item">
+                                <span className="terminal-stat-label">Terminal Opens</span>
+                                <span className="terminal-stat-value">
+                                    {terminalAnalytics.totalOpens || 0}
+                                </span>
+                            </div>
+                            <div className="terminal-stat-item">
+                                <span className="terminal-stat-label">Commands Executed</span>
+                                <span className="terminal-stat-value">
+                                    {terminalAnalytics.totalCommands || 0}
+                                </span>
+                            </div>
+                            <div className="terminal-stat-item">
+                                <span className="terminal-stat-label">Successful Commands</span>
+                                <span className="terminal-stat-value">
+                                    {terminalAnalytics.successfulCommands || 0}
+                                </span>
+                            </div>
+                            <div className="terminal-stat-item">
+                                <span className="terminal-stat-label">Failed Commands</span>
+                                <span className="terminal-stat-value">
+                                    {terminalAnalytics.failedCommands || 0}
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Top Commands */}
+                        <div className="terminal-commands-section">
+                            <h4>
+                                <span className="syntax-comment">{'// '}</span>
+                                <span className="syntax-keyword">Most Used Commands</span>
+                            </h4>
+                            <div className="event-list">
+                                {terminalAnalytics.topCommands.length > 0 ? (
+                                    terminalAnalytics.topCommands.map((cmd, index) => (
+                                        <div key={index} className="event-item terminal-command-item">
+                                            <span className="event-type terminal-command-name">$ {cmd.command}</span>
+                                            <span className="event-count">{cmd.count}</span>
                                         </div>
                                     ))
                                 ) : (
                                     <div className="empty-state-small">
-                                        <p>No project clicks yet</p>
+                                        <p>No commands executed yet</p>
                                     </div>
-                                )
-                        }
-                    </div>
-                </div>
+                                )}
+                            </div>
+                        </div>
 
-                {/* Terminal Analytics Card */}
-                <div className="analytics-card terminal-analytics-card">
-                    <h3>
-                        <span className="syntax-comment">{'// '}</span>
-                        <span className="syntax-keyword">Terminal Analytics</span>
-                    </h3>
-
-                    {/* Terminal Stats */}
-                    <div className="terminal-stats">
-                        <div className="terminal-stat-item">
-                            <span className="terminal-stat-label">Terminal Opens</span>
-                            <span className="terminal-stat-value">
-                                {
-                                    loading ? <Skeleton count={1} width={100} height={40} baseColor="var(--bg-gray)" /> :
-                                        terminalAnalytics.totalOpens || 0
-                                }
-                            </span>
-                        </div>
-                        <div className="terminal-stat-item">
-                            <span className="terminal-stat-label">Commands Executed</span>
-                            <span className="terminal-stat-value">
-                                {
-                                    loading ? <Skeleton count={1} width={100} height={40} baseColor="var(--bg-gray)" /> :
-                                        terminalAnalytics.totalCommands || 0
-                                }
-                            </span>
-                        </div>
-                        <div className="terminal-stat-item">
-                            <span className="terminal-stat-label">Successful Commands</span>
-                            <span className="terminal-stat-value">
-                                {
-                                    loading ? <Skeleton count={1} width={100} height={40} baseColor="var(--bg-gray)" /> :
-                                        terminalAnalytics.successfulCommands || 0
-                                }
-                            </span>
-                        </div>
-                        <div className="terminal-stat-item">
-                            <span className="terminal-stat-label">Failed Commands</span>
-                            <span className="terminal-stat-value">
-                                {
-                                    loading ? <Skeleton count={1} width={100} height={40} baseColor="var(--bg-gray)" /> :
-                                        terminalAnalytics.failedCommands || 0
-                                }
-                            </span>
-                        </div>
-                    </div>
-
-                    {/* Top Commands */}
-                    <div className="terminal-commands-section">
-                        <h4>
-                            <span className="syntax-comment">{'// '}</span>
-                            <span className="syntax-keyword">Most Used Commands</span>
-                        </h4>
-                        <div className="event-list">
-                            {
-                                loading ? <Skeleton count={3} width={600} height={45} baseColor="var(--bg-gray)" /> :
-                                    terminalAnalytics.topCommands.length > 0 ? (
-                                        terminalAnalytics.topCommands.map((cmd, index) => (
-                                            <div key={index} className="event-item terminal-command-item">
-                                                <span className="event-type terminal-command-name">$ {cmd.command}</span>
-                                                <span className="event-count">{cmd.count}</span>
-                                            </div>
-                                        ))
-                                    ) : (
-                                        <div className="empty-state-small">
-                                            <p>No commands executed yet</p>
+                        {/* Recent Terminal Activity */}
+                        <div className="terminal-activity-section">
+                            <h4>
+                                <span className="syntax-comment">{'// '}</span>
+                                <span className="syntax-keyword">Recent Terminal Activity</span>
+                            </h4>
+                            <div className="activity-list">
+                                {terminalAnalytics.recentActivity.map((event, index) => (
+                                    <div key={index} className="activity-item terminal-activity-item">
+                                        <div className={`activity-dot ${event.eventType === 'terminal_open' ? 'terminal-open-dot' : 'terminal-command-dot'}`}></div>
+                                        <div className="activity-content">
+                                            <span className="activity-type">
+                                                {event.eventType === 'terminal_open'
+                                                    ? 'Terminal Opened'
+                                                    : `$ ${event.eventData?.command || 'unknown'}`}
+                                                {event.eventData?.success === false && ' X '}
+                                            </span>
+                                            <span className="activity-time">{formatDate(event.timestamp)}</span>
                                         </div>
-                                    )
-                            }
-                        </div>
-                    </div>
-
-                    {/* Recent Terminal Activity */}
-                    <div className="terminal-activity-section">
-                        <h4>
-                            <span className="syntax-comment">{'// '}</span>
-                            <span className="syntax-keyword">Recent Terminal Activity</span>
-                        </h4>
-                        <div className="activity-list">
-                            {
-                                loading ? <Skeleton count={1} width={600} height={45} baseColor="var(--bg-gray)" /> :
-                                    terminalAnalytics.recentActivity.map((event, index) => (
-                                        <div key={index} className="activity-item terminal-activity-item">
-                                            <div className={`activity-dot ${event.eventType === 'terminal_open' ? 'terminal-open-dot' : 'terminal-command-dot'}`}></div>
-                                            <div className="activity-content">
-                                                <span className="activity-type">
-                                                    {event.eventType === 'terminal_open'
-                                                        ? 'Terminal Opened'
-                                                        : `$ ${event.eventData?.command || 'unknown'}`}
-                                                    {event.eventData?.success === false && ' X '}
-                                                </span>
-                                                <span className="activity-time">{formatDate(event.timestamp)}</span>
-                                            </div>
-                                        </div>
-                                    ))}
-                            {
-                                loading ? <Skeleton count={1} width={600} height={45} baseColor="var(--bg-gray)" /> :
-                                    terminalAnalytics.recentActivity.length === 0 && (
-                                        <div className="empty-state-small">
-                                            <p>No terminal activity yet</p>
-                                        </div>
-                                    )
-                            }
+                                    </div>
+                                ))}
+                                {terminalAnalytics.recentActivity.length === 0 && (
+                                    <div className="empty-state-small">
+                                        <p>No terminal activity yet</p>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            )}
         </div>
     );
+
 };
 
 export default Analytics;
