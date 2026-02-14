@@ -54,7 +54,7 @@ const Projects = () => {
                 </div>
 
                 {/* Loading State */}
-                {loading && (
+                {!loading && (
                     <div className="projects-grid">
                         <ProjectsSkeleton />
                         <ProjectsSkeleton />
