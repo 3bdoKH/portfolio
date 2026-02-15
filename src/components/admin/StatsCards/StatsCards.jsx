@@ -39,11 +39,11 @@ const StatsCards = () => {
                     <span className="syntax-bracket">=</span>
                 </div>
                 <div className="stat-value">
-                    <span className="syntax-number">{
-                        loading ? <Skeleton count={1} width={100} baseColor="var(--bg-gray)" /> : analytics.overview.totalMessages
-                    }</span>
-
-                    <span className="syntax-bracket">;</span>
+                    {loading ? <Skeleton count={1} width={100} baseColor="var(--bg-overlay)" highlightColor="var(--border-color)" /> :
+                        <>
+                            <span className="syntax-number">{analytics?.overview.totalMessages}</span>
+                            <span className="syntax-bracket">;</span>
+                        </>}
                 </div>
             </div>
             <div className="stat-card-admin">
@@ -53,10 +53,11 @@ const StatsCards = () => {
                     <span className="syntax-bracket">=</span>
                 </div>
                 <div className="stat-value">
-                    <span className="syntax-number">{
-                        loading ? <Skeleton count={1} width={100} baseColor="var(--bg-gray)" /> : analytics.overview.unreadMessages
-                    }</span>
-                    <span className="syntax-bracket">;</span>
+                    {loading ? <Skeleton count={1} width={100} baseColor="var(--bg-overlay)" highlightColor="var(--border-color)" /> :
+                        <>
+                            <span className="syntax-number">{analytics?.overview.unreadMessages}</span>
+                            <span className="syntax-bracket">;</span>
+                        </>}
                 </div>
             </div>
             <div className="stat-card-admin">
@@ -66,10 +67,11 @@ const StatsCards = () => {
                     <span className="syntax-bracket">=</span>
                 </div>
                 <div className="stat-value">
-                    <span className="syntax-number">{
-                        loading ? <Skeleton count={1} width={100} baseColor="var(--bg-gray)" /> : analytics.overview.pageViews
-                    }</span>
-                    <span className="syntax-bracket">;</span>
+                    {loading ? <Skeleton count={1} width={100} baseColor="var(--bg-overlay)" highlightColor="var(--border-color)" /> :
+                        <>
+                            <span className="syntax-number">{analytics?.overview.pageViews}</span>
+                            <span className="syntax-bracket">;</span>
+                        </>}
                 </div>
             </div>
             <div className="stat-card-admin">
@@ -79,10 +81,11 @@ const StatsCards = () => {
                     <span className="syntax-bracket">=</span>
                 </div>
                 <div className="stat-value">
-                    <span className="syntax-number">{
-                        loading ? <Skeleton count={1} width={100} baseColor="var(--bg-gray)" /> : analytics.overview.projectClicks
-                    }</span>
-                    <span className="syntax-bracket">;</span>
+                    {loading ? <Skeleton count={1} width={100} baseColor="var(--bg-overlay)" highlightColor="var(--border-color)" /> :
+                        <>
+                            <span className="syntax-number">{analytics?.overview.projectClicks}</span>
+                            <span className="syntax-bracket">;</span>
+                        </>}
                 </div>
             </div>
             <div className="stat-card-admin">
@@ -92,10 +95,11 @@ const StatsCards = () => {
                     <span className="syntax-bracket">=</span>
                 </div>
                 <div className="stat-value">
-                    <span className="syntax-number">{
-                        loading ? <Skeleton count={1} width={100} baseColor="var(--bg-gray)" /> : analytics.overview.cvViews
-                    }</span>
-                    <span className="syntax-bracket">;</span>
+                    {loading ? <Skeleton count={1} width={100} baseColor="var(--bg-overlay)" highlightColor="var(--border-color)" /> :
+                        <>
+                            <span className="syntax-number">{analytics?.overview.cvViews}</span>
+                            <span className="syntax-bracket">;</span>
+                        </>}
                 </div>
             </div>
             <div className="stat-card-admin">
@@ -105,10 +109,11 @@ const StatsCards = () => {
                     <span className="syntax-bracket">=</span>
                 </div>
                 <div className="stat-value">
-                    <span className="syntax-number">{
-                        loading ? <Skeleton count={1} width={100} baseColor="var(--bg-gray)" /> : analytics.overview.cvDownloads
-                    }</span>
-                    <span className="syntax-bracket">;</span>
+                    {loading ? <Skeleton count={1} width={100} baseColor="var(--bg-overlay)" highlightColor="var(--border-color)" /> :
+                        <>
+                            <span className="syntax-number">{analytics?.overview.cvDownloads}</span>
+                            <span className="syntax-bracket">;</span>
+                        </>}
                 </div>
             </div>
             <div className="stat-card-admin">
@@ -118,10 +123,11 @@ const StatsCards = () => {
                     <span className="syntax-bracket">=</span>
                 </div>
                 <div className="stat-value">
-                    <span className="syntax-number">{
-                        loading ? <Skeleton count={1} width={100} baseColor="var(--bg-gray)" /> : analytics.overview.contactSubmissions
-                    }</span>
-                    <span className="syntax-bracket">;</span>
+                    {loading ? <Skeleton count={1} width={100} baseColor="var(--bg-overlay)" highlightColor="var(--border-color)" /> :
+                        <>
+                            <span className="syntax-number">{analytics?.overview.contactSubmissions}</span>
+                            <span className="syntax-bracket">;</span>
+                        </>}
                 </div>
             </div>
         </div>

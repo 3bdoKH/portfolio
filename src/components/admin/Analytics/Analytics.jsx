@@ -23,8 +23,6 @@ const Analytics = ({ token }) => {
             setAnalytics(analyticsData.data);
             setTerminalAnalytics(terminalAnalyticsData.data);
             setRecentActivities(recentActivitiesData.data);
-            console.log(recentActivitiesData.data);
-            console.log(analyticsData.data);
         } catch (error) {
             console.error('Error loading data:', error);
             if (error.response && error.response.status === 401) {
@@ -47,14 +45,14 @@ const Analytics = ({ token }) => {
         }).format(date);
     };
     const detailsExpander = (event) => (
-        event.eventType === 'page_view' ? (
-            <p>{event.eventData.page}</p>
-        ) : event.eventType === 'social_click' ? (
-            <p>{event.eventData.socialLink}</p>
-        ) : event.eventType === 'project_click' ? (
-            <p>{event.eventData.projectName}</p>
-        ) : event.eventType === 'contact_submit' ? (
-            <p>{event.eventData.success === true ? 'Success' : 'Error'}</p>
+        event?.eventType === 'page_view' ? (
+            <p>{event?.eventData?.page}</p>
+        ) : event?.eventType === 'social_click' ? (
+            <p>{event?.eventData?.socialLink}</p>
+        ) : event?.eventType === 'project_click' ? (
+            <p>{event?.eventData?.projectName}</p>
+        ) : event?.eventType === 'contact_submit' ? (
+            <p>{event?.eventData?.success === true ? 'Success' : 'Error'}</p>
         ) : ''
     )
     return (
