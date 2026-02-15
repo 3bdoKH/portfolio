@@ -46,6 +46,17 @@ const Analytics = ({ token }) => {
             minute: '2-digit',
         }).format(date);
     };
+    const detailsExpander = (event) => (
+        event.eventType === 'page_view' ? (
+            <p>{event.eventData.page}</p>
+        ) : event.eventType === 'social_click' ? (
+            <p>{event.eventData.socialLink}</p>
+        ) : event.eventType === 'project_click' ? (
+            <p>{event.eventData.projectName}</p>
+        ) : event.eventType === 'contact_submit' ? (
+            <p>{event.eventData.success === true ? 'Success' : 'Error'}</p>
+        ) : ''
+    )
     return (
         <div className="analytics-section">
             {loading ? (
@@ -83,15 +94,7 @@ const Analytics = ({ token }) => {
                                             <span className="activity-time">{formatDate(event.timestamp)}</span>
                                         </div>
                                         <div className="activity-details">
-                                            {event.eventData && event.eventType === 'page_view' ? (
-                                                <p>{event.eventData.page}</p>
-                                            ) : event.eventType === 'project_click' ? (
-                                                <p>{event.eventData.projectName}</p>
-                                            ) : event.eventType === 'social_click' ? (
-                                                <p>{event.eventData.socialLink}</p>
-                                            ) : (
-                                                ''
-                                            )}
+                                            {event.eventData && detailsExpander(event)}
                                         </div>
                                     </div>
                                 ))}

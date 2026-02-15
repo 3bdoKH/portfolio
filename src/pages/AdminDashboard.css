@@ -386,7 +386,17 @@
 .activity-item {
     display: flex;
     gap: 12px;
-    align-items: flex-start;
+    align-items: center;
+}
+
+.activity-item:not(:last-of-type) {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+}
+
+.activity-details p {
+    font-size: 14px;
+    color: var(--text-tertiary);
 }
 
 .activity-dot {
