@@ -10,7 +10,6 @@ const StatsCardsSkeleton = () => {
                         <div className="stat-label">
                             <span className="syntax-keyword stat-variable">const</span>{' '}
                             <Skeleton width={80} height={20} />{' '}
-                            <span className="syntax-bracket">=</span>
                         </div>
                         <div className="stat-value" style={{ marginTop: '10px' }}>
                             <Skeleton width={50} height={24} />
