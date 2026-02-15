@@ -1,10 +1,9 @@
 import { getAnalyticsStats } from "../../../services/api";
 import { useEffect, useState } from "react";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 const StatsCards = () => {
     const [analytics, setAnalytics] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [keys, setKeys] = useState([]);
     useEffect(() => {
         loadData();
         // eslint-disable-next-line
@@ -19,6 +18,7 @@ const StatsCards = () => {
             ]);
 
             setAnalytics(analyticsData.data);
+            setKeys(Object.keys(analyticsData.data.overview));
         } catch (error) {
             console.error('Error loading data:', error);
             if (error.message.includes('401') || error.message.includes('token')) {
@@ -32,104 +32,21 @@ const StatsCards = () => {
 
     return (
         <div className="stats-grid">
-            <div className="stat-card-admin">
-                <div className="stat-label">
-                    <span className="syntax-keyword stat-variable">const</span>{' '}
-                    <span className="syntax-variable stat-variable">totalMessages</span>{' '}
-                    <span className="syntax-bracket">=</span>
-                </div>
-                <div className="stat-value">
-                    {loading ? <Skeleton count={1} width={100} baseColor="var(--bg-overlay)" highlightColor="var(--border-color)" /> :
-                        <>
-                            <span className="syntax-number">{analytics?.overview.totalMessages}</span>
+            {
+                keys.map((key, index) => (
+                    <div className="stat-card-admin" key={index}>
+                        <div className="stat-label">
+                            <span className="syntax-keyword stat-variable">const</span>{' '}
+                            <span className="syntax-variable stat-variable">{key}</span>{' '}
+                            <span className="syntax-bracket">=</span>
+                        </div>
+                        <div className="stat-value">
+                            <span className="syntax-number">{analytics?.overview[key]}</span>
                             <span className="syntax-bracket">;</span>
-                        </>}
-                </div>
-            </div>
-            <div className="stat-card-admin">
-                <div className="stat-label">
-                    <span className="syntax-keyword stat-variable">const</span>{' '}
-                    <span className="syntax-variable stat-variable">unread</span>{' '}
-                    <span className="syntax-bracket">=</span>
-                </div>
-                <div className="stat-value">
-                    {loading ? <Skeleton count={1} width={100} baseColor="var(--bg-overlay)" highlightColor="var(--border-color)" /> :
-                        <>
-                            <span className="syntax-number">{analytics?.overview.unreadMessages}</span>
-                            <span className="syntax-bracket">;</span>
-                        </>}
-                </div>
-            </div>
-            <div className="stat-card-admin">
-                <div className="stat-label">
-                    <span className="syntax-keyword stat-variable">const</span>{' '}
-                    <span className="syntax-variable stat-variable">pageViews</span>{' '}
-                    <span className="syntax-bracket">=</span>
-                </div>
-                <div className="stat-value">
-                    {loading ? <Skeleton count={1} width={100} baseColor="var(--bg-overlay)" highlightColor="var(--border-color)" /> :
-                        <>
-                            <span className="syntax-number">{analytics?.overview.pageViews}</span>
-                            <span className="syntax-bracket">;</span>
-                        </>}
-                </div>
-            </div>
-            <div className="stat-card-admin">
-                <div className="stat-label">
-                    <span className="syntax-keyword stat-variable">const</span>{' '}
-                    <span className="syntax-variable stat-variable">projectClicks</span>{' '}
-                    <span className="syntax-bracket">=</span>
-                </div>
-                <div className="stat-value">
-                    {loading ? <Skeleton count={1} width={100} baseColor="var(--bg-overlay)" highlightColor="var(--border-color)" /> :
-                        <>
-                            <span className="syntax-number">{analytics?.overview.projectClicks}</span>
-                            <span className="syntax-bracket">;</span>
-                        </>}
-                </div>
-            </div>
-            <div className="stat-card-admin">
-                <div className="stat-label">
-                    <span className="syntax-keyword stat-variable">const</span>{' '}
-                    <span className="syntax-variable stat-variable">cvViews</span>{' '}
-                    <span className="syntax-bracket">=</span>
-                </div>
-                <div className="stat-value">
-                    {loading ? <Skeleton count={1} width={100} baseColor="var(--bg-overlay)" highlightColor="var(--border-color)" /> :
-                        <>
-                            <span className="syntax-number">{analytics?.overview.cvViews}</span>
-                            <span className="syntax-bracket">;</span>
-                        </>}
-                </div>
-            </div>
-            <div className="stat-card-admin">
-                <div className="stat-label">
-                    <span className="syntax-keyword stat-variable">const</span>{' '}
-                    <span className="syntax-variable stat-variable">cvDownloads</span>{' '}
-                    <span className="syntax-bracket">=</span>
-                </div>
-                <div className="stat-value">
-                    {loading ? <Skeleton count={1} width={100} baseColor="var(--bg-overlay)" highlightColor="var(--border-color)" /> :
-                        <>
-                            <span className="syntax-number">{analytics?.overview.cvDownloads}</span>
-                            <span className="syntax-bracket">;</span>
-                        </>}
-                </div>
-            </div>
-            <div className="stat-card-admin">
-                <div className="stat-label">
-                    <span className="syntax-keyword stat-variable">const</span>{' '}
-                    <span className="syntax-variable stat-variable">contactSubmits</span>{' '}
-                    <span className="syntax-bracket">=</span>
-                </div>
-                <div className="stat-value">
-                    {loading ? <Skeleton count={1} width={100} baseColor="var(--bg-overlay)" highlightColor="var(--border-color)" /> :
-                        <>
-                            <span className="syntax-number">{analytics?.overview.contactSubmissions}</span>
-                            <span className="syntax-bracket">;</span>
-                        </>}
-                </div>
-            </div>
+                        </div>
+                    </div>
+                ))
+            }
         </div>
     );
 };
