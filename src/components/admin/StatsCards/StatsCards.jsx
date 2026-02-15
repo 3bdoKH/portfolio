@@ -1,5 +1,7 @@
 import { getAnalyticsStats } from "../../../services/api";
 import { useEffect, useState } from "react";
+import StatsCardsSkeleton from "./StatsCardsSkeleton";
+
 const StatsCards = () => {
     const [analytics, setAnalytics] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -29,6 +31,10 @@ const StatsCards = () => {
             setLoading(false);
         }
     };
+
+    if (loading) {
+        return <StatsCardsSkeleton />;
+    }
 
     return (
         <div className="stats-grid">
