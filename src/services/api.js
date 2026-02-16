@@ -1,12 +1,6 @@
-/**
- * API Service for Portfolio Backend
- */
-
 const API_URL = process.env.REACT_APP_API_URL;
 
-/**
- * Submit contact form
- */
+// Submit contact form
 export const submitContactForm = async (formData) => {
     try {
         const response = await fetch(`${API_URL}/api/contact`, {
@@ -30,9 +24,7 @@ export const submitContactForm = async (formData) => {
     }
 };
 
-/**
- * Track analytics event
- */
+// Track analytics event
 export const trackEvent = async (eventType, eventData = {}) => {
     try {
         await fetch(`${API_URL}/api/analytics/track`, {
@@ -46,14 +38,11 @@ export const trackEvent = async (eventType, eventData = {}) => {
             }),
         });
     } catch (error) {
-        // Silently fail for analytics
         console.warn('Analytics tracking failed:', error);
     }
 };
 
-/**
- * Admin login
- */
+// Admin login
 export const adminLogin = async (credentials) => {
     try {
         const response = await fetch(`${API_URL}/api/auth/login`, {
@@ -77,9 +66,7 @@ export const adminLogin = async (credentials) => {
     }
 };
 
-/**
- * Get all messages (Admin only)
- */
+// Get all messages (Admin only)
 export const getMessages = async (token, page = 1, limit = 10, unreadOnly = false) => {
     try {
         const response = await fetch(
@@ -104,9 +91,7 @@ export const getMessages = async (token, page = 1, limit = 10, unreadOnly = fals
     }
 };
 
-/**
- * Update message status (Admin only)
- */
+// Update message status (Admin only)
 export const updateMessageStatus = async (token, messageId, isRead) => {
     try {
         const response = await fetch(
@@ -134,9 +119,7 @@ export const updateMessageStatus = async (token, messageId, isRead) => {
     }
 };
 
-/**
- * Delete message (Admin only)
- */
+// Delete message (Admin only)
 export const deleteMessage = async (token, messageId) => {
     try {
         const response = await fetch(
@@ -162,9 +145,7 @@ export const deleteMessage = async (token, messageId) => {
     }
 };
 
-/**
- * Get analytics stats (Admin only)
- */
+// Get analytics stats (Admin only)
 export const getAnalyticsStats = async (token, startDate = null, endDate = null) => {
     try {
         let url = `${API_URL}/api/analytics/stats`;
@@ -195,7 +176,7 @@ export const getAnalyticsStats = async (token, startDate = null, endDate = null)
     }
 };
 
-
+// Get recent activities (Admin only)
 export const getRecentActivities = async (token) => {
     try {
         const response = await fetch(`${API_URL}/api/analytics/recent`, {
@@ -216,9 +197,8 @@ export const getRecentActivities = async (token) => {
         throw error;
     }
 };
-/**
- * Get all projects
- */
+
+// Get all projects
 export const getProjects = async () => {
     try {
         const response = await fetch(`${API_URL}/api/projects`);
@@ -236,9 +216,7 @@ export const getProjects = async () => {
     }
 };
 
-/**
- * Get single project
- */
+// Get single project (Not implemented)
 export const getProject = async (id) => {
     try {
         const response = await fetch(`${API_URL}/api/projects/${id}`);
@@ -256,9 +234,7 @@ export const getProject = async (id) => {
     }
 };
 
-/**
- * Create new project (Admin only)
- */
+// Create new project (Admin only)
 export const createProject = async (token, projectData) => {
     try {
         const response = await fetch(`${API_URL}/api/projects`, {
@@ -283,9 +259,7 @@ export const createProject = async (token, projectData) => {
     }
 };
 
-/**
- * Update project (Admin only)
- */
+// Update project (Admin only)
 export const updateProject = async (token, id, projectData) => {
     try {
         const response = await fetch(`${API_URL}/api/projects/${id}`, {
@@ -310,9 +284,7 @@ export const updateProject = async (token, id, projectData) => {
     }
 };
 
-/**
- * Delete project (Admin only)
- */
+// Delete project (Admin only)
 export const deleteProject = async (token, id) => {
     try {
         const response = await fetch(`${API_URL}/api/projects/${id}`, {
@@ -335,9 +307,7 @@ export const deleteProject = async (token, id) => {
     }
 };
 
-/**
- * Upload CV (Admin only)
- */
+// Upload CV (Admin only)
 export const uploadCV = async (token, cvData) => {
     try {
         const response = await fetch(`${API_URL}/api/cv/upload`, {
@@ -362,9 +332,7 @@ export const uploadCV = async (token, cvData) => {
     }
 };
 
-/**
- * Get CV metadata
- */
+// Get CV metadata
 export const getCVMetadata = async () => {
     try {
         const response = await fetch(`${API_URL}/api/cv/metadata`);
@@ -382,9 +350,7 @@ export const getCVMetadata = async () => {
     }
 };
 
-/**
- * Get CV file
- */
+// Get CV file
 export const getCVFile = async () => {
     try {
         const response = await fetch(`${API_URL}/api/cv/file`);
@@ -402,9 +368,7 @@ export const getCVFile = async () => {
     }
 };
 
-/**
- * Delete CV (Admin only)
- */
+// Delete CV (Admin only)
 export const deleteCV = async (token) => {
     try {
         const response = await fetch(`${API_URL}/api/cv`, {
@@ -427,6 +391,7 @@ export const deleteCV = async (token) => {
     }
 };
 
+// Get terminal analytics (Admin only)
 export const getTerminalAnalytics = async (token, startDate = null, endDate = null) => {
     try {
         let url = `${API_URL}/api/analytics/terminal`;

@@ -15,7 +15,6 @@ import AdminLogin from './pages/AdminLogin/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard/AdminDashboard';
 import './App.css';
 
-// Portfolio Home Component
 function PortfolioHome() {
   const [loading, setLoading] = useState(true);
 

@@ -38,9 +38,7 @@ const Contact = () => {
         setSubmitStatus(null);
 
         try {
-            // Import API service and analytics
             const { submitContactForm, trackEvent } = await import('../../../services/api');
-            // Submit to backend
             const res = await submitContactForm(formData);
             setMessage(res);
 
@@ -50,7 +48,6 @@ const Contact = () => {
                 timestamp: new Date().toISOString()
             });
 
-            // Success
             setSubmitStatus('success');
             setFormData({ name: '', email: '', message: '' });
 
@@ -69,7 +66,7 @@ const Contact = () => {
 
             setSubmitStatus('error');
 
-            // Reset error status after 5 seconds
+            // Reset status after 5 seconds
             setTimeout(() => setSubmitStatus(null), 5000);
         } finally {
             setIsSubmitting(false);
