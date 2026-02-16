@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FaExternalLinkAlt, FaFolder } from 'react-icons/fa';
-import { useAnalytics } from '../../context/AnalyticsContext';
-import { getProjects } from '../../services/api';
-import { dummyProjects } from '../../data/projects.js'
+import { useAnalytics } from '../../../context/AnalyticsContext.jsx';
+import { getProjects } from '../../../services/api.js';
+import { dummyProjects } from '../../../data/projects.js'
 import './Projects.css';
-import ProjectsSkeleton from '../admin/ProjectsManager/ProjectsSkeleton.jsx'
+import ProjectsSkeleton from '../../admin/ProjectsManager/ProjectsSkeleton.jsx'
 const Projects = () => {
     const { trackProjectClick } = useAnalytics();
     const [projects, setProjects] = useState([]);

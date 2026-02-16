@@ -3,16 +3,16 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AnalyticsProvider } from './context/AnalyticsContext';
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/layout/Navbar';
-import Hero from './components/sections/Hero';
-import About from './components/sections/About';
-import Skills from './components/sections/Skills';
-import Projects from './components/sections/Projects';
-import Experience from './components/sections/Experience';
-import Contact from './components/sections/Contact';
-import Loader from './components/ui/Loader';
-import Cursor from './components/ui/Cursor';
-import AdminLogin from './pages/AdminLogin';
-import AdminDashboard from './pages/AdminDashboard';
+import Hero from './components/sections/Hero/Hero';
+import About from './components/sections/About/About';
+import Skills from './components/sections/Skills/Skills';
+import Projects from './components/sections/Projects/Projects';
+import Experience from './components/sections/Experience/Experience';
+import Contact from './components/sections/Contact/Contact';
+import Loader from './components/ui/Loader/Loader';
+import Cursor from './components/ui/Cursor/Cursor';
+import AdminLogin from './pages/AdminLogin/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard/AdminDashboard';
 import './App.css';
 
 // Portfolio Home Component

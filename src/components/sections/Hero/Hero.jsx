@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import ParticlesBg from 'particles-bg';
-import { useAnalytics } from '../../context/AnalyticsContext';
-import CVViewer from '../ui/CVViewer';
-import Terminal from '../cli/Terminal';
-import ThemeSwitch from '../ui/ThemeSwitch';
-import profile from '../../images/profile.jpg';
+import { useAnalytics } from '../../../context/AnalyticsContext';
+import CVViewer from '../../ui/CV/CVViewer';
+import Terminal from '../../cli/Terminal';
+import ThemeSwitch from '../../ui/ThemeSwitch/ThemeSwitch';
+import profile from '../../../images/profile.jpg';
 import './Hero.css';
 
 const Hero = () => {

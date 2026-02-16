@@ -3,7 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FaPaperPlane } from 'react-icons/fa';
 import './Contact.css';
-import { socials } from '../../data/socials';
+import { socials } from '../../../data/socials';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -39,7 +39,7 @@ const Contact = () => {
 
         try {
             // Import API service and analytics
-            const { submitContactForm, trackEvent } = await import('../../services/api');
+            const { submitContactForm, trackEvent } = await import('../../../services/api');
             // Submit to backend
             const res = await submitContactForm(formData);
             setMessage(res);
@@ -60,7 +60,7 @@ const Contact = () => {
             console.error('Contact form error:', error);
 
             // Track failed submission
-            const { trackEvent } = await import('../../services/api');
+            const { trackEvent } = await import('../../../services/api');
             trackEvent('contact_submit', {
                 success: false,
                 error: error.message,

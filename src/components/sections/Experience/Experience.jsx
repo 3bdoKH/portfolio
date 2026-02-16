@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { experience } from '../../data/experience';
+import { experience } from '../../../data/experience';
 import './Experience.css';
 
 const Experience = () => {

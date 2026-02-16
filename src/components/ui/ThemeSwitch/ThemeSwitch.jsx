@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
-import { useTheme } from '../../context/ThemeContext';
-import { themeList } from '../../styles/themes';
+import { useTheme } from '../../../context/ThemeContext';
+import { themeList } from '../../../styles/themes';
 import './ThemeSwitch.css';
 
 const ThemeSwitch = () => {
