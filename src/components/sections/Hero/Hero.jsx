@@ -48,7 +48,7 @@ const Hero = () => {
 
     return (
         <section className="hero" id="home">
-            <ParticlesBg type="cobweb" bg={true} color="#00ff88" num={80} />
+            <ParticlesBg type="cobweb" bg={{ position: 'absolute', zIndex: 0, width: '100%', height: '100%' }} color="#00ff88" num={80} />
             <div className="hero-container container">
                 <div className="hero-content">
                     <div className='profile-wrapper'>
