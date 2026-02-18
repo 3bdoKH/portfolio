@@ -44,68 +44,82 @@ const AdminLogin = () => {
     return (
         <div className="admin-login">
             <div className="login-container">
-                <div className="login-header">
-                    <h1>Admin Dashboard</h1>
-                    <p>Sign in to manage your portfolio</p>
+                <div className="login-header-terminal">
+                    <div className="terminal-dots">
+                        <span className="dot red"></span>
+                        <span className="dot yellow"></span>
+                        <span className="dot green"></span>
+                    </div>
+                    <div className="terminal-title">auth -- system-login</div>
+                    <div style={{ width: '52px' }}></div> {/* Spacer for symmetry */}
                 </div>
 
-                <form className="login-form" onSubmit={handleSubmit}>
-                    {error && (
-                        <div className="error-message">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                                <path d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm1 13H7v-2h2v2zm0-3H7V4h2v6z" />
-                            </svg>
-                            {error}
-                        </div>
-                    )}
-
-                    <div className="form-field">
-                        <label htmlFor="username">Username</label>
-                        <input
-                            type="text"
-                            id="username"
-                            name="username"
-                            value={credentials.username}
-                            onChange={handleChange}
-                            placeholder="Enter your username"
-                            required
-                            autoFocus
-                        />
+                <div className="login-content">
+                    <div className="login-header">
+                        <h1>Admin Dashboard</h1>
+                        <p>Sign in to manage your portfolio</p>
                     </div>
 
-                    <div className="form-field">
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={credentials.password}
-                            onChange={handleChange}
-                            placeholder="Enter your password"
-                            required
-                        />
-                    </div>
-
-                    <button
-                        type="submit"
-                        className="login-button"
-                        disabled={loading}
-                    >
-                        {loading ? (
-                            <>
-                                <span className="spinner"></span>
-                                Signing in...
-                            </>
-                        ) : (
-                            'Sign In'
+                    <form className="login-form" onSubmit={handleSubmit}>
+                        {error && (
+                            <div className="error-message">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm1 13H7v-2h2v2zm0-3H7V4h2v6z" />
+                                </svg>
+                                {error}
+                            </div>
                         )}
-                    </button>
-                </form>
 
-                <div className="login-footer">
-                    <a href="/" className="back-link">
-                        ← Back to Portfolio
-                    </a>
+                        <div className="form-field">
+                            <label htmlFor="username">Username</label>
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                value={credentials.username}
+                                onChange={handleChange}
+                                placeholder="Enter your username"
+                                required
+                                autoFocus
+                            />
+                        </div>
+
+                        <div className="form-field">
+                            <label htmlFor="password">Password</label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                value={credentials.password}
+                                onChange={handleChange}
+                                placeholder="Enter your password"
+                                required
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            className="login-button"
+                            disabled={loading}
+                        >
+                            {loading ? (
+                                <>
+                                    <span className="spinner"></span>
+                                    Signing in...
+                                </>
+                            ) : (
+                                <>
+                                    login<span className="syntax-bracket">()</span>
+                                </>
+                            )}
+                        </button>
+                    </form>
+
+                    <div className="login-footer">
+                        <a href="/" className="back-link">
+                            <span className="accent">←</span> Back to Portfolio
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
