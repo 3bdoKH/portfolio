@@ -6,7 +6,12 @@
     background: var(--bg-primary);
     padding: 20px;
 }
-.admin-login button
+
+.admin-login button,
+.admin-login a {
+    cursor: pointer;
+}
+
 .login-container {
     width: 100%;
     max-width: 450px;
@@ -40,9 +45,17 @@
     border-radius: 50%;
 }
 
-.dot.red { background: #ff5f56; }
-.dot.yellow { background: #ffbd2e; }
-.dot.green { background: #27c93f; }
+.dot.red {
+    background: #ff5f56;
+}
+
+.dot.yellow {
+    background: #ffbd2e;
+}
+
+.dot.green {
+    background: #27c93f;
+}
 
 .terminal-title {
     color: var(--text-tertiary);
@@ -211,7 +224,7 @@
     .login-content {
         padding: 30px 20px;
     }
-    
+
     .login-container {
         margin: 10px;
     }
