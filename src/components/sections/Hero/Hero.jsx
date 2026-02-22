@@ -10,7 +10,6 @@ import { socials } from '../../../data/socials';
 import './Hero.css';
 
 const Hero = () => {
-    const [showCursor, setShowCursor] = useState(true);
     const [isCVViewerOpen, setIsCVViewerOpen] = useState(false);
     const [isTerminalOpen, setIsTerminalOpen] = useState(false);
     const { trackPageView } = useAnalytics();
@@ -18,12 +17,6 @@ const Hero = () => {
 
     useEffect(() => {
         trackPageView('/');
-
-        const cursorInterval = setInterval(() => {
-            setShowCursor(prev => !prev);
-        }, 530);
-        console.log(showCursor)
-        return () => clearInterval(cursorInterval);
         // eslint-disable-next-line
     }, []);
 
