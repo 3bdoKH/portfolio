@@ -24,7 +24,6 @@
     overflow: hidden;
 }
 
-/* Terminal Header Style */
 .login-header-terminal {
     background: var(--bg-secondary);
     padding: 12px 16px;

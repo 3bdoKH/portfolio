@@ -51,7 +51,7 @@ const AdminLogin = () => {
                         <span className="dot green"></span>
                     </div>
                     <div className="terminal-title">auth -- system-login</div>
-                    <div style={{ width: '52px' }}></div> {/* Spacer for symmetry */}
+                    <div style={{ width: '52px' }}></div>
                 </div>
 
                 <div className="login-content">
