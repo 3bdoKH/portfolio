@@ -52,6 +52,13 @@ const About = () => {
         return () => clearInterval(timer);
     }, []);
 
+    const statItems = [
+        { icon: FaCode, value: stats.experience, suffix: '+', label: 'years_experience' },
+        { icon: FaProjectDiagram, value: stats.projects, suffix: '+', label: 'projects_completed' },
+        { icon: FaLaptopCode, value: stats.clients, suffix: '+', label: 'happy_clients' },
+        { icon: FaCoffee, value: stats.coffee, suffix: '+', label: 'cups_of_coffee' },
+    ];
+
     return (
         <section className="about" id="about">
             <div className="about-container container">
@@ -69,6 +76,15 @@ const About = () => {
                 <div className="about-content">
                     {/* Left Side - Info */}
                     <div className="about-info" data-aos="fade-right">
+                        <div className="about-file-header">
+                            <span className="code-comment">{'// about.js'}</span>
+                            <div className="about-file-dots">
+                                <span className="dot dot-close"></span>
+                                <span className="dot dot-minimize"></span>
+                                <span className="dot dot-maximize"></span>
+                            </div>
+                        </div>
+
                         <div className="info-block">
                             <div className="code-line">
                                 <span className="code-property">name</span>
@@ -105,27 +121,30 @@ const About = () => {
                                 <span className="code-bracket">,</span>
                             </div>
 
-                            <div className="code-line">
-                                <span className="code-property">bio</span>
-                                <span className="code-bracket">: </span>
-                                <span className="code-string">"</span>
-                            </div>
-
-                            <div className="bio-text">
-                                <p>
-                                    Passionate web developer with expertise in building modern,
-                                    scalable applications. I love turning complex problems into
-                                    simple, beautiful, and intuitive solutions.
-                                </p>
-                                <p>
-                                    When I'm not coding, you'll find me exploring new technologies,
-                                    contributing to open-source projects, or sharing knowledge with
-                                    the developer community.
-                                </p>
-                            </div>
-
-                            <div className="code-line">
-                                <span className="code-string">"</span>
+                            {/* JSDoc-style bio block */}
+                            <div className="about-jsdoc">
+                                <div className="jsdoc-open">
+                                    <span className="code-comment">{'/**'}</span>
+                                </div>
+                                <div className="jsdoc-line">
+                                    <span className="code-comment">{' * '}</span>
+                                    <span className="jsdoc-text">
+                                        Passionate web developer with expertise in building modern,
+                                        scalable applications. I love turning complex problems into
+                                        simple, beautiful, and intuitive solutions.
+                                    </span>
+                                </div>
+                                <div className="jsdoc-line">
+                                    <span className="code-comment">{' * '}</span>
+                                    <span className="jsdoc-text">
+                                        When I'm not coding, you'll find me exploring new technologies,
+                                        contributing to open-source projects, or sharing knowledge with
+                                        the developer community.
+                                    </span>
+                                </div>
+                                <div className="jsdoc-close">
+                                    <span className="code-comment">{' */'}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -134,50 +153,28 @@ const About = () => {
                     <div className="about-right" data-aos="fade-left">
                         {/* Stats Grid */}
                         <div className="about-stats">
-                            <div className="stat-card">
-                                <div className="stat-icon">
-                                    <FaCode />
-                                </div>
-                                <div className="stat-content">
-                                    <h3 className="stat-number">{stats.experience}+</h3>
-                                    <p className="stat-label">Years Experience</p>
-                                </div>
-                            </div>
-
-                            <div className="stat-card">
-                                <div className="stat-icon">
-                                    <FaProjectDiagram />
-                                </div>
-                                <div className="stat-content">
-                                    <h3 className="stat-number">{stats.projects}+</h3>
-                                    <p className="stat-label">Projects Completed</p>
-                                </div>
-                            </div>
-
-                            <div className="stat-card">
-                                <div className="stat-icon">
-                                    <FaLaptopCode />
-                                </div>
-                                <div className="stat-content">
-                                    <h3 className="stat-number">{stats.clients}+</h3>
-                                    <p className="stat-label">Happy Clients</p>
-                                </div>
-                            </div>
-
-                            <div className="stat-card">
-                                <div className="stat-icon">
-                                    <FaCoffee />
-                                </div>
-                                <div className="stat-content">
-                                    <h3 className="stat-number">{stats.coffee}+</h3>
-                                    <p className="stat-label">Cups of Coffee</p>
-                                </div>
-                            </div>
+                            {statItems.map((item, index) => {
+                                const IconComp = item.icon;
+                                return (
+                                    <div className="stat-card" key={index}>
+                                        <div className="stat-card-inner">
+                                            <div className="stat-card-header">
+                                                <IconComp className="stat-card-icon" />
+                                                <span className="code-comment">{'// ' + item.label}</span>
+                                            </div>
+                                            <div className="stat-number-line">
+                                                <span className="code-keyword">return</span>{' '}
+                                                <span className="code-number">{item.value}{item.suffix}</span>
+                                                <span className="code-bracket">;</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
                         </div>
 
                         {/* Timeline Section */}
                         <div className="timeline-section-about">
-
                             <div className="timeline-header-about">
                                 <span className="code-comment">{"// Journey Highlights"}</span>
                             </div>
@@ -186,7 +183,13 @@ const About = () => {
                                     <div className="timeline-dot-about"></div>
                                     <div className="timeline-content-about">
                                         <div className="timeline-year-about">2025</div>
-                                        <div className="timeline-title-about">Full-Stack Mastery</div>
+                                        <div className="timeline-title-about">
+                                            <span className="code-keyword">const </span>
+                                            <span className="code-function">fullStackMastery</span>
+                                            <span className="code-bracket"> = </span>
+                                            <span className="code-string">"achieved"</span>
+                                            <span className="code-bracket">;</span>
+                                        </div>
                                         <div className="timeline-desc-about">
                                             Specialized in MERN stack development, building scalable web applications
                                         </div>
@@ -197,7 +200,13 @@ const About = () => {
                                     <div className="timeline-dot-about"></div>
                                     <div className="timeline-content-about">
                                         <div className="timeline-year-about">2024</div>
-                                        <div className="timeline-title-about">Professional Developer</div>
+                                        <div className="timeline-title-about">
+                                            <span className="code-keyword">const </span>
+                                            <span className="code-function">professionalDev</span>
+                                            <span className="code-bracket"> = </span>
+                                            <span className="code-string">"started"</span>
+                                            <span className="code-bracket">;</span>
+                                        </div>
                                         <div className="timeline-desc-about">
                                             Started working on real-world projects and client solutions
                                         </div>
@@ -208,7 +217,13 @@ const About = () => {
                                     <div className="timeline-dot-about"></div>
                                     <div className="timeline-content-about">
                                         <div className="timeline-year-about">2023</div>
-                                        <div className="timeline-title-about">Coding Journey Begins</div>
+                                        <div className="timeline-title-about">
+                                            <span className="code-keyword">const </span>
+                                            <span className="code-function">codingJourney</span>
+                                            <span className="code-bracket"> = </span>
+                                            <span className="code-string">"begin()"</span>
+                                            <span className="code-bracket">;</span>
+                                        </div>
                                         <div className="timeline-desc-about">
                                             Discovered passion for web development and started learning
                                         </div>
@@ -225,11 +240,21 @@ const About = () => {
                 </div>
             </div>
 
-            {/* Background Decoration */}
+            {/* Background Decoration — floating code snippets */}
             <div className="about-decoration">
-                <div className="decoration-circle circle-1"></div>
-                <div className="decoration-circle circle-2"></div>
-                <div className="decoration-circle circle-3"></div>
+                <div className="about-code-snippet snippet-a">
+                    <span className="code-comment">{'// name: "Abdulrahman"'}</span>
+                </div>
+                <div className="about-code-snippet snippet-b">
+                    <span className="code-keyword">import</span>
+                    <span className="code-function"> passion </span>
+                    <span className="code-keyword">from</span>
+                    <span className="code-string"> 'life'</span>
+                    <span className="code-bracket">;</span>
+                </div>
+                <div className="about-code-snippet snippet-c">
+                    <span className="code-comment">{'// location: "Egypt"'}</span>
+                </div>
             </div>
         </section>
     );
