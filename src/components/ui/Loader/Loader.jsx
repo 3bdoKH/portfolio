@@ -6,12 +6,11 @@ const Loader = ({ onFinish }) => {
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
-        // Simulate loading progress
         const timer = setInterval(() => {
             setProgress(prev => {
                 if (prev >= 100) {
                     clearInterval(timer);
-                    setTimeout(() => onFinish(), 800); // Wait a bit before finishing
+                    setTimeout(() => onFinish(), 800);
                     return 100;
                 }
                 // Random increment for realistic feel

@@ -82,7 +82,6 @@ const CVViewer = ({ isOpen, onClose }) => {
     const handleDownload = () => {
         if (!pdfUrl) return;
 
-        // Track download in analytics
         trackCVDownload();
 
         const link = document.createElement('a');
