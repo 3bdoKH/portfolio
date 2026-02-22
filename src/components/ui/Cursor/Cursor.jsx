@@ -7,19 +7,16 @@ const Cursor = () => {
     const [hovered, setHovered] = useState(false);
 
     useEffect(() => {
-        // Hide default cursor
         document.body.style.cursor = 'none';
 
         const onMouseMove = (e) => {
             const { clientX, clientY } = e;
 
-            // Move the main small dot instantly
+
             if (cursorRef.current) {
                 cursorRef.current.style.transform = `translate3d(${clientX}px, ${clientY}px, 0)`;
             }
 
-            // Move the follower ring with a slight delay (handled by CSS transition usually, or JS for better physics)
-            // Here we use simple CSS transition on the class, but we update position instantly
             if (followerRef.current) {
                 followerRef.current.style.transform = `translate3d(${clientX}px, ${clientY}px, 0)`;
             }
@@ -28,7 +25,6 @@ const Cursor = () => {
         const onMouseEnter = () => setHovered(true);
         const onMouseLeave = () => setHovered(false);
 
-        // Add event listeners for hover effects on clickable elements
         const clickableElements = document.querySelectorAll(
             'a, button, input, textarea, .project-card, .skill-card, .navbar-logo'
         );
@@ -38,10 +34,8 @@ const Cursor = () => {
             el.addEventListener('mouseleave', onMouseLeave);
         });
 
-        // Handle global mouse move
         document.addEventListener('mousemove', onMouseMove);
 
-        // Cleanup
         return () => {
             document.body.style.cursor = 'auto';
             document.removeEventListener('mousemove', onMouseMove);

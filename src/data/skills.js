@@ -25,7 +25,6 @@ import {
     SiVercel
 } from 'react-icons/si';
 
-// Web Development Skills
 export const skills = [
     {
         id: 1,
@@ -73,7 +72,6 @@ export const skills = [
     }
 ];
 
-// Technologies & Languages
 export const technologies = {
     languages: [
         { name: 'JavaScript', icon: FaJs, color: '#F7DF1E' },
