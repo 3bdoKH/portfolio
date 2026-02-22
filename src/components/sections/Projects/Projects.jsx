@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import { FaExternalLinkAlt, FaFolder } from 'react-icons/fa';
 import { useAnalytics } from '../../../context/AnalyticsContext.jsx';
 import { getProjects } from '../../../services/api.js';
@@ -13,12 +11,6 @@ const Projects = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
-        });
-
         // Fetch projects from API
         const fetchProjects = async () => {
             try {

@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import { FaPaperPlane } from 'react-icons/fa';
 import './Contact.css';
 import { socials } from '../../../data/socials';
@@ -16,13 +14,6 @@ const Contact = () => {
     const [submitStatus, setSubmitStatus] = useState(null);
     const [message, setMessage] = useState('');
 
-    useEffect(() => {
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
-        });
-    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;

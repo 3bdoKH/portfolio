@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import { FaCode, FaLaptopCode, FaCoffee, FaProjectDiagram } from 'react-icons/fa';
 import './About.css';
 
@@ -13,13 +11,6 @@ const About = () => {
     });
 
     useEffect(() => {
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
-        });
-
-        // Animate counters
         const targetStats = {
             experience: 2,
             projects: 10,

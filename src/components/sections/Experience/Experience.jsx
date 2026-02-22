@@ -1,17 +1,8 @@
-import React, { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React from 'react';
 import { experience } from '../../../data/experience';
 import './Experience.css';
 
 const Experience = () => {
-    useEffect(() => {
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
-        });
-    }, []);
 
     return (
         <section className="experience" id="experience">
