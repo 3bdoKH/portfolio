@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaPaperPlane } from 'react-icons/fa';
 import './Contact.css';
 import { socials } from '../../../data/socials';
