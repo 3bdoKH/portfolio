@@ -44,7 +44,8 @@
 .timeline-line {
     flex-grow: 1;
     width: 2px;
-    background: var(--border-color);
+    background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary));
+    opacity: 0.3;
     position: relative;
 }
 
@@ -70,10 +71,29 @@
     padding: var(--spacing-lg);
     transition: all var(--transition-base);
     position: relative;
+    overflow: hidden;
+}
+
+.job-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    opacity: 0;
+    transition: opacity var(--transition-base);
 }
 
 .job-card:hover {
     border-color: var(--accent-primary);
+    box-shadow: var(--shadow-glow);
+    transform: translateX(4px);
+}
+
+.job-card:hover::before {
+    opacity: 1;
 }
 
 .job-header {
@@ -151,5 +171,6 @@
 
     .job-card:hover {
         transform: none;
+        box-shadow: none;
     }
 }

@@ -82,6 +82,15 @@ const Contact = () => {
                 <div className="contact-content">
                     {/* Contact Info (Left) */}
                     <div className="contact-info" data-aos="fade-right">
+                        {/* macOS-style file header */}
+                        <div className="contact-file-header">
+                            <div className="contact-file-dots">
+                                <span className="dot dot-close"></span>
+                                <span className="dot dot-minimize"></span>
+                                <span className="dot dot-maximize"></span>
+                            </div>
+                            <span className="code-comment">{'// socials.js'}</span>
+                        </div>
                         <h3 className="info-title">
                             <span className="code-keyword">const</span>{' '}
                             <span className="code-variable">socials</span>{' '}
@@ -104,6 +113,15 @@ const Contact = () => {
 
                     {/* Contact Form (Right) */}
                     <div className="contact-form-wrapper" data-aos="fade-left">
+                        {/* macOS-style file header */}
+                        <div className="contact-file-header">
+                            <div className="contact-file-dots">
+                                <span className="dot dot-close"></span>
+                                <span className="dot dot-minimize"></span>
+                                <span className="dot dot-maximize"></span>
+                            </div>
+                            <span className="code-comment">{'// message.js'}</span>
+                        </div>
                         <form className="contact-form" onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label className="form-label">
