@@ -45,7 +45,7 @@ const About = () => {
 
     const statItems = [
         { icon: FaCode, value: stats.experience, suffix: '+', label: 'years_experience' },
-        { icon: FaProjectDiagram, value: stats.projects, suffix: '+', label: 'projects_completed' },
+        { icon: FaProjectDiagram, value: stats.projects, suffix: '+', label: 'project_published' },
         { icon: FaLaptopCode, value: stats.clients, suffix: '+', label: 'happy_clients' },
         { icon: FaCoffee, value: stats.coffee, suffix: '+', label: 'cups_of_coffee' },
     ];
@@ -175,15 +175,18 @@ const About = () => {
                                     <div className="timeline-content-about">
                                         <div className="timeline-year-about">2025</div>
                                         <div className="timeline-title-about">
-                                            <span className="code-keyword">const </span>
-                                            <span className="code-function">fullStackMastery</span>
-                                            <span className="code-bracket"> = </span>
-                                            <span className="code-string">"achieved"</span>
-                                            <span className="code-bracket">;</span>
+                                            <span className="syntax-keyword">const </span>
+                                            <span className="syntax-function">fullStackMastery</span>
+                                            <span className="syntax-bracket"> = </span>
+                                            <span className="syntax-bracket">()</span>
+                                            <span className="syntax-bracket">{' => '}</span>
+                                            <span className="syntax-bracket">{'('}</span>
                                         </div>
                                         <div className="timeline-desc-about">
                                             Specialized in MERN stack development, building scalable web applications
                                         </div>
+                                        <span className="syntax-bracket">{')'}</span>
+                                        <span className="syntax-bracket">;</span>
                                     </div>
                                 </div>
 
@@ -192,15 +195,18 @@ const About = () => {
                                     <div className="timeline-content-about">
                                         <div className="timeline-year-about">2024</div>
                                         <div className="timeline-title-about">
-                                            <span className="code-keyword">const </span>
-                                            <span className="code-function">professionalDev</span>
-                                            <span className="code-bracket"> = </span>
-                                            <span className="code-string">"started"</span>
-                                            <span className="code-bracket">;</span>
+                                            <span className="syntax-keyword">const </span>
+                                            <span className="syntax-function">professionalDev</span>
+                                            <span className="syntax-bracket"> = </span>
+                                            <span className="syntax-bracket">()</span>
+                                            <span className="syntax-bracket">{' => '}</span>
+                                            <span className="syntax-bracket">{'('}</span>
                                         </div>
                                         <div className="timeline-desc-about">
                                             Started working on real-world projects and client solutions
                                         </div>
+                                        <span className="syntax-bracket">{')'}</span>
+                                        <span className="syntax-bracket">;</span>
                                     </div>
                                 </div>
 
@@ -209,15 +215,19 @@ const About = () => {
                                     <div className="timeline-content-about">
                                         <div className="timeline-year-about">2023</div>
                                         <div className="timeline-title-about">
-                                            <span className="code-keyword">const </span>
-                                            <span className="code-function">codingJourney</span>
-                                            <span className="code-bracket"> = </span>
-                                            <span className="code-string">"begin()"</span>
-                                            <span className="code-bracket">;</span>
+                                            <span className="syntax-keyword">const </span>
+                                            <span className="syntax-function">codingJourney</span>
+                                            <span className="syntax-bracket"> = </span>
+                                            <span className='syntax-bracket'>()</span>
+                                            <span className='syntax-bracket'>{' => '}</span>
+                                            <span className='syntax-bracket'>{'('}</span>
+
                                         </div>
                                         <div className="timeline-desc-about">
                                             Discovered passion for web development and started learning
                                         </div>
+                                        <span className='syntax-bracket'>{')'}</span>
+                                        <span className='syntax-bracket'>;</span>
                                     </div>
                                 </div>
                             </div>

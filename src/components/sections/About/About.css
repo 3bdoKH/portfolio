@@ -188,8 +188,12 @@
 .stat-card-header {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xs);
     margin-bottom: var(--spacing-xs);
+}
+
+.stat-card-header .code-comment {
+    font-size: 15px !important;
 }
 
 .stat-card-icon {
@@ -320,8 +324,9 @@
 
 .timeline-desc-about {
     font-size: var(--font-size-sm);
-    color: var(--text-secondary);
+    color: var(--syntax-string);
     line-height: 1.6;
+    padding-left: var(--spacing-md);
 }
 
 /* ─── Background Decoration — floating code snippets ─── */

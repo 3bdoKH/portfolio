@@ -327,11 +327,6 @@
         font-size: var(--font-size-sm);
         padding: 8px 0;
     }
-
-    .contact-info,
-    .contact-form-wrapper {
-        padding: var(--spacing-lg);
-    }
 }
 
 @media (max-width: 480px) {
