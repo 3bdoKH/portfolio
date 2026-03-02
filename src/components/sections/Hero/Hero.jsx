@@ -5,6 +5,8 @@ import { useAnalytics } from '../../../context/AnalyticsContext';
 import CVViewer from '../../ui/CV/CVViewer';
 import Terminal from '../../cli/Terminal';
 import ThemeSwitch from '../../ui/ThemeSwitch/ThemeSwitch';
+import MatrixRain from '../../ui/MatrixRain/MatrixRain';
+import RunawayButton from '../../ui/RunawayButton/RunawayButton';
 import profile from '../../../images/profile.jpg';
 import { socials } from '../../../data/socials';
 import './Hero.css';
@@ -12,6 +14,7 @@ import './Hero.css';
 const Hero = () => {
     const [isCVViewerOpen, setIsCVViewerOpen] = useState(false);
     const [isTerminalOpen, setIsTerminalOpen] = useState(false);
+    const [isMatrixOpen, setIsMatrixOpen] = useState(false);
     const { trackPageView } = useAnalytics();
     const { trackSocialLinksClick } = useAnalytics();
 
@@ -199,6 +202,8 @@ const Hero = () => {
                             <span className="code-function">viewProjects</span>
                             <span className="code-bracket">()</span>
                         </button>
+
+                        <RunawayButton scrollToSection={scrollToSection} />
                     </div>
 
                 </div>
@@ -225,7 +230,9 @@ const Hero = () => {
                 onClose={() => setIsTerminalOpen(false)}
                 openCVViewer={() => setIsCVViewerOpen(true)}
                 scrollToSection={scrollToSection}
+                triggerMatrix={() => setIsMatrixOpen(true)}
             />
+            <MatrixRain isOpen={isMatrixOpen} onClose={() => setIsMatrixOpen(false)} />
             <ThemeSwitch />
             <button
                 className="terminal-toggle-btn"

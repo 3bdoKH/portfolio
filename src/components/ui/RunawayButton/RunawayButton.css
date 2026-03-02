@@ -1,0 +1,132 @@
+.runaway-btn {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    padding: 12px 24px;
+    background: transparent;
+    border: 1px solid var(--accent-secondary);
+    color: var(--accent-secondary);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.runaway-btn:hover {
+    background: rgba(74, 158, 255, 0.1);
+    box-shadow: 0 0 16px var(--accent-glow-blue);
+}
+
+/* Surrendered state — accent switches to green, button wobbles */
+.runaway-btn.surrendered {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    animation: surrender-wobble 0.4s ease;
+}
+
+.runaway-btn.surrendered:hover {
+    background: rgba(0, 255, 136, 0.1);
+    box-shadow: 0 0 16px var(--accent-glow);
+}
+
+/* Caught state */
+.runaway-btn.caught {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    background: rgba(0, 255, 136, 0.08);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.runaway-fn-name {
+    font-weight: 500;
+}
+
+.runaway-counter {
+    font-size: 0.65rem;
+    background: rgba(74, 158, 255, 0.2);
+    border: 1px solid rgba(74, 158, 255, 0.4);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    color: var(--accent-secondary);
+    flex-shrink: 0;
+}
+
+/* Toast notification */
+.runaway-toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9998;
+    background: rgba(0, 0, 0, 0.85);
+    border: 1px solid var(--accent-primary);
+    border-radius: var(--radius-md);
+    padding: 12px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    animation: toast-pop 0.3s ease;
+    box-shadow: 0 0 24px var(--accent-glow);
+}
+
+.runaway-toast span {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    color: var(--accent-primary);
+}
+
+.runaway-toast .toast-sub {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+}
+
+@keyframes surrender-wobble {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(-4deg);
+    }
+
+    40% {
+        transform: rotate(4deg);
+    }
+
+    60% {
+        transform: rotate(-3deg);
+    }
+
+    80% {
+        transform: rotate(2deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes toast-pop {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
