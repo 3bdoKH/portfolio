@@ -36,6 +36,16 @@ export const matrixCommand = {
     name: 'matrix',
     description: 'Enter the Matrix',
     execute: (args, context) => {
+        if (context && typeof context.triggerMatrix === 'function') {
+            context.triggerMatrix();
+            if (typeof context.closeTerminal === 'function') {
+                setTimeout(() => context.closeTerminal(), 150);
+            }
+            return {
+                type: 'info',
+                content: '\n  Wake up, Neo...\n  The Matrix has you...\n  Follow the white rabbit.\n'
+            };
+        }
         return {
             type: 'ascii',
             content: ASCII_ART.matrix

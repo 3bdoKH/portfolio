@@ -5,7 +5,7 @@ import { parseCommand } from './utils/parser';
 import { useTheme } from '../../context/ThemeContext';
 import './Terminal.css';
 
-const Terminal = ({ isOpen, onClose, openCVViewer, scrollToSection }) => {
+const Terminal = ({ isOpen, onClose, openCVViewer, scrollToSection, triggerMatrix }) => {
     const [history, setHistory] = useState([]);
     const [currentInput, setCurrentInput] = useState('');
     const [commandHistory, setCommandHistory] = useState([]);
@@ -37,9 +37,10 @@ const Terminal = ({ isOpen, onClose, openCVViewer, scrollToSection }) => {
             scrollToSection,
             clearTerminal: handleClear,
             closeTerminal: onClose,
-            changeTheme
+            changeTheme,
+            triggerMatrix
         });
-    }, [openCVViewer, scrollToSection, onClose, processor, changeTheme]);
+    }, [openCVViewer, scrollToSection, onClose, processor, changeTheme, triggerMatrix]);
 
     // Auto-scroll to bottom
     useEffect(() => {
