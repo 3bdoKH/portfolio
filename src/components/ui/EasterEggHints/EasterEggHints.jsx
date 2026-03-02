@@ -12,7 +12,6 @@ const HINTS = [
 
 const EasterEggHints = () => {
     const [open, setOpen] = useState(false);
-
     return (
         <div className={`egg-hints-wrapper ${open ? 'is-open' : ''}`}>
             {/* Panel */}
@@ -20,7 +19,9 @@ const EasterEggHints = () => {
                 <div className="egg-hints-panel">
                     <div className="egg-hints-header">
                         <span className="code-comment">{'// secrets.js'}</span>
-                        <button className="egg-hints-close" onClick={() => setOpen(false)}>
+                        <button className="egg-hints-close" onClick={() => {
+                            setOpen(false)
+                        }}>
                             <FaTimes />
                         </button>
                     </div>

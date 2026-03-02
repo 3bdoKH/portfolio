@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { adminLogin } from '../../services/api';
+import { useAnalytics } from '../../context/AnalyticsContext';
 import './AdminLogin.css';
 
 const FUNNY_ERRORS = [
@@ -23,6 +24,7 @@ const SCAN_LINES = [
 ];
 
 const AdminLogin = () => {
+    const { trackPageView } = useAnalytics()
     const [credentials, setCredentials] = useState({
         username: '',
         password: '',
@@ -36,6 +38,7 @@ const AdminLogin = () => {
 
     // Fake scanning sequence on mount
     useEffect(() => {
+        trackPageView('login')
         let line = 0;
         const interval = setInterval(() => {
             line++;
@@ -46,7 +49,7 @@ const AdminLogin = () => {
             }
         }, 500);
         return () => clearInterval(interval);
-    }, []);
+    }, [trackPageView]);
 
     const handleChange = (e) => {
         setCredentials({
