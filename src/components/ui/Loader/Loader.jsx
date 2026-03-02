@@ -16,8 +16,6 @@ const PACKAGES = [
     { name: 'over-engineering', version: '1.0.0', icon: FaRocket, duration: 1200 }, // slowest
 ];
 
-const TOTAL_DURATION = PACKAGES.reduce((sum, p) => sum + p.duration, 0) + 600;
-
 const Loader = ({ onFinish }) => {
     const [installedCount, setInstalledCount] = useState(0);
     const [done, setDone] = useState(false);

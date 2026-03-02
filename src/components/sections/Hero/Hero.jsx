@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { TypeAnimation } from 'react-type-animation';
-import ParticlesBg from 'particles-bg';
 import { useAnalytics } from '../../../context/AnalyticsContext';
 import CVViewer from '../../ui/CV/CVViewer';
 import Terminal from '../../cli/Terminal';
@@ -44,7 +43,6 @@ const Hero = () => {
 
     return (
         <section className="hero" id="home">
-            <ParticlesBg type="cobweb" bg={{ position: 'absolute', zIndex: 0, width: '100%', height: '100%' }} color="#00ff88" num={80} />
             <div className="hero-container container">
                 <div className="hero-content">
                     <div className='profile-wrapper'>
