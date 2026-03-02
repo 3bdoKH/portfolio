@@ -1,6 +1,6 @@
 .theme-switch {
     position: fixed;
-    bottom: 100px;
+    bottom: 30px;
     right: 30px;
     z-index: var(--z-modal);
     animation: fadeIn 1s ease-out 2.5s forwards;
@@ -144,7 +144,7 @@
 
 @media (max-width: 768px) {
     .theme-switch {
-        bottom: 80px;
+        bottom: 20px;
         right: 20px;
     }
 
@@ -172,7 +172,7 @@
 
 @media (max-width: 480px) {
     .theme-switch {
-        bottom: 75px;
+        bottom: 20px;
         right: 20px;
     }
 
