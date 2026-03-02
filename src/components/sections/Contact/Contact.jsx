@@ -219,15 +219,7 @@ const Contact = () => {
                         </div>
                         <div className="cmi-item cmi-yes">
                             <FaCheck className="cmi-icon" />
-                            <span>you want to talk about React, Node, or why CSS is simultaneously my passion and my villain origin story</span>
-                        </div>
-                        <div className="cmi-item cmi-yes">
-                            <FaCheck className="cmi-icon" />
                             <span>you have a towing company that needs a website. I have experience. too much experience.</span>
-                        </div>
-                        <div className="cmi-item cmi-no">
-                            <FaTimes className="cmi-icon" />
-                            <span>you're going to tell me to use tabs instead of spaces. I will not recover from this.</span>
                         </div>
                         <div className="cmi-item cmi-no">
                             <FaTimes className="cmi-icon" />
