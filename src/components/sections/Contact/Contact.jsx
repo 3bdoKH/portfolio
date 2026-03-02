@@ -223,7 +223,7 @@ const Contact = () => {
                         </div>
                         <div className="cmi-item cmi-no">
                             <FaTimes className="cmi-icon" />
-                            <span>you're a recruiter asking for "5 years experience" in a framework that's 2 years old — I hope your dropdowns never align properly.</span>
+                            <span>you're a recruiter asking for "5 years experience" in a framework that's 2 years old .</span>
                         </div>
                         <div className="cmi-item cmi-no">
                             <FaTimes className="cmi-icon" />

@@ -45,10 +45,10 @@ const RunawayButton = ({ scrollToSection }) => {
         ? { position: 'fixed', left: pos.left, top: pos.top, transition: 'left 0.12s ease, top 0.12s ease', zIndex: 9000 }
         : {};
 
-    const getBtnLabel = () => {
+    const getBtnLabel = (DODGE_LIMIT, dodges) => {
         if (caught) return '✓ caught!()';
         if (surrendered) return 'hireMe() // fine...';
-        return 'hireMe()';
+        return `hireMe(${DODGE_LIMIT - dodges})`;
     };
 
     return (
@@ -60,10 +60,7 @@ const RunawayButton = ({ scrollToSection }) => {
                 onClick={handleClick}
                 title={surrendered ? "Fine, you win! " : `Catch me if you can! (${DODGE_LIMIT - dodges} attempts left)`}
             >
-                <span className="runaway-fn-name">{getBtnLabel()}</span>
-                {!surrendered && !caught && (
-                    <span className="runaway-counter">{DODGE_LIMIT - dodges}</span>
-                )}
+                <span className="runaway-fn-name">{getBtnLabel(DODGE_LIMIT, dodges)}</span>
             </button>
 
             {showToast && (
