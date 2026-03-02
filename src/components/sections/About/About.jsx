@@ -120,17 +120,22 @@ const About = () => {
                                 <div className="jsdoc-line">
                                     <span className="code-comment">{' * '}</span>
                                     <span className="jsdoc-text">
-                                        Passionate web developer with expertise in building modern,
-                                        scalable applications. I love turning complex problems into
-                                        simple, beautiful, and intuitive solutions.
+                                        self-taught dev from Egypt 🇪🇬. learned to code because i was
+                                        bored and now i can't stop. send help.
                                     </span>
                                 </div>
                                 <div className="jsdoc-line">
                                     <span className="code-comment">{' * '}</span>
                                     <span className="jsdoc-text">
-                                        When I'm not coding, you'll find me exploring new technologies,
-                                        contributing to open-source projects, or sharing knowledge with
-                                        the developer community.
+                                        caffeine is not a coping mechanism — it is a personality.
+                                        stackoverflow is my unpaid senior developer.
+                                    </span>
+                                </div>
+                                <div className="jsdoc-line">
+                                    <span className="code-comment">{' * '}</span>
+                                    <span className="jsdoc-text">
+                                        i don't fix bugs. i negotiate with them.
+                                        sometimes we reach a deal.
                                     </span>
                                 </div>
                                 <div className="jsdoc-close">

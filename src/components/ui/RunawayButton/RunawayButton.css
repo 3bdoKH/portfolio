@@ -93,6 +93,12 @@
     color: var(--text-secondary);
 }
 
+@media (width<768px) {
+    .runaway-btn {
+        display: none;
+    }
+}
+
 @keyframes surrender-wobble {
     0% {
         transform: rotate(0deg);

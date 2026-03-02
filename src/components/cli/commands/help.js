@@ -24,6 +24,7 @@ export const helpCommand = {
             { name: 'coffee', description: 'Get some coffee' },
             { name: 'joke', description: 'Random programming joke' },
             { name: 'quote', description: 'Inspirational dev quote' },
+            { name: 'git log', description: 'See my disastrous git log' }
         ];
 
         return {

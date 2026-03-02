@@ -206,6 +206,39 @@ const Contact = () => {
                 <div className="section-footer" data-aos="fade-up">
                     <span className="code-bracket">{'}'}</span>
                 </div>
+
+                {/* Contact Me If... */}
+                <div className="contact-me-if" data-aos="fade-up">
+                    <div className="cmi-header">
+                        <span className="code-comment">{'// contact me if...'}</span>
+                    </div>
+                    <div className="cmi-list">
+                        <div className="cmi-item cmi-yes">
+                            <span className="cmi-icon">✅</span>
+                            <span>you need a full-stack app built by someone who will over-engineer it for free</span>
+                        </div>
+                        <div className="cmi-item cmi-yes">
+                            <span className="cmi-icon">✅</span>
+                            <span>you want to talk about React, Node, or why CSS is simultaneously my passion and my villain origin story</span>
+                        </div>
+                        <div className="cmi-item cmi-yes">
+                            <span className="cmi-icon">✅</span>
+                            <span>you have a towing company that needs a website. I have experience. too much experience.</span>
+                        </div>
+                        <div className="cmi-item cmi-no">
+                            <span className="cmi-icon">❌</span>
+                            <span>you're going to tell me to use tabs instead of spaces. I will not recover from this.</span>
+                        </div>
+                        <div className="cmi-item cmi-no">
+                            <span className="cmi-icon">❌</span>
+                            <span>you're a recruiter asking for "5 years experience" in a framework that's 2 years old — I hope your dropdowns never align properly.</span>
+                        </div>
+                        <div className="cmi-item cmi-no">
+                            <span className="cmi-icon">❌</span>
+                            <span>you want to tell me my code is "not scalable". it works. leave me alone.</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             {/* Footer / Copyright */}

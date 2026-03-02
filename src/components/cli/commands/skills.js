@@ -6,34 +6,25 @@ export const skillsCommand = {
     return {
       type: 'info',
       content: `
-╔════════════════════════════════════════════════════════╗
-║  Technical Skills & Expertise                          ║
-╚════════════════════════════════════════════════════════╝
+╔════════════════════════════════════════════════════════════════╗
+║  skills.js  (according to me, which is a biased source)        ║
+╚════════════════════════════════════════════════════════════════╝
 
-Frontend Development:
-  ▸ React.js          ████████████████░░  90%
-  ▸ JavaScript (ES6+) ████████████████░░  90%
-  ▸ HTML5 & CSS3      ███████████████░░░  85%
-  ▸ Responsive Design ███████████████░░░  85%
+JavaScript   ████████████████████░░░  85%  <- writes it. fears it. loves it. hates it.
+React        ███████████████████░░░░  80%  <- useEffect has broken me as a person
+Node.js      ████████████████░░░░░░░  70%  <- it's just javascript but angrier
+CSS / UI     ████████████████████░░░  85%  <- i am good at css and i will die on this hill
+MongoDB      ███████████████░░░░░░░░  65%  <- NoSQL because structure is for cowards
+Python       ████████████░░░░░░░░░░░  50%  <- enough to be dangerous, not enough to be useful
+Git          █████████████████████░░  90%  <- the 90% is git stash. the other 10% is crying.
 
-Backend Development:
-  ▸ Node.js           ███████████████░░░  85%
-  ▸ Express.js        ███████████████░░░  85%
-  ▸ RESTful APIs      ████████████████░░  90%
-  ▸ MongoDB           ██████████████░░░░  80%
+Currently learning:
+  > TypeScript   (JavaScript with trust issues)
+  > Next.js      (React but it judges you more)
+  > Docker       (still not sure what it actually does)
 
-Tools & Technologies:
-  ▸ Git & GitHub      ████████████████░░  90%
-  ▸ VS Code           ████████████████░░  90%
-  ▸ Postman           ███████████████░░░  85%
-  ▸ npm/yarn          ████████████████░░  90%
-
-Currently Learning:
-  ▸ TypeScript
-  ▸ Next.js
-  ▸ Docker
-
-Type 'projects' to see these skills in action!
+stackoverflow is my unpaid senior developer.
+Type 'projects' to see these skills in action (or in flames).
       `.trim()
     };
   }

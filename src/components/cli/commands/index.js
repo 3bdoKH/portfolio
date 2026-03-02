@@ -15,6 +15,7 @@ import {
     jokeCommand,
     quoteCommand
 } from './easter-eggs';
+import gitCommand from './git';
 
 export const commands = {
     // Core commands
@@ -62,6 +63,9 @@ export const commands = {
     coffee: coffeeCommand,
     joke: jokeCommand,
     quote: quoteCommand,
+
+    // Git commands
+    git: gitCommand,
 };
 
 // Get all command names for auto-complete
@@ -74,7 +78,7 @@ export const getPrimaryCommands = () => {
     return [
         'help', 'about', 'skills', 'contact', 'projects',
         'project', 'cv', 'clear', 'themes', 'exit',
-        'sudo', 'hack', 'matrix', 'coffee', 'joke', 'quote'
+        'sudo', 'hack', 'matrix', 'coffee', 'joke', 'quote', 'git'
     ];
 };
 
