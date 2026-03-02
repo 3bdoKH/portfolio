@@ -13,6 +13,8 @@ import Experience from './components/sections/Experience/Experience';
 import Contact from './components/sections/Contact/Contact';
 import Loader from './components/ui/Loader/Loader';
 import Cursor from './components/ui/Cursor/Cursor';
+import ScrollProgressBar from './components/ui/ScrollProgressBar/ScrollProgressBar';
+import KonamiCode from './components/ui/KonamiCode/KonamiCode';
 import AdminLogin from './pages/AdminLogin/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard/AdminDashboard';
 import './App.css';
@@ -38,6 +40,8 @@ function PortfolioHome() {
       ) : (
         <>
           <Cursor />
+          <ScrollProgressBar />
+          <KonamiCode />
           <Navbar />
           <Hero />
           <About />

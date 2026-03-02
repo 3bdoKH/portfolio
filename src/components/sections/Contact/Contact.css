@@ -267,39 +267,40 @@
 
 /* ── Contact me if... ─────────────────────────────── */
 .contact-me-if {
-    margin-top: var(--spacing-2xl);
-    padding: var(--spacing-xl);
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md) var(--spacing-lg);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
     background: var(--bg-card);
 }
 
 .cmi-header {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-sm);
 }
 
 .cmi-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 4px;
 }
 
 .cmi-item {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
+    gap: 10px;
     font-family: var(--font-mono);
-    font-size: var(--font-size-sm);
-    line-height: 1.6;
-    padding: 8px 12px;
+    font-size: var(--font-size-xs);
+    line-height: 1.5;
+    padding: 5px 8px;
     border-radius: var(--radius-sm);
     transition: background var(--transition-fast);
 }
 
 .cmi-icon {
     flex-shrink: 0;
-    font-size: 1rem;
-    margin-top: 1px;
+    width: 14px;
+    height: 14px;
+    margin-top: 3px;
 }
 
 .cmi-yes {
