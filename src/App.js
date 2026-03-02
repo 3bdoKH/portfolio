@@ -15,6 +15,7 @@ import Loader from './components/ui/Loader/Loader';
 import Cursor from './components/ui/Cursor/Cursor';
 import ScrollProgressBar from './components/ui/ScrollProgressBar/ScrollProgressBar';
 import KonamiCode from './components/ui/KonamiCode/KonamiCode';
+import EasterEggHints from './components/ui/EasterEggHints/EasterEggHints';
 import AdminLogin from './pages/AdminLogin/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard/AdminDashboard';
 import './App.css';
@@ -42,6 +43,7 @@ function PortfolioHome() {
           <Cursor />
           <ScrollProgressBar />
           <KonamiCode />
+          <EasterEggHints />
           <Navbar />
           <Hero />
           <About />
