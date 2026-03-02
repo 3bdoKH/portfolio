@@ -219,6 +219,115 @@
     text-shadow: 0 0 8px var(--accent-glow-blue);
 }
 
+/* ── Scan screen ─────────────────────────────────────── */
+.login-scan-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    min-height: 100vh;
+    width: 100%;
+    animation: fadeIn 0.3s ease;
+}
+
+.scan-warning {
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #ff6b6b;
+    letter-spacing: 0.25em;
+    text-shadow: 0 0 16px rgba(255, 107, 107, 0.6);
+    animation: warning-pulse 0.8s ease-in-out infinite alternate;
+}
+
+.scan-lines {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--accent-primary);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 340px;
+}
+
+.scan-line {
+    animation: fadeIn 0.2s ease;
+    text-shadow: 0 0 6px var(--accent-glow);
+}
+
+.scan-cursor {
+    display: inline-block;
+    color: var(--accent-primary);
+    animation: blink-cursor 0.6s step-end infinite;
+}
+
+/* ── Snarky header ───────────────────────────────────── */
+.login-snarky {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 20px;
+    padding: 10px 12px;
+    border-left: 2px solid rgba(255, 107, 107, 0.5);
+    background: rgba(255, 107, 107, 0.04);
+    border-radius: 0 4px 4px 0;
+}
+
+.snarky-comment {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: #ff8888;
+    opacity: 0.85;
+}
+
+.snarky-blink {
+    animation: snarky-fade 1.6s ease-in-out infinite;
+}
+
+/* ── Keyframes ───────────────────────────────────────── */
+@keyframes warning-pulse {
+    from {
+        opacity: 1;
+        text-shadow: 0 0 16px rgba(255, 107, 107, 0.6);
+    }
+
+    to {
+        opacity: 0.6;
+        text-shadow: 0 0 32px rgba(255, 107, 107, 0.9);
+    }
+}
+
+@keyframes blink-cursor {
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes snarky-fade {
+
+    0%,
+    100% {
+        opacity: 0.85;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @media (max-width: 480px) {
     .login-content {
         padding: 30px 20px;
