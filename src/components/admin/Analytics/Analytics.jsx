@@ -157,9 +157,6 @@ const Analytics = ({ token }) => {
                                             <span className="activity-type">{event.eventType}</span>
                                             <span className="activity-time">{formatDate(event.timestamp)}</span>
                                         </div>
-                                        {/* <div className="activity-details">
-                                            {event.eventData && detailsExpander(event)}
-                                        </div> */}
                                         {renderUserInfo(event)}
                                     </div>
                                 ))}
