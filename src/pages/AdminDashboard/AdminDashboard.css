@@ -630,6 +630,39 @@
     color: var(--accent-primary);
 }
 
+.activity-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+}
+
+.delete-button-small {
+    background: transparent;
+    border: 1px solid rgba(255, 68, 68, 0.3);
+    color: #ff4444;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    opacity: 0.6;
+}
+
+.delete-button-small:hover {
+    background: rgba(255, 68, 68, 0.1);
+    border-color: #ff4444;
+    opacity: 1;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(255, 68, 68, 0.2);
+}
+
+.delete-button-small svg {
+    stroke: currentColor;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .header-content {

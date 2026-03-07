@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getAnalyticsStats, getTerminalAnalytics, getRecentActivities } from '../../../services/api';
+import { getAnalyticsStats, getTerminalAnalytics, getRecentActivities, deleteAnalyticsEvent } from '../../../services/api';
 import AnalyticsSkeleton from './AnalyticsSkeleton';
 const Analytics = ({ token }) => {
     const [analytics, setAnalytics] = useState(null);
@@ -32,6 +32,16 @@ const Analytics = ({ token }) => {
             }
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleDelete = async (eventId) => {
+        try {
+            await deleteAnalyticsEvent(token, eventId);
+            loadData();
+        } catch (error) {
+            console.error('Error deleting event:', error);
+            alert('Failed to delete event');
         }
     };
 
@@ -157,7 +167,18 @@ const Analytics = ({ token }) => {
                                             <span className="activity-type">{event.eventType}</span>
                                             <span className="activity-time">{formatDate(event.timestamp)}</span>
                                         </div>
-                                        {renderUserInfo(event)}
+                                        <div className="activity-actions">
+                                            {renderUserInfo(event)}
+                                            <button
+                                                className="delete-button-small"
+                                                onClick={() => handleDelete(event._id)}
+                                                title="Delete event"
+                                            >
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                    <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6" />
+                                                </svg>
+                                            </button>
+                                        </div>
                                     </div>
                                 ))}
                         </div>
@@ -260,8 +281,17 @@ const Analytics = ({ token }) => {
                                             </span>
                                             <span className="activity-time">{formatDate(event.timestamp)}</span>
                                         </div>
-                                        <div className="activity-details">
+                                        <div className="activity-actions">
                                             {renderUserInfo(event)}
+                                            <button
+                                                className="delete-button-small"
+                                                onClick={() => handleDelete(event._id)}
+                                                title="Delete event"
+                                            >
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                    <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6" />
+                                                </svg>
+                                            </button>
                                         </div>
                                     </div>
                                 ))}
