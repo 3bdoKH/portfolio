@@ -198,6 +198,29 @@ export const getRecentActivities = async (token) => {
     }
 };
 
+// Delete analytics event (Admin only)
+export const deleteAnalyticsEvent = async (token, eventId) => {
+    try {
+        const response = await fetch(`${API_URL}/api/analytics/${eventId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to delete analytics event');
+        }
+
+        return data;
+    } catch (error) {
+        console.error('Delete analytics event error:', error);
+        throw error;
+    }
+};
+
 // Get all projects
 export const getProjects = async () => {
     try {
