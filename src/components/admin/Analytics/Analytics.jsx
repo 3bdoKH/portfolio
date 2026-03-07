@@ -23,6 +23,7 @@ const Analytics = ({ token }) => {
             setAnalytics(analyticsData.data);
             setTerminalAnalytics(terminalAnalyticsData.data);
             setRecentActivities(recentActivitiesData.data);
+            console.log(analyticsData.data)
         } catch (error) {
             console.error('Error loading data:', error);
             if (error.response && error.response.status === 401) {
@@ -46,7 +47,7 @@ const Analytics = ({ token }) => {
     };
     const detailsExpander = (event) => (
         event?.eventType === 'page_view' ? (
-            <p>{event?.eventData?.page}</p>
+            <p>{event?.eventData?.page === '/' ? 'Home' : event?.eventData?.page}</p>
         ) : event?.eventType === 'social_click' ? (
             <p>{event?.eventData?.socialLink}</p>
         ) : event?.eventType === 'project_click' ? (
@@ -54,7 +55,72 @@ const Analytics = ({ token }) => {
         ) : event?.eventType === 'contact_submit' ? (
             <p>{event?.eventData?.success === true ? 'Success' : 'Error'}</p>
         ) : ''
-    )
+    );
+
+    const renderUserInfo = (event) => {
+        const userInfo = event?.userinfo;
+        if (!userInfo) return null;
+
+        return (
+            <div className="userinfo-dropdown">
+                <h4>User Info</h4>
+                <div className="userinfo-content">
+                    {event.eventData && (
+                        <div className="userinfo-row">
+                            <span className="userinfo-label">Event:</span>
+                            <span className="userinfo-value">{detailsExpander(event)}</span>
+                        </div>
+                    )}
+                    {userInfo.referrer && (
+                        <div className="userinfo-row">
+                            <span className="userinfo-label">ref:</span>
+                            <span className="userinfo-value">{userInfo.referrer}</span>
+                        </div>
+                    )}
+                    {userInfo.userAgent?.browser?.name && (
+                        <div className="userinfo-row">
+                            <span className="userinfo-label">Browser:</span>
+                            <span className="userinfo-value">
+                                {userInfo.userAgent.browser.name}
+                            </span>
+                        </div>
+                    )}
+                    {userInfo.userAgent?.os?.name && (
+                        <div className="userinfo-row">
+                            <span className="userinfo-label">OS:</span>
+                            <span className="userinfo-value">
+                                {userInfo.userAgent.os.name} {userInfo.userAgent.os.version}
+                            </span>
+                        </div>
+                    )}
+                    {userInfo.userAgent?.device?.type && (
+                        <div className="userinfo-row">
+                            <span className="userinfo-label">Device:</span>
+                            <span className="userinfo-value">
+                                {userInfo.userAgent.device.type} {userInfo.userAgent.device.model && `(${userInfo.userAgent.device.model})`}
+                            </span>
+                        </div>
+                    )}
+                    {userInfo.geo && (
+                        <div className="userinfo-row">
+                            <span className="userinfo-label">Location:</span>
+                            <span className="userinfo-value">
+                                {[userInfo.geo.city, userInfo.geo.region, userInfo.geo.country].filter(Boolean).join(', ')}
+                            </span>
+                        </div>
+                    )}
+                    {userInfo.uaModel && (
+                        <div className="userinfo-row">
+                            <span className="userinfo-label">model:</span>
+                            <span className="userinfo-value">
+                                {userInfo.uaModel}
+                            </span>
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
+    };
     return (
         <div className="analytics-section">
             {loading ? (
@@ -91,9 +157,10 @@ const Analytics = ({ token }) => {
                                             <span className="activity-type">{event.eventType}</span>
                                             <span className="activity-time">{formatDate(event.timestamp)}</span>
                                         </div>
-                                        <div className="activity-details">
+                                        {/* <div className="activity-details">
                                             {event.eventData && detailsExpander(event)}
-                                        </div>
+                                        </div> */}
+                                        {renderUserInfo(event)}
                                     </div>
                                 ))}
                         </div>
@@ -195,6 +262,9 @@ const Analytics = ({ token }) => {
                                                 {event.eventData?.success === false && ' X '}
                                             </span>
                                             <span className="activity-time">{formatDate(event.timestamp)}</span>
+                                        </div>
+                                        <div className="activity-details">
+                                            {renderUserInfo(event)}
                                         </div>
                                     </div>
                                 ))}

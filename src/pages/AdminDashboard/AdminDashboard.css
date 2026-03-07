@@ -399,6 +399,109 @@
     color: var(--text-tertiary);
 }
 
+.userinfo-dropdown {
+    position: relative;
+    font-size: 13px;
+    margin-left: auto;
+}
+
+.userinfo-dropdown h4 {
+    margin: 0;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--accent-secondary);
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    transition: all 0.2s ease;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.userinfo-dropdown h4::after {
+    content: '▼';
+    font-size: 9px;
+    transition: transform 0.2s ease;
+}
+
+.userinfo-dropdown:hover h4 {
+    background: rgba(0, 255, 136, 0.05);
+    color: var(--accent-primary);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.1);
+}
+
+.userinfo-dropdown:hover h4::after {
+    transform: rotate(180deg);
+}
+
+.userinfo-content {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    min-width: max-content;
+    padding: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--accent-primary);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 255, 136, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.userinfo-dropdown:hover .userinfo-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.userinfo-content::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 20px;
+    width: 10px;
+    height: 10px;
+    background: var(--bg-card);
+    border-top: 1px solid var(--accent-primary);
+    border-left: 1px solid var(--accent-primary);
+    transform: rotate(45deg);
+}
+
+.userinfo-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.userinfo-label {
+    color: var(--accent-primary);
+    font-family: 'Courier New', monospace;
+    opacity: 0.8;
+    min-width: 80px;
+}
+
+.userinfo-value {
+    color: var(--text-primary);
+    font-family: 'Courier New', monospace;
+    text-align: right;
+    word-break: break-all;
+}
+
 .activity-dot {
     width: 8px;
     height: 8px;
