@@ -691,4 +691,17 @@
     .terminal-stats {
         grid-template-columns: 1fr;
     }
+
+    .tabs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tab.active>span.syntax-function {
+        color: var(--accent-primary);
+    }
+
+    .tab.active {
+        border: none;
+    }
 }
