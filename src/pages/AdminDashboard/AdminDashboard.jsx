@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './AdminDashboard.css';
 import ProjectsManager from '../../components/admin/ProjectsManager/ProjectsManager';
 import CVManager from '../../components/admin/CVManager/CVManager';
 import StatsCards from '../../components/admin/StatsCards/StatsCards'
 import Messages from '../../components/admin/Messages/Messages'
 import Analytics from '../../components/admin/Analytics/Analytics'
 import ThemeSwitch from '../../components/ui/ThemeSwitch/ThemeSwitch'
+import './AdminDashboard.css';
 const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('analytics');
     const [loading, setLoading] = useState(false);
@@ -26,8 +26,7 @@ const AdminDashboard = () => {
 
         setUser(JSON.parse(userData));
         setLoading(false);
-        // eslint-disable-next-line
-    }, [navigate]);
+    }, [navigate, token]);
 
     const handleLogout = () => {
         localStorage.removeItem('adminToken');

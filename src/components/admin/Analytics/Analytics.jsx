@@ -6,39 +6,44 @@ const Analytics = ({ token }) => {
     const [terminalAnalytics, setTerminalAnalytics] = useState(null);
     const [recentActivities, setRecentActivities] = useState(null);
     const [loading, setLoading] = useState(true);
+
     useEffect(() => {
-        loadData();
-        // eslint-disable-next-line
-    }, []);
-    const loadData = async () => {
-        setLoading(true);
+        let cancelled = false;
 
-        try {
-            const [analyticsData, terminalAnalyticsData, recentActivitiesData] = await Promise.all([
-                getAnalyticsStats(token),
-                getTerminalAnalytics(token),
-                getRecentActivities(token),
-            ]);
+        const loadData = async () => {
+            setLoading(true);
+            try {
+                const [analyticsData, terminalAnalyticsData, recentActivitiesData] = await Promise.all([
+                    getAnalyticsStats(token),
+                    getTerminalAnalytics(token),
+                    getRecentActivities(token),
+                ]);
 
-            setAnalytics(analyticsData.data);
-            setTerminalAnalytics(terminalAnalyticsData.data);
-            setRecentActivities(recentActivitiesData.data);
-            console.log(analyticsData.data)
-        } catch (error) {
-            console.error('Error loading data:', error);
-            if (error.response && error.response.status === 401) {
-                localStorage.removeItem('adminToken');
-                window.location.href = '/admin/login';
+                if (cancelled) return;
+
+                setAnalytics(analyticsData.data);
+                setTerminalAnalytics(terminalAnalyticsData.data);
+                setRecentActivities(recentActivitiesData.data);
+            } catch (error) {
+                if (cancelled) return;
+                console.error('Error loading data:', error);
+                if (error.response?.status === 401) {
+                    localStorage.removeItem('adminToken');
+                    window.location.href = '/admin/login';
+                }
+            } finally {
+                if (!cancelled) setLoading(false);
             }
-        } finally {
-            setLoading(false);
-        }
-    };
+        };
+
+        loadData();
+
+        return () => { cancelled = true; }; // cleanup
+    }, [token]);
 
     const handleDelete = async (eventId) => {
         try {
             await deleteAnalyticsEvent(token, eventId);
-            loadData();
         } catch (error) {
             console.error('Error deleting event:', error);
             alert('Failed to delete event');
