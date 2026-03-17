@@ -92,8 +92,8 @@ const LoveButton = () => {
             </button>
             <div className="love-count-wrapper">
                 <span className="love-count-bracket">{'['}</span>
-                <span className="love-count-label">loves</span>
-                <span className="love-count-bracket">{': '}</span>
+                <span className="love-count-label">hearts</span>
+                <span className="love-count-bracket">{' : '}</span>
                 <span className="love-count-value">{count}</span>
                 <span className="love-count-bracket">{']'}</span>
             </div>
