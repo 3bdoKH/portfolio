@@ -7,11 +7,13 @@ const Analytics = ({ token, analyticsData, analyticsLoading }) => {
     const [recentActivities, setRecentActivities] = useState(null);
     const [loading, setLoading] = useState(true);
     const isLoading = loading || analyticsLoading || !analytics || !terminalAnalytics || !recentActivities;
+
     useEffect(() => {
         if (analyticsData) {
             setAnalytics(analyticsData);
         }
     }, [analyticsData]);
+
     useEffect(() => {
         let cancelled = false;
         const loadData = async () => {

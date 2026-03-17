@@ -1,0 +1,105 @@
+.love-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin: 40px auto 20px;
+    font-family: 'Courier New', monospace;
+}
+
+.love-button {
+    background: var(--bg-overlay, rgba(10, 25, 47, 0.7));
+    border: 1px solid var(--border-color, #233554);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    padding: 0;
+    overflow: visible;
+}
+
+.love-button:hover {
+    transform: scale(1.1);
+    border-color: #ff4d4d;
+    box-shadow: 0 0 20px rgba(255, 77, 77, 0.3);
+}
+
+.love-button:active {
+    transform: scale(0.9);
+}
+
+.love-button.loved {
+    border-color: #ff4d4d;
+    background: rgba(255, 77, 77, 0.1);
+}
+
+.heart-icon {
+    font-size: 24px;
+    color: var(--syntax-comment, #8892b0);
+    transition: all 0.3s ease;
+}
+
+.love-button:hover .heart-icon,
+.love-button.loved .heart-icon {
+    color: #ff4d4d;
+    filter: drop-shadow(0 0 5px rgba(255, 77, 77, 0.5));
+}
+
+.love-count-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.love-count-label {
+    color: var(--syntax-keyword, #c792ea);
+}
+
+.love-count-value {
+    color: var(--syntax-number, #f78c6c);
+    font-weight: 600;
+}
+
+.love-count-bracket {
+    color: var(--syntax-bracket, #89ddff);
+}
+
+/* Animations */
+@keyframes heart-burst {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+    100% { transform: scale(1); }
+}
+
+.love-button.animate .heart-icon {
+    animation: heart-burst 0.5s ease;
+}
+
+/* Floating particles on click */
+.particle {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    animation: particle-fade 0.8s ease-out forwards;
+}
+
+@keyframes particle-fade {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    100% { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(0); opacity: 0; }
+}
+
+.love-hint {
+    font-size: 11px;
+    color: var(--syntax-comment, #8892b0);
+    opacity: 0.6;
+}

@@ -74,6 +74,8 @@ const AdminDashboard = () => {
             setVisited([...visited, tabName]);
         }
     };
+
+
     if (loading) {
         return (
             <div className="admin-dashboard">

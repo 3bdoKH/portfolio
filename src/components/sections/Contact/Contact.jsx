@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FaPaperPlane, FaCheck, FaTimes } from 'react-icons/fa';
 import './Contact.css';
 import { socials } from '../../../data/socials';
+import LoveButton from '../../ui/LoveButton/LoveButton';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -236,6 +237,7 @@ const Contact = () => {
             {/* Footer / Copyright */}
             <footer className="footer">
                 <div className="footer-content container">
+                    <LoveButton />
                     <p className="copyright">
                         <span className="code-comment">{'// Designed & Built by Abdulrahman Khairy'}</span>
                     </p>
