@@ -240,7 +240,7 @@ const Contact = () => {
                     <LoveButton />
                     <div>
                         <span className='syntax-bracket'>{'{ '}</span>
-                        <span className='syntax-variable'>{'"developed"'}</span>
+                        <span className='syntax-variable'>{'"developed_by"'}</span>
                         <span className='syntax-string'>{' : '}</span>
                         <span className='syntax-variable'>{'"Abdulrahman Khairy"'}</span>
                         <span className='syntax-bracket'>{' }'}</span>
