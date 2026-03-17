@@ -14,9 +14,23 @@ const AdminDashboard = () => {
     const [user, setUser] = useState(null);
     const [analyticsData, setAnalyticsData] = useState(null);
     const [analyticsLoading, setAnalyticsLoading] = useState(true);
+    const [visited, setVisited] = useState(['analytics']);
     const navigate = useNavigate();
     const token = localStorage.getItem('adminToken');
-    const tabs = ['analytics', 'messages', 'projects', 'cv'];
+
+    const tabs = [{
+        name: 'analytics',
+        component: <Analytics token={token} analyticsData={analyticsData} analyticsLoading={analyticsLoading} />,
+    }, {
+        name: 'messages',
+        component: <Messages />,
+    }, {
+        name: 'projects',
+        component: <ProjectsManager />,
+    }, {
+        name: 'cv',
+        component: <CVManager />,
+    }];
 
     // Check authentication
     useEffect(() => {
@@ -29,7 +43,7 @@ const AdminDashboard = () => {
         setUser(JSON.parse(userData));
         setLoading(false);
     }, [navigate, token]);
-
+    // load shared data
     useEffect(() => {
         let cancelled = false;
 
@@ -54,6 +68,12 @@ const AdminDashboard = () => {
         navigate('/admin/login');
     };
 
+    const handleTabClick = (tabName) => {
+        setActiveTab(tabName);
+        if (!visited.includes(tabName)) {
+            setVisited([...visited, tabName]);
+        }
+    };
     if (loading) {
         return (
             <div className="admin-dashboard">
@@ -103,11 +123,14 @@ const AdminDashboard = () => {
             <div className="tabs">
                 {tabs.map((tab) => (
                     <button
-                        key={tab}
-                        className={`tab ${activeTab === tab ? 'active' : ''}`}
-                        onClick={() => setActiveTab(tab)}
+                        key={tab.name}
+                        className={`tab ${activeTab === tab.name ? 'active' : ''}`}
+                        onClick={() => {
+                            setActiveTab(tab.name);
+                            handleTabClick(tab.name);
+                        }}
                     >
-                        <span className="syntax-function stat-variable">{tab}</span>
+                        <span className="syntax-function stat-variable">{tab.name}</span>
                         <span className="syntax-bracket">()</span>
                     </button>
                 ))}
@@ -115,21 +138,13 @@ const AdminDashboard = () => {
 
             {/* Content */}
             <div className="dashboard-content">
-                {activeTab === 'messages' && (
-                    <Messages />
-                )}
-
-                {activeTab === 'analytics' && (
-                    <Analytics token={token} analyticsData={analyticsData} analyticsLoading={analyticsLoading} />
-                )}
-
-                {activeTab === 'projects' && (
-                    <ProjectsManager />
-                )}
-
-                {activeTab === 'cv' && (
-                    <CVManager />
-                )}
+                {tabs.map((tab) => {
+                    return (
+                        <div key={tab.name} style={{ display: activeTab === tab.name ? 'block' : 'none' }}>
+                            {visited.includes(tab.name) ? tab.component : null}
+                        </div>
+                    );
+                })}
             </div>
             <ThemeSwitch />
         </div>
