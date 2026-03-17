@@ -41,7 +41,7 @@ const Analytics = ({ token, analyticsData, analyticsLoading }) => {
 
         return () => { cancelled = true; }; // cleanup
 
-    }, [token, analyticsData]);
+    }, [token]);
 
     const handleDelete = async (eventId) => {
         try {
