@@ -40,7 +40,7 @@
 
 .heart-icon {
     font-size: 24px;
-    color: var(--syntax-comment, #8892b0);
+    color: var(--accent-primary, #8892b0);
     transition: all 0.3s ease;
 }
 
@@ -72,9 +72,17 @@
 
 /* Animations */
 @keyframes heart-burst {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.4); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.4);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .love-button.animate .heart-icon {
@@ -94,8 +102,15 @@
 }
 
 @keyframes particle-fade {
-    0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-    100% { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(0); opacity: 0; }
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(0);
+        opacity: 0;
+    }
 }
 
 .love-hint {
