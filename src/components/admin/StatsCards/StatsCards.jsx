@@ -1,38 +1,19 @@
-import { getAnalyticsStats } from "../../../services/api";
 import { useEffect, useState } from "react";
 import StatsCardsSkeleton from "./StatsCardsSkeleton";
 
-const StatsCards = () => {
-    const [analytics, setAnalytics] = useState(null);
+const StatsCards = ({ analyticsData, analyticsLoading }) => {
+    const [analytics, setAnalytics] = useState(analyticsData);
     const [loading, setLoading] = useState(true);
     const [keys, setKeys] = useState([]);
     useEffect(() => {
-        loadData();
-        // eslint-disable-next-line
-    }, []);
-    const loadData = async () => {
-        const token = localStorage.getItem('adminToken');
-        setLoading(true);
-
-        try {
-            const [analyticsData] = await Promise.all([
-                getAnalyticsStats(token),
-            ]);
-
-            setAnalytics(analyticsData.data);
-            setKeys(Object.keys(analyticsData.data.overview));
-        } catch (error) {
-            console.error('Error loading data:', error);
-            if (error.message.includes('401') || error.message.includes('token')) {
-                localStorage.removeItem('adminToken');
-                window.location.href = '/admin/login';
-            }
-        } finally {
+        if (analyticsData) {
+            setAnalytics(analyticsData);
+            setKeys(Object.keys(analyticsData.overview));
             setLoading(false);
         }
-    };
+    }, [analyticsData]);
 
-    if (loading) {
+    if (loading || analyticsLoading || !analytics || !keys) {
         return <StatsCardsSkeleton />;
     }
 

@@ -6,11 +6,14 @@ import StatsCards from '../../components/admin/StatsCards/StatsCards'
 import Messages from '../../components/admin/Messages/Messages'
 import Analytics from '../../components/admin/Analytics/Analytics'
 import ThemeSwitch from '../../components/ui/ThemeSwitch/ThemeSwitch'
+import { getAnalyticsStats } from '../../services/api';
 import './AdminDashboard.css';
 const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('analytics');
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState(null);
+    const [analyticsData, setAnalyticsData] = useState(null);
+    const [analyticsLoading, setAnalyticsLoading] = useState(true);
     const navigate = useNavigate();
     const token = localStorage.getItem('adminToken');
     const tabs = ['analytics', 'messages', 'projects', 'cv'];
@@ -23,10 +26,27 @@ const AdminDashboard = () => {
             navigate('/admin/login');
             return;
         }
-
         setUser(JSON.parse(userData));
         setLoading(false);
     }, [navigate, token]);
+
+    useEffect(() => {
+        let cancelled = false;
+
+        const loadSharedData = async () => {
+            try {
+                const res = await getAnalyticsStats(token);
+                if (!cancelled) setAnalyticsData(res.data);
+            } catch (error) {
+                console.error(error);
+            } finally {
+                if (!cancelled) setAnalyticsLoading(false);
+            }
+        };
+
+        loadSharedData();
+        return () => { cancelled = true; };
+    }, [token]);
 
     const handleLogout = () => {
         localStorage.removeItem('adminToken');
@@ -78,7 +98,7 @@ const AdminDashboard = () => {
                 </div>
             </header>
 
-            <StatsCards />
+            <StatsCards analyticsData={analyticsData} analyticsLoading={analyticsLoading} />
 
             <div className="tabs">
                 {tabs.map((tab) => (
@@ -100,7 +120,7 @@ const AdminDashboard = () => {
                 )}
 
                 {activeTab === 'analytics' && (
-                    <Analytics token={token} />
+                    <Analytics token={token} analyticsData={analyticsData} analyticsLoading={analyticsLoading} />
                 )}
 
                 {activeTab === 'projects' && (

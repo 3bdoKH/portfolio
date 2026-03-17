@@ -1,27 +1,28 @@
 import { useState, useEffect } from 'react';
-import { getAnalyticsStats, getTerminalAnalytics, getRecentActivities, deleteAnalyticsEvent } from '../../../services/api';
+import { getTerminalAnalytics, getRecentActivities, deleteAnalyticsEvent } from '../../../services/api';
 import AnalyticsSkeleton from './AnalyticsSkeleton';
-const Analytics = ({ token }) => {
-    const [analytics, setAnalytics] = useState(null);
+const Analytics = ({ token, analyticsData, analyticsLoading }) => {
+    const [analytics, setAnalytics] = useState(analyticsData);
     const [terminalAnalytics, setTerminalAnalytics] = useState(null);
     const [recentActivities, setRecentActivities] = useState(null);
     const [loading, setLoading] = useState(true);
-
+    const isLoading = loading || analyticsLoading || !analytics || !terminalAnalytics || !recentActivities;
+    useEffect(() => {
+        if (analyticsData) {
+            setAnalytics(analyticsData);
+        }
+    }, [analyticsData]);
     useEffect(() => {
         let cancelled = false;
-
         const loadData = async () => {
             setLoading(true);
             try {
-                const [analyticsData, terminalAnalyticsData, recentActivitiesData] = await Promise.all([
-                    getAnalyticsStats(token),
+                const [terminalAnalyticsData, recentActivitiesData] = await Promise.all([
                     getTerminalAnalytics(token),
                     getRecentActivities(token),
                 ]);
 
                 if (cancelled) return;
-
-                setAnalytics(analyticsData.data);
                 setTerminalAnalytics(terminalAnalyticsData.data);
                 setRecentActivities(recentActivitiesData.data);
             } catch (error) {
@@ -39,7 +40,8 @@ const Analytics = ({ token }) => {
         loadData();
 
         return () => { cancelled = true; }; // cleanup
-    }, [token]);
+
+    }, [token, analyticsData]);
 
     const handleDelete = async (eventId) => {
         try {
@@ -138,7 +140,7 @@ const Analytics = ({ token }) => {
     };
     return (
         <div className="analytics-section">
-            {loading ? (
+            {isLoading ? (
                 <AnalyticsSkeleton />
             ) : (
                 <div className="analytics-grid">
