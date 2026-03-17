@@ -238,12 +238,13 @@ const Contact = () => {
             <footer className="footer">
                 <div className="footer-content container">
                     <LoveButton />
-                    <p className="copyright">
-                        <span className="code-comment">{'// Designed & Built by Abdulrahman Khairy'}</span>
-                    </p>
-                    <p className="year">
-                        <span className="code-keyword">const</span> <span className="code-variable">YEAR</span> = <span className="code-number">{new Date().getFullYear()}</span>;
-                    </p>
+                    <div>
+                        <span className='syntax-bracket'>{'{ '}</span>
+                        <span className='syntax-variable'>{'"developed"'}</span>
+                        <span className='syntax-string'>{' : '}</span>
+                        <span className='syntax-variable'>{'"Abdulrahman Khairy"'}</span>
+                        <span className='syntax-bracket'>{' }'}</span>
+                    </div>
                 </div>
             </footer>
         </section>
