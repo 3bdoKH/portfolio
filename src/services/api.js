@@ -176,6 +176,43 @@ export const getAnalyticsStats = async (token, startDate = null, endDate = null)
     }
 };
 
+// Get global love count
+export const getLoveCount = async () => {
+    try {
+        const response = await fetch(`${API_URL}/api/analytics/loves`);
+        const data = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to fetch love count');
+        }
+        return data;
+    } catch (error) {
+        console.error('Get love count error:', error);
+        throw error;
+    }
+};
+
+// Add a love
+export const addLove = async () => {
+    try {
+        const response = await fetch(`${API_URL}/api/analytics/love`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const data = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to add love');
+        }
+        return data;
+    } catch (error) {
+        console.error('Add love error:', error);
+        throw error;
+    }
+};
+
 // Get recent activities (Admin only)
 export const getRecentActivities = async (token) => {
     try {
