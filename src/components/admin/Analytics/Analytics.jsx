@@ -5,6 +5,7 @@ const Analytics = ({ token, analyticsData, analyticsLoading }) => {
     const [analytics, setAnalytics] = useState(analyticsData);
     const [terminalAnalytics, setTerminalAnalytics] = useState(null);
     const [recentActivities, setRecentActivities] = useState(null);
+    const [limit, setLimit] = useState(10);
     const [loading, setLoading] = useState(true);
     const isLoading = loading || analyticsLoading || !analytics || !terminalAnalytics || !recentActivities;
 
@@ -16,20 +17,33 @@ const Analytics = ({ token, analyticsData, analyticsLoading }) => {
 
     useEffect(() => {
         let cancelled = false;
-        const loadData = async () => {
-            setLoading(true);
+        const loadTerminal = async () => {
             try {
-                const [terminalAnalyticsData, recentActivitiesData] = await Promise.all([
-                    getTerminalAnalytics(token),
-                    getRecentActivities(token),
-                ]);
-
+                const terminalAnalyticsData = await getTerminalAnalytics(token);
                 if (cancelled) return;
                 setTerminalAnalytics(terminalAnalyticsData.data);
+            } catch (error) {
+                if (cancelled) return;
+                console.error('Error loading terminal data:', error);
+            }
+        };
+
+        loadTerminal();
+
+        return () => { cancelled = true; };
+    }, [token]);
+
+    useEffect(() => {
+        let cancelled = false;
+        const loadActivities = async () => {
+            setLoading(true);
+            try {
+                const recentActivitiesData = await getRecentActivities(token, limit);
+                if (cancelled) return;
                 setRecentActivities(recentActivitiesData.data);
             } catch (error) {
                 if (cancelled) return;
-                console.error('Error loading data:', error);
+                console.error('Error loading activities:', error);
                 if (error.response?.status === 401) {
                     localStorage.removeItem('adminToken');
                     window.location.href = '/admin/login';
@@ -39,11 +53,10 @@ const Analytics = ({ token, analyticsData, analyticsLoading }) => {
             }
         };
 
-        loadData();
+        loadActivities();
 
-        return () => { cancelled = true; }; // cleanup
-
-    }, [token]);
+        return () => { cancelled = true; };
+    }, [token, limit]);
 
     const handleDelete = async (eventId) => {
         try {
@@ -162,13 +175,24 @@ const Analytics = ({ token, analyticsData, analyticsLoading }) => {
                     </div>
 
                     <div className="analytics-card">
-                        <h3>
-                            <span className="syntax-comment">{'// '}</span>
-                            <span className="syntax-keyword">Recent Activity</span>
-                        </h3>
+                        <div className="analytics-card-header">
+                            <h3>
+                                <span className="syntax-comment">{'// '}</span>
+                                <span className="syntax-keyword">Recent Activity</span>
+                            </h3>
+                            <select 
+                                value={limit} 
+                                onChange={(e) => setLimit(Number(e.target.value))}
+                                className="activity-limit-select"
+                            >
+                                <option value={10}>10 items</option>
+                                <option value={20}>20 items</option>
+                                <option value={50}>50 items</option>
+                                <option value={100}>100 items</option>
+                            </select>
+                        </div>
                         <div className="activity-list">
                             {recentActivities
-                                .slice(0, 10)
                                 .map((event, index) => (
                                     <div key={index} className="activity-item">
                                         <div className="activity-dot"></div>

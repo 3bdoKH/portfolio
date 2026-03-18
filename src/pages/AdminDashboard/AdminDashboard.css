@@ -347,6 +347,36 @@
     font-family: 'Courier New', monospace;
 }
 
+.analytics-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.analytics-card-header h3 {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
+.activity-limit-select {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    font-family: var(--font-mono, 'Courier New', monospace);
+    font-size: 0.9rem;
+}
+
+.activity-limit-select:focus {
+    border-color: var(--accent-primary);
+}
+
 .event-list {
     display: flex;
     flex-direction: column;

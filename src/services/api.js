@@ -181,7 +181,7 @@ export const getLoveCount = async () => {
     try {
         const response = await fetch(`${API_URL}/api/analytics/loves`);
         const data = await response.json();
-        
+
         if (!response.ok) {
             throw new Error(data.message || 'Failed to fetch love count');
         }
@@ -202,7 +202,7 @@ export const addLove = async () => {
             },
         });
         const data = await response.json();
-        
+
         if (!response.ok) {
             throw new Error(data.message || 'Failed to add love');
         }
@@ -214,9 +214,9 @@ export const addLove = async () => {
 };
 
 // Get recent activities (Admin only)
-export const getRecentActivities = async (token) => {
+export const getRecentActivities = async (token, limit = 10) => {
     try {
-        const response = await fetch(`${API_URL}/api/analytics/recent`, {
+        const response = await fetch(`${API_URL}/api/analytics/recent?limit=${limit}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
