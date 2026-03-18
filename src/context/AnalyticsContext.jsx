@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { trackEvent as trackEventAPI } from '../services/api';
+import { trackEvent as trackEventAPI } from '../services/analyticsService';
 
 const AnalyticsContext = createContext();
 

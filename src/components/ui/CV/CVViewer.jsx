@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getCVFile } from '../../../services/api';
+import { getCVFile } from '../../../services/cvService';
 import { useAnalytics } from '../../../context/AnalyticsContext';
 import CVSkeleton from './CVSkeleton';
 import './CVViewer.css';

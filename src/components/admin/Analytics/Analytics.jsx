@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getTerminalAnalytics, getRecentActivities, deleteAnalyticsEvent } from '../../../services/api';
+import { getTerminalAnalytics, getRecentActivities, deleteAnalyticsEvent } from '../../../services/analyticsService';
 import AnalyticsSkeleton from './AnalyticsSkeleton';
 const Analytics = ({ token, analyticsData, analyticsLoading }) => {
     const [analytics, setAnalytics] = useState(analyticsData);
@@ -180,8 +180,8 @@ const Analytics = ({ token, analyticsData, analyticsLoading }) => {
                                 <span className="syntax-comment">{'// '}</span>
                                 <span className="syntax-keyword">Recent Activity</span>
                             </h3>
-                            <select 
-                                value={limit} 
+                            <select
+                                value={limit}
                                 onChange={(e) => setLimit(Number(e.target.value))}
                                 className="activity-limit-select"
                             >

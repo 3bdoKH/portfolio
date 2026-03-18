@@ -6,7 +6,7 @@ import StatsCards from '../../components/admin/StatsCards/StatsCards'
 import Messages from '../../components/admin/Messages/Messages'
 import Analytics from '../../components/admin/Analytics/Analytics'
 import ThemeSwitch from '../../components/ui/ThemeSwitch/ThemeSwitch'
-import { getAnalyticsStats } from '../../services/api';
+import { getAnalyticsStats } from '../../services/analyticsService';
 import './AdminDashboard.css';
 const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('analytics');

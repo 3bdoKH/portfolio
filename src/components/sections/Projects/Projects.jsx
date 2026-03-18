@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FaExternalLinkAlt, FaFolder } from 'react-icons/fa';
 import { useAnalytics } from '../../../context/AnalyticsContext.jsx';
-import { getProjects } from '../../../services/api.js';
+import { getProjects } from '../../../services/projectsService.js';
 import './Projects.css';
 import ProjectsSkeleton from '../../admin/ProjectsManager/ProjectsSkeleton.jsx'
 const Projects = () => {

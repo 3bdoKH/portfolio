@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { adminLogin } from '../../services/api';
+import { adminLogin } from '../../services/authService';
 import { useAnalytics } from '../../context/AnalyticsContext';
 import './AdminLogin.css';
 

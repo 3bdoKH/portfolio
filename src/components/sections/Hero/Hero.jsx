@@ -22,7 +22,6 @@ const Hero = () => {
         // eslint-disable-next-line
     }, []);
 
-    // Keyboard shortcut to toggle terminal (~  key)
     useEffect(() => {
         const handleKeyPress = (e) => {
             if (e.key === '~' || e.key === '`') {

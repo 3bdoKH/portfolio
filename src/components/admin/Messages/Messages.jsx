@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getMessages, updateMessageStatus, deleteMessage } from '../../../services/api';
+import { getMessages, updateMessageStatus, deleteMessage } from '../../../services/messagesService';
 import MessagesSkeleton from './MessagesSkeleton';
 const Messages = () => {
     const [messages, setMessages] = useState([]);

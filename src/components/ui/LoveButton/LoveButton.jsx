@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FaHeart } from 'react-icons/fa';
-import { getLoveCount, addLove } from '../../../services/api';
+import { getLoveCount, addLove } from '../../../services/analyticsService';
 import './LoveButton.css';
 
 const LoveButton = () => {

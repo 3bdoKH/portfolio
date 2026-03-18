@@ -30,7 +30,8 @@ const Contact = () => {
         setSubmitStatus(null);
 
         try {
-            const { submitContactForm, trackEvent } = await import('../../../services/api');
+            const { submitContactForm } = await import('../../../services/contactService');
+            const { trackEvent } = await import('../../../services/analyticsService');
             const res = await submitContactForm(formData);
             setMessage(res);
 
@@ -49,7 +50,7 @@ const Contact = () => {
             console.error('Contact form error:', error);
 
             // Track failed submission
-            const { trackEvent } = await import('../../../services/api');
+            const { trackEvent } = await import('../../../services/analyticsService');
             trackEvent('contact_submit', {
                 success: false,
                 error: error.message,

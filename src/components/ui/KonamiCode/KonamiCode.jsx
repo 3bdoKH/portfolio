@@ -4,8 +4,7 @@ import './KonamiCode.css';
 
 const KONAMI = [
     'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
-    'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
-    'b', 'a'
+    'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'
 ];
 
 // Lightweight pure-JS confetti burst

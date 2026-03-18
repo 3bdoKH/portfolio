@@ -1,4 +1,4 @@
-import { getProjects } from '../../../services/api';
+import { getProjects } from '../../../services/projectsService';
 
 export const projectsCommand = {
     name: 'projects',
