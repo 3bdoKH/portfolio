@@ -14,6 +14,7 @@ export const useAnalytics = () => {
             trackCVDownload: () => { },
             trackTerminalOpen: () => { },
             trackTerminalCommand: () => { },
+            trackContactFormSubmit: () => { },
             trackEvent: () => { },
         };
     }
@@ -103,6 +104,21 @@ export const AnalyticsProvider = ({ children }) => {
         }
     };
 
+    const trackContactFormSubmit = (success, error) => {
+        if (success) {
+            trackEventAPI('contact_submit', {
+                success: true,
+                timestamp: new Date().toISOString()
+            });
+        } else {
+            trackEventAPI('contact_submit', {
+                success: false,
+                error: error,
+                timestamp: new Date().toISOString()
+            });
+        }
+    };
+
     const trackEvent = (eventType, eventData = {}) => {
         trackEventAPI(eventType, eventData);
     };
@@ -115,6 +131,7 @@ export const AnalyticsProvider = ({ children }) => {
         trackTerminalOpen,
         trackTerminalCommand,
         trackSocialLinksClick,
+        trackContactFormSubmit,
         trackEvent,
     };
 

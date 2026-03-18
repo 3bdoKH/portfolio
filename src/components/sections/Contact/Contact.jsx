@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { FaPaperPlane, FaCheck, FaTimes } from 'react-icons/fa';
-import './Contact.css';
 import { socials } from '../../../data/socials';
 import LoveButton from '../../ui/LoveButton/LoveButton';
+import { useAnalytics } from '../../../context/AnalyticsContext';
+import './Contact.css';
 
 const Contact = () => {
+    const { trackContactFormSubmit } = useAnalytics();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -31,15 +33,11 @@ const Contact = () => {
 
         try {
             const { submitContactForm } = await import('../../../services/contactService');
-            const { trackEvent } = await import('../../../services/analyticsService');
             const res = await submitContactForm(formData);
             setMessage(res);
 
             // Track successful submission
-            trackEvent('contact_submit', {
-                success: true,
-                timestamp: new Date().toISOString()
-            });
+            trackContactFormSubmit(true);
 
             setSubmitStatus('success');
             setFormData({ name: '', email: '', message: '' });
@@ -50,12 +48,7 @@ const Contact = () => {
             console.error('Contact form error:', error);
 
             // Track failed submission
-            const { trackEvent } = await import('../../../services/analyticsService');
-            trackEvent('contact_submit', {
-                success: false,
-                error: error.message,
-                timestamp: new Date().toISOString()
-            });
+            trackContactFormSubmit(false, error.message);
 
             setSubmitStatus('error');
 
