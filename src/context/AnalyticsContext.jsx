@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useCallback, useMemo } from 'react';
 import { trackEvent as trackEventAPI } from '../services/analyticsService';
 
 const AnalyticsContext = createContext();
@@ -22,7 +22,7 @@ export const useAnalytics = () => {
 };
 
 export const AnalyticsProvider = ({ children }) => {
-    const trackPageView = (page) => {
+    const trackPageView = useCallback((page) => {
         const sessionKey = `pageview_${page}`;
         const hasTracked = localStorage.getItem(sessionKey);
 
@@ -30,9 +30,9 @@ export const AnalyticsProvider = ({ children }) => {
             trackEventAPI('page_view', { page });
             localStorage.setItem(sessionKey, 'true');
         }
-    };
+    }, []);
 
-    const trackProjectClick = (projectId, projectName) => {
+    const trackProjectClick = useCallback((projectId, projectName) => {
         const sessionKey = `projectclick_${projectId}`;
         const hasTracked = localStorage.getItem(sessionKey);
 
@@ -44,9 +44,9 @@ export const AnalyticsProvider = ({ children }) => {
             });
             localStorage.setItem(sessionKey, 'true');
         }
-    };
+    }, []);
 
-    const trackCVView = () => {
+    const trackCVView = useCallback(() => {
         const sessionKey = `cvview`;
         const hasTracked = localStorage.getItem(sessionKey);
 
@@ -56,9 +56,9 @@ export const AnalyticsProvider = ({ children }) => {
             });
             localStorage.setItem(sessionKey, 'true');
         }
-    };
+    }, []);
 
-    const trackCVDownload = () => {
+    const trackCVDownload = useCallback(() => {
         const sessionKey = `cvdownload`;
         const hasTracked = localStorage.getItem(sessionKey);
 
@@ -68,9 +68,9 @@ export const AnalyticsProvider = ({ children }) => {
             });
             localStorage.setItem(sessionKey, 'true');
         }
-    };
+    }, []);
 
-    const trackTerminalOpen = () => {
+    const trackTerminalOpen = useCallback(() => {
         const sessionKey = `terminalopen`;
         const hasTracked = localStorage.getItem(sessionKey);
 
@@ -80,18 +80,18 @@ export const AnalyticsProvider = ({ children }) => {
             });
             localStorage.setItem(sessionKey, 'true');
         }
-    };
+    }, []);
 
-    const trackTerminalCommand = (command, args = [], success = true) => {
+    const trackTerminalCommand = useCallback((command, args = [], success = true) => {
         trackEventAPI('terminal_command', {
             command,
             args,
             success,
             timestamp: new Date().toISOString()
         });
-    };
+    }, []);
 
-    const trackSocialLinksClick = (socialLink) => {
+    const trackSocialLinksClick = useCallback((socialLink) => {
         const sessionKey = `social_click_${socialLink}`;
         const hasTracked = localStorage.getItem(sessionKey);
 
@@ -102,9 +102,9 @@ export const AnalyticsProvider = ({ children }) => {
             });
             localStorage.setItem(sessionKey, 'true');
         }
-    };
+    }, []);
 
-    const trackContactFormSubmit = (success, error) => {
+    const trackContactFormSubmit = useCallback((success, error) => {
         if (success) {
             trackEventAPI('contact_submit', {
                 success: true,
@@ -117,13 +117,13 @@ export const AnalyticsProvider = ({ children }) => {
                 timestamp: new Date().toISOString()
             });
         }
-    };
+    }, []);
 
-    const trackEvent = (eventType, eventData = {}) => {
+    const trackEvent = useCallback((eventType, eventData = {}) => {
         trackEventAPI(eventType, eventData);
-    };
+    }, []);
 
-    const value = {
+    const value = useMemo(() => ({
         trackPageView,
         trackProjectClick,
         trackCVView,
@@ -133,7 +133,17 @@ export const AnalyticsProvider = ({ children }) => {
         trackSocialLinksClick,
         trackContactFormSubmit,
         trackEvent,
-    };
+    }), [
+        trackPageView,
+        trackProjectClick,
+        trackCVView,
+        trackCVDownload,
+        trackTerminalOpen,
+        trackTerminalCommand,
+        trackSocialLinksClick,
+        trackContactFormSubmit,
+        trackEvent
+    ]);
 
     return (
         <AnalyticsContext.Provider value={value}>

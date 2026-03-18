@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import { themes } from '../styles/themes';
 import { applyTheme, getStoredTheme, setStoredTheme } from '../utils/applyTheme';
 
@@ -23,17 +23,17 @@ export const ThemeProvider = ({ children }) => {
         }
     }, [currentTheme]);
 
-    const changeTheme = (themeId) => {
+    const changeTheme = useCallback((themeId) => {
         if (themes[themeId]) {
             setCurrentTheme(themeId);
         }
-    };
+    }, []);
 
-    const value = {
+    const value = useMemo(() => ({
         currentTheme,
         changeTheme,
         themes,
-    };
+    }), [currentTheme, changeTheme]);
 
     return (
         <ThemeContext.Provider value={value}>
