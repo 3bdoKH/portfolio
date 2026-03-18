@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { FaExternalLinkAlt, FaFolder } from 'react-icons/fa';
 import { useAnalytics } from '../../../context/AnalyticsContext.jsx';
 import { getProjects } from '../../../services/projectsService.js';
-import './Projects.css';
 import ProjectsSkeleton from '../../admin/ProjectsManager/ProjectsSkeleton.jsx'
+import './Projects.css';
+
 const Projects = () => {
     const { trackProjectClick } = useAnalytics();
     const [projects, setProjects] = useState([]);

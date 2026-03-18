@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -16,9 +16,11 @@ import Cursor from './components/ui/Cursor/Cursor';
 import ScrollProgressBar from './components/ui/ScrollProgressBar/ScrollProgressBar';
 import KonamiCode from './components/ui/KonamiCode/KonamiCode';
 import EasterEggHints from './components/ui/EasterEggHints/EasterEggHints';
-import AdminLogin from './pages/AdminLogin/AdminLogin';
-import AdminDashboard from './pages/AdminDashboard/AdminDashboard';
 import './App.css';
+
+// Lazy loaded components for better performance
+const AdminLogin = React.lazy(() => import('./pages/AdminLogin/AdminLogin'));
+const AdminDashboard = React.lazy(() => import('./pages/AdminDashboard/AdminDashboard'));
 
 function PortfolioHome() {
   useEffect(() => {
@@ -65,8 +67,22 @@ function App() {
           <div className="App">
             <Routes>
               <Route path="/" element={<PortfolioHome />} />
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route path="/admin/dashboard" element={<AdminDashboard />} />
+              <Route
+                path="/admin/login"
+                element={
+                  <Suspense fallback={<div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><Loader /></div>}>
+                    <AdminLogin />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="/admin/dashboard"
+                element={
+                  <Suspense fallback={<div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><Loader /></div>}>
+                    <AdminDashboard />
+                  </Suspense>
+                }
+              />
             </Routes>
           </div>
         </Router>

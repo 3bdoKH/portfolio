@@ -7,13 +7,13 @@ import { SiMongodb, SiExpress } from 'react-icons/si';
 import './Loader.css';
 
 const PACKAGES = [
-    { name: 'creativity', version: '3.2.1', icon: FaBrain, duration: 900 },
-    { name: 'react-skills', version: '18.0.0', icon: FaReact, duration: 1100 },
-    { name: 'node-expertise', version: '20.0.0', icon: FaNodeJs, duration: 850 },
-    { name: 'mongodb-mastery', version: '7.0.0', icon: SiMongodb, duration: 700 },
-    { name: 'express-knowledge', version: '4.18.0', icon: SiExpress, duration: 750 },
+    { name: 'creativity', version: '3.2.1', icon: FaBrain, duration: 700 },
+    { name: 'react-skills', version: '18.0.0', icon: FaReact, duration: 900 },
+    { name: 'node-expertise', version: '20.0.0', icon: FaNodeJs, duration: 650 },
+    { name: 'mongodb-mastery', version: '7.0.0', icon: SiMongodb, duration: 500 },
+    { name: 'express-knowledge', version: '4.18.0', icon: SiExpress, duration: 550 },
     { name: 'caffeine-dependency', version: '∞.0.0', icon: FaCoffee, duration: 300 }, // fastest
-    { name: 'over-engineering', version: '1.0.0', icon: FaRocket, duration: 1200 }, // slowest
+    { name: 'over-engineering', version: '1.0.0', icon: FaRocket, duration: 800 }, // slowest
 ];
 
 const Loader = ({ onFinish }) => {

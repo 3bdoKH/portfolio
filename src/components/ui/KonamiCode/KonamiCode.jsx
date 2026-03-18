@@ -82,7 +82,7 @@ const KonamiCode = () => {
             <div className="konami-sub">
                 <span className="code-comment">{'// you are one of us'}</span>
             </div>
-            <div className="konami-code-hint">↑↑↓↓←→←→BA</div>
+            <div className="konami-code-hint">↑ ↑ ↓ ↓ ← → ← →</div>
         </div>
     );
 };
