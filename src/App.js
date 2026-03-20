@@ -2,6 +2,7 @@ import React, { useState, useEffect, Suspense } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { AnalyticsProvider } from './context/AnalyticsContext';
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/layout/Navbar';
@@ -84,6 +85,7 @@ function App() {
                 }
               />
             </Routes>
+            <SpeedInsights />
           </div>
         </Router>
       </AnalyticsProvider>
