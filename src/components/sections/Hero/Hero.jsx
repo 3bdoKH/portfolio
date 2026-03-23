@@ -14,13 +14,11 @@ const Hero = () => {
     const [isCVViewerOpen, setIsCVViewerOpen] = useState(false);
     const [isTerminalOpen, setIsTerminalOpen] = useState(false);
     const [isMatrixOpen, setIsMatrixOpen] = useState(false);
-    const { trackPageView } = useAnalytics();
-    const { trackSocialLinksClick } = useAnalytics();
+    const { trackPageView, trackSocialLinksClick } = useAnalytics();
 
     useEffect(() => {
         trackPageView('/');
-        // eslint-disable-next-line
-    }, []);
+    }, [trackPageView]);
 
     useEffect(() => {
         const handleKeyPress = (e) => {
