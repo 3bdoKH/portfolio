@@ -3,6 +3,7 @@ import { FaPaperPlane, FaCheck, FaTimes } from 'react-icons/fa';
 import { socials } from '../../../data/socials';
 import LoveButton from '../../ui/LoveButton/LoveButton';
 import { useAnalytics } from '../../../context/AnalyticsContext';
+import { submitContactForm } from '../../../services/contactService';
 import './Contact.css';
 
 const Contact = () => {
@@ -32,7 +33,6 @@ const Contact = () => {
         setSubmitStatus(null);
 
         try {
-            const { submitContactForm } = await import('../../../services/contactService');
             const res = await submitContactForm(formData);
             setMessage(res);
 

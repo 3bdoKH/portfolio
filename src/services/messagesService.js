@@ -1,80 +1,19 @@
-const API_URL = process.env.REACT_APP_API_URL;
+import { authFetch } from './apiClient';
 
 // Get all messages (Admin only)
-export const getMessages = async (token, page = 1, limit = 10, unreadOnly = false) => {
-    try {
-        const response = await fetch(
-            `${API_URL}/api/contact/messages?page=${page}&limit=${limit}&unreadOnly=${unreadOnly}`,
-            {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-            }
-        );
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            throw new Error(data.message || 'Failed to fetch messages');
-        }
-
-        return data;
-    } catch (error) {
-        console.error('Get messages error:', error);
-        throw error;
-    }
-};
+export const getMessages = (token, page = 1, limit = 10, unreadOnly = false) =>
+    authFetch(
+        `/api/contact/messages?page=${page}&limit=${limit}&unreadOnly=${unreadOnly}`,
+        token
+    );
 
 // Update message status (Admin only)
-export const updateMessageStatus = async (token, messageId, isRead) => {
-    try {
-        const response = await fetch(
-            `${API_URL}/api/contact/messages/${messageId}`,
-            {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
-                body: JSON.stringify({ isRead }),
-            }
-        );
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            throw new Error(data.message || 'Failed to update message status');
-        }
-
-        return data;
-    } catch (error) {
-        console.error('Update message status error:', error);
-        throw error;
-    }
-};
+export const updateMessageStatus = (token, messageId, isRead) =>
+    authFetch(`/api/contact/messages/${messageId}`, token, {
+        method: 'PATCH',
+        body: JSON.stringify({ isRead }),
+    });
 
 // Delete message (Admin only)
-export const deleteMessage = async (token, messageId) => {
-    try {
-        const response = await fetch(
-            `${API_URL}/api/contact/messages/${messageId}`,
-            {
-                method: 'DELETE',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-            }
-        );
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            throw new Error(data.message || 'Failed to delete message');
-        }
-
-        return data;
-    } catch (error) {
-        console.error('Delete message error:', error);
-        throw error;
-    }
-};
+export const deleteMessage = (token, messageId) =>
+    authFetch(`/api/contact/messages/${messageId}`, token, { method: 'DELETE' });
