@@ -22,6 +22,7 @@ import './App.css';
 // Lazy loaded components for better performance
 const AdminLogin = React.lazy(() => import('./pages/AdminLogin/AdminLogin'));
 const AdminDashboard = React.lazy(() => import('./pages/AdminDashboard/AdminDashboard'));
+const NotFound = React.lazy(() => import('./pages/NotFound/NotFound'));
 
 function PortfolioHome() {
   useEffect(() => {
@@ -81,6 +82,14 @@ function App() {
                 element={
                   <Suspense fallback={<div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><Loader /></div>}>
                     <AdminDashboard />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="*"
+                element={
+                  <Suspense fallback={<div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}><Loader /></div>}>
+                    <NotFound />
                   </Suspense>
                 }
               />

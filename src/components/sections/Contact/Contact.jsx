@@ -171,7 +171,7 @@ const Contact = () => {
                                 </div>
                             ) : submitStatus === 'error' ? (
                                 <div className="error-message-contact">
-                                    <span>"Only English, sorry for that still working on it..."</span>
+                                    <span>{message?.message || 'Something went wrong. Please try again.'}</span>
                                 </div>
                             ) : (
                                 <button
@@ -187,8 +187,10 @@ const Contact = () => {
                                         <span className="btn-text">✗ Error! Try again</span>
                                     ) : (
                                         <>
-                                            <span className="btn-text">await response</span>
+                                            <span className="code-variable">send</span>
+                                            <span className="code-bracket"> (</span>
                                             <FaPaperPlane className="btn-icon" />
+                                            <span className="code-bracket"> )</span>
                                         </>
                                     )}
                                 </button>

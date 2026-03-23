@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { FaExternalLinkAlt, FaFolder } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaFolder, FaGithub } from 'react-icons/fa';
 import { useAnalytics } from '../../../context/AnalyticsContext.jsx';
 import { getProjects } from '../../../services/projectsService.js';
-import ProjectsSkeleton from '../../admin/ProjectsManager/ProjectsSkeleton.jsx'
+import ProjectsSkeleton from '../../admin/ProjectsManager/ProjectsSkeleton.jsx';
 import './Projects.css';
 
 const Projects = () => {
@@ -85,18 +85,30 @@ const Projects = () => {
                                             <FaFolder className="folder-icon" />
                                             <span className="folder-name">{project.title}.js</span>
                                         </div>
-                                        <img src={project.image} alt={project.displayTitle} className="project-image" />
+                                        <img src={project.image} alt={project.displayTitle} className="project-image" loading="lazy" />
                                         <div className="project-overlay">
                                             <div className="project-links">
-                                                <a
-                                                    href={project.links.live}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="project-link"
-                                                    onClick={() => handleProjectClick(project)}
-                                                >
-                                                    <FaExternalLinkAlt /> <span className="link-text">Live</span>
-                                                </a>
+                                                {project.links?.live && (
+                                                    <a
+                                                        href={project.links.live}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="project-link"
+                                                        onClick={() => handleProjectClick(project)}
+                                                    >
+                                                        <FaExternalLinkAlt /> <span className="link-text">Live</span>
+                                                    </a>
+                                                )}
+                                                {project.links?.github && (
+                                                    <a
+                                                        href={project.links.github}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="project-link"
+                                                    >
+                                                        <FaGithub /> <span className="link-text">Code</span>
+                                                    </a>
+                                                )}
                                             </div>
                                         </div>
                                     </div>

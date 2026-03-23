@@ -1,46 +1,52 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FaCode, FaLaptopCode, FaCoffee, FaProjectDiagram } from 'react-icons/fa';
 import './About.css';
 
+const TARGET_STATS = {
+    experience: 2,
+    projects: 10,
+    clients: 10,
+    coffee: 1000,
+};
+
 const About = () => {
-    const [stats, setStats] = useState({
-        experience: 0,
-        projects: 0,
-        clients: 0,
-        coffee: 0
-    });
+    const [stats, setStats] = useState({ experience: 0, projects: 0, clients: 0, coffee: 0 });
+    const sectionRef = useRef(null);
+    const animatedRef = useRef(false);
 
     useEffect(() => {
-        const targetStats = {
-            experience: 2,
-            projects: 10,
-            clients: 10,
-            coffee: 1000
-        };
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && !animatedRef.current) {
+                    animatedRef.current = true;
 
-        const duration = 2000;
-        const steps = 60;
-        const interval = duration / steps;
+                    const duration = 2000;
+                    const steps = 60;
+                    const intervalMs = duration / steps;
+                    let currentStep = 0;
 
-        let currentStep = 0;
-        const timer = setInterval(() => {
-            currentStep++;
-            const progress = currentStep / steps;
+                    const timer = setInterval(() => {
+                        currentStep++;
+                        const progress = currentStep / steps;
+                        setStats({
+                            experience: Math.floor(TARGET_STATS.experience * progress),
+                            projects: Math.floor(TARGET_STATS.projects * progress),
+                            clients: Math.floor(TARGET_STATS.clients * progress),
+                            coffee: Math.floor(TARGET_STATS.coffee * progress),
+                        });
+                        if (currentStep >= steps) {
+                            setStats(TARGET_STATS);
+                            clearInterval(timer);
+                        }
+                    }, intervalMs);
+                }
+            },
+            { threshold: 0.3 }
+        );
 
-            setStats({
-                experience: Math.floor(targetStats.experience * progress),
-                projects: Math.floor(targetStats.projects * progress),
-                clients: Math.floor(targetStats.clients * progress),
-                coffee: Math.floor(targetStats.coffee * progress)
-            });
-
-            if (currentStep >= steps) {
-                setStats(targetStats);
-                clearInterval(timer);
-            }
-        }, interval);
-
-        return () => clearInterval(timer);
+        const el = sectionRef.current;
+        if (el) observer.observe(el);
+        return () => { if (el) observer.unobserve(el); };
     }, []);
 
     const statItems = [
@@ -51,7 +57,7 @@ const About = () => {
     ];
 
     return (
-        <section className="about" id="about">
+        <section className="about" id="about" ref={sectionRef}>
             <div className="about-container container">
                 {/* Section Header */}
                 <div className="section-header" data-aos="fade-up">
