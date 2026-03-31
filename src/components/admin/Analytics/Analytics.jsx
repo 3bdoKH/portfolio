@@ -17,33 +17,19 @@ const Analytics = ({ token, analyticsData, analyticsLoading }) => {
 
     useEffect(() => {
         let cancelled = false;
-        const loadTerminal = async () => {
-            try {
-                const terminalAnalyticsData = await getTerminalAnalytics(token);
-                if (cancelled) return;
-                setTerminalAnalytics(terminalAnalyticsData.data);
-            } catch (error) {
-                if (cancelled) return;
-                console.error('Error loading terminal data:', error);
-            }
-        };
-
-        loadTerminal();
-
-        return () => { cancelled = true; };
-    }, [token]);
-
-    useEffect(() => {
-        let cancelled = false;
-        const loadActivities = async () => {
+        const loadData = async () => {
             setLoading(true);
             try {
-                const recentActivitiesData = await getRecentActivities(token, limit);
+                const [terminalData, activitiesData] = await Promise.all([
+                    getTerminalAnalytics(token),
+                    getRecentActivities(token, limit),
+                ]);
                 if (cancelled) return;
-                setRecentActivities(recentActivitiesData.data);
+                setTerminalAnalytics(terminalData.data);
+                setRecentActivities(activitiesData.data);
             } catch (error) {
                 if (cancelled) return;
-                console.error('Error loading activities:', error);
+                console.error('Error loading analytics data:', error);
                 if (error.response?.status === 401) {
                     localStorage.removeItem('adminToken');
                     window.location.href = '/admin/login';
@@ -53,7 +39,7 @@ const Analytics = ({ token, analyticsData, analyticsLoading }) => {
             }
         };
 
-        loadActivities();
+        loadData();
 
         return () => { cancelled = true; };
     }, [token, limit]);
