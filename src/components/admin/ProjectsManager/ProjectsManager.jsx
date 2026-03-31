@@ -370,7 +370,14 @@ const ProjectsManager = () => {
                                 <label
                                     htmlFor='img-file-input'
                                     className="img-file-label"
-                                >Project Image</label>
+                                >
+                                    {isUploadingImage ? (
+                                        <div>
+                                            <div className="spinner-small" style={{ display: 'inline-block', marginRight: '8px', verticalAlign: 'middle' }}></div>
+                                            Uploading to Cloudinary...
+                                        </div>
+                                    ) : "Project Image"}
+                                </label>
                                 <input
                                     type="file"
                                     accept="image/*"
@@ -379,12 +386,7 @@ const ProjectsManager = () => {
                                     className="img-file-input"
                                     disabled={isUploadingImage}
                                 />
-                                {isUploadingImage && (
-                                    <div style={{ marginTop: '10px', fontSize: '14px', color: 'var(--text-secondary)' }}>
-                                        <div className="spinner-small" style={{ display: 'inline-block', marginRight: '8px', verticalAlign: 'middle' }}></div>
-                                        Uploading to Cloudinary...
-                                    </div>
-                                )}
+
                                 {imagePreview && (
                                     <div className="image-preview">
                                         <img src={imagePreview} alt="Preview" />
