@@ -1,13 +1,17 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ProjectsManager from '../../components/admin/ProjectsManager/ProjectsManager';
-import CVManager from '../../components/admin/CVManager/CVManager';
-import StatsCards from '../../components/admin/StatsCards/StatsCards'
-import Messages from '../../components/admin/Messages/Messages'
-import Analytics from '../../components/admin/Analytics/Analytics'
-import ThemeSwitch from '../../components/ui/ThemeSwitch/ThemeSwitch'
+import StatsCards from '../../components/admin/StatsCards/StatsCards';
+import ThemeSwitch from '../../components/ui/ThemeSwitch/ThemeSwitch';
 import { getAnalyticsStats } from '../../services/analyticsService';
+
+// Lazy-loaded tab components – each becomes its own JS chunk
+const Analytics = React.lazy(() => import('../../components/admin/Analytics/Analytics'));
+const Messages = React.lazy(() => import('../../components/admin/Messages/Messages'));
+const ProjectsManager = React.lazy(() => import('../../components/admin/ProjectsManager/ProjectsManager'));
+const CVManager = React.lazy(() => import('../../components/admin/CVManager/CVManager'));
+
 import './AdminDashboard.css';
+
 const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('analytics');
     const [loading, setLoading] = useState(false);
@@ -18,7 +22,7 @@ const AdminDashboard = () => {
     const navigate = useNavigate();
     const token = localStorage.getItem('adminToken');
 
-    const tabs = [{
+    const tabs = useMemo(() => [{
         name: 'analytics',
         component: <Analytics token={token} analyticsData={analyticsData} analyticsLoading={analyticsLoading} />,
     }, {
@@ -30,7 +34,7 @@ const AdminDashboard = () => {
     }, {
         name: 'cv',
         component: <CVManager />,
-    }];
+    }], [token, analyticsData, analyticsLoading]);
 
     // Check authentication
     useEffect(() => {
@@ -140,13 +144,15 @@ const AdminDashboard = () => {
 
             {/* Content */}
             <div className="dashboard-content">
-                {tabs.map((tab) => {
-                    return (
-                        <div key={tab.name} style={{ display: activeTab === tab.name ? 'block' : 'none' }}>
-                            {visited.includes(tab.name) ? tab.component : null}
-                        </div>
-                    );
-                })}
+                <Suspense fallback={<div className="loading-container"><div className="spinner-large"></div></div>}>
+                    {tabs.map((tab) => {
+                        return (
+                            <div key={tab.name} style={{ display: activeTab === tab.name ? 'block' : 'none' }}>
+                                {visited.includes(tab.name) ? tab.component : null}
+                            </div>
+                        );
+                    })}
+                </Suspense>
             </div>
             <ThemeSwitch />
         </div>
