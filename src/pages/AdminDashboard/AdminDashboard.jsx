@@ -3,14 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import StatsCards from '../../components/admin/StatsCards/StatsCards';
 import ThemeSwitch from '../../components/ui/ThemeSwitch/ThemeSwitch';
 import { getAnalyticsStats } from '../../services/analyticsService';
+import './AdminDashboard.css';
 
-// Lazy-loaded tab components – each becomes its own JS chunk
 const Analytics = React.lazy(() => import('../../components/admin/Analytics/Analytics'));
 const Messages = React.lazy(() => import('../../components/admin/Messages/Messages'));
 const ProjectsManager = React.lazy(() => import('../../components/admin/ProjectsManager/ProjectsManager'));
 const CVManager = React.lazy(() => import('../../components/admin/CVManager/CVManager'));
 
-import './AdminDashboard.css';
 
 const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('analytics');
