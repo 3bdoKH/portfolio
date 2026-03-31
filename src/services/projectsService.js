@@ -23,3 +23,17 @@ export const updateProject = (token, id, projectData) =>
 // Delete project (Admin only)
 export const deleteProject = (token, id) =>
     authFetch(`/api/projects/${id}`, token, { method: 'DELETE' });
+
+// Upload project image
+export const uploadProjectImage = (token, file) => {
+    const formData = new FormData();
+    formData.append('image', file);
+    return apiFetch('/api/projects/upload-image', {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${token}`
+            // DO NOT set Content-Type here; let the browser set it with the multipart boundary
+        },
+        body: formData,
+    });
+};

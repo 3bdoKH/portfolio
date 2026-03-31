@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getProjects, createProject, updateProject, deleteProject } from '../../../services/projectsService';
+import { getProjects, createProject, updateProject, deleteProject, uploadProjectImage } from '../../../services/projectsService';
 import './ProjectsManager.css';
 import ProjectsSkeleton from './ProjectsSkeleton';
 const ProjectsManager = () => {
@@ -21,6 +21,7 @@ const ProjectsManager = () => {
     const [imagePreview, setImagePreview] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [isUploadingImage, setIsUploadingImage] = useState(false);
 
     useEffect(() => {
         loadProjects();
@@ -93,22 +94,39 @@ const ProjectsManager = () => {
         }
     };
 
-    const handleImageUpload = (e) => {
+    const handleImageUpload = async (e) => {
         const file = e.target.files[0];
-        if (file) {
-            // Check file size (limit to 2MB)
-            if (file.size > 2 * 1024 * 1024) {
-                setError('Image size must be less than 2MB');
-                return;
-            }
+        if (!file) return;
 
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                const base64String = reader.result;
-                setFormData(prev => ({ ...prev, image: base64String }));
-                setImagePreview(base64String);
-            };
-            reader.readAsDataURL(file);
+        // Check file size (limit to 5MB to match backend multer)
+        if (file.size > 10 * 1024 * 1024) {
+            setError('Image size must be less than 10MB');
+            return;
+        }
+
+        try {
+            setError('');
+            setIsUploadingImage(true);
+            const token = localStorage.getItem('adminToken');
+
+            // Show optimistic local preview while uploading
+            const localPreview = URL.createObjectURL(file);
+            setImagePreview(localPreview);
+
+            const uploadResponse = await uploadProjectImage(token, file);
+
+            if (uploadResponse.success) {
+                const cloudinaryUrl = uploadResponse.data.url;
+                setFormData(prev => ({ ...prev, image: cloudinaryUrl }));
+                setImagePreview(cloudinaryUrl);
+                setSuccess('Image uploaded successfully!');
+                setTimeout(() => setSuccess(''), 3000);
+            }
+        } catch (err) {
+            setError(err.message || 'Failed to upload image to Cloudinary');
+            setImagePreview(formData.image); // Revert to previous image on failure
+        } finally {
+            setIsUploadingImage(false);
         }
     };
 
@@ -359,7 +377,14 @@ const ProjectsManager = () => {
                                     id="img-file-input"
                                     onChange={handleImageUpload}
                                     className="img-file-input"
+                                    disabled={isUploadingImage}
                                 />
+                                {isUploadingImage && (
+                                    <div style={{ marginTop: '10px', fontSize: '14px', color: 'var(--text-secondary)' }}>
+                                        <div className="spinner-small" style={{ display: 'inline-block', marginRight: '8px', verticalAlign: 'middle' }}></div>
+                                        Uploading to Cloudinary...
+                                    </div>
+                                )}
                                 {imagePreview && (
                                     <div className="image-preview">
                                         <img src={imagePreview} alt="Preview" />
@@ -400,7 +425,7 @@ const ProjectsManager = () => {
                                     <span className="syntax-function">cancel</span>
                                     <span className="syntax-bracket">()</span>
                                 </button>
-                                <button type="submit" className="btn-primary-projects">
+                                <button type="submit" className="btn-primary-projects" disabled={isUploadingImage}>
                                     <span className="syntax-function">{editingProject ? 'update' : 'create'}</span>
                                     <span className="syntax-bracket">()</span>
                                 </button>
