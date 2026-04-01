@@ -17,12 +17,45 @@ import Cursor from './components/ui/Cursor/Cursor';
 import ScrollProgressBar from './components/ui/ScrollProgressBar/ScrollProgressBar';
 import KonamiCode from './components/ui/KonamiCode/KonamiCode';
 import EasterEggHints from './components/ui/EasterEggHints/EasterEggHints';
+import placeholder from './images/placeholder.jpeg';
 import './App.css';
 
 // Lazy loaded components for better performance
 const AdminLogin = React.lazy(() => import('./pages/AdminLogin/AdminLogin'));
 const AdminDashboard = React.lazy(() => import('./pages/AdminDashboard/AdminDashboard'));
 const NotFound = React.lazy(() => import('./pages/NotFound/NotFound'));
+const isDown = true;
+const SarcasticPlaceholder = () => (
+  <div style={{
+    height: '100vh',
+    width: '100vw',
+    backgroundColor: '#050510',
+    color: '#00f0ff',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: '"Fira Code", monospace, sans-serif',
+    textAlign: 'center',
+    padding: '20px',
+    boxSizing: 'border-box',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    zIndex: 9999
+  }}>
+    <img src={placeholder} alt="down" />
+    <h1 style={{ fontSize: '2.5rem', marginBottom: '20px', textShadow: '0 0 15px rgba(0, 240, 255, 0.5)', letterSpacing: '2px' }}>
+      DATABASE IS FUCKING DOWN
+    </h1>
+    <div style={{ width: '50px', height: '2px', backgroundColor: '#ff003c', marginBottom: '20px', boxShadow: '0 0 10px rgba(255, 0, 60, 0.8)' }}></div>
+    <p style={{ fontSize: '1.2rem', color: '#a0a0b0', maxWidth: '600px', lineHeight: '1.6' }}>
+      My MongoDB cluster decided to take a vacation. <br />
+
+      Check back later today.
+    </p>
+  </div>
+);
 
 function PortfolioHome() {
   useEffect(() => {
@@ -40,23 +73,27 @@ function PortfolioHome() {
 
   return (
     <>
-      {loading ? (
-        <Loader onFinish={handleLoaderFinish} />
-      ) : (
-        <>
-          <Cursor />
-          <ScrollProgressBar />
-          <KonamiCode />
-          <EasterEggHints />
-          <Navbar />
-          <Hero />
-          <About />
-          <Skills />
-          <Projects />
-          <Experience />
-          <Contact />
-        </>
-      )}
+      {
+        isDown ? (
+          <SarcasticPlaceholder />
+        ) : loading ? (
+          <Loader onFinish={handleLoaderFinish} />
+        ) : (
+          <>
+            <Cursor />
+            <ScrollProgressBar />
+            <KonamiCode />
+            <EasterEggHints />
+            <Navbar />
+            <Hero />
+            <About />
+            <Skills />
+            <Projects />
+            <Experience />
+            <Contact />
+
+          </>
+        )}
     </>
   );
 }
