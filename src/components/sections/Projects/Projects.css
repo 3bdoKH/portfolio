@@ -61,6 +61,7 @@
     border-bottom-right-radius: 8px;
     font-size: var(--font-size-xs);
     color: var(--text-secondary);
+    position: absolute;
 }
 
 .folder-icon {
