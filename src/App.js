@@ -24,7 +24,7 @@ import './App.css';
 const AdminLogin = React.lazy(() => import('./pages/AdminLogin/AdminLogin'));
 const AdminDashboard = React.lazy(() => import('./pages/AdminDashboard/AdminDashboard'));
 const NotFound = React.lazy(() => import('./pages/NotFound/NotFound'));
-const isDown = true;
+const isDown = false;
 const SarcasticPlaceholder = () => (
   <div style={{
     height: '100vh',
