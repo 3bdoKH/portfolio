@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaPaperPlane, FaCheck, FaTimes } from 'react-icons/fa';
+import { FaPaperPlane } from 'react-icons/fa';
 import { socials } from '../../../data/socials';
 import LoveButton from '../../ui/LoveButton/LoveButton';
 import { useAnalytics } from '../../../context/AnalyticsContext';
