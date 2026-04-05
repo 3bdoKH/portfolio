@@ -80,7 +80,7 @@ const LoveButton = () => {
     };
 
     return (
-        <div className="love-button-container" data-aos="fade-up">
+        <div className="love-button-container">
             <span className="love-hint">{'// And finally if you liked this portfolio, you can give it a heart'}</span>
             <button
                 className={`love-button ${isLoved ? 'loved' : ''} ${isAnimating ? 'animate' : ''}`}
