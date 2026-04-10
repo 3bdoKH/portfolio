@@ -65,7 +65,7 @@ const Skills = () => {
                         <h3 className="tech-title">
                             <span className="code-keyword">const</span>{' '}
                             <span className="code-variable">technologies</span>{' '}
-                            <span className="code-bracket">= {'['}</span>
+                            <span className="code-bracket">= {'{'}</span>
                         </h3>
                     </div>
 
@@ -79,10 +79,9 @@ const Skills = () => {
                                 data-aos-delay={index * 100}
                             >
                                 <div className="module-header">
-                                    <span className="code-keyword">const</span>{' '}
-                                    <span className="code-variable">{category}</span>{' '}
-                                    <span className="code-operator">=</span>{' '}
-                                    <span className="code-bracket">{'{'}</span>
+                                    <span className="code-variable">{category}</span>
+                                    <span className="code-operator">:</span>{' '}
+                                    <span className="code-bracket">{'['}</span>
                                 </div>
 
                                 <div className="module-grid">
@@ -104,14 +103,14 @@ const Skills = () => {
                                 </div>
 
                                 <div className="module-footer">
-                                    <span className="code-bracket">{'}'}</span>
+                                    <span className="code-bracket">{'],'}</span>
                                 </div>
                             </div>
                         ))}
                     </div>
 
                     <div className="tech-footer">
-                        <span className="code-bracket">{']'}</span>
+                        <span className="code-bracket">{'};'}</span>
                     </div>
                 </div>
             </div>
