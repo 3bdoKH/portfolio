@@ -7,7 +7,7 @@ import { submitContactForm } from '../../../services/contactService';
 import './Contact.css';
 
 const Contact = () => {
-    const { trackContactFormSubmit } = useAnalytics();
+    const { trackContactFormSubmit, trackSocialLinksClick } = useAnalytics();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -94,7 +94,14 @@ const Contact = () => {
 
                         <div className="social-links">
                             {socials.map((social) => (
-                                <a key={social.id} href={social.url} target="_blank" rel="noopener noreferrer" className="social-link">
+                                <a
+                                    key={social.id}
+                                    href={social.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="social-link"
+                                    onClick={() => trackSocialLinksClick(link.name)}
+                                >
                                     {social.icon}
                                     <span className="social-text">{social.name}</span>
                                 </a>
