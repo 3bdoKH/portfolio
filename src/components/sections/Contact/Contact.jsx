@@ -100,7 +100,7 @@ const Contact = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="social-link"
-                                    onClick={() => trackSocialLinksClick(link.name)}
+                                    onClick={() => trackSocialLinksClick(social.name)}
                                 >
                                     {social.icon}
                                     <span className="social-text">{social.name}</span>
