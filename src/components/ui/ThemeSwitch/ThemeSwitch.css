@@ -144,7 +144,7 @@
 
 @media (max-width: 768px) {
     .theme-switch {
-        bottom: 20px;
+        bottom: 75px;
         right: 20px;
     }
 
@@ -172,7 +172,7 @@
 
 @media (max-width: 480px) {
     .theme-switch {
-        bottom: 20px;
+        bottom: 75px;
         right: 20px;
     }
 
