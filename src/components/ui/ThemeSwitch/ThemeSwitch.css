@@ -1,6 +1,6 @@
 .theme-switch {
     position: fixed;
-    bottom: 30px;
+    bottom: 95px;
     right: 30px;
     z-index: var(--z-modal);
     animation: fadeIn 1s ease-out 2.5s forwards;
