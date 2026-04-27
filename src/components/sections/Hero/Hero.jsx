@@ -229,13 +229,13 @@ const Hero = () => {
             />
             <MatrixRain isOpen={isMatrixOpen} onClose={() => setIsMatrixOpen(false)} />
             <ThemeSwitch />
-            {/* <button
+            <button
                 className="terminal-toggle-btn"
                 onClick={() => setIsTerminalOpen(true)}
                 title="Open Terminal (Press ~ key)"
             >
                 <span className="terminal-toggle-icon">&gt;_</span>
-            </button> */}
+            </button>
         </section>
     );
 };
