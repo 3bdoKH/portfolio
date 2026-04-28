@@ -47,7 +47,7 @@ const AdminDashboard = () => {
     }, {
         name: 'cv',
         component: <CVManager />,
-    }], [token, analyticsData, analyticsLoading, limit]);
+    }], [token, analyticsData, analyticsLoading, limit, handleLimitChange]);
 
     // Check authentication
     useEffect(() => {
