@@ -85,7 +85,7 @@ const AdminDashboard = () => {
 
         loadSharedData();
         return () => { cancelled = true; };
-    }, [token]);
+    }, [token, limit]);
 
 
 
