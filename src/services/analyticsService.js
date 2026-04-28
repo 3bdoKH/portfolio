@@ -10,10 +10,11 @@ export const trackEvent = async (eventType, eventData = {}) => {
 };
 
 // Get analytics stats (Admin only)
-export const getAnalyticsStats = async (token, startDate = null, endDate = null) => {
+export const getAnalyticsStats = async (token, startDate = null, endDate = null, limit = 10) => {
     const params = new URLSearchParams();
     if (startDate) params.append('startDate', startDate);
     if (endDate) params.append('endDate', endDate);
+    if (limit) params.append('limit', limit)
     const query = params.toString() ? `?${params}` : '';
     return authFetch(`/api/analytics/stats${query}`, token);
 };
@@ -26,7 +27,7 @@ export const addLove = () => postFetch('/api/analytics/love', {});
 
 // Get recent activities (Admin only)
 export const getRecentActivities = (token, limit = 10) =>
-    authFetch(`/api/analytics/recent?limit=${limit}`, token);
+    authFetch(`/api/analytics/stats?limit=${limit}`, token);
 
 // Delete analytics event (Admin only)
 export const deleteAnalyticsEvent = (token, eventId) =>

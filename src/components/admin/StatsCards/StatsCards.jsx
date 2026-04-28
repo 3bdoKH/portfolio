@@ -8,7 +8,7 @@ const StatsCards = ({ analyticsData, analyticsLoading }) => {
     useEffect(() => {
         if (analyticsData) {
             setAnalytics(analyticsData);
-            setKeys(Object.keys(analyticsData.overview));
+            setKeys(Object.keys(analyticsData.stats.overview));
             setLoading(false);
         }
     }, [analyticsData]);
@@ -28,7 +28,7 @@ const StatsCards = ({ analyticsData, analyticsLoading }) => {
                             <span className="syntax-bracket">=</span>
                         </div>
                         <div className="stat-value">
-                            <span className="syntax-number">{analytics?.overview[key]}</span>
+                            <span className="syntax-number">{analytics?.stats.overview[key]}</span>
                             <span className="syntax-bracket">;</span>
                         </div>
                     </div>

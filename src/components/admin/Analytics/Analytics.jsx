@@ -1,48 +1,18 @@
 import { useState, useEffect } from 'react';
-import { getTerminalAnalytics, getRecentActivities, deleteAnalyticsEvent } from '../../../services/analyticsService';
+import { deleteAnalyticsEvent } from '../../../services/analyticsService';
 import AnalyticsSkeleton from './AnalyticsSkeleton';
-const Analytics = ({ token, analyticsData, analyticsLoading }) => {
+const Analytics = ({ token, analyticsData, analyticsLoading, onChange }) => {
     const [analytics, setAnalytics] = useState(analyticsData);
-    const [terminalAnalytics, setTerminalAnalytics] = useState(null);
-    const [recentActivities, setRecentActivities] = useState(null);
     const [limit, setLimit] = useState(10);
     const [loading, setLoading] = useState(true);
-    const isLoading = loading || analyticsLoading || !analytics || !terminalAnalytics || !recentActivities;
+    const isLoading = loading || analyticsLoading || !analytics;
 
     useEffect(() => {
         if (analyticsData) {
             setAnalytics(analyticsData);
+            setLoading(false);
         }
     }, [analyticsData]);
-
-    useEffect(() => {
-        let cancelled = false;
-        const loadData = async () => {
-            setLoading(true);
-            try {
-                const [terminalData, activitiesData] = await Promise.all([
-                    getTerminalAnalytics(token),
-                    getRecentActivities(token, limit),
-                ]);
-                if (cancelled) return;
-                setTerminalAnalytics(terminalData.data);
-                setRecentActivities(activitiesData.data);
-            } catch (error) {
-                if (cancelled) return;
-                console.error('Error loading analytics data:', error);
-                if (error.response?.status === 401) {
-                    localStorage.removeItem('adminToken');
-                    window.location.href = '/admin/login';
-                }
-            } finally {
-                if (!cancelled) setLoading(false);
-            }
-        };
-
-        loadData();
-
-        return () => { cancelled = true; };
-    }, [token, limit]);
 
     const handleDelete = async (eventId) => {
         try {
@@ -151,7 +121,7 @@ const Analytics = ({ token, analyticsData, analyticsLoading }) => {
                             <span className="syntax-keyword">Event Types</span>
                         </h3>
                         <div className="event-list">
-                            {analytics.eventsByType.map((event) => (
+                            {analytics.stats.eventsByType.map((event) => (
                                 <div key={event.type} className="event-item">
                                     <span className="event-type">{event.type}</span>
                                     <span className="event-count">{event.count}</span>
@@ -168,7 +138,11 @@ const Analytics = ({ token, analyticsData, analyticsLoading }) => {
                             </h3>
                             <select
                                 value={limit}
-                                onChange={(e) => setLimit(Number(e.target.value))}
+                                onChange={(e) => {
+                                    const val = Number(e.target.value);
+                                    setLimit(val);
+                                    onChange(val);
+                                }}
                                 className="activity-limit-select"
                             >
                                 <option value={10}>10 items</option>
@@ -178,28 +152,27 @@ const Analytics = ({ token, analyticsData, analyticsLoading }) => {
                             </select>
                         </div>
                         <div className="activity-list">
-                            {recentActivities
-                                .map((event, index) => (
-                                    <div key={index} className="activity-item">
-                                        <div className="activity-dot"></div>
-                                        <div className="activity-content">
-                                            <span className="activity-type">{event.eventType}</span>
-                                            <span className="activity-time">{formatDate(event.timestamp)}</span>
-                                        </div>
-                                        <div className="activity-actions">
-                                            {renderUserInfo(event)}
-                                            <button
-                                                className="delete-button-small"
-                                                onClick={() => handleDelete(event._id)}
-                                                title="Delete event"
-                                            >
-                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                                    <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6" />
-                                                </svg>
-                                            </button>
-                                        </div>
+                            {analytics.stats.recentEvents.map((event, index) => (
+                                <div key={index} className="activity-item">
+                                    <div className="activity-dot"></div>
+                                    <div className="activity-content">
+                                        <span className="activity-type">{event.eventType}</span>
+                                        <span className="activity-time">{formatDate(event.timestamp)}</span>
                                     </div>
-                                ))}
+                                    <div className="activity-actions">
+                                        {renderUserInfo(event)}
+                                        <button
+                                            className="delete-button-small"
+                                            onClick={() => handleDelete(event._id)}
+                                            title="Delete event"
+                                        >
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
 
@@ -209,8 +182,8 @@ const Analytics = ({ token, analyticsData, analyticsLoading }) => {
                             <span className="syntax-keyword">Project Clicks</span>
                         </h3>
                         <div className="event-list">
-                            {analytics.projectClicksByProject && analytics.projectClicksByProject.length > 0 ? (
-                                analytics.projectClicksByProject.map((project, index) => (
+                            {analytics.stats.projectClicksByProject && analytics.stats.projectClicksByProject.length > 0 ? (
+                                analytics.stats.projectClicksByProject.map((project, index) => (
                                     <div key={index} className="event-item">
                                         <span className="event-type">{project.projectName || 'Unknown Project'}</span>
                                         <span className="event-count">{project.clicks}</span>
@@ -236,25 +209,25 @@ const Analytics = ({ token, analyticsData, analyticsLoading }) => {
                             <div className="terminal-stat-item">
                                 <span className="terminal-stat-label">Terminal Opens</span>
                                 <span className="terminal-stat-value">
-                                    {terminalAnalytics.totalOpens || 0}
+                                    {analyticsData.terminal.totalOpens || 0}
                                 </span>
                             </div>
                             <div className="terminal-stat-item">
                                 <span className="terminal-stat-label">Commands Executed</span>
                                 <span className="terminal-stat-value">
-                                    {terminalAnalytics.totalCommands || 0}
+                                    {analyticsData.terminal.totalCommands || 0}
                                 </span>
                             </div>
                             <div className="terminal-stat-item">
                                 <span className="terminal-stat-label">Successful Commands</span>
                                 <span className="terminal-stat-value">
-                                    {terminalAnalytics.successfulCommands || 0}
+                                    {analyticsData.terminal.successfulCommands || 0}
                                 </span>
                             </div>
                             <div className="terminal-stat-item">
                                 <span className="terminal-stat-label">Failed Commands</span>
                                 <span className="terminal-stat-value">
-                                    {terminalAnalytics.failedCommands || 0}
+                                    {analyticsData.terminal.failedCommands || 0}
                                 </span>
                             </div>
                         </div>
@@ -266,8 +239,8 @@ const Analytics = ({ token, analyticsData, analyticsLoading }) => {
                                 <span className="syntax-keyword">Most Used Commands</span>
                             </h4>
                             <div className="event-list">
-                                {terminalAnalytics.topCommands.length > 0 ? (
-                                    terminalAnalytics.topCommands.map((cmd, index) => (
+                                {analyticsData.terminal.topCommands.length > 0 ? (
+                                    analyticsData.terminal.topCommands.map((cmd, index) => (
                                         <div key={index} className="event-item terminal-command-item">
                                             <span className="event-type terminal-command-name">$ {cmd.command}</span>
                                             <span className="event-count">{cmd.count}</span>
@@ -288,7 +261,7 @@ const Analytics = ({ token, analyticsData, analyticsLoading }) => {
                                 <span className="syntax-keyword">Recent Terminal Activity</span>
                             </h4>
                             <div className="activity-list">
-                                {terminalAnalytics.recentActivity.map((event, index) => (
+                                {analyticsData.terminal.recentActivity.map((event, index) => (
                                     <div key={index} className="activity-item terminal-activity-item">
                                         <div className={`activity-dot ${event.eventType === 'terminal_open' ? 'terminal-open-dot' : 'terminal-command-dot'}`}></div>
                                         <div className="activity-content">
@@ -314,7 +287,7 @@ const Analytics = ({ token, analyticsData, analyticsLoading }) => {
                                         </div>
                                     </div>
                                 ))}
-                                {terminalAnalytics.recentActivity.length === 0 && (
+                                {analyticsData.terminal.recentActivity.length === 0 && (
                                     <div className="empty-state-small">
                                         <p>No terminal activity yet</p>
                                     </div>

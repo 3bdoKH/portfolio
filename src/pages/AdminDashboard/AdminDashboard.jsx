@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StatsCards from '../../components/admin/StatsCards/StatsCards';
 import ThemeSwitch from '../../components/ui/ThemeSwitch/ThemeSwitch';
-import { getAnalyticsStats } from '../../services/analyticsService';
+import { getAnalyticsStats, getTerminalAnalytics } from '../../services/analyticsService';
 import './AdminDashboard.css';
 
 const Analytics = React.lazy(() => import('../../components/admin/Analytics/Analytics'));
@@ -18,12 +18,26 @@ const AdminDashboard = () => {
     const [analyticsData, setAnalyticsData] = useState(null);
     const [analyticsLoading, setAnalyticsLoading] = useState(true);
     const [visited, setVisited] = useState(['analytics']);
+    const [limit, setLimit] = useState(10)
     const navigate = useNavigate();
     const token = localStorage.getItem('adminToken');
 
+    const handleLimitChange = async (newLimit) => {
+        setLimit(newLimit);
+        setAnalyticsLoading(true);
+        try {
+            const res = await getAnalyticsStats(token, newLimit);
+            setAnalyticsData(prev => ({ ...prev, stats: res.data }));
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setAnalyticsLoading(false);
+        }
+    };
+
     const tabs = useMemo(() => [{
         name: 'analytics',
-        component: <Analytics token={token} analyticsData={analyticsData} analyticsLoading={analyticsLoading} />,
+        component: <Analytics token={token} analyticsData={analyticsData} analyticsLoading={analyticsLoading} onChange={handleLimitChange} />,
     }, {
         name: 'messages',
         component: <Messages />,
@@ -33,7 +47,7 @@ const AdminDashboard = () => {
     }, {
         name: 'cv',
         component: <CVManager />,
-    }], [token, analyticsData, analyticsLoading]);
+    }], [token, analyticsData, analyticsLoading, limit]);
 
     // Check authentication
     useEffect(() => {
@@ -52,8 +66,16 @@ const AdminDashboard = () => {
 
         const loadSharedData = async () => {
             try {
-                const res = await getAnalyticsStats(token);
-                if (!cancelled) setAnalyticsData(res.data);
+                const [statsRes, terminalRes] = await Promise.all([
+                    getAnalyticsStats(token),
+                    getTerminalAnalytics(token),
+                ]);
+                if (!cancelled) {
+                    setAnalyticsData({
+                        stats: statsRes.data,
+                        terminal: terminalRes.data,
+                    });
+                }
             } catch (error) {
                 console.error(error);
             } finally {
@@ -64,6 +86,8 @@ const AdminDashboard = () => {
         loadSharedData();
         return () => { cancelled = true; };
     }, [token]);
+
+
 
     const handleLogout = () => {
         localStorage.removeItem('adminToken');
@@ -124,7 +148,7 @@ const AdminDashboard = () => {
             </header>
 
             <StatsCards analyticsData={analyticsData} analyticsLoading={analyticsLoading} />
-
+            {console.log(analyticsData)}
             <div className="tabs">
                 {tabs.map((tab) => (
                     <button
