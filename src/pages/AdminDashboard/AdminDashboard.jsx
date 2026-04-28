@@ -22,7 +22,7 @@ const AdminDashboard = () => {
     const navigate = useNavigate();
     const token = localStorage.getItem('adminToken');
 
-    const handleLimitChange = async (newLimit) => {
+    const handleLimitChange = useCallback(async (newLimit) => {
         setLimit(newLimit);
         setAnalyticsLoading(true);
         try {
@@ -33,7 +33,7 @@ const AdminDashboard = () => {
         } finally {
             setAnalyticsLoading(false);
         }
-    };
+    }, [token]);
 
     const tabs = useMemo(() => [{
         name: 'analytics',
@@ -67,7 +67,7 @@ const AdminDashboard = () => {
         const loadSharedData = async () => {
             try {
                 const [statsRes, terminalRes] = await Promise.all([
-                    getAnalyticsStats(token),
+                    getAnalyticsStats(token, limit),
                     getTerminalAnalytics(token),
                 ]);
                 if (!cancelled) {
