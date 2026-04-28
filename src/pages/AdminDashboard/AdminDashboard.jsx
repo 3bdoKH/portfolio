@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, Suspense } from 'react';
+import React, { useState, useEffect, useMemo, Suspense, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import StatsCards from '../../components/admin/StatsCards/StatsCards';
 import ThemeSwitch from '../../components/ui/ThemeSwitch/ThemeSwitch';
