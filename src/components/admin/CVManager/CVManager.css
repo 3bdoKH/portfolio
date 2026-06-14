@@ -12,13 +12,13 @@
 .cv-manager-header h2 {
     font-size: 28px;
     margin-bottom: 8px;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
 }
 
 .cv-manager-subtitle {
     color: var(--accent-secondary);
     font-size: 14px;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
 }
 
 /* Message Display */
@@ -28,7 +28,7 @@
     margin-bottom: 20px;
     font-size: 14px;
     animation: slideDown 0.3s ease;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
 }
 
 @keyframes slideDown {
@@ -57,9 +57,9 @@
 
 /* Current CV Info */
 .cv-current-info {
-    background: var(--bg-secondary);
+    background: rgba(0, 0, 0, 0.12);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 25px;
     margin-bottom: 30px;
 }
@@ -67,7 +67,7 @@
 .cv-current-info h3 {
     font-size: 18px;
     margin-bottom: 20px;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
 }
 
 .cv-info-grid {
@@ -88,14 +88,14 @@
 .cv-info-label {
     color: var(--accent-primary);
     font-size: 14px;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
 }
 
 .cv-info-value {
     color: var(--accent-secondary);
     font-size: 14px;
     font-weight: 500;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
 }
 
 .cv-delete-btn {
@@ -107,7 +107,7 @@
     cursor: pointer;
     font-size: 14px;
     transition: all 0.3s ease;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
 }
 
 .cv-delete-btn:hover {
@@ -118,9 +118,9 @@
 
 /* Upload Section */
 .cv-upload-section {
-    background: var(--bg-secondary);
+    background: rgba(0, 0, 0, 0.12);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 25px;
     margin-bottom: 30px;
 }
@@ -128,7 +128,7 @@
 .cv-upload-section h3 {
     font-size: 18px;
     margin-bottom: 20px;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
 }
 
 .cv-upload-area {
@@ -161,13 +161,13 @@
     color: var(--accent-primary);
     font-size: 16px;
     margin-bottom: 8px;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
 }
 
 .cv-file-label-hint {
     color: var(--accent-secondary);
     font-size: 12px;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
 }
 
 /* Selected File */
@@ -193,13 +193,13 @@
     color: var(--accent-primary);
     font-size: 14px;
     font-weight: 500;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
 }
 
 .cv-selected-file-size {
     color: var(--accent-secondary);
     font-size: 12px;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
 }
 
 .cv-upload-btn {
@@ -213,7 +213,7 @@
     font-weight: 600;
     transition: all 0.3s ease;
     white-space: nowrap;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
 }
 
 .cv-upload-btn:hover:not(:disabled) {

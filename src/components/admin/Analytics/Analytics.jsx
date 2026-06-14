@@ -421,57 +421,7 @@ const Analytics = ({ token, analyticsData, analyticsLoading, onChange }) => {
         });
     }, [analytics, totalEventsCount]);
 
-    // Top Referrers Data Parser
-    const referrersData = useMemo(() => {
-        if (!analytics?.stats?.recentEvents) return [];
-        const referrers = {};
-        analytics.stats.recentEvents.forEach(event => {
-            let ref = event.userinfo?.referrer || 'Direct';
-            if (ref === '' || ref === 'direct') ref = 'Direct';
-            else if (ref.includes('google')) ref = 'Google Search';
-            else if (ref.includes('github')) ref = 'GitHub';
-            else if (ref.includes('linkedin')) ref = 'LinkedIn';
-            else if (ref.includes('localhost') || ref.includes('127.0.0.1')) ref = 'Local Dev';
-            else if (ref.includes('abdokhairy.tech')) ref = 'Portfolio';
-            else {
-                try {
-                    const url = new URL(ref);
-                    ref = url.hostname;
-                } catch (e) {
-                    // fallback
-                }
-            }
-            referrers[ref] = (referrers[ref] || 0) + 1;
-        });
-        return Object.entries(referrers)
-            .map(([name, count]) => ({ name, count }))
-            .sort((a, b) => b.count - a.count)
-            .slice(0, 5);
-    }, [analytics]);
 
-    const maxReferrerVal = useMemo(() => {
-        if (referrersData.length === 0) return 1;
-        return Math.max(...referrersData.map(r => r.count)) || 1;
-    }, [referrersData]);
-
-    // Top Countries Data Parser
-    const countriesData = useMemo(() => {
-        if (!analytics?.stats?.recentEvents) return [];
-        const countries = {};
-        analytics.stats.recentEvents.forEach(event => {
-            const country = event.userinfo?.geo?.country || 'Unknown';
-            countries[country] = (countries[country] || 0) + 1;
-        });
-        return Object.entries(countries)
-            .map(([name, count]) => ({ name, count }))
-            .sort((a, b) => b.count - a.count)
-            .slice(0, 5);
-    }, [analytics]);
-
-    const maxCountryVal = useMemo(() => {
-        if (countriesData.length === 0) return 1;
-        return Math.max(...countriesData.map(c => c.count)) || 1;
-    }, [countriesData]);
 
     return (
         <div className="analytics-section">

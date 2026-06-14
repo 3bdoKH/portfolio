@@ -53,7 +53,7 @@
     border: 1px solid rgba(var(--accent-primary), 0.4);
     border-radius: 6px;
     color: var(--accent-primary);
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
     font-size: 14px;
     opacity: 0;
     transform: translateX(100%);
@@ -103,7 +103,7 @@
     font-weight: 600;
     margin: 0;
     color: var(--accent-primary);
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
 }
 
 .user-badge {
@@ -111,7 +111,7 @@
     background: var(--bg-overlay);
     border: 1px solid var(--border-color);
     border-radius: 4px;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
 }
 
 .header-right {
@@ -123,7 +123,7 @@
 .home-link {
     text-decoration: none;
     transition: all 0.2s;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
 }
 
 .home-link:hover {
@@ -137,7 +137,7 @@
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s;
-    font-family: 'Courier New', monospace;
+    font-family: var(--font-mono);
 }
 
 /* Stats Grid */
@@ -298,7 +298,21 @@
 
 .message-card {
     padding: 20px;
-    background-color: var(--bg-secondary);
+    background: rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 16px;
+    transition: all 0.22s ease;
+}
+
+.message-card:hover {
+    border-color: var(--accent-secondary);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+.message-card.unread {
+    border-left: 3.5px solid var(--syntax-function);
 }
 
 .message-header {
