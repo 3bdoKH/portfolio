@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { deleteAnalyticsEvent } from '../../../services/analyticsService';
+import { deleteAnalyticsEvent, getRecentActivities } from '../../../services/analyticsService';
 import AnalyticsSkeleton from './AnalyticsSkeleton';
 
 // Helper to get SVG icons for different event types
@@ -93,6 +93,8 @@ const Analytics = ({ token, analyticsData, analyticsLoading, onChange }) => {
     const [analytics, setAnalytics] = useState(analyticsData);
     const [limit, setLimit] = useState(10);
     const [loading, setLoading] = useState(true);
+    const [recentActivities, setRecentActivities] = useState([]);
+    const [activitiesLoading, setActivitiesLoading] = useState(false);
 
     // Filtering states
     const [searchQuery, setSearchQuery] = useState('');
@@ -117,9 +119,30 @@ const Analytics = ({ token, analyticsData, analyticsLoading, onChange }) => {
         }
     }, [analyticsData]);
 
+    useEffect(() => {
+        if (!token) return;
+        let active = true;
+        const fetchActivities = async () => {
+            setActivitiesLoading(true);
+            try {
+                const res = await getRecentActivities(token, limit);
+                if (active && res.success) {
+                    setRecentActivities(res.data || []);
+                }
+            } catch (err) {
+                console.error('Failed to load recent activities:', err);
+            } finally {
+                if (active) setActivitiesLoading(false);
+            }
+        };
+        fetchActivities();
+        return () => { active = false; };
+    }, [token, limit]);
+
     const handleDelete = async (eventId) => {
         try {
             await deleteAnalyticsEvent(token, eventId);
+            setRecentActivities(prev => prev.filter(e => e._id !== eventId));
             setAnalytics(prev => {
                 if (!prev) return prev;
                 const newRecent = prev.stats?.recentEvents?.filter(e => e._id !== eventId) || [];
@@ -286,8 +309,7 @@ const Analytics = ({ token, analyticsData, analyticsLoading, onChange }) => {
 
     // Computed Recent Events (filtered)
     const filteredRecentEvents = useMemo(() => {
-        if (!analytics?.stats?.recentEvents) return [];
-        return analytics.stats.recentEvents.filter(event => {
+        return recentActivities.filter(event => {
             // Tab Filters
             if (activeFilter === 'page_views' && !['page_view', 'cv_view'].includes(event.eventType)) return false;
             if (activeFilter === 'clicks' && !['love_click', 'project_click', 'social_click'].includes(event.eventType)) return false;
@@ -317,7 +339,7 @@ const Analytics = ({ token, analyticsData, analyticsLoading, onChange }) => {
                 projectName.includes(query) ||
                 socialLink.includes(query);
         });
-    }, [analytics, activeFilter, searchQuery]);
+    }, [recentActivities, activeFilter, searchQuery]);
 
     // Computed Terminal Events (filtered)
     const filteredTerminalActivity = useMemo(() => {
@@ -375,8 +397,8 @@ const Analytics = ({ token, analyticsData, analyticsLoading, onChange }) => {
             days[dateStr] = 0;
         }
 
-        if (analytics?.stats?.recentEvents) {
-            analytics.stats.recentEvents.forEach(event => {
+        if (recentActivities) {
+            recentActivities.forEach(event => {
                 const dateStr = new Date(event.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
                 if (days[dateStr] !== undefined) {
                     days[dateStr]++;
@@ -384,7 +406,7 @@ const Analytics = ({ token, analyticsData, analyticsLoading, onChange }) => {
             });
         }
         return Object.entries(days).map(([date, count]) => ({ date, count }));
-    }, [analytics]);
+    }, [recentActivities]);
     const maxTimelineVal = useMemo(() => Math.max(...timelineData.map(d => d.count), 4), [timelineData]);
 
     const lineChartPoints = useMemo(() => {
@@ -729,70 +751,79 @@ const Analytics = ({ token, analyticsData, analyticsLoading, onChange }) => {
 
                         {/* Activity logs list */}
                         <div className="timeline-activity-list">
-                            {filteredRecentEvents.map((event, index) => {
-                                const isExpanded = !!expandedEvents[event._id];
-                                return (
-                                    <div key={event._id || index} className={`timeline-item-wrapper ${isExpanded ? 'expanded' : ''}`}>
-                                        <div className="timeline-item-main" onClick={() => toggleEventExpand(event._id)}>
-                                            <div className="timeline-icon-badge">
-                                                {getEventIcon(event.eventType)}
-                                            </div>
-                                            <div className="timeline-info-content">
-                                                <div className="timeline-top-row">
-                                                    <span className="timeline-type-tag">{event.eventType}</span>
-                                                    <span className="timeline-timestamp">{formatDate(event.timestamp)}</span>
-                                                </div>
-                                                <div className="timeline-detail-row">
-                                                    {renderInlineDetails(event)}
-                                                </div>
-                                            </div>
-                                            <div className="timeline-badges-panel">
-                                                {renderMiniBadges(event)}
-                                            </div>
-                                            <div className="timeline-item-actions" onClick={e => e.stopPropagation()}>
-                                                <button
-                                                    className={`expand-btn ${isExpanded ? 'active' : ''}`}
-                                                    onClick={() => toggleEventExpand(event._id)}
-                                                    title={isExpanded ? "Collapse metadata" : "Expand metadata"}
-                                                >
-                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                                    </svg>
-                                                </button>
-                                                <button
-                                                    className="delete-button-small"
-                                                    onClick={() => {
-                                                        if (window.confirm("Delete this event log permanently?")) {
-                                                            handleDelete(event._id);
-                                                        }
-                                                    }}
-                                                    title="Delete event log"
-                                                >
-                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                                        <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6" />
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        {isExpanded && (
-                                            <div className="timeline-expanded-details animate-slide-down">
-                                                <div className="details-header-code">
-                                                    <span>{`// Event Metadata (JSON)`}</span>
-                                                </div>
-                                                <pre className="details-code-editor">
-                                                    <code>{JSON.stringify(formatEventDetailsJSON(event), null, 2)}</code>
-                                                </pre>
-                                            </div>
-                                        )}
-                                    </div>
-                                );
-                            })}
-
-                            {filteredRecentEvents.length === 0 && (
-                                <div className="empty-state-small">
-                                    <p>No matching events found</p>
+                            {activitiesLoading ? (
+                                <div className="loading-container-small" style={{ padding: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px', border: '1px dashed var(--border-color)', borderRadius: '8px' }}>
+                                    <div className="spinner-small" style={{ width: '16px', height: '16px', border: '2px solid var(--accent-primary)', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }}></div>
+                                    <span style={{ color: 'var(--text-secondary)', fontSize: '13px', fontFamily: 'var(--font-mono)' }}>Loading activities...</span>
                                 </div>
+                            ) : (
+                                <>
+                                    {filteredRecentEvents.map((event, index) => {
+                                        const isExpanded = !!expandedEvents[event._id];
+                                        return (
+                                            <div key={event._id || index} className={`timeline-item-wrapper ${isExpanded ? 'expanded' : ''}`}>
+                                                <div className="timeline-item-main" onClick={() => toggleEventExpand(event._id)}>
+                                                    <div className="timeline-icon-badge">
+                                                        {getEventIcon(event.eventType)}
+                                                    </div>
+                                                    <div className="timeline-info-content">
+                                                        <div className="timeline-top-row">
+                                                            <span className="timeline-type-tag">{event.eventType}</span>
+                                                            <span className="timeline-timestamp">{formatDate(event.timestamp)}</span>
+                                                        </div>
+                                                        <div className="timeline-detail-row">
+                                                            {renderInlineDetails(event)}
+                                                        </div>
+                                                    </div>
+                                                    <div className="timeline-badges-panel">
+                                                        {renderMiniBadges(event)}
+                                                    </div>
+                                                    <div className="timeline-item-actions" onClick={e => e.stopPropagation()}>
+                                                        <button
+                                                            className={`expand-btn ${isExpanded ? 'active' : ''}`}
+                                                            onClick={() => toggleEventExpand(event._id)}
+                                                            title={isExpanded ? "Collapse metadata" : "Expand metadata"}
+                                                        >
+                                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                                <polyline points="6 9 12 15 18 9"></polyline>
+                                                            </svg>
+                                                        </button>
+                                                        <button
+                                                            className="delete-button-small"
+                                                            onClick={() => {
+                                                                if (window.confirm("Delete this event log permanently?")) {
+                                                                    handleDelete(event._id);
+                                                                }
+                                                            }}
+                                                            title="Delete event log"
+                                                        >
+                                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                                <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6" />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                {isExpanded && (
+                                                    <div className="timeline-expanded-details animate-slide-down">
+                                                        <div className="details-header-code">
+                                                            <span>{`// Event Metadata (JSON)`}</span>
+                                                        </div>
+                                                        <pre className="details-code-editor">
+                                                            <code>{JSON.stringify(formatEventDetailsJSON(event), null, 2)}</code>
+                                                        </pre>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        );
+                                    })}
+
+                                    {filteredRecentEvents.length === 0 && (
+                                        <div className="empty-state-small">
+                                            <p>No matching events found</p>
+                                        </div>
+                                    )}
+                                </>
                             )}
                         </div>
                     </div>

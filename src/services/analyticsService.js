@@ -27,7 +27,7 @@ export const addLove = () => postFetch('/api/analytics/love', {});
 
 // Get recent activities (Admin only)
 export const getRecentActivities = (token, limit = 10) =>
-    authFetch(`/api/analytics/stats?limit=${limit}`, token);
+    authFetch(`/api/analytics/activities?limit=${limit}`, token);
 
 // Delete analytics event (Admin only)
 export const deleteAnalyticsEvent = (token, eventId) =>
