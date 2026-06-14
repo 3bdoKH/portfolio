@@ -21,6 +21,7 @@ const AdminDashboard = () => {
     const [limit, setLimit] = useState(10)
     const navigate = useNavigate();
     const token = localStorage.getItem('adminToken');
+    const [showPopupMsg, setShowPopupMsg] = useState('');
 
     const handleLimitChange = useCallback(async (newLimit) => {
         setLimit(newLimit);
@@ -78,6 +79,7 @@ const AdminDashboard = () => {
                 }
             } catch (error) {
                 console.error(error);
+                setShowPopupMsg(error.message);
             } finally {
                 if (!cancelled) setAnalyticsLoading(false);
             }
@@ -116,6 +118,7 @@ const AdminDashboard = () => {
 
     return (
         <div className="admin-dashboard">
+            <div className={`popup-msg ${showPopupMsg ? 'show' : ''}`}><span>{showPopupMsg}</span></div>
             {/* Header */}
             <header className="dashboard-header">
                 <div className="header-content">

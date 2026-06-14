@@ -39,6 +39,37 @@
     color: var(--syntax-number);
 }
 
+.popup-msg {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 2000;
+    padding: 10px 20px;
+    background: var(--bg-card);
+    border: 1px solid rgba(var(--accent-primary), 0.4);
+    border-radius: 6px;
+    color: var(--accent-primary);
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.popup-msg.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@media(max-width:768px) {
+    .popup-msg {
+        top: 10px;
+        right: 10px;
+    }
+}
+
+
 /* Header */
 .dashboard-header {
     background: var(--bg-primary);
