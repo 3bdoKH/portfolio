@@ -402,6 +402,17 @@
     .code-number {
         font-size: var(--font-size-xl);
     }
+
+    /* Timeline adjustments */
+    .timeline-section-about {
+        padding: var(--spacing-lg);
+    }
+
+    .timeline-title-about {
+        font-size: var(--font-size-xs);
+        flex-wrap: wrap;
+        word-break: break-word;
+    }
 }
 
 @media (max-width: 768px) {
@@ -416,6 +427,7 @@
 
     .about-stats {
         grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-sm);
     }
 
     .code-line {
@@ -424,6 +436,54 @@
 
     .jsdoc-text {
         font-size: var(--font-size-xs);
+    }
+
+    /* Journey Highlights — tighter timeline */
+    .timeline-section-about {
+        padding: var(--spacing-md);
+        padding-bottom: 32px;
+    }
+
+    .timeline-about {
+        padding-left: var(--spacing-md);
+    }
+
+    .timeline-about::before {
+        left: 8px;
+    }
+
+    .timeline-dot-about {
+        left: -22px;
+        width: 12px;
+        height: 12px;
+    }
+
+    .timeline-content-about {
+        padding-left: var(--spacing-sm);
+    }
+
+    .timeline-year-about {
+        font-size: var(--font-size-xs);
+        padding: 2px 6px;
+    }
+
+    .timeline-title-about {
+        font-size: var(--font-size-xs);
+        flex-wrap: wrap;
+        word-break: break-word;
+        line-height: 1.6;
+    }
+
+    .timeline-desc-about {
+        font-size: var(--font-size-xs);
+        padding-left: var(--spacing-sm);
+    }
+
+    .stat-card-header .code-comment {
+        font-size: 12px !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
@@ -438,12 +498,66 @@
     }
 
     .about-stats {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-xs);
+    }
+
+    .stat-card {
+        padding: var(--spacing-sm);
     }
 
     .code-number {
-        font-size: var(--font-size-2xl);
+        font-size: var(--font-size-xl);
     }
+
+    .stat-card-icon {
+        font-size: 0.85rem;
+    }
+
+    /* Journey Highlights — very small screen */
+    .timeline-section-about {
+        padding: var(--spacing-sm);
+        padding-bottom: 24px;
+    }
+
+    .timeline-about {
+        padding-left: var(--spacing-sm);
+    }
+
+    .timeline-about::before {
+        left: 5px;
+    }
+
+    .timeline-dot-about {
+        left: -18px;
+        width: 10px;
+        height: 10px;
+    }
+
+    .timeline-item-about {
+        padding-bottom: var(--spacing-md);
+    }
+
+    .timeline-title-about {
+        font-size: 10px;
+        line-height: 1.5;
+    }
+
+    .timeline-desc-about {
+        font-size: 10px;
+        padding-left: var(--spacing-xs);
+    }
+
+    .timeline-year-about {
+        font-size: 10px;
+        padding: 1px 5px;
+        letter-spacing: 0.04em;
+    }
+
+    .about-code-snippet {
+        display: none;
+    }
+
 
     .about-code-snippet {
         display: none;

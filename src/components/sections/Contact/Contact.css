@@ -306,7 +306,7 @@
 
     .contact-content {
         grid-template-columns: 1fr;
-        gap: var(--spacing-2xl);
+        gap: var(--spacing-xl);
     }
 
     .contact-form-wrapper,
@@ -315,13 +315,15 @@
     }
 
     .contact-form {
-        gap: var(--spacing-xl);
+        padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-xl);
+        gap: var(--spacing-lg);
     }
 
+    /* Stack label + input vertically */
     .form-group {
         flex-direction: column;
         align-items: flex-start;
-        gap: var(--spacing-xs);
+        gap: 6px;
     }
 
     .form-label {
@@ -334,15 +336,86 @@
         font-size: var(--font-size-sm);
         padding: 8px 0;
     }
+
+    .form-textarea-contact {
+        min-height: 100px;
+    }
+
+    /* Social links tighter on mobile */
+    .social-links {
+        gap: var(--spacing-sm);
+        padding: 0 var(--spacing-lg) var(--spacing-lg);
+    }
+
+    .social-link {
+        font-size: var(--font-size-sm);
+        padding: 6px 0;
+    }
+
+    .submit-btn {
+        align-self: stretch;
+        justify-content: center;
+        clip-path: none;
+    }
 }
 
 @media (max-width: 480px) {
+    .contact {
+        padding-top: var(--spacing-xl);
+    }
+
     .section-title {
         font-size: var(--font-size-xl);
+    }
+
+    .contact-form {
+        padding: var(--spacing-md) var(--spacing-md) var(--spacing-lg);
+        gap: var(--spacing-md);
+    }
+
+    .form-label {
+        font-size: var(--font-size-xs);
+    }
+
+    .form-input-contact,
+    .form-textarea-contact {
+        font-size: var(--font-size-xs);
+        padding: 6px 0;
+    }
+
+    .form-textarea-contact {
+        min-height: 80px;
+    }
+
+    .info-title {
+        font-size: var(--font-size-base);
+        margin: var(--spacing-md) var(--spacing-md) var(--spacing-md);
+    }
+
+    .social-links {
+        padding: 0 var(--spacing-md) var(--spacing-md);
+        gap: var(--spacing-xs);
+    }
+
+    .social-link {
+        font-size: var(--font-size-xs);
+        gap: 8px;
     }
 
     .submit-btn {
         width: 100%;
         justify-content: center;
+        font-size: var(--font-size-sm);
+        padding: 12px 16px;
     }
-}
+
+    .success-message-contact,
+    .error-message-contact {
+        font-size: var(--font-size-sm);
+        padding: var(--spacing-sm);
+    }
+
+    .footer-content {
+        font-size: 10px;
+    }
+}
