@@ -14,10 +14,10 @@
 .terminal-window {
     width: 90%;
     max-width: 560px;
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px var(--accent-glow);
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 2px solid var(--accent-primary);
+    border-radius: 0;
+    box-shadow: 0 0 0 1px var(--accent-primary), 0 20px 50px rgba(0, 0, 0, 0.8), var(--shadow-glow);
     overflow: hidden;
     font-family: var(--font-mono);
     position: relative;
@@ -39,21 +39,22 @@
 }
 
 .terminal-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .red {
-    background-color: #ff5f56;
+    background-color: #ff3333;
 }
 
 .yellow {
-    background-color: #ffbd2e;
+    background-color: #ffcc00;
 }
 
 .green {
-    background-color: #27c93f;
+    background-color: #00ff88;
 }
 
 .terminal-title {
@@ -172,16 +173,16 @@
 /* Progress */
 .progress-bar-container {
     width: 100%;
-    height: 4px;
+    height: 3px;
     background-color: var(--bg-secondary);
-    border-radius: 2px;
+    border-radius: 0;
     overflow: hidden;
 }
 
 .progress-bar {
     height: 100%;
     background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-    box-shadow: 0 0 8px var(--accent-glow);
+    box-shadow: 0 0 12px var(--accent-glow);
     transition: width 0.3s ease;
 }
 

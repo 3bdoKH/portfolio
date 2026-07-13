@@ -54,22 +54,24 @@
 }
 
 .timeline-dot {
-    width: 16px;
-    height: 16px;
-    background: var(--bg-primary);
-    border: 2px solid var(--accent-primary);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--accent-glow);
+    width: 12px;
+    height: 12px;
+    background: var(--accent-primary);
+    border: 2px solid var(--bg-primary);
+    border-radius: 0;
+    box-shadow: 0 0 12px var(--accent-glow);
     z-index: 1;
     margin-top: 24px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .job-card {
-    background: var(--bg-card);
+    background: rgba(0, 0, 0, 0.6);
     border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
+    border-left: 3px solid var(--accent-primary);
+    border-radius: 0;
     padding: var(--spacing-lg);
-    transition: all var(--transition-base);
+    transition: all 0.2s ease;
     position: relative;
     overflow: hidden;
 }
@@ -83,13 +85,13 @@
     height: 2px;
     background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
     opacity: 0;
-    transition: opacity var(--transition-base);
+    transition: opacity 0.2s ease;
 }
 
 .job-card:hover {
     border-color: var(--accent-primary);
-    box-shadow: var(--shadow-glow);
-    transform: translateX(4px);
+    box-shadow: var(--shadow-glow), -6px 0 24px rgba(0,255,136,0.1);
+    transform: translate(4px, -2px);
 }
 
 .job-card:hover::before {

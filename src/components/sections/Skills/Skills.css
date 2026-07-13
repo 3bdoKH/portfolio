@@ -45,11 +45,12 @@
     position: relative;
     width: 100%;
     height: 100%;
-    background: var(--bg-card);
+    background: rgba(0, 0, 0, 0.6);
     border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
+    border-top: 2px solid var(--accent-primary);
+    border-radius: 0;
     padding: var(--spacing-lg);
-    transition: all var(--transition-base);
+    transition: all 0.2s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -67,12 +68,14 @@
     bottom: 0;
     background: linear-gradient(135deg, transparent, var(--accent-primary));
     opacity: 0;
-    transition: opacity var(--transition-base);
+    transition: opacity 0.2s ease;
     z-index: 0;
 }
 
 .skill-card:hover .skill-card-inner {
     border-color: var(--accent-primary);
+    box-shadow: 0 0 0 1px var(--accent-primary), var(--shadow-glow);
+    transform: translate(-2px, -4px);
 }
 
 .skill-card:hover .skill-card-inner::before {
@@ -173,21 +176,24 @@
 }
 
 .tech-module {
-    background: var(--bg-card);
+    background: rgba(0, 0, 0, 0.6);
     border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
+    border-top: 2px solid var(--accent-primary);
+    border-radius: 0;
     padding: var(--spacing-lg);
     flex: 1 1 300px;
     max-width: 500px;
     min-width: 280px;
-    transition: all var(--transition-base);
+    transition: all 0.2s ease;
     display: flex;
     flex-direction: column;
+    box-shadow: var(--shadow-md);
 }
 
 .tech-module:hover {
     border-color: var(--accent-primary);
-    transform: translateY(-5px);
+    transform: translate(-2px, -5px);
+    box-shadow: 0 0 0 1px var(--accent-primary), var(--shadow-glow), var(--shadow-lg);
 }
 
 .module-header {
@@ -228,20 +234,21 @@
     align-items: center;
     justify-content: center;
     background: rgba(255, 255, 255, 0.03);
-    border-radius: var(--radius-md);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 0;
+    transition: all 0.2s ease;
     border: 1px solid transparent;
 }
 
 .module-icon {
     font-size: 1.75rem;
     color: var(--text-secondary);
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 .module-item:hover .module-icon-wrapper {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
     border-color: var(--item-color);
+    box-shadow: 0 0 10px var(--item-color);
 }
 
 .module-item:hover .module-icon {

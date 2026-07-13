@@ -15,21 +15,21 @@
   --syntax-number: #bd93f9;
 
   --accent-primary: #00ff88;
-  --accent-secondary: #4a9eff;
-  --accent-glow: rgba(0, 255, 136, 0.3);
-  --accent-glow-blue: rgba(74, 158, 255, 0.3);
+  --accent-secondary: #00cfff;
+  --accent-glow: rgba(0, 255, 136, 0.55);
+  --accent-glow-blue: rgba(0, 207, 255, 0.55);
 
   --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
-  --text-tertiary: #666666;
+  --text-secondary: #c8c8c8;
+  --text-tertiary: #888888;
 
-  --border-color: #2a2f4a;
+  --border-color: #3a3f5a;
   --border-accent: var(--accent-primary);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 20px var(--accent-glow);
-  --shadow-glow-blue: 0 0 20px var(--accent-glow-blue);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.85);
+  --shadow-glow: 0 0 24px var(--accent-glow), 0 0 48px rgba(0, 255, 136, 0.2);
+  --shadow-glow-blue: 0 0 24px var(--accent-glow-blue), 0 0 48px rgba(0, 207, 255, 0.2);
 
   --spacing-xs: 8px;
   --spacing-sm: 16px;
@@ -39,10 +39,10 @@
   --spacing-2xl: 64px;
   --spacing-3xl: 80px;
 
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  --radius-sm: 0px;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+  --radius-xl: 4px;
 
   --font-mono: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', Consolas, Monaco, 'Courier New', monospace;
   --font-size-xs: 0.75rem;
