@@ -1,9 +1,21 @@
 export const experience = [
     {
+        id: 0,
+        company: "DomApp",
+        role: 'Frontend Developer',
+        period: '2026 - Present',
+        description: [
+            'Building performant, scalable interfaces with Next.js and Tailwind CSS following clean frontend architecture principles.',
+            'Applying design patterns to structure maintainable, reusable component systems.',
+            'Integrating Three.js to deliver interactive 3D experiences within web applications.'
+        ],
+        tech: ['Next.js', 'Tailwind CSS', 'Git', 'Three.js', 'Design Patterns', 'Frontend Archticture']
+    },
+    {
         id: 1,
         company: "Adam's_Agency",
         role: 'Full Stack Developer',
-        period: '2025 - Present',
+        period: '2025 - 2026',
         description: [
             'Led development of scalable cloud-native web applications using React and Node.js.',
             'Developed responsive and functional web applications for branch initiatives',
