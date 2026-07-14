@@ -5,7 +5,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(10px);
     display: flex;
     align-items: center;
@@ -20,22 +20,22 @@
     from {
         opacity: 0;
     }
-
     to {
         opacity: 1;
     }
 }
 
 .cv-viewer-modal {
-    background: var(--bg-primary);
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
-    max-width: 900px;
+    background: #050810;
+    border: 2px solid var(--accent-primary);
+    border-radius: 0;
+    max-width: 1000px;
     width: 100%;
     max-height: 90vh;
     display: flex;
     flex-direction: column;
     animation: slideUp 0.3s ease;
+    box-shadow: 0 0 0 1px var(--accent-primary), var(--shadow-glow);
 }
 
 .cv-viewer-modal button {
@@ -47,7 +47,6 @@
         transform: translateY(50px);
         opacity: 0;
     }
-
     to {
         transform: translateY(0);
         opacity: 1;
@@ -59,63 +58,106 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    background: var(--bg-overlay);
-    border-bottom: 1px solid var(--border-color);
-    border-radius: 10px 10px 0 0;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid var(--accent-primary);
+    border-radius: 0;
 }
 
 .cv-header-left {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+}
+
+/* macOS-style terminal dots */
+.cv-file-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.cv-file-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 0;
+}
+
+.cv-file-dots .dot-close {
+    background: #ff3333;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cv-file-dots .dot-close:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 8px #ff3333;
+}
+
+.cv-file-dots .dot-minimize {
+    background: #ffcc00;
+}
+
+.cv-file-dots .dot-maximize {
+    background: #00ff88;
 }
 
 .cv-header-right {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
+/* Download Button */
 .cv-header-btn {
     background: transparent;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--accent-primary);
     color: var(--accent-primary);
     padding: 8px 16px;
-    border-radius: 6px;
+    border-radius: 0;
     cursor: pointer;
-    font-family: 'Fira Code', 'Courier New', monospace;
+    font-family: var(--font-mono);
     font-size: 14px;
-    transition: all 0.3s ease;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
 }
 
 .cv-header-btn:hover:not(:disabled) {
+    background: var(--accent-primary);
+    color: #050810;
     box-shadow: 0 0 15px var(--accent-glow);
+    transform: translate(-1px, -1px);
 }
 
 .cv-header-btn:disabled {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
+    border-color: var(--border-color);
+    color: var(--text-tertiary);
+    clip-path: none;
 }
 
+/* Close Button */
 .cv-close-btn {
     background: transparent;
-    border: 1px solid #ff4444;
-    color: #ff4444;
-    width: 36px;
-    height: 36px;
-    border-radius: 6px;
+    border: 1px solid #ff3333;
+    color: #ff3333;
+    width: 32px;
+    height: 32px;
+    border-radius: 0;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
+    font-family: var(--font-mono);
 }
 
 .cv-close-btn:hover {
-    background: rgba(255, 68, 68, 0.1);
-    box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
+    background: #ff3333;
+    color: #050810;
+    box-shadow: 0 0 12px rgba(255, 51, 51, 0.5);
 }
 
 /* Content */
@@ -127,6 +169,7 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    background: #050810;
 }
 
 .cv-pdf-container {
@@ -138,10 +181,10 @@
 /* Iframe for PDF */
 .cv-iframe {
     width: 100%;
-    height: 70vh;
-    border: none;
-    border-radius: 8px;
-    background: var(--bg-primary);
+    height: 72vh;
+    border: 1px solid var(--border-color);
+    border-radius: 0;
+    background: #000000;
 }
 
 /* Loading State */
@@ -160,7 +203,7 @@
     height: 50px;
     border: 3px solid rgba(0, 255, 136, 0.1);
     border-top-color: var(--accent-primary);
-    border-radius: 50%;
+    border-radius: 0;
     animation: spin 1s linear infinite;
 }
 
@@ -176,12 +219,12 @@
     align-items: center;
     gap: 8px;
     padding: 40px 20px;
-    color: #ff4444;
-    font-family: 'Fira Code', 'Courier New', monospace;
+    color: #ff3333;
+    font-family: var(--font-mono);
     font-size: 16px;
 }
 
-/* Page Controls */
+/* Page Controls (Fallback) */
 .cv-page-controls {
     display: flex;
     align-items: center;
@@ -189,8 +232,8 @@
     padding: 15px;
     background: rgba(0, 255, 136, 0.05);
     border: 1px solid rgba(0, 255, 136, 0.2);
-    border-radius: 8px;
-    font-family: 'Fira Code', 'Courier New', monospace;
+    border-radius: 0;
+    font-family: var(--font-mono);
 }
 
 .cv-page-btn {
@@ -199,7 +242,7 @@
     color: #00ff88;
     width: 40px;
     height: 40px;
-    border-radius: 6px;
+    border-radius: 0;
     cursor: pointer;
     font-size: 18px;
     display: flex;
@@ -234,7 +277,7 @@
 
 .cv-viewer-content::-webkit-scrollbar-thumb {
     background: rgba(0, 255, 136, 0.3);
-    border-radius: 4px;
+    border-radius: 0;
 }
 
 .cv-viewer-content::-webkit-scrollbar-thumb:hover {
@@ -260,12 +303,13 @@
     .cv-header-btn {
         padding: 6px 12px;
         font-size: 12px;
+        clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 0 100%);
     }
 
     .cv-close-btn {
-        width: 32px;
-        height: 32px;
-        font-size: 20px;
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
     }
 
     .cv-viewer-content {

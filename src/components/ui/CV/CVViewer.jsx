@@ -103,6 +103,11 @@ const CVViewer = ({ isOpen, onClose }) => {
                     {/* Header */}
                     <div className="cv-viewer-header">
                         <div className="cv-header-left">
+                            <div className="cv-file-dots">
+                                <span className="dot dot-close" onClick={onClose} title="Close"></span>
+                                <span className="dot dot-minimize"></span>
+                                <span className="dot dot-maximize"></span>
+                            </div>
                             <span className="code-comment">{`// `}</span>
                             <span className="code-string">{filename}</span>
                         </div>
@@ -115,7 +120,7 @@ const CVViewer = ({ isOpen, onClose }) => {
                                 <span className="code-function">download</span>
                                 <span className="code-bracket">()</span>
                             </button>
-                            <button className="cv-close-btn" onClick={onClose}>
+                            <button className="cv-close-btn" onClick={onClose} title="Close">
                                 <span className="code-bracket">×</span>
                             </button>
                         </div>

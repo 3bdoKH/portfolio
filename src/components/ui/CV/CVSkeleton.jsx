@@ -8,6 +8,11 @@ const CVSkeleton = ({ onClose }) => {
                 {/* Header */}
                 <div className="cv-viewer-header">
                     <div className="cv-header-left">
+                        <div className="cv-file-dots">
+                            <span className="dot dot-close" onClick={onClose} title="Close"></span>
+                            <span className="dot dot-minimize"></span>
+                            <span className="dot dot-maximize"></span>
+                        </div>
                         <span className="code-comment">{`// `}</span>
                         <Skeleton width={120} height={20} />
                     </div>
@@ -15,7 +20,7 @@ const CVSkeleton = ({ onClose }) => {
                         <div className="cv-header-btn" style={{ padding: '4px 12px', opacity: 0.7 }}>
                             <Skeleton width={80} height={16} />
                         </div>
-                        <button className="cv-close-btn" onClick={onClose}>
+                        <button className="cv-close-btn" onClick={onClose} title="Close">
                             <span className="code-bracket">×</span>
                         </button>
                     </div>
@@ -23,7 +28,7 @@ const CVSkeleton = ({ onClose }) => {
 
                 {/* Content */}
                 <div className="cv-viewer-content">
-                    <div className="cv-document-skeleton" style={{ width: '100%', background: 'rgba(255, 255, 255, 0.03)', borderRadius: '8px', padding: '40px', boxSizing: 'border-box' }}>
+                    <div className="cv-document-skeleton" style={{ width: '100%', background: 'rgba(255, 255, 255, 0.03)', borderRadius: '0', padding: '40px', boxSizing: 'border-box' }}>
                         {/* Header Area */}
                         <div style={{ marginBottom: '30px' }}>
                             <Skeleton width="60%" height={32} />
