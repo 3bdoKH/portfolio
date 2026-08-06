@@ -3,6 +3,7 @@ import { FaExternalLinkAlt, FaFolder, FaGithub } from 'react-icons/fa';
 import { useAnalytics } from '../../../context/AnalyticsContext.jsx';
 import { getProjects } from '../../../services/projectsService.js';
 import ProjectsSkeleton from '../../admin/ProjectsManager/ProjectsSkeleton.jsx';
+import ProjectModal from './ProjectModal.jsx';
 import './Projects.css';
 
 const Projects = () => {
@@ -10,6 +11,7 @@ const Projects = () => {
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [selectedProject, setSelectedProject] = useState(null);
 
     useEffect(() => {
         // Fetch projects from API
@@ -30,6 +32,15 @@ const Projects = () => {
 
     const handleProjectClick = (project) => {
         trackProjectClick(project._id || project.id, project.displayTitle);
+    };
+
+    const handleOpenProject = (project) => {
+        setSelectedProject(project);
+        handleProjectClick(project);
+    };
+
+    const handleCloseProject = () => {
+        setSelectedProject(null);
     };
 
     return (
@@ -78,7 +89,18 @@ const Projects = () => {
                                 data-aos="fade-up"
                                 data-aos-delay={index * 100}
                             >
-                                <div className="project-card-inner">
+                                <div
+                                    className="project-card-inner"
+                                    role="button"
+                                    tabIndex={0}
+                                    onClick={() => handleOpenProject(project)}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            handleOpenProject(project);
+                                        }
+                                    }}
+                                >
                                     {/* Visual Header / Image */}
                                     <div className="project-image-wrapper">
                                         <div className="project-folder-tab">
@@ -94,7 +116,10 @@ const Projects = () => {
                                                         target="_blank"
                                                         rel="noopener noreferrer"
                                                         className="project-link"
-                                                        onClick={() => handleProjectClick(project)}
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            handleProjectClick(project);
+                                                        }}
                                                     >
                                                         <FaExternalLinkAlt /> <span className="link-text">Live</span>
                                                     </a>
@@ -105,6 +130,7 @@ const Projects = () => {
                                                         target="_blank"
                                                         rel="noopener noreferrer"
                                                         className="project-link"
+                                                        onClick={(e) => e.stopPropagation()}
                                                     >
                                                         <FaGithub /> <span className="link-text">Code</span>
                                                     </a>
@@ -131,7 +157,7 @@ const Projects = () => {
                                         {/* Tech Stack */}
                                         <div className="project-tech">
                                             <span className="code-bracket">[</span>
-                                            {project.tags.map((tag, i) => (
+                                            {(project.tags || []).map((tag, i) => (
                                                 <span key={i} className="tech-tag">
                                                     <span className="code-string">'{tag}'</span>
                                                     {i < project.tags.length - 1 && <span className="code-bracket">, </span>}
@@ -139,6 +165,18 @@ const Projects = () => {
                                             ))}
                                             <span className="code-bracket">]</span>
                                         </div>
+
+                                        <button
+                                            type="button"
+                                            className="project-details-button"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                handleOpenProject(project);
+                                            }}
+                                        >
+                                            <span className="code-function">openDetails</span>
+                                            <span className="code-bracket">()</span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -156,6 +194,13 @@ const Projects = () => {
             <div className="projects-decoration">
                 <div className="code-bg-text">return projects;</div>
             </div>
+
+            <ProjectModal
+                isOpen={Boolean(selectedProject)}
+                project={selectedProject}
+                onClose={handleCloseProject}
+                onProjectClick={handleProjectClick}
+            />
         </section>
     );
 };
